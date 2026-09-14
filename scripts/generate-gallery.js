@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const MEDIA_DIR = path.join(__dirname, '../assets/media')
+const MEDIA_DIR = path.join(__dirname, '../assets/media/gallery')
 const OUTPUT_FILE = path.join(__dirname, '../src/data/gallery.json')
 
 // Create the data folder if it does not exist
@@ -29,7 +29,7 @@ Object.entries(categories).forEach(([folder, level]) => {
   }
 
   // Walk the folder recursively so per-project sub-folders are supported
-  // (e.g. battle-ready/w40k-custodes/)
+  // (e.g. gallery/battle-ready/w40k-custodes/)
   const files = walkDir(categoryPath)
 
   files.forEach(file => {
