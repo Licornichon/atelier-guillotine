@@ -33,11 +33,16 @@ const PUBLISHERS = {
   ],
 }
 
-// Display priority: these publisher + level groups come first, in this order;
-// every other image follows. Within a group, newest first.
+// Display priority: these groups come first, in this order; every other image
+// follows. Within a group, newest first. An image joins the first group it
+// matches: publisher + level, and the game folder prefix when `games` is set.
+const W40K = ['w40k', '40k', 'warhammer-40k']
 const PRIORITY = [
+  { publisher: 'gw', level: 'tabletop-plus', games: W40K },
   { publisher: 'gw', level: 'tabletop-plus' },
+  { publisher: 'gw', level: 'battle-ready', games: W40K },
   { publisher: 'gw', level: 'battle-ready' },
+  { publisher: 'gw', level: 'display', games: W40K },
   { publisher: 'gw', level: 'display' },
 ]
 
@@ -76,7 +81,11 @@ Object.entries(categories).forEach(([folder, level]) => {
 
 // Sort: PRIORITY group first (unmatched images last), then newest first
 function rank (item) {
-  const i = PRIORITY.findIndex(p => p.level === item.level && p.publisher === item.publisher)
+  const i = PRIORITY.findIndex(p =>
+    p.level === item.level &&
+    p.publisher === item.publisher &&
+    (!p.games || p.games.some(prefix => item.game.startsWith(prefix)))
+  )
   return i === -1 ? PRIORITY.length : i
 }
 

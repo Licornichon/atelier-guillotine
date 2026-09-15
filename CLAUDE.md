@@ -84,7 +84,7 @@ Homepage (`index.pug`) order: hero → gallery → services → pricing → **FA
 
 Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]`; filter buttons `[data-filter]` = `all` + 3 levels; filtering toggles `.is-hidden` then `imagesLoaded` → `msnry.layout()`. Columns via `.gallery__sizer` + `.gallery__item` width (20% above `$bp-xl`, 25%, 33% below `$bp-lg`, 50% below `$bp-sm`).
 
-`generate-gallery.js` scans `assets/media/gallery/{battle-ready,tabletop-plus,display}/` (repo root, not `src/`, sub-folders ok; the first sub-folder's name prefix gives the publisher via `PUBLISHERS`, e.g. `w40k-…`/`aos-…`/`mordheim` → `gw`), sorts by its `PRIORITY` list of publisher + level groups, then mtime desc → `gallery.json`. `loaders/pug-with-data.js` prepends `- var galleryItems` + `- var shopItems` to every Pug and marks both JSON as deps. `CopyWebpackPlugin` copies `assets/media/` → `dist/`.
+`generate-gallery.js` scans `assets/media/gallery/{battle-ready,tabletop-plus,display}/` (repo root, not `src/`, sub-folders ok; the first sub-folder's name prefix gives the publisher via `PUBLISHERS`, e.g. `w40k-…`/`aos-…`/`mordheim` → `gw`), sorts by its `PRIORITY` list of publisher + level (+ optional game prefix, w40k first) groups, then mtime desc → `gallery.json`. `loaders/pug-with-data.js` prepends `- var galleryItems` + `- var shopItems` to every Pug and marks both JSON as deps. `CopyWebpackPlugin` copies `assets/media/` → `dist/`.
 
 ## i18n
 
