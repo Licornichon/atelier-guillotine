@@ -96,7 +96,7 @@ Per-page `<title>` uses `data-i18n`, `<meta name=description>` uses `data-i18n-c
 
 `legal.html` is a **single page** carrying both the French *mentions légales* (LCEN) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice links to. One footer link only. Its `legal.*` strings still contain UPPERCASE placeholders (`NOM_PRENOM`, `NUMEROSIRET`, `ADRESSE_POSTALE`, `EMAIL_CONTACT`, `MEDIATEUR_NOM`, `MEDIATEUR_SITE`, `JJ/MM/AAAA`); do not ship without replacing them.
 
-Pug attributes: `data-i18n` (textContent, incl. `<title>`) · `data-i18n-html` (innerHTML) · `data-i18n-placeholder` · `data-i18n-aria` (aria-label) · `data-i18n-alt` (img alt) · `data-i18n-label` (sets `data-label`, used by responsive pricing table) · `data-i18n-content` (content attr) · `data-shop-i18n="<slug>.<field>"` / `data-shop-i18n-alt` (shop-card text / img alt, resolved from the injected `shop-i18n-data` blob, not from `translations.*.js`).
+Pug attributes: `data-i18n` (textContent, incl. `<title>`) · `data-i18n-html` (innerHTML) · `data-i18n-placeholder` · `data-i18n-aria` (aria-label) · `data-i18n-alt` (img alt; `{name}` placeholders filled from `data-i18n-vars='{"name":"<key>"}'`, `t(key, vars)` at build; used by gallery alts with `gallery.game.<sub-folder>`) · `data-i18n-label` (sets `data-label`, used by responsive pricing table) · `data-i18n-content` (content attr) · `data-shop-i18n="<slug>.<field>"` / `data-shop-i18n-alt` (shop-card text / img alt, resolved from the injected `shop-i18n-data` blob, not from `translations.*.js`).
 
 ## Contact form
 

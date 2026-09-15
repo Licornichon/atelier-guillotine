@@ -64,9 +64,12 @@ module.exports = {
   'gallery.ttp':   'Tabletop+',
   'gallery.display': 'Display',
   'gallery.filtersLabel': 'Filter by level',
-  'gallery.alt.battle-ready':  'Miniature painted by Atelier Guillotine, Battle Ready level',
-  'gallery.alt.tabletop-plus': 'Miniature painted by Atelier Guillotine, Tabletop+ level',
-  'gallery.alt.display':       'Miniature painted by Atelier Guillotine, Display level',
+  // Image alt: {game} = gallery.game.<gallery sub-folder>, {level} = level name
+  'gallery.alt':       '{game} miniature painted by Atelier Guillotine, {level} level',
+  'gallery.altNoGame': 'Miniature painted by Atelier Guillotine, {level} level',
+  'gallery.game.w40k':     'Warhammer 40,000',
+  'gallery.game.infinity': 'Infinity',
+  'gallery.game.mordheim': 'Mordheim',
 
   'shop.meta.title':       "Shop | Atelier Guillotine | Painted miniatures for sale",
   'shop.meta.description': "Painted miniatures currently for sale by Atelier Guillotine: display and tabletop pieces for Warhammer and other tabletop games.",

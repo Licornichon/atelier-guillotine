@@ -64,9 +64,12 @@ module.exports = {
   'gallery.ttp':   'Tabletop+',
   'gallery.display': 'Display',
   'gallery.filtersLabel': 'Filtrer par niveau',
-  'gallery.alt.battle-ready':  'Figurine peinte par Atelier Guillotine, niveau Battle Ready',
-  'gallery.alt.tabletop-plus': 'Figurine peinte par Atelier Guillotine, niveau Tabletop+',
-  'gallery.alt.display':       'Figurine peinte par Atelier Guillotine, niveau Display',
+  // Image alt: {game} = gallery.game.<gallery sub-folder>, {level} = level name
+  'gallery.alt':       'Figurine {game} peinte par Atelier Guillotine, niveau {level}',
+  'gallery.altNoGame': 'Figurine peinte par Atelier Guillotine, niveau {level}',
+  'gallery.game.w40k':     'Warhammer 40 000',
+  'gallery.game.infinity': 'Infinity',
+  'gallery.game.mordheim': 'Mordheim',
 
   'shop.meta.title':       "Boutique | Atelier Guillotine | Figurines peintes à vendre",
   'shop.meta.description': "Figurines peintes actuellement en vente chez Atelier Guillotine : pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.",

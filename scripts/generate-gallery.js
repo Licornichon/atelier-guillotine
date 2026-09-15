@@ -66,6 +66,7 @@ Object.entries(categories).forEach(([folder, level]) => {
     items.push({
       src: './' + relativePath.replace(/\\/g, '/'),
       level: level,
+      game: folder, // first sub-folder name, used for the alt text (gallery.game.<game>)
       publisher: publisherOf(folder),
       mtime: stat.mtime.getTime(), // timestamp pour tri chronologique
       name: path.basename(file, path.extname(file)),

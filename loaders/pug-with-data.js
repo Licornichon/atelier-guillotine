@@ -35,7 +35,9 @@ module.exports = function (source) {
   delete require.cache[require.resolve(TRANSLATIONS_FR)]
   this.addDependency(TRANSLATIONS_FR)
   prelude += `- var i18nFr = ${JSON.stringify(require(TRANSLATIONS_FR))}\n`
-  prelude += `- var t = function (key) { return key in i18nFr ? i18nFr[key] : key }\n`
+  // t(key[, vars]): each {name} placeholder is replaced by the value of the key vars[name]
+  // (same rule as data-i18n-vars in lang.js)
+  prelude += `- var t = function (key, vars) { var val = key in i18nFr ? i18nFr[key] : key; return !vars ? val : String(val).replace(/\\{(\\w+)\\}/g, function (m, name) { return vars[name] in i18nFr ? i18nFr[vars[name]] : m }) }\n`
 
   return prelude + source
 }

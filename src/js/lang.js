@@ -28,6 +28,20 @@ function t (key) {
   return (dicts[currentLang] && dicts[currentLang][key]) || key
 }
 
+// {name} placeholders: data-i18n-vars='{"name": "<key>"}' replaces each one with
+// the value of that other key (same rule as t(key, vars) in the Pug templates)
+function interpolate (val, el, dict) {
+  const raw = el.getAttribute('data-i18n-vars')
+  if (!raw) return val
+  let vars
+  try {
+    vars = JSON.parse(raw)
+  } catch (e) {
+    return val
+  }
+  return val.replace(/\{(\w+)\}/g, (m, name) => (dict[vars[name]] !== undefined ? dict[vars[name]] : m))
+}
+
 function applyTranslations (lang) {
   currentLang = lang
   const dict = dicts[lang]
@@ -54,7 +68,7 @@ function applyTranslations (lang) {
 
   document.querySelectorAll('[data-i18n-alt]').forEach(el => {
     const val = dict[el.getAttribute('data-i18n-alt')]
-    if (val !== undefined) el.setAttribute('alt', val)
+    if (val !== undefined) el.setAttribute('alt', interpolate(val, el, dict))
   })
 
   document.querySelectorAll('[data-i18n-label]').forEach(el => {

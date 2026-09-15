@@ -60,13 +60,19 @@ html(lang='fr' data-page=page)
         .gallery__grid
           .gallery__sizer
           if galleryItems && galleryItems.length
+            //- Alt = gallery.alt with {game} (gallery.game.<sub-folder>) and {level};
+            //- gallery.altNoGame when the image has no known game
+            - var levelKeys = { 'battle-ready': 'gallery.tr', 'tabletop-plus': 'gallery.ttp', display: 'gallery.display' }
             each item in galleryItems
+              - var altVars = { level: levelKeys[item.level] }
+              - if (item.game && ('gallery.game.' + item.game) in i18nFr) altVars.game = 'gallery.game.' + item.game
+              - var altKey = altVars.game ? 'gallery.alt' : 'gallery.altNoGame'
               a.gallery__item(
                 href=item.src
                 data-gallery='gallery'
                 data-level=item.level
               )
-                img(src=item.src alt=t('gallery.alt.' + item.level) data-i18n-alt=('gallery.alt.' + item.level) loading='lazy')
+                img(src=item.src alt=t(altKey, altVars) data-i18n-alt=altKey data-i18n-vars=JSON.stringify(altVars) loading='lazy')
 
       //- ──────────────────────────────────────────
       //- PRICE GRID: single source for the pricing table below and the
