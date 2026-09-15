@@ -48,5 +48,40 @@
     max-width: 875px;
     margin-left: auto;
     margin-right: auto;
+
+    // Mobile: 40% smaller (each clamp value × 0.6) + side padding, lighter
+    // grey to stay readable over the background image
+    @media (max-width: $bp-md) {
+      font-size: clamp(1.02rem, 2.4vw, 1.32rem);
+      padding-inline: 1em;
+      color: #ccc;
+    }
+  }
+
+  // ─── Mobile: one centered image behind the text, under a dark veil ─────────
+  // .hero__content is a stacking context (z-index: 1): the image and the veil
+  // go to z-index -1, so they paint under the title/subtitle; the veil comes
+  // later in the markup (::after), so it sits on top of the image.
+  @media (max-width: $bp-md) {
+    &__bg-right { display: none; }
+
+    // .hero__content is centered in the section, so centering on it centers in the section
+    &__bg-left {
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+
+    &__content::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 100vw; // whole section width, clipped by .hero's overflow
+      transform: translateX(-50%);
+      background: rgba($color-bg, 0.6); // #0f0f0f at 60%
+      z-index: -1;
+    }
   }
 }

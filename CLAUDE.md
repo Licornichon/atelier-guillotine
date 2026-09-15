@@ -35,7 +35,7 @@ npm run build:prod   # minified prod build → dist/
 | file | role |
 |---|---|
 | `lang.js` | i18n FR/EN, exports `t(key)` |
-| `anchors.js` | smooth scroll on nav links (70px offset) + mobile menu (`.is-open`) |
+| `anchors.js` | smooth scroll on nav links (70px offset) + mobile menu (`.nav__menu.is-open`: links + FR/EN switch) |
 | `gallery.js` | level filter + Masonry; `imagesLoaded` → `msnry.layout()` |
 | `lightbox.js` | GLightbox: homepage gallery items, + shop card main photo (`data-shop-images`) |
 | `shop.js` | shop card thumbnails swap the main photo (and its href) |

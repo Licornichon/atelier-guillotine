@@ -16,6 +16,7 @@ $line-height: 1.75;
 // ─── Layout ──────────────────────────────────────────────────────────────────
 $container-max:   1200px;
 $section-padding: 6rem 2rem;
+$section-padding-mobile: 3rem 1rem; // below $bp-md, see @mixin section-padding
 $nav-height:      4.5rem; // fixed nav; offsets content below it (hero margin-top…)
 
 // ─── Breakpoints ─────────────────────────────────────────────────────────────
@@ -31,12 +32,25 @@ $bp-xl: 1920px;
   margin-right: auto;
 }
 
+// Vertical rhythm of every content section (smaller on mobile)
+@mixin section-padding {
+  padding: $section-padding;
+
+  @media (max-width: $bp-md) {
+    padding: $section-padding-mobile;
+  }
+}
+
 @mixin title-section {
   font-family: $font-sans;
   font-size: clamp(1.75rem, 6vw, 3rem);
   color: $color-accent;
   text-align: center;
   margin-bottom: 3rem;
+
+  @media (max-width: $bp-md) {
+    margin-bottom: 2rem;
+  }
 }
 
 @mixin title-subsection {

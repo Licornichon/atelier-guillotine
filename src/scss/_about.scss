@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 .about {
-  padding: $section-padding;
+  @include section-padding;
 
   // Two text columns (.about__intro | .about__why), stacked below $bp-md
   &__inner {

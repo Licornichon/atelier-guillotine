@@ -22,10 +22,16 @@
     color: $color-accent;
   }
 
+  // Links + language switch (mobile dropdown, see media query below)
+  &__menu {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
   &__links {
     display: flex;
     gap: 2rem;
-    margin-left: auto;
   }
 
   &__link {
@@ -82,13 +88,14 @@
       display: block;
     }
 
-    &__links {
+    &__menu--collapsible {
       display: none;
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
       flex-direction: column;
+      align-items: flex-start;
       background: $color-bg-lighter;
       padding: 1.25rem 2rem;
       gap: 1.25rem;
@@ -96,6 +103,15 @@
 
       &.is-open {
         display: flex;
+      }
+
+      .nav__links {
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .nav__lang {
+        margin-left: 0;
       }
     }
   }

@@ -9,20 +9,25 @@
       const target = document.getElementById(id)
       if (!target) return
 
-      const navLinks = document.querySelector('.nav__links')
-      if (navLinks) navLinks.classList.remove('is-open')
+      setMenuOpen(false)
 
       window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 70)
     })
   })
 
-  // Mobile nav toggle
+  // Mobile nav toggle: opens the dropdown holding the links + language switch
   const toggle = document.querySelector('.nav__toggle')
-  const navLinks = document.querySelector('.nav__links')
+  const menu = document.querySelector('.nav__menu')
 
-  if (toggle && navLinks) {
+  function setMenuOpen (open) {
+    if (!toggle || !menu) return
+    menu.classList.toggle('is-open', open)
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+  }
+
+  if (toggle && menu) {
     toggle.addEventListener('click', () => {
-      navLinks.classList.toggle('is-open')
+      setMenuOpen(!menu.classList.contains('is-open'))
     })
   }
 })()

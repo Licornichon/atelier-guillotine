@@ -75,7 +75,8 @@ html(lang='fr' data-page=page)
                     )
                   //- Thumbnails (every photo, first included): show the picked one in the main slot (shop.js)
                   if item.images.length > 1
-                    .shop__thumbs
+                    //- --thumb-cols: columns of the mobile thumbnail grid (max 6 per row)
+                    .shop__thumbs(style=('--thumb-cols: ' + Math.min(item.images.length, 6)))
                       each photo, i in item.images
                         button.shop__thumb(
                           type='button'
