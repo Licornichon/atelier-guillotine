@@ -4,7 +4,7 @@
 
 // ─── For-sale list ──────────────────────────────────────────────────────────
 // One piece = one full-width row (section width), photo on the left and
-// details on the right. Stacks below $bp-md.
+// details on the right. Stacks below $bp-lg (tablet portrait and mobile).
 .shop {
   @include section-padding;
 
@@ -25,16 +25,27 @@
     border: 1px solid $color-border;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'media head'
+      'media body';
     align-items: stretch;
 
-    @media (max-width: $bp-md) {
+    // One column: title/tags/price, then photos, then description
+    @media (max-width: $bp-lg) {
       grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        'head'
+        'media'
+        'body';
     }
 
     &--reserved { opacity: 0.55; }
   }
 
   &__media {
+    grid-area: media;
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -94,13 +105,27 @@
     &.is-active { border-color: $color-accent; }
   }
 
-  &__body {
-    padding: 2.75rem;
+  // Tag, name, badges, price
+  &__head {
+    grid-area: head;
+    padding: 2.75rem 2.75rem 0;
     display: flex;
     flex-direction: column;
 
-    @media (max-width: $bp-md) {
-      padding: 2rem;
+    @media (max-width: $bp-lg) {
+      padding: 2rem 2rem 0;
+    }
+  }
+
+  // Description + CTA
+  &__body {
+    grid-area: body;
+    padding: 0 2.75rem 2.75rem;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: $bp-lg) {
+      padding: 1.5rem 2rem 2rem;
     }
   }
 

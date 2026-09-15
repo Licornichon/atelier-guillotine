@@ -50,11 +50,17 @@
     margin-right: auto;
 
     // Mobile: 40% smaller (each clamp value × 0.6) + side padding, lighter
-    // grey to stay readable over the background image
-    @media (max-width: $bp-md) {
+    // grey to stay readable over the background image (tablet included)
+    @media (max-width: $bp-lg) {
       font-size: clamp(1.02rem, 2.4vw, 1.32rem);
       padding-inline: 1em;
       color: #ccc;
+    }
+
+    // Small laptops: narrower subtitle, same font size as tablet / mobile
+    @media (min-width: 1280px) and (max-width: 1440px) {
+      max-width: 500px;
+      font-size: clamp(1.02rem, 2.4vw, 1.32rem);
     }
   }
 
@@ -62,7 +68,8 @@
   // .hero__content is a stacking context (z-index: 1): the image and the veil
   // go to z-index -1, so they paint under the title/subtitle; the veil comes
   // later in the markup (::after), so it sits on top of the image.
-  @media (max-width: $bp-md) {
+  // (tablet included)
+  @media (max-width: $bp-lg) {
     &__bg-right { display: none; }
 
     // .hero__content is centered in the section, so centering on it centers in the section
@@ -83,5 +90,14 @@
       background: rgba($color-bg, 0.6); // #0f0f0f at 60%
       z-index: -1;
     }
+  }
+}
+
+// Shop hero only, small laptops: right image 30% (of its width) closer to the center
+#shop-hero .hero__bg-right {
+  transform: translateX(-20%);
+
+  @media (min-width: 1280px) and (max-width: 1440px) {
+    transform: translateX(-10%);
   }
 }

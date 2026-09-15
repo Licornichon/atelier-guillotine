@@ -13,11 +13,8 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
 
+    // Three side by side, or one per row (no 2-column step)
     @media (max-width: $bp-lg) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @media (max-width: $bp-md) {
       grid-template-columns: 1fr;
     }
   }
@@ -40,8 +37,8 @@
     box-shadow: 0 0 20px rgba($color-accent, 0.4), 0 0 0 4px $color-bg-lighter, 0 0 0 8px $color-accent, inset 0 0 20px rgba($color-accent, 0.1);
     transform: scale(1.05);
 
-    // Mobile: Tabletop+ shown first
-    @media (max-width: $bp-md) {
+    // Stacked layout: no zoom, Tabletop+ shown first
+    @media (max-width: $bp-lg) {
       transform: none;
       order: -1;
     }

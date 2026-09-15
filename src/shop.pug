@@ -57,7 +57,24 @@ html(lang='fr' data-page=page)
           ul.shop__list
             each item in shopItems
               - var loc = item.i18n.fr.name ? item.i18n.fr : item.i18n.en
+              //- Grid areas (_shop.scss): head / media / body. Two columns: media on the
+              //- left, head + body on the right. One column: head, media, body.
               li.shop__item(class=('shop__item--' + item.status))
+                .shop__head
+                  if loc.tag
+                    span.shop__tag(data-shop-i18n=(item.slug + '.tag'))= loc.tag
+                  h3.shop__name(data-shop-i18n=(item.slug + '.name'))= loc.name
+                  .shop__meta
+                    if item.level
+                      span.shop__level(class=('shop__level--' + item.level) data-i18n=('shop.level.' + item.level))= t('shop.level.' + item.level)
+                    span.shop__status(class=('shop__status--' + item.status) data-i18n=('shop.status.' + item.status))= t('shop.status.' + item.status)
+                  if item.price || item.retailPrice
+                    .shop__pricing
+                      if item.price
+                        p.shop__price= item.price
+                      //- Retail price of the bare models, to set apart the painting work
+                      if item.retailPrice
+                        p.shop__retail #[span(data-i18n='shop.item.retail') #{t('shop.item.retail')}] #{item.retailPrice}
                 .shop__media
                   //- Photos = resized WebP copies (npm run generate): src/srcset, full, thumb
                   - var cover = item.images[0]
@@ -66,7 +83,7 @@ html(lang='fr' data-page=page)
                     img(
                       src=cover.src
                       srcset=cover.srcset
-                      sizes='(max-width: 768px) 100vw, 720px'
+                      sizes='(max-width: 1024px) 100vw, 720px'
                       width=cover.width
                       height=cover.height
                       alt=loc.name
@@ -92,20 +109,6 @@ html(lang='fr' data-page=page)
                         )
                           img(src=photo.thumb alt='' loading='lazy')
                 .shop__body
-                  if loc.tag
-                    span.shop__tag(data-shop-i18n=(item.slug + '.tag'))= loc.tag
-                  h3.shop__name(data-shop-i18n=(item.slug + '.name'))= loc.name
-                  .shop__meta
-                    if item.level
-                      span.shop__level(class=('shop__level--' + item.level) data-i18n=('shop.level.' + item.level))= t('shop.level.' + item.level)
-                    span.shop__status(class=('shop__status--' + item.status) data-i18n=('shop.status.' + item.status))= t('shop.status.' + item.status)
-                  if item.price || item.retailPrice
-                    .shop__pricing
-                      if item.price
-                        p.shop__price= item.price
-                      //- Retail price of the bare models, to set apart the painting work
-                      if item.retailPrice
-                        p.shop__retail #[span(data-i18n='shop.item.retail') #{t('shop.item.retail')}] #{item.retailPrice}
                   if loc.description
                     p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
                   a.shop__cta(href='#contact' data-i18n='shop.item.cta')= t('shop.item.cta')

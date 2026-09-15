@@ -83,7 +83,8 @@
     color: $color-text;
   }
 
-  @media (max-width: $bp-md) {
+  // Burger menu: tablet portrait and mobile
+  @media (max-width: $bp-lg) {
     &__toggle {
       display: block;
     }
