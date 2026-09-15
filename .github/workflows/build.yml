@@ -1,0 +1,31 @@
+name: Build
+
+# Builds on every push (catches errors on working branches) and uploads
+# dist/ as an artifact. On master, a successful run triggers deploy.yml.
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm run build:prod
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          # dist/.htaccess (URLs sans .html) est un fichier caché :
+          # upload-artifact l'ignore par défaut depuis la v4.4.
+          include-hidden-files: true
