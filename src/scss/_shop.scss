@@ -40,16 +40,17 @@
     min-width: 0;
   }
 
+  // Main photo shown whole, at its natural ratio (no crop). When the details
+  // column is taller, auto margins center it in the space left above the
+  // thumbnails, which stay at the bottom of the column.
   &__photo {
     display: block;
     overflow: hidden;
-    flex: 1;
+    margin-block: auto;
 
     img {
       width: 100%;
-      height: 100%;
-      aspect-ratio: 3 / 2;
-      object-fit: cover;
+      height: auto;
       display: block;
       transition: transform 0.4s ease;
     }
@@ -64,15 +65,20 @@
     padding: 0.75rem;
   }
 
+  // <button>: swaps the main photo (shop.js)
   &__thumb {
     width: 76px;
     height: 76px;
+    padding: 0;
     border: 1px solid $color-border;
     overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
 
     img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    &:hover { border-color: $color-accent; }
+    &:hover,
+    &.is-active { border-color: $color-accent; }
   }
 
   &__body {
@@ -123,15 +129,25 @@
   }
 
   &__status {
-    &--available { color: $color-accent; }
+    &--available { color: $color-success; }
     &--reserved  { color: $color-text-muted; }
+  }
+
+  &__pricing {
+    margin-bottom: 1.25rem;
   }
 
   &__price {
     font-size: 1.35rem;
     font-weight: bold;
     color: $color-accent;
-    margin-bottom: 1.25rem;
+  }
+
+  // Retail price of the unpainted models, under the sale price
+  &__retail {
+    @include text-muted;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
   }
 
   &__description {

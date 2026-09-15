@@ -80,6 +80,8 @@ module.exports = {
   'shop.level.tabletop-plus': 'Tabletop+',
   'shop.level.display':       'Display',
   'shop.item.cta':      'Ask about this piece',
+  'shop.item.thumb':    'Show this photo',
+  'shop.item.retail':   'Retail price of the unpainted models alone:',
 
   'pricing.title':                    'Pricing',
   'pricing.tr.name':                  'Battle Ready',

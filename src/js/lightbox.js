@@ -31,16 +31,12 @@ require('glightbox/dist/css/glightbox.min.css')
   })
 })()
 
-// Shop — one lightbox group per piece (data-shop-gallery attribute = slug)
+// Shop — the card's main photo opens that piece's photos full screen
+// (data-shop-images = JSON list), starting at the photo currently shown
+// (its href follows the thumbnail picked, see shop.js)
 ;(function () {
-  const links = document.querySelectorAll('[data-shop-gallery]')
-  if (!links.length) return
-
-  const groups = {}
-  links.forEach(link => {
-    const key = link.getAttribute('data-shop-gallery')
-    ;(groups[key] || (groups[key] = [])).push(link)
-  })
+  const photos = document.querySelectorAll('.shop__photo[data-shop-images]')
+  if (!photos.length) return
 
   const lightbox = GLightbox({
     touchNavigation: true,
@@ -51,19 +47,19 @@ require('glightbox/dist/css/glightbox.min.css')
     closeEffect: 'fade',
   })
 
-  links.forEach(link => {
-    link.addEventListener('click', e => {
+  photos.forEach(photo => {
+    photo.addEventListener('click', e => {
       e.preventDefault()
-      const groupLinks = groups[link.getAttribute('data-shop-gallery')]
+      let images
+      try {
+        images = JSON.parse(photo.getAttribute('data-shop-images'))
+      } catch (err) {
+        return
+      }
+      if (!images.length) return
 
-      const hrefs = []
-      groupLinks.forEach(l => {
-        const href = l.getAttribute('href')
-        if (href && href !== '#' && hrefs.indexOf(href) === -1) hrefs.push(href)
-      })
-
-      lightbox.setElements(hrefs.map(href => ({ href, type: 'image' })))
-      lightbox.openAt(Math.max(0, hrefs.indexOf(link.getAttribute('href'))))
+      lightbox.setElements(images.map(href => ({ href, type: 'image' })))
+      lightbox.openAt(Math.max(0, images.indexOf(photo.getAttribute('href'))))
     })
   })
 })()

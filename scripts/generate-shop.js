@@ -85,6 +85,7 @@ if (fs.existsSync(SHOP_DIR)) {
     items.push({
       slug,
       price: info.price || '',
+      retailPrice: info.retailPrice || '',
       status,
       level,
       order: typeof info.order === 'number' ? info.order : null,

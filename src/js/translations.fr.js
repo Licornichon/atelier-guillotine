@@ -80,6 +80,8 @@ module.exports = {
   'shop.level.tabletop-plus': 'Tabletop+',
   'shop.level.display':       'Display',
   'shop.item.cta':      'Se renseigner sur cette pièce',
+  'shop.item.thumb':    'Afficher cette photo',
+  'shop.item.retail':   'Prix neuf des figurines seules, non peintes :',
 
   'pricing.title':                    'Tarifs',
   'pricing.tr.name':                  'Battle Ready',

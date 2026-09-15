@@ -31,7 +31,7 @@
     font-size: 0.9rem;
     min-height: 1.5em;
 
-    &--success { color: #6abf6a; }
+    &--success { color: $color-success; }
     &--error   { color: #bf6a6a; }
   }
 

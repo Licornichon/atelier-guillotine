@@ -16,6 +16,7 @@ assets/media/shop/
 ```json
 {
   "price": "180 €",
+  "retailPrice": "90 €",
   "status": "available",
   "level": "battle-ready",
   "order": 1,
@@ -37,6 +38,7 @@ assets/media/shop/
 | Champ | Requis | Détail |
 |---|---|---|
 | `price` | non | Texte libre (`"180 €"`, `"sur devis"`…), identique FR/EN |
+| `retailPrice` | non | Prix neuf des figurines seules, non peintes (texte libre). Affiché en petit sous `price` pour distinguer la valeur des figurines de celle de la peinture. |
 | `status` | non (défaut : `available`) | `available` ou `reserved`. Retirer le dossier quand la pièce est vendue. |
 | `level` | non | `battle-ready`, `tabletop-plus` ou `display`. Badge sur la carte. |
 | `order` | non | Tri manuel croissant ; les pièces sans `order` passent après, triées par nom EN. |
@@ -55,8 +57,9 @@ assets/media/shop/
 en dérive `src/data/shop.json` (ajoute `slug`, `images[]`, regroupe les blocs sous
 `i18n`) ; c'est un artefact de build gitignoré.
 
-La page rend le texte EN par défaut ; `src/js/lang.js` lit le `<script id="shop-i18n-data">`
-injecté et bascule les éléments `[data-shop-i18n]` FR/EN au changement de langue.
+La page rend le texte FR par défaut ; `src/js/lang.js` lit le `<script id="shop-i18n-data">`
+injecté et bascule les éléments `[data-shop-i18n]` (texte) et `[data-shop-i18n-alt]` (alt de la photo)
+FR/EN au changement de langue.
 
 `npm run generate` (lancé avant `dev` / `build` / `build:prod`) régénère `shop.json`.
 En session `npm run dev` déjà lancée, webpack ne surveille pas les `info.json` :

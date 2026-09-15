@@ -59,12 +59,21 @@ html(lang='fr' data-page=page)
               - var loc = item.i18n.fr.name ? item.i18n.fr : item.i18n.en
               li.shop__item(class=('shop__item--' + item.status))
                 .shop__media
-                  a.shop__photo(href=item.images[0] data-shop-gallery=item.slug)
+                  //- Main photo: opens the piece's full-screen gallery at the photo shown (lightbox.js)
+                  a.shop__photo(href=item.images[0] data-shop-images=JSON.stringify(item.images))
                     img(src=item.images[0] alt=loc.name data-shop-i18n-alt=(item.slug + '.name') loading='lazy')
+                  //- Thumbnails (every photo, first included): show the picked one in the main slot (shop.js)
                   if item.images.length > 1
                     .shop__thumbs
-                      each photo in item.images.slice(1)
-                        a.shop__thumb(href=photo data-shop-gallery=item.slug)
+                      each photo, i in item.images
+                        button.shop__thumb(
+                          type='button'
+                          class=(i === 0 ? 'is-active' : undefined)
+                          data-src=photo
+                          aria-pressed=(i === 0 ? 'true' : 'false')
+                          aria-label=t('shop.item.thumb')
+                          data-i18n-aria='shop.item.thumb'
+                        )
                           img(src=photo alt='' loading='lazy')
                 .shop__body
                   if loc.tag
@@ -74,8 +83,13 @@ html(lang='fr' data-page=page)
                     if item.level
                       span.shop__level(class=('shop__level--' + item.level) data-i18n=('shop.level.' + item.level))= t('shop.level.' + item.level)
                     span.shop__status(class=('shop__status--' + item.status) data-i18n=('shop.status.' + item.status))= t('shop.status.' + item.status)
-                  if item.price
-                    p.shop__price= item.price
+                  if item.price || item.retailPrice
+                    .shop__pricing
+                      if item.price
+                        p.shop__price= item.price
+                      //- Retail price of the bare models, to set apart the painting work
+                      if item.retailPrice
+                        p.shop__retail #[span(data-i18n='shop.item.retail') #{t('shop.item.retail')}] #{item.retailPrice}
                   if loc.description
                     p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
                   a.shop__cta(href='#contact' data-i18n='shop.item.cta')= t('shop.item.cta')

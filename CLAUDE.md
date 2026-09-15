@@ -37,7 +37,8 @@ npm run build:prod   # minified prod build → dist/
 | `lang.js` | i18n FR/EN, exports `t(key)` |
 | `anchors.js` | smooth scroll on nav links (70px offset) + mobile menu (`.is-open`) |
 | `gallery.js` | level filter + Masonry; `imagesLoaded` → `msnry.layout()` |
-| `lightbox.js` | GLightbox: homepage gallery items, + shop per-piece groups via `data-shop-gallery` |
+| `lightbox.js` | GLightbox: homepage gallery items, + shop card main photo (`data-shop-images`) |
+| `shop.js` | shop card thumbnails swap the main photo (and its href) |
 | `form.js` | Web3Forms AJAX submit |
 
 **SCSS** (`src/scss/`): `main.scss` `@use`s partials; vars/mixins in `_variables.scss`; every partial starts `@use 'variables' as *`.
@@ -74,10 +75,10 @@ Homepage (`index.pug`) order: hero → gallery → services → pricing → **FA
 `shop.pug` → `shop.html`, nav label "Boutique" (FR) / "Shop" (EN). Hero, for-sale list, then the shared contact/about/FAQ includes.
 
 - One folder per piece: `assets/media/shop/<slug>/` = `info.json` + image files (sorted by name, first = cover).
-- `info.json`: shared `price`, `status` (`available`\|`reserved`), `level` (`battle-ready`\|`tabletop-plus`\|`display`), optional `order`; plus `fr` / `en` blocks each holding `name`, `tag`, `description` (one block is reused if the other is missing). `level` + `tag` render as card badges.
+- `info.json`: shared `price`, optional `retailPrice` (unpainted models, shown small under the price), `status` (`available`\|`reserved`), `level` (`battle-ready`\|`tabletop-plus`\|`display`), optional `order`; plus `fr` / `en` blocks each holding `name`, `tag`, `description` (one block is reused if the other is missing). `level` + `tag` render as card badges.
 - `info.json` is the only file to hand-edit; `generate-shop.js` derives `src/data/shop.json` (adds `slug`, `images[]`, groups translations under `i18n`). Webpack doesn't watch `info.json` → user re-runs `npm run generate` after edits.
 - Card text renders in FR by default; `shop.pug` emits `<script id="shop-i18n-data">` (map `{slug: {fr,en}}`) and `lang.js` switches `[data-shop-i18n="<slug>.<field>"]` elements FR/EN from it.
-- Remove a piece by deleting its folder (no "sold" status). Per-piece lightbox: `data-shop-gallery=<slug>` grouped in `lightbox.js`. Format doc: `assets/media/shop/README.md`.
+- Remove a piece by deleting its folder (no "sold" status). Thumbnails swap the card's main photo (`shop.js`); the main photo opens the piece's full-screen gallery at the photo shown (`lightbox.js`). Format doc: `assets/media/shop/README.md`.
 
 ## Gallery
 
