@@ -1,0 +1,12 @@
+//- ──────────────────────────────────────────
+//- PRICE GRID (shared: pricing table in _pricing.pug + "from X €" prices in commissions.pug)
+//- First row = cheapest
+//- ──────────────────────────────────────────
+- var priceRows = [
+-   { key: 'pricing.infantry',               tr: 17, ttp: 34 },
+-   { key: 'pricing.typicalRanges.elite',    tr: 22, ttp: 44 },
+-   { key: 'pricing.typicalRanges.cavalry',  tr: 30, ttp: 50 },
+-   { key: 'pricing.typicalRanges.vehicles', tr: 40, ttp: 80 },
+-   { key: 'pricing.character',              tr: 40, ttp: 100 },
+-   { key: 'pricing.largeCharacter',         tr: 85, ttp: 200 },
+- ]

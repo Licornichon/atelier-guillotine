@@ -32,7 +32,10 @@
   &__bg-left  { left: 0; transform: translateX(-100%); }
   &__bg-right { left: 100%; }
 
+  // position: relative, no z-index: the title joins the positioned images'
+  // layer and, coming after them in _hero.pug, paints on top of them
   &__title {
+    position: relative;
     color: $color-accent;
     font-family: $font-sans;
     font-size: clamp(5rem, 16vw, 10rem);
@@ -101,5 +104,26 @@
 
   @media (min-width: 1280px) and (max-width: 1440px) {
     transform: translateX(-10%);
+  }
+}
+
+// Commissions hero only
+#commissions-hero {
+  // Orc 25% smaller, vertically centered, 2rem to the right
+  .hero__bg-right {
+    height: 75%;
+    top: 12.5%;
+    transform: translateX(2rem);
+  }
+
+  // Custodes mirrored: scaleX(-1) comes last so it doesn't mirror the translateX
+  // Desktop: 20% (of its width) to the right
+  @media (min-width: 1025px) {
+    .hero__bg-left { transform: translateX(-80%) scaleX(-1); }
+  }
+
+  // Below 1024px: centered behind the title, as in .hero
+  @media (max-width: 1024px) {
+    .hero__bg-left { transform: translateX(-50%) scaleX(-1); }
   }
 }

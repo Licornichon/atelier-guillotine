@@ -1,6 +1,6 @@
 @use 'variables' as *;
 
-.services {
+.commissions {
   @include section-padding;
 
   &__title {
@@ -20,7 +20,20 @@
   }
 }
 
-.service {
+// Homepage: short section pointing to the commissions page (title and button
+// reuse .commissions__title and .commission__cta)
+.commissions-teaser {
+  @include section-padding;
+  text-align: center;
+
+  &__text {
+    @include text-muted;
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+  }
+}
+
+.commission {
   background: var(--section-alt);
   border: 1px solid $color-border;
   padding: 2.5rem;

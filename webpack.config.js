@@ -119,6 +119,10 @@ module.exports = {
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
+      template: path.join(src, 'commissions.pug'),
+      filename: 'commissions.html',
+    }),
+    new HtmlWebpackPlugin({
       template: path.join(src, 'shop.pug'),
       filename: 'shop.html',
     }),
