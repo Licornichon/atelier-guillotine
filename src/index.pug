@@ -1,5 +1,6 @@
 doctype html
-html(lang='fr' data-page='home')
+- var page = 'home'
+html(lang='fr' data-page=page)
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -25,41 +26,25 @@ html(lang='fr' data-page='home')
     link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
     link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
   body
+    include includes/_nav
+    include includes/_hero
 
     a.skip-link(href='#main-content') Aller au contenu
 
-    .page-loader
-      img.page-loader__logo(src='./assets/media/logo-transparent.png' alt='' width='360')
-
-    nav.nav(aria-label='Navigation principale')
-      a.nav__logo(href='#')
-        span.brand-name Atelier Guillotine
-      button.nav__toggle(data-i18n-aria='nav.toggle' aria-label='Ouvrir le menu') ☰
-      ul.nav__links
-        li: a.nav__link(href='#gallery' data-i18n='nav.gallery') Gallery
-        li: a.nav__link(href='#services' data-i18n='nav.services') Painting Services
-        li: a.nav__link(href='#pricing' data-i18n='nav.pricing') Pricing
-        li: a.nav__link(href='./shop' data-i18n='nav.shop') Shop
-        li: a.nav__link(href='#faq' data-i18n='nav.faq') FAQ
-        li: a.nav__link(href='#contact' data-i18n='nav.contact') Contact
-        li: a.nav__link(href='#about' data-i18n='nav.about') About
-      .nav__lang
-        button.nav__lang-btn(data-lang='fr' aria-pressed='true') FR
-        span.nav__lang-sep(aria-hidden='true') |
-        button.nav__lang-btn(data-lang='en' aria-pressed='false') EN
+    +nav(page)
 
     main#main-content
 
       //- ──────────────────────────────────────────
       //- HERO
       //- ──────────────────────────────────────────
-      section#hero.hero
-        img.hero__bg-left(src='./assets/media/hero-chasseur-sorciere.png' alt='Atelier Guillotine — Miniature painting - Witch Hunter' data-i18n-alt='hero.imageAlt')
-        img.hero__bg-right(src='./assets/media/hero-pirate.png' alt='Atelier Guillotine — Miniature painting - Pirate' data-i18n-alt='hero.imageAlt')
-        .hero__content
-          h1.hero__title
-            span.brand-name(data-i18n-html='hero.title') Atelier<br>Guillotine
-          p.hero__subtitle(data-i18n-html='hero.subtitle')
+      +hero({
+        id: 'hero',
+        title: { key: 'hero.title', text: 'Atelier<br>Guillotine' },
+        subtitle: { key: 'hero.subtitle' },
+        left: { src: './assets/media/hero/hommesbetes.png', alt: 'Atelier Guillotine — Peinture de figurines', altKey: 'hero.imageAlt' },
+        right: { src: './assets/media/hero/pirate.png', alt: 'Atelier Guillotine — Peinture de figurines', altKey: 'hero.imageAlt' },
+      })
 
       //- ──────────────────────────────────────────
       //- GALLERY

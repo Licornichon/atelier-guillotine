@@ -32,7 +32,6 @@ src/
   js/
     main.js          → Entry point webpack
     lang.js          → Système de traductions
-    loader.js        → Page loader (attend fonts + images)
     gallery.js       → Masonry + filtres + imagesLoaded
     lightbox.js      → GLightbox pour preview galerie
     form.js          → Web3Forms AJAX + validation
@@ -42,10 +41,9 @@ src/
     main.scss        → Import tous les partials
     _variables.scss  → Couleurs, typo, breakpoints
     _nav.scss, _hero.scss, _about.scss, etc.
-    _loader.scss, _faq.scss
+    _faq.scss
   images/
     favicon.ico, favicon-32x32.png, favicon-16x16.png
-    loader.gif       → À remplir avec ton GIF
   assets/
     media/
       hero.png       → Image section hero
@@ -86,11 +84,6 @@ src/data/gallery.json          → Généré au build
 - **Lightbox GLightbox** pour preview full-size
 - **Lazy-loading** des images (data-* optimisé)
 - **Pour ajouter images** : Déposer dans un des 3 dossiers, puis `npm run build`
-
-### ⏱️ Page loader
-- **Attend** : load event + fonts (document.fonts.ready) + toutes images (imagesLoaded)
-- **Disparaît en fondu** quand tout est chargé
-- **Config** : Remplacer `src/images/loader.gif` par ton GIF
 
 ### 📧 Formulaire de contact
 - **Web3Forms** : Pas de backend, envoie les mails directement
@@ -141,7 +134,6 @@ Pour configurer :
 - [x] ✅ Traductions FR/EN complètes avec détection auto
 - [x] ✅ Système de galerie dynamique
 - [x] ✅ Optimisation SEO (métadonnées, trust factors)
-- [x] ✅ Page loader (attend fonts + images)
 - [x] ✅ Favicons
 - [x] ✅ Lightbox galerie
 - [x] ✅ Formulaire Web3Forms

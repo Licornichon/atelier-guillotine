@@ -6,7 +6,8 @@
 //- French legal notice (LCEN art. 6-III) and GDPR information are legal
 //- requirements — restore before promoting the site publicly.
 doctype html
-html(lang='fr' data-page='legal')
+- var page = 'legal'
+html(lang='fr' data-page=page)
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -20,16 +21,11 @@ html(lang='fr' data-page='legal')
     link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
     link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
   body
+    include includes/_nav
 
     a.skip-link(href='#main-content') Aller au contenu
 
-    nav.nav(aria-label='Navigation principale')
-      a.nav__logo(href='./')
-        span.brand-name Atelier Guillotine
-      .nav__lang
-        button.nav__lang-btn(data-lang='fr' aria-pressed='true') FR
-        span.nav__lang-sep(aria-hidden='true') |
-        button.nav__lang-btn(data-lang='en' aria-pressed='false') EN
+    +nav(page, { links: false })
 
     main#main-content.legal-page
       .legal-page__inner

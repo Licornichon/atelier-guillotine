@@ -27,7 +27,7 @@ npm run build:prod   # minified prod build → dist/
 - Entry `src/js/main.js` → `bundle.js` (injected into every page).
 - `HtmlWebpackPlugin` builds 2 pages: `index.html`←`src/index.pug`, `shop.html`←`src/shop.pug`. **`legal.html` is temporarily disabled** — its plugin is commented out in `webpack.config.js`, along with the footer links (`index.pug`, `shop.pug`) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
 - SCSS is `require`d from `main.js` and injected by `style-loader` (no CSS file emitted).
-- Markup shared by `index.pug` + `shop.pug` lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`).
+- Markup shared by `index.pug` + `shop.pug` lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
 - `dist/` not committed. `.gitignore`: `dist/`, `index.html`, `bundle.js`, `index.js`, `src/data/gallery.json`, `src/data/shop.json`.
 
 **JS modules** (`src/js/`, each an IIFE, CommonJS `require`, Babel):
@@ -35,7 +35,6 @@ npm run build:prod   # minified prod build → dist/
 | file | role |
 |---|---|
 | `lang.js` | i18n FR/EN, exports `t(key)` |
-| `loader.js` | page-loader overlay; waits `load` + `fonts.ready` + `imagesLoaded(body)`, then fades |
 | `anchors.js` | smooth scroll on nav links (70px offset) + mobile menu (`.is-open`) |
 | `gallery.js` | level filter + Masonry; `imagesLoaded` → `msnry.layout()` |
 | `lightbox.js` | GLightbox: homepage gallery items, + shop per-piece groups via `data-shop-gallery` |
@@ -66,13 +65,13 @@ Homepage (`index.pug`) order: hero → gallery → services → pricing → **FA
 | FAQ | `#faq` | `_faq.scss` |
 | contact | `#contact` | `_contact.scss` |
 | about | `#about` | `_about.scss` |
-| footer / loader | — | `_footer.scss` / `_loader.scss` |
+| footer | — | `_footer.scss` |
 | shop page | `#shop` | `_shop.scss` |
 | legal page | — | `_legal.scss` |
 
 ## Shop page
 
-`shop.pug` → `shop.html`, nav label "Boutique" (FR) / "Shop" (EN). Short hero (`.hero--inner`), for-sale list, then the shared contact/about/FAQ includes.
+`shop.pug` → `shop.html`, nav label "Boutique" (FR) / "Shop" (EN). Hero, for-sale list, then the shared contact/about/FAQ includes.
 
 - One folder per piece: `assets/media/shop/<slug>/` = `info.json` + image files (sorted by name, first = cover).
 - `info.json`: shared `price`, `status` (`available`\|`reserved`), `level` (`battle-ready`\|`tabletop-plus`\|`display`), optional `order`; plus `fr` / `en` blocks each holding `name`, `tag`, `description` (one block is reused if the other is missing). `level` + `tag` render as card badges.
@@ -82,7 +81,7 @@ Homepage (`index.pug`) order: hero → gallery → services → pricing → **FA
 
 ## Gallery
 
-Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]`; filter buttons `[data-filter]` = `all` + 3 levels; filtering toggles `.is-hidden` then `imagesLoaded` → `msnry.layout()`. Columns via `.gallery__sizer` width (25→33→50→100% by breakpoint).
+Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]`; filter buttons `[data-filter]` = `all` + 3 levels; filtering toggles `.is-hidden` then `imagesLoaded` → `msnry.layout()`. Columns via `.gallery__sizer` + `.gallery__item` width (20% above `$bp-xl`, 25%, 33% below `$bp-lg`, 50% below `$bp-sm`).
 
 `generate-gallery.js` scans `assets/media/{battle-ready,tabletop-plus,display}/` (repo root, not `src/`, sub-folders ok), sorts by mtime desc → `gallery.json`. `loaders/pug-with-data.js` prepends `- var galleryItems` + `- var shopItems` to every Pug and marks both JSON as deps. `CopyWebpackPlugin` copies `assets/media/` → `dist/`.
 

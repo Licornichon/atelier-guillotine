@@ -9,7 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 2rem;
+  height: $nav-height; // border included (border-box) — other offsets rely on it
+  padding: 0 2rem;
   background: rgba($color-bg, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid $color-border;

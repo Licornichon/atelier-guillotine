@@ -1,14 +1,6 @@
 @use 'variables' as *;
 
-// ─── Inner-page hero (shorter than the full-screen homepage hero) ───────────
-.hero--inner {
-  height: 60vh;
-  min-height: 420px;
-
-  .hero__content { margin-top: 12vh; }
-
-  .hero__title { font-size: clamp(3rem, 10vw, 5.5rem); }
-}
+// Hero: see _hero.scss
 
 // ─── For-sale list ──────────────────────────────────────────────────────────
 // One piece = one full-width row (section width), photo on the left and

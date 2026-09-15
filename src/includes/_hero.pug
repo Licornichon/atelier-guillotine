@@ -1,0 +1,20 @@
+//- ──────────────────────────────────────────
+//- HERO (shared — every page with a hero)
+//- Usage: include includes/_hero, then +hero({ … })
+//-   id        section id
+//-   title     { key, text } — i18n key + build-time fallback (HTML allowed)
+//-   subtitle  { key, text } — optional, same shape
+//-   left      { src, alt, altKey } — optional side image (altKey = i18n key)
+//-   right     same shape
+//- ──────────────────────────────────────────
+mixin hero(o)
+  section.hero(id=o.id)
+    .hero__content
+      each side in ['left', 'right']
+        - var pic = o[side]
+        if pic
+          img(class=('hero__bg-' + side) src=pic.src alt=pic.alt data-i18n-alt=pic.altKey)
+      h1.hero__title
+        span.brand-name(data-i18n-html=o.title.key)!= o.title.text
+      if o.subtitle
+        p.hero__subtitle(data-i18n-html=o.subtitle.key)!= o.subtitle.text || ''

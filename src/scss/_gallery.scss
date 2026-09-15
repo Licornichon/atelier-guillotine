@@ -41,10 +41,14 @@
     position: relative;
   }
 
+  // Columns: 5 above $bp-xl, 4 by default, 3 below $bp-lg, 2 below $bp-sm
+  // (phones in portrait) — keep in sync with &__item
   &__sizer {
     width: 25%;
 
+    @media (min-width: #{$bp-xl + 1}) { width: 20%; }
     @media (max-width: $bp-lg) { width: 33.333%; }
+    @media (max-width: $bp-sm) { width: 50%; }
   }
 
   &__item {
@@ -54,7 +58,9 @@
     cursor: pointer;
     margin-bottom: 0;
 
+    @media (min-width: #{$bp-xl + 1}) { width: 20%; }
     @media (max-width: $bp-lg) { width: 33.333%; }
+    @media (max-width: $bp-sm) { width: 50%; }
 
     img {
       width: 100%;

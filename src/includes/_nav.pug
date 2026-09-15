@@ -1,0 +1,44 @@
+//- ──────────────────────────────────────────
+//- NAV (shared — every page)
+//- Usage: include includes/_nav, then +nav(page[, options])
+//-   page     'home' | 'shop' | 'legal' — same value as <html data-page>
+//-   options  links           false → logo + language switch only (default true)
+//-            sharedSections  false → page doesn't include the FAQ / contact /
+//-                            about sections, their links go to the homepage (default true)
+//- ──────────────────────────────────────────
+mixin nav(page, options)
+  - var opts = options || {}
+  //- URL of each page; a new page gets its entry here and its links below
+  - var pageUrls = { home: './', shop: './shop' }
+  //- page: page holding the target · hash: section id · shared: section comes
+  //- from src/includes/ (present on any page with sharedSections)
+  - var navLinks = [
+  -   { key: 'nav.gallery',  text: 'Gallery',           page: 'home', hash: 'gallery' },
+  -   { key: 'nav.services', text: 'Painting Services', page: 'home', hash: 'services' },
+  -   { key: 'nav.pricing',  text: 'Pricing',           page: 'home', hash: 'pricing' },
+  -   { key: 'nav.shop',     text: 'Shop',              page: 'shop' },
+  -   { key: 'nav.faq',      text: 'FAQ',               page: 'home', hash: 'faq',     shared: true },
+  -   { key: 'nav.contact',  text: 'Contact',           page: 'home', hash: 'contact', shared: true },
+  -   { key: 'nav.about',    text: 'About',             page: 'home', hash: 'about',   shared: true },
+  - ]
+
+  nav.nav(aria-label='Navigation principale')
+    a.nav__logo(href=(page === 'home' ? '#' : pageUrls.home))
+      span.brand-name Atelier Guillotine
+    if opts.links !== false
+      button.nav__toggle(data-i18n-aria='nav.toggle' aria-label='Ouvrir le menu') ☰
+      ul.nav__links
+        each link in navLinks
+          - var isLocal = link.shared ? opts.sharedSections !== false : link.page === page
+          - var href = link.hash ? (isLocal ? '' : pageUrls[link.page]) + '#' + link.hash : pageUrls[link.page]
+          - var isCurrent = !link.hash && link.page === page
+          li: a.nav__link(
+            href=href
+            class=(isCurrent ? 'is-active' : undefined)
+            data-i18n=link.key
+            aria-current=(isCurrent ? 'page' : undefined)
+          )= link.text
+    .nav__lang
+      button.nav__lang-btn(data-lang='fr' aria-pressed='true') FR
+      span.nav__lang-sep(aria-hidden='true') |
+      button.nav__lang-btn(data-lang='en' aria-pressed='false') EN

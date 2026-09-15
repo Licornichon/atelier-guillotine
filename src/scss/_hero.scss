@@ -1,40 +1,36 @@
 @use 'variables' as *;
 
-// Offsets the fixed nav height (homepage only)
-#hero {
-  margin-top: 4.5rem;
-}
-
+// Markup: +hero mixin in src/includes/_hero.pug
+// Same style on every page, side images included.
 .hero {
-  position: relative;
-  height: 100vh;
-  min-height: 600px;
+  height: 75vh;
+  margin-top: $nav-height;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: center; // .hero__content stretches vertically (default align-items)
   text-align: center;
+  overflow: hidden; // side images may run past the viewport edges
 
-  &__bg-left {
-    position: absolute;
-    bottom: 0;
-    left: 1em;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  &__bg-right {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    height: 80%;
-    object-fit: contain;
-  }
-
-    &__content {
+  // As wide as title/subtitle, as tall as the hero: images placed on it hug
+  // the text block horizontally and take the full hero height.
+  &__content {
     position: relative;
     z-index: 1;
-    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
+  &__bg-left,
+  &__bg-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    max-width: none; // reset caps img at 100% of .hero__content's width
+    object-fit: contain;
+  }
+
+  &__bg-left  { left: 0; transform: translateX(-100%); }
+  &__bg-right { left: 100%; }
 
   &__title {
     color: $color-accent;

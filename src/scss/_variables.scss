@@ -15,11 +15,13 @@ $line-height: 1.75;
 // ─── Layout ──────────────────────────────────────────────────────────────────
 $container-max:   1200px;
 $section-padding: 6rem 2rem;
+$nav-height:      4.5rem; // fixed nav — offsets content below it (hero margin-top…)
 
 // ─── Breakpoints ─────────────────────────────────────────────────────────────
 $bp-sm: 480px;
 $bp-md: 768px;
 $bp-lg: 1024px;
+$bp-xl: 1920px;
 
 // ─── Mixins ──────────────────────────────────────────────────────────────────
 @mixin container {
