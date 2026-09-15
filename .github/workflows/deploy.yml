@@ -1,7 +1,7 @@
 name: Build & Deploy
 
 # Builds on every push (catches errors on working branches);
-# deploys over FTP to the OVH hosting from master only.
+# deploys over SFTP to the OVH hosting from master only.
 #
 # Required secrets: OVH_FTP_SERVER, OVH_FTP_USERNAME, OVH_FTP_PASSWORD
 
@@ -42,12 +42,17 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy to OVH
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.OVH_FTP_SERVER }}
-          username: ${{ secrets.OVH_FTP_USERNAME }}
-          password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./dist/
-          server-dir: ./www/
+      # Le mutualisé OVH ne supporte pas FTPS (« 500 This security scheme
+      # is not implemented ») : on passe en SFTP (port 22) avec lftp.
+      - name: Deploy to OVH (SFTP)
+        env:
+          SFTP_HOST: ${{ secrets.OVH_FTP_SERVER }}
+          SFTP_USER: ${{ secrets.OVH_FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp --env-password -u "$SFTP_USER" "sftp://$SFTP_HOST" -e "
+            set sftp:auto-confirm yes;
+            mirror --reverse --verbose --parallel=4 dist/ www/;
+            bye"
