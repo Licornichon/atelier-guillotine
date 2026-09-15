@@ -14,7 +14,11 @@ mixin hero(o)
         - var pic = o[side]
         if pic
           img(class=('hero__bg-' + side) src=pic.src alt=t(pic.altKey) data-i18n-alt=pic.altKey)
+      //- H1 = brand name + subtitle, so the subtitle's keywords count as heading
+      //- text for search engines; the subtitle keeps its own look (_hero.scss)
       h1.hero__title
         span.brand-name(data-i18n-html=o.title)!= t(o.title)
-      if o.subtitle
-        p.hero__subtitle(data-i18n-html=o.subtitle)!= t(o.subtitle)
+        if o.subtitle
+          //- Space so the heading text reads "… Guillotine Peinture …", not glued
+          = ' '
+          span.hero__subtitle(data-i18n-html=o.subtitle)!= t(o.subtitle)
