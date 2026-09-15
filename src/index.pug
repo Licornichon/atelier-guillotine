@@ -40,8 +40,8 @@ html(lang='fr' data-page=page)
         id: 'hero',
         title: 'hero.title',
         subtitle: 'hero.subtitle',
-        left: { src: './assets/media/hero/hommesbetes.png', altKey: 'hero.alt.hommesbetes' },
-        right: { src: './assets/media/hero/pirate.png', altKey: 'hero.alt.pirate' },
+        left: { src: './assets/generated/hero/hommesbetes.webp', altKey: 'hero.alt.hommesbetes' },
+        right: { src: './assets/generated/hero/pirate.webp', altKey: 'hero.alt.pirate' },
       })
 
       //- ──────────────────────────────────────────
@@ -67,12 +67,23 @@ html(lang='fr' data-page=page)
               - var altVars = { level: levelKeys[item.level] }
               - if (item.game && ('gallery.game.' + item.game) in i18nFr) altVars.game = 'gallery.game.' + item.game
               - var altKey = altVars.game ? 'gallery.alt' : 'gallery.altNoGame'
+              //- Resized WebP copies (npm run generate): grid image + srcset, full-screen version as href
               a.gallery__item(
-                href=item.src
+                href=item.full
                 data-gallery='gallery'
                 data-level=item.level
               )
-                img(src=item.src alt=t(altKey, altVars) data-i18n-alt=altKey data-i18n-vars=JSON.stringify(altVars) loading='lazy')
+                img(
+                  src=item.src
+                  srcset=item.srcset
+                  sizes='(max-width: 480px) 50vw, (max-width: 1024px) 33vw, (min-width: 1921px) 20vw, 25vw'
+                  width=item.width
+                  height=item.height
+                  alt=t(altKey, altVars)
+                  data-i18n-alt=altKey
+                  data-i18n-vars=JSON.stringify(altVars)
+                  loading='lazy'
+                )
 
       //- ──────────────────────────────────────────
       //- PRICE GRID: single source for the pricing table below and the

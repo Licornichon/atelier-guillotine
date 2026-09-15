@@ -10,9 +10,11 @@
 
     thumbs.forEach(thumb => {
       thumb.addEventListener('click', () => {
-        const src = thumb.getAttribute('data-src')
-        photo.setAttribute('href', src)
-        img.setAttribute('src', src)
+        photo.setAttribute('href', thumb.getAttribute('data-full'))
+        img.setAttribute('srcset', thumb.getAttribute('data-srcset'))
+        img.setAttribute('src', thumb.getAttribute('data-src'))
+        img.setAttribute('width', thumb.getAttribute('data-width'))
+        img.setAttribute('height', thumb.getAttribute('data-height'))
 
         thumbs.forEach(t => {
           const isActive = t === thumb

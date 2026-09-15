@@ -55,7 +55,9 @@ assets/media/shop/
 
 `info.json` (+ les images) est **la seule source à éditer**. `scripts/generate-shop.js`
 en dérive `src/data/shop.json` (ajoute `slug`, `images[]`, regroupe les blocs sous
-`i18n`) ; c'est un artefact de build gitignoré.
+`i18n`) et des copies WebP redimensionnées de chaque photo dans `assets/generated/shop/<slug>/`
+(vignette, photo de la carte, plein écran) ; ce sont des artefacts de build gitignorés.
+Les photos originales ne sont pas publiées.
 
 La page rend le texte FR par défaut ; `src/js/lang.js` lit le `<script id="shop-i18n-data">`
 injecté et bascule les éléments `[data-shop-i18n]` (texte) et `[data-shop-i18n-alt]` (alt de la photo)

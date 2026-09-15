@@ -14,6 +14,8 @@ bundle.js
 # Sources : les dossiers d'images sous assets/media/ (+ shop/*/info.json)
 src/data/gallery.json
 src/data/shop.json
+# Copies WebP redimensionnées des photos (scripts/images.js)
+assets/generated/
 
 # Claude Code
 .claude/

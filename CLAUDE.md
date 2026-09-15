@@ -4,7 +4,7 @@
 
 - **Never run `git`**: not `commit`/`push`, not `add`/`rm`/`restore`/`checkout`/`stash`/`reset`, not even `status`/`diff`/`log`. User does all git manually. Edit files directly, describe changes in prose. If a git command is needed (e.g. untrack a newly-ignored file), give it to the user to run.
 - **Never run builds**: no `npm run build`/`build:prod`/`dev`/`watch`/`webpack`. User keeps `npm run dev` (watch) running and sees compile errors there. Verify by static reasoning. Config changes (`webpack.config.js`, loaders, new `HtmlWebpackPlugin`) need a user restart; say so, don't do it.
-- Generated data (`src/data/gallery.json`, `src/data/shop.json`) is **gitignored**; edit the sources (image folders under `assets/media/`, `assets/media/shop/*/info.json`), not the JSON. `npm run dev` doesn't re-run the generators.
+- Generated data (`src/data/gallery.json`, `src/data/shop.json`, resized photos in `assets/generated/`) is **gitignored**; edit the sources (image folders under `assets/media/`, `assets/media/shop/*/info.json`), not the JSON. `npm run dev` doesn't re-run the generators.
 
 ## Project
 
@@ -20,7 +20,7 @@ npm run build        # dev build → dist/
 npm run build:prod   # minified prod build → dist/
 ```
 
-`pre{dev,build,build:prod}` run `npm run generate` = `scripts/generate-gallery.js` (→ `src/data/gallery.json`) + `scripts/generate-shop.js` (→ `src/data/shop.json`). No tests.
+`pre{dev,build,build:prod}` run `npm run generate` = `scripts/generate-hero.js` + `scripts/generate-gallery.js` (→ `src/data/gallery.json`) + `scripts/generate-shop.js` (→ `src/data/shop.json`). All three write resized WebP copies of the photos to `assets/generated/` through `scripts/images.js` (sharp, cached by mtime, pruned); templates only reference those, and `CopyWebpackPlugin` leaves the originals (`assets/media/{gallery,shop,hero}/`) out of `dist/`. No tests.
 
 ## Architecture
 
@@ -84,7 +84,7 @@ Homepage (`index.pug`) order: hero → gallery → services → pricing → **FA
 
 Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]`; filter buttons `[data-filter]` = `all` + 3 levels; filtering toggles `.is-hidden` then `imagesLoaded` → `msnry.layout()`. Columns via `.gallery__sizer` + `.gallery__item` width (20% above `$bp-xl`, 25%, 33% below `$bp-lg`, 50% below `$bp-sm`).
 
-`generate-gallery.js` scans `assets/media/gallery/{battle-ready,tabletop-plus,display}/` (repo root, not `src/`, sub-folders ok; the first sub-folder's name prefix gives the publisher via `PUBLISHERS`, e.g. `w40k-…`/`aos-…`/`mordheim` → `gw`), sorts by its `PRIORITY` list of publisher + level (+ optional game prefix, w40k first) groups, then mtime desc → `gallery.json`. `loaders/pug-with-data.js` prepends `- var galleryItems` + `- var shopItems` to every Pug and marks both JSON as deps. `CopyWebpackPlugin` copies `assets/media/` → `dist/`.
+`generate-gallery.js` scans `assets/media/gallery/{battle-ready,tabletop-plus,display}/` (repo root, not `src/`, sub-folders ok; the first sub-folder's name prefix gives the publisher via `PUBLISHERS`, e.g. `w40k-…`/`aos-…`/`mordheim` → `gw`), sorts by its `PRIORITY` list of publisher + level (+ optional game prefix, w40k first) groups, then mtime desc → `gallery.json`. `loaders/pug-with-data.js` prepends `- var galleryItems` + `- var shopItems` to every Pug and marks both JSON as deps. `CopyWebpackPlugin` copies `assets/media/` (minus the photo originals) and `assets/generated/` → `dist/`.
 
 ## i18n
 

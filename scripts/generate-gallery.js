@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { responsive, prune } = require('./images')
 
 const MEDIA_DIR = path.join(__dirname, '../assets/media/gallery')
 const OUTPUT_FILE = path.join(__dirname, '../src/data/gallery.json')
@@ -9,8 +10,6 @@ const dataDir = path.dirname(OUTPUT_FILE)
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true })
 }
-
-const items = []
 
 // Categories and display order
 const categories = {
@@ -46,40 +45,49 @@ const PRIORITY = [
   { publisher: 'gw', level: 'display' },
 ]
 
-// Read files from each sub-folder
-Object.entries(categories).forEach(([folder, level]) => {
-  const categoryPath = path.join(MEDIA_DIR, folder)
+async function main () {
+  const items = []
 
-  if (!fs.existsSync(categoryPath)) {
-    console.warn(`⚠️  Dossier ${folder} introuvable`)
-    return
+  for (const [folder, level] of Object.entries(categories)) {
+    const categoryPath = path.join(MEDIA_DIR, folder)
+
+    if (!fs.existsSync(categoryPath)) {
+      console.warn(`⚠️  Dossier ${folder} introuvable`)
+      continue
+    }
+
+    // Walk the folder recursively so per-project sub-folders are supported
+    // (e.g. gallery/battle-ready/w40k-custodes/)
+    for (const file of walkDir(categoryPath)) {
+      if (!/\.(jpg|jpeg|png|webp|gif)$/i.test(file)) continue
+
+      const filePath = path.join(categoryPath, file)
+      const segments = file.split(path.sep)
+      const game = segments.length > 1 ? segments[0].toLowerCase() : ''
+      const outRel = ['gallery', folder].concat(segments).join('/').replace(/\.[^./]+$/, '')
+
+      items.push({
+        // Resized WebP copies (scripts/images.js): src/srcset for the grid, full for the lightbox
+        ...(await responsive(filePath, outRel)),
+        level,
+        game, // first sub-folder name, used for the alt text (gallery.game.<game>)
+        publisher: publisherOf(game),
+        mtime: fs.statSync(filePath).mtime.getTime(), // timestamp pour tri chronologique
+        name: path.basename(file, path.extname(file)),
+      })
+    }
   }
 
-  // Walk the folder recursively so per-project sub-folders are supported
-  // (e.g. gallery/battle-ready/w40k-custodes/)
-  const files = walkDir(categoryPath)
+  // Sort: PRIORITY group first (unmatched images last), then newest first
+  items.sort((a, b) => rank(a) - rank(b) || b.mtime - a.mtime)
 
-  files.forEach(file => {
-    if (!/\.(jpg|jpeg|png|webp|gif)$/i.test(file)) return
+  prune('gallery')
 
-    const filePath = path.join(categoryPath, file)
-    const stat = fs.statSync(filePath)
-    const relativePath = path.relative(path.join(__dirname, '..'), filePath)
-    const segments = file.split(path.sep)
-    const folder = segments.length > 1 ? segments[0].toLowerCase() : ''
+  // Write the JSON
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(items, null, 2))
+  console.log(`✓ Galerie générée : ${items.length} image(s) trouvée(s)`)
+}
 
-    items.push({
-      src: './' + relativePath.replace(/\\/g, '/'),
-      level: level,
-      game: folder, // first sub-folder name, used for the alt text (gallery.game.<game>)
-      publisher: publisherOf(folder),
-      mtime: stat.mtime.getTime(), // timestamp pour tri chronologique
-      name: path.basename(file, path.extname(file)),
-    })
-  })
-})
-
-// Sort: PRIORITY group first (unmatched images last), then newest first
 function rank (item) {
   const i = PRIORITY.findIndex(p =>
     p.level === item.level &&
@@ -95,12 +103,6 @@ function publisherOf (folder) {
     .find(([, prefixes]) => prefixes.some(prefix => folder.startsWith(prefix)))
   return match ? match[0] : ''
 }
-
-items.sort((a, b) => rank(a) - rank(b) || b.mtime - a.mtime)
-
-// Write the JSON
-fs.writeFileSync(OUTPUT_FILE, JSON.stringify(items, null, 2))
-console.log(`✓ Galerie générée : ${items.length} image(s) trouvée(s)`)
 
 // Helper: walk recursively, returning paths relative to root
 function walkDir (dir, root) {
@@ -119,3 +121,8 @@ function walkDir (dir, root) {
 
   return files
 }
+
+main().catch(err => {
+  console.error(err)
+  process.exit(1)
+})

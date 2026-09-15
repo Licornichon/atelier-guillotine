@@ -40,8 +40,8 @@ html(lang='fr' data-page=page)
         id: 'shop-hero',
         title: 'shop.hero.title',
         subtitle: 'shop.hero.subtitle',
-        left: { src: './assets/media/hero/etheldin.png', altKey: 'hero.alt.etheldin' },
-        right: { src: './assets/media/hero/machaon.png', altKey: 'hero.alt.machaon' },
+        left: { src: './assets/generated/hero/etheldin.webp', altKey: 'hero.alt.etheldin' },
+        right: { src: './assets/generated/hero/machaon.webp', altKey: 'hero.alt.machaon' },
       })
 
       //- ──────────────────────────────────────────
@@ -59,9 +59,20 @@ html(lang='fr' data-page=page)
               - var loc = item.i18n.fr.name ? item.i18n.fr : item.i18n.en
               li.shop__item(class=('shop__item--' + item.status))
                 .shop__media
+                  //- Photos = resized WebP copies (npm run generate): src/srcset, full, thumb
+                  - var cover = item.images[0]
                   //- Main photo: opens the piece's full-screen gallery at the photo shown (lightbox.js)
-                  a.shop__photo(href=item.images[0] data-shop-images=JSON.stringify(item.images))
-                    img(src=item.images[0] alt=loc.name data-shop-i18n-alt=(item.slug + '.name') loading='lazy')
+                  a.shop__photo(href=cover.full data-shop-images=JSON.stringify(item.images.map(function (im) { return im.full })))
+                    img(
+                      src=cover.src
+                      srcset=cover.srcset
+                      sizes='(max-width: 768px) 100vw, 720px'
+                      width=cover.width
+                      height=cover.height
+                      alt=loc.name
+                      data-shop-i18n-alt=(item.slug + '.name')
+                      loading='lazy'
+                    )
                   //- Thumbnails (every photo, first included): show the picked one in the main slot (shop.js)
                   if item.images.length > 1
                     .shop__thumbs
@@ -69,12 +80,16 @@ html(lang='fr' data-page=page)
                         button.shop__thumb(
                           type='button'
                           class=(i === 0 ? 'is-active' : undefined)
-                          data-src=photo
+                          data-src=photo.src
+                          data-srcset=photo.srcset
+                          data-width=photo.width
+                          data-height=photo.height
+                          data-full=photo.full
                           aria-pressed=(i === 0 ? 'true' : 'false')
                           aria-label=t('shop.item.thumb')
                           data-i18n-aria='shop.item.thumb'
                         )
-                          img(src=photo alt='' loading='lazy')
+                          img(src=photo.thumb alt='' loading='lazy')
                 .shop__body
                   if loc.tag
                     span.shop__tag(data-shop-i18n=(item.slug + '.tag'))= loc.tag

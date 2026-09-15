@@ -1,9 +1,11 @@
 const fs = require('fs')
 const path = require('path')
+const { responsive, prune } = require('./images')
 
 // Scans assets/media/shop/<slug>/ : each sub-folder is one item for sale.
 // Each folder must contain an info.json plus one or more images.
-// Output: src/data/shop.json (consumed by loaders/pug-with-data.js).
+// Output: src/data/shop.json (consumed by loaders/pug-with-data.js) + resized
+// WebP copies of the photos under assets/generated/shop/<slug>/ (scripts/images.js).
 
 const SHOP_DIR = path.join(__dirname, '../assets/media/shop')
 const OUTPUT_FILE = path.join(__dirname, '../src/data/shop.json')
@@ -29,20 +31,22 @@ function localeBlock (info, lang, slug) {
   }
 }
 
-const items = []
+async function main () {
+  const items = []
 
-if (fs.existsSync(SHOP_DIR)) {
-  const slugs = fs.readdirSync(SHOP_DIR, { withFileTypes: true })
-    .filter(entry => entry.isDirectory())
-    .map(entry => entry.name)
+  const slugs = fs.existsSync(SHOP_DIR)
+    ? fs.readdirSync(SHOP_DIR, { withFileTypes: true })
+      .filter(entry => entry.isDirectory())
+      .map(entry => entry.name)
+    : []
 
-  slugs.forEach(slug => {
+  for (const slug of slugs) {
     const dir = path.join(SHOP_DIR, slug)
     const infoPath = path.join(dir, 'info.json')
 
     if (!fs.existsSync(infoPath)) {
       console.warn(`⚠️  shop/${slug} : info.json manquant, pièce ignorée`)
-      return
+      continue
     }
 
     let info
@@ -50,17 +54,16 @@ if (fs.existsSync(SHOP_DIR)) {
       info = JSON.parse(fs.readFileSync(infoPath, 'utf8'))
     } catch (err) {
       console.warn(`⚠️  shop/${slug}/info.json : JSON invalide (${err.message}), pièce ignorée`)
-      return
+      continue
     }
 
-    const images = fs.readdirSync(dir)
+    const files = fs.readdirSync(dir)
       .filter(file => IMG_RE.test(file))
       .sort()
-      .map(file => `./assets/media/shop/${slug}/${file}`)
 
-    if (images.length === 0) {
+    if (files.length === 0) {
       console.warn(`⚠️  shop/${slug} : aucune image, pièce ignorée`)
-      return
+      continue
     }
 
     let status = String(info.status || 'available').toLowerCase()
@@ -82,6 +85,12 @@ if (fs.existsSync(SHOP_DIR)) {
     const i18n = {}
     LANGS.forEach(lang => { i18n[lang] = localeBlock(info, lang, slug) })
 
+    // Per photo: src/srcset (card), full (lightbox), thumb (thumbnail button)
+    const images = []
+    for (const file of files) {
+      images.push(await responsive(path.join(dir, file), `shop/${slug}/${path.parse(file).name}`, { thumb: true }))
+    }
+
     items.push({
       slug,
       price: info.price || '',
@@ -92,16 +101,23 @@ if (fs.existsSync(SHOP_DIR)) {
       images,
       i18n,
     })
+  }
+
+  // Sort: manual "order" field first, then alphabetically by EN name
+  items.sort((a, b) => {
+    const ao = a.order == null ? Infinity : a.order
+    const bo = b.order == null ? Infinity : b.order
+    if (ao !== bo) return ao - bo
+    return a.i18n.en.name.localeCompare(b.i18n.en.name)
   })
+
+  prune('shop')
+
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(items, null, 2))
+  console.log(`✓ Shop généré : ${items.length} pièce(s) trouvée(s)`)
 }
 
-// Sort: manual "order" field first, then alphabetically by EN name
-items.sort((a, b) => {
-  const ao = a.order == null ? Infinity : a.order
-  const bo = b.order == null ? Infinity : b.order
-  if (ao !== bo) return ao - bo
-  return a.i18n.en.name.localeCompare(b.i18n.en.name)
+main().catch(err => {
+  console.error(err)
+  process.exit(1)
 })
-
-fs.writeFileSync(OUTPUT_FILE, JSON.stringify(items, null, 2))
-console.log(`✓ Shop généré : ${items.length} pièce(s) trouvée(s)`)

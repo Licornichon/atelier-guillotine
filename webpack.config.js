@@ -93,7 +93,15 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: path.join(__dirname, 'assets/media'), to: 'assets/media', noErrorOnMissing: true },
+        // Photo originals (gallery/, shop/, hero/) stay out of dist/: pages only use
+        // the resized WebP copies written to assets/generated/ by npm run generate
+        {
+          from: path.join(__dirname, 'assets/media'),
+          to: 'assets/media',
+          noErrorOnMissing: true,
+          globOptions: { ignore: ['**/gallery/**', '**/shop/**', '**/hero/**'] },
+        },
+        { from: path.join(__dirname, 'assets/generated'), to: 'assets/generated', noErrorOnMissing: true },
         // robots.txt + sitemap.xml → dist/ root
         { from: path.join(src, 'static'), to: '.', noErrorOnMissing: true },
       ],
