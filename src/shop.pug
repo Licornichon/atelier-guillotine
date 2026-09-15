@@ -55,7 +55,7 @@ html(lang='fr' data-page=page)
           script#shop-i18n-data(type='application/json').
             !{JSON.stringify(shopI18nMap).replace(/</g, '\\u003c')}
           ul.shop__list
-            each item in shopItems
+            each item, i in shopItems
               - var loc = item.i18n.fr.name ? item.i18n.fr : item.i18n.en
               //- Grid areas (_shop.scss): head / media / body. Two columns: media on the
               //- left, head + body on the right. One column: head, media, body.
@@ -111,7 +111,9 @@ html(lang='fr' data-page=page)
                 .shop__body
                   if loc.description
                     p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
-                  a.shop__cta(href='#contact' data-i18n='shop.item.cta')= t('shop.item.cta')
+                  //- Two button texts, alternating card after card (shop.item.cta.0 / .1)
+                  - var ctaKey = 'shop.item.cta.' + (i % 2)
+                  a.shop__cta(href='#contact' data-i18n=ctaKey)= t(ctaKey)
         else
           p.shop__empty(data-i18n='shop.empty')= t('shop.empty')
 
