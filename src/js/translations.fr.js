@@ -64,16 +64,16 @@ module.exports = {
   'gallery.ttp':   'Tabletop+',
   'gallery.display': 'Display',
   'gallery.filtersLabel': 'Filtrer par niveau',
-  'gallery.alt.battle-ready':  'Figurine peinte par Atelier Guillotine — niveau Battle Ready',
-  'gallery.alt.tabletop-plus': 'Figurine peinte par Atelier Guillotine — niveau Tabletop+',
-  'gallery.alt.display':       'Figurine peinte par Atelier Guillotine — niveau Display',
+  'gallery.alt.battle-ready':  'Figurine peinte par Atelier Guillotine, niveau Battle Ready',
+  'gallery.alt.tabletop-plus': 'Figurine peinte par Atelier Guillotine, niveau Tabletop+',
+  'gallery.alt.display':       'Figurine peinte par Atelier Guillotine, niveau Display',
 
-  'shop.meta.title':       "Boutique — Atelier Guillotine | Figurines peintes à vendre",
-  'shop.meta.description': "Figurines peintes actuellement en vente chez Atelier Guillotine — pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.",
+  'shop.meta.title':       "Boutique | Atelier Guillotine | Figurines peintes à vendre",
+  'shop.meta.description': "Figurines peintes actuellement en vente chez Atelier Guillotine : pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.",
   'shop.hero.title':    'Boutique',
   'shop.hero.subtitle': 'Figurines peintes en quête d’un nouveau foyer.',
   'shop.title':         'Actuellement en vente',
-  'shop.empty':         'Aucune pièce en vente pour le moment — revenez bientôt.',
+  'shop.empty':         'Aucune pièce en vente pour le moment. Revenez bientôt !',
   'shop.status.available': 'Disponible',
   'shop.status.reserved':  'Réservé',
   'shop.level.battle-ready':  'Battle Ready',
@@ -141,7 +141,7 @@ module.exports = {
 
   // ─── Legal notice + personal data (single page: legal.html) ─────────────
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
-  'legal.meta.title':         "Mentions légales — Atelier Guillotine",
+  'legal.meta.title':         "Mentions légales | Atelier Guillotine",
   'legal.title':              "Mentions légales",
   'legal.intro':              "Informations légales relatives à l'éditeur, à l'hébergement de ce site et au traitement des données personnelles.",
 

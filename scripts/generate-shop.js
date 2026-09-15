@@ -76,7 +76,7 @@ if (fs.existsSync(SHOP_DIR)) {
     }
 
     if (!info.fr && !info.en) {
-      console.warn(`⚠️  shop/${slug}/info.json : ni bloc "fr" ni bloc "en" — libellés = slug`)
+      console.warn(`⚠️  shop/${slug}/info.json : ni bloc "fr" ni bloc "en", libellés = slug`)
     }
 
     const i18n = {}

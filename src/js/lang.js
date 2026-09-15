@@ -62,13 +62,13 @@ function applyTranslations (lang) {
     if (val !== undefined) el.setAttribute('data-label', val)
   })
 
-  // `content` attribute — used for <meta name="description">; <title> goes through [data-i18n]
+  // `content` attribute, used for <meta name="description">; <title> goes through [data-i18n]
   document.querySelectorAll('[data-i18n-content]').forEach(el => {
     const val = dict[el.getAttribute('data-i18n-content')]
     if (val !== undefined) el.setAttribute('content', val)
   })
 
-  // Shop items — data-shop-i18n="<slug>.<field>" (text), data-shop-i18n-alt (alt attribute)
+  // Shop items: data-shop-i18n="<slug>.<field>" (text), data-shop-i18n-alt (alt attribute)
   if (shopI18n) {
     const shopValue = ref => {
       const dot = ref.lastIndexOf('.')

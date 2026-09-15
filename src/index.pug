@@ -7,7 +7,7 @@ html(lang='fr' data-page=page)
     meta(name='description' data-i18n-content='home.meta.description' content=t('home.meta.description'))
     title(data-i18n='home.meta.title')= t('home.meta.title')
     link(rel='canonical' href=siteUrl + '/')
-    //- Open Graph — hardcoded French: scrapers (Discord, WhatsApp…) never run the i18n JS
+    //- Open Graph, hardcoded in French: scrapers (Discord, WhatsApp…) never run the i18n JS
     meta(property='og:type' content='website')
     meta(property='og:site_name' content='Atelier Guillotine')
     meta(property='og:locale' content='fr_FR')
@@ -46,8 +46,9 @@ html(lang='fr' data-page=page)
 
       //- ──────────────────────────────────────────
       //- GALLERY
-      //- Images scanned at build time from assets/media/{battle-ready,tabletop-plus,display}/
-      //- To add images: drop them in the folder, then run npm run dev or npm run build
+      //- Images scanned at build time from assets/media/gallery/{battle-ready,tabletop-plus,display}/
+      //- (order: PRIORITY in scripts/generate-gallery.js, then newest first)
+      //- To add images: drop them in the folder, then run npm run generate
       //- ──────────────────────────────────────────
       section#gallery.gallery
         h2.gallery__title(data-i18n='gallery.title')= t('gallery.title')
@@ -68,7 +69,7 @@ html(lang='fr' data-page=page)
                 img(src=item.src alt=t('gallery.alt.' + item.level) data-i18n-alt=('gallery.alt.' + item.level) loading='lazy')
 
       //- ──────────────────────────────────────────
-      //- PRICE GRID — single source for the pricing table below and the
+      //- PRICE GRID: single source for the pricing table below and the
       //- "from X €" service prices (first row = cheapest)
       //- ──────────────────────────────────────────
       - var priceRows = [
@@ -81,7 +82,7 @@ html(lang='fr' data-page=page)
       - ]
 
       //- ──────────────────────────────────────────
-      //- SERVICES — texts = services.<id>.* keys
+      //- SERVICES (texts = services.<id>.* keys)
       //- ──────────────────────────────────────────
       - var services = [
       -   { id: 'tr',      from: priceRows[0].tr },
@@ -134,7 +135,7 @@ html(lang='fr' data-page=page)
                     td(data-i18n-label='pricing.ttp.name' data-label=t('pricing.ttp.name')) #{row.ttp}+&nbsp;€
 
       //- ──────────────────────────────────────────
-      //- FAQ / CONTACT / ABOUT — shared with shop.pug, see src/includes/
+      //- FAQ / CONTACT / ABOUT: shared with shop.pug, see src/includes/
       //- ──────────────────────────────────────────
       include includes/_faq
 
@@ -144,6 +145,6 @@ html(lang='fr' data-page=page)
 
     footer.footer
       span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
-      //- TODO — link hidden while legal.html is not generated (see webpack.config.js).
+      //- TODO: link hidden while legal.html is not generated (see webpack.config.js).
       //- Restore it together with the page.
       //- a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

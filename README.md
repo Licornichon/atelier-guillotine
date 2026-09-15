@@ -1,4 +1,4 @@
-# Atelier Guillotine — licornichon.github.io
+# Atelier Guillotine (licornichon.github.io)
 
 Site portfolio mono-page pour **Atelier Guillotine**, peinture de figurines sur commande. Portfolio professionnel avec galerie dynamique, tarifs et formulaire de contact.
 

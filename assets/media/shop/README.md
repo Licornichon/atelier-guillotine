@@ -21,13 +21,13 @@ assets/media/shop/
   "level": "battle-ready",
   "order": 1,
   "fr": {
-    "name": "Combat Patrol — Adeptus Custodes",
-    "tag": "Warhammer 40 000 — Adeptus Custodes",
+    "name": "Combat Patrol : Adeptus Custodes (14 figurines)",
+    "tag": "Warhammer 40 000 · Adeptus Custodes",
     "description": "Escouade complète, niveau Battle Ready, soclage simple à reproduire."
   },
   "en": {
-    "name": "Combat Patrol — Adeptus Custodes",
-    "tag": "Warhammer 40,000 — Adeptus Custodes",
+    "name": "Combat Patrol: Adeptus Custodes (14 models)",
+    "tag": "Warhammer 40,000 · Adeptus Custodes",
     "description": "Complete patrol, Battle Ready level, basing kept simple to reproduce."
   }
 }
@@ -43,7 +43,7 @@ assets/media/shop/
 | `level` | non | `battle-ready`, `tabletop-plus` ou `display`. Badge sur la carte. |
 | `order` | non | Tri manuel croissant ; les pièces sans `order` passent après, triées par nom EN. |
 
-**Blocs `fr` / `en`** — les champs traduits. Si un seul bloc est fourni, l'autre le réutilise ; un `name` manquant retombe sur le slug.
+**Blocs `fr` / `en`** : les champs traduits. Si un seul bloc est fourni, l'autre le réutilise ; un `name` manquant retombe sur le slug.
 
 | Champ | Détail |
 |---|---|

@@ -7,13 +7,13 @@ html(lang='fr' data-page=page)
     meta(name='description' data-i18n-content='shop.meta.description' content=t('shop.meta.description'))
     title(data-i18n='shop.meta.title')= t('shop.meta.title')
     link(rel='canonical' href=siteUrl + '/shop')
-    //- Open Graph — hardcoded French: scrapers never run the i18n JS
+    //- Open Graph, hardcoded in French: scrapers never run the i18n JS
     meta(property='og:type' content='website')
     meta(property='og:site_name' content='Atelier Guillotine')
     meta(property='og:locale' content='fr_FR')
     meta(property='og:url' content=siteUrl + '/shop')
-    meta(property='og:title' content='Boutique — Atelier Guillotine | Figurines peintes à vendre')
-    meta(property='og:description' content='Figurines peintes actuellement en vente — pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.')
+    meta(property='og:title' content='Boutique | Atelier Guillotine | Figurines peintes à vendre')
+    meta(property='og:description' content='Figurines peintes actuellement en vente : pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.')
     meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
     meta(property='og:image:width' content='1200')
     meta(property='og:image:height' content='630')
@@ -99,7 +99,7 @@ html(lang='fr' data-page=page)
       //- ──────────────────────────────────────────
       //- Sections shared with the homepage (see src/includes/)
       //- ──────────────────────────────────────────
-      - var contactSubject = "Shop enquiry — Atelier Guillotine"
+      - var contactSubject = "Shop enquiry | Atelier Guillotine"
       include includes/_contact
 
       include includes/_about
@@ -108,6 +108,6 @@ html(lang='fr' data-page=page)
 
     footer.footer
       span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
-      //- TODO — link hidden while legal.html is not generated (see webpack.config.js).
+      //- TODO: link hidden while legal.html is not generated (see webpack.config.js).
       //- Restore it together with the page.
       //- a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

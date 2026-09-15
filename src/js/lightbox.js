@@ -31,7 +31,7 @@ require('glightbox/dist/css/glightbox.min.css')
   })
 })()
 
-// Shop — the card's main photo opens that piece's photos full screen
+// Shop: the card's main photo opens that piece's photos full screen
 // (data-shop-images = JSON list), starting at the photo currently shown
 // (its href follows the thumbnail picked, see shop.js)
 ;(function () {

@@ -19,6 +19,28 @@ const categories = {
   'display': 'display',
 }
 
+// Publisher of an image = found from the first sub-folder under the level folder,
+// whose name starts with one of these prefixes:
+// gallery/tabletop-plus/w40k-custodes/… or gallery/display/mordheim/… → "gw".
+// Images sitting directly in the level folder have no publisher.
+const PUBLISHERS = {
+  gw: [
+    'gw', 'games-workshop',
+    'w40k', '40k', 'warhammer-40k', 'kill-team', 'horus-heresy',
+    'aos', 'age-of-sigmar', 'warcry', 'underworlds',
+    'old-world', 'whfb', 'mordheim', 'necromunda', 'blood-bowl',
+    'middle-earth', 'lotr',
+  ],
+}
+
+// Display priority: these publisher + level groups come first, in this order;
+// every other image follows. Within a group, newest first.
+const PRIORITY = [
+  { publisher: 'gw', level: 'tabletop-plus' },
+  { publisher: 'gw', level: 'battle-ready' },
+  { publisher: 'gw', level: 'display' },
+]
+
 // Read files from each sub-folder
 Object.entries(categories).forEach(([folder, level]) => {
   const categoryPath = path.join(MEDIA_DIR, folder)
@@ -38,18 +60,33 @@ Object.entries(categories).forEach(([folder, level]) => {
     const filePath = path.join(categoryPath, file)
     const stat = fs.statSync(filePath)
     const relativePath = path.relative(path.join(__dirname, '..'), filePath)
+    const segments = file.split(path.sep)
+    const folder = segments.length > 1 ? segments[0].toLowerCase() : ''
 
     items.push({
       src: './' + relativePath.replace(/\\/g, '/'),
       level: level,
+      publisher: publisherOf(folder),
       mtime: stat.mtime.getTime(), // timestamp pour tri chronologique
       name: path.basename(file, path.extname(file)),
     })
   })
 })
 
-// Sort by modification date (newest first)
-items.sort((a, b) => b.mtime - a.mtime)
+// Sort: PRIORITY group first (unmatched images last), then newest first
+function rank (item) {
+  const i = PRIORITY.findIndex(p => p.level === item.level && p.publisher === item.publisher)
+  return i === -1 ? PRIORITY.length : i
+}
+
+function publisherOf (folder) {
+  if (!folder) return ''
+  const match = Object.entries(PUBLISHERS)
+    .find(([, prefixes]) => prefixes.some(prefix => folder.startsWith(prefix)))
+  return match ? match[0] : ''
+}
+
+items.sort((a, b) => rank(a) - rank(b) || b.mtime - a.mtime)
 
 // Write the JSON
 fs.writeFileSync(OUTPUT_FILE, JSON.stringify(items, null, 2))

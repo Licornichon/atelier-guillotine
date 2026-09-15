@@ -106,12 +106,12 @@ module.exports = {
       template: path.join(src, 'shop.pug'),
       filename: 'shop.html',
     }),
-    // TODO — Legal notice / privacy page is deliberately not generated for now
+    // TODO: Legal notice / privacy page is deliberately not generated for now
     // (incomplete content: NOM_PRENOM / NUMEROSIRET / MEDIATEUR_NOM… placeholders
     // are not filled in yet). The src/legal.pug template is kept.
     // To bring it back: uncomment below, then restore the footer link
     // (index.pug + shop.pug) and the GDPR notice in the contact form
-    // (src/includes/_contact.pug). Legal requirement — do this before going public.
+    // (src/includes/_contact.pug). Legal requirement: do this before going public.
     // new HtmlWebpackPlugin({
     //   template: path.join(src, 'legal.pug'),
     //   filename: 'legal.html',

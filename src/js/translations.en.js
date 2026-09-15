@@ -64,16 +64,16 @@ module.exports = {
   'gallery.ttp':   'Tabletop+',
   'gallery.display': 'Display',
   'gallery.filtersLabel': 'Filter by level',
-  'gallery.alt.battle-ready':  'Miniature painted by Atelier Guillotine — Battle Ready level',
-  'gallery.alt.tabletop-plus': 'Miniature painted by Atelier Guillotine — Tabletop+ level',
-  'gallery.alt.display':       'Miniature painted by Atelier Guillotine — Display level',
+  'gallery.alt.battle-ready':  'Miniature painted by Atelier Guillotine, Battle Ready level',
+  'gallery.alt.tabletop-plus': 'Miniature painted by Atelier Guillotine, Tabletop+ level',
+  'gallery.alt.display':       'Miniature painted by Atelier Guillotine, Display level',
 
-  'shop.meta.title':       "Shop — Atelier Guillotine | Painted miniatures for sale",
-  'shop.meta.description': "Painted miniatures currently for sale by Atelier Guillotine — display and tabletop pieces for Warhammer and other tabletop games.",
+  'shop.meta.title':       "Shop | Atelier Guillotine | Painted miniatures for sale",
+  'shop.meta.description': "Painted miniatures currently for sale by Atelier Guillotine: display and tabletop pieces for Warhammer and other tabletop games.",
   'shop.hero.title':    'Shop',
   'shop.hero.subtitle': 'Painted miniatures looking for a new home.',
   'shop.title':         'Currently for sale',
-  'shop.empty':         'No pieces for sale right now — check back soon.',
+  'shop.empty':         'No pieces for sale right now. Check back soon!',
   'shop.status.available': 'Available',
   'shop.status.reserved':  'Reserved',
   'shop.level.battle-ready':  'Battle Ready',
@@ -142,7 +142,7 @@ module.exports = {
 
   // ─── Legal notice + personal data (single page: legal.html) ─────────────
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
-  'legal.meta.title':         "Legal Notice — Atelier Guillotine",
+  'legal.meta.title':         "Legal Notice | Atelier Guillotine",
   'legal.title':              "Legal Notice",
   'legal.intro':              "Legal information about the publisher, the hosting of this website and the processing of personal data.",
 

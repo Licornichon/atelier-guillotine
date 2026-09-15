@@ -1,4 +1,4 @@
-// Shop cards — clicking a thumbnail shows that photo in the card's main slot.
+// Shop cards: clicking a thumbnail shows that photo in the card's main slot.
 // The main photo's href follows, so the full-screen gallery (lightbox.js)
 // opens on the photo being shown.
 ;(function () {

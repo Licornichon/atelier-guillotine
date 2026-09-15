@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────
-# Atelier Guillotine — URLs sans extension (.html)
+# Atelier Guillotine : URLs sans extension (.html)
 # Copié à la racine de dist/ par CopyWebpackPlugin (src/static/).
 # Hébergement OVH mutualisé = Apache + mod_rewrite.
 # ─────────────────────────────────────────────────────────────

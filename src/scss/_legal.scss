@@ -1,6 +1,6 @@
 @use 'variables' as *;
 
-// Layout for legal text pages (currently legal.pug — French legal notice
+// Layout for legal text pages (currently legal.pug: French legal notice
 // plus GDPR information on a single page)
 .legal-page {
   @include container;

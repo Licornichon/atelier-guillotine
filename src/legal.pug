@@ -1,10 +1,10 @@
-//- ⚠️ TODO — THIS PAGE IS NOT BUILT AT THE MOMENT
+//- ⚠️ TODO: THIS PAGE IS NOT BUILT AT THE MOMENT
 //- Its HtmlWebpackPlugin is commented out in webpack.config.js, so legal.html
 //- is never emitted and the page is unreachable.
 //- Reason: incomplete content (placeholders NOM_PRENOM, NUMEROSIRET,
 //- ADRESSE_POSTALE, EMAIL_CONTACT, MEDIATEUR_NOM, MEDIATEUR_SITE, JJ/MM/AAAA).
 //- French legal notice (LCEN art. 6-III) and GDPR information are legal
-//- requirements — restore before promoting the site publicly.
+//- requirements: restore before promoting the site publicly.
 doctype html
 - var page = 'legal'
 html(lang='fr' data-page=page)
@@ -48,7 +48,7 @@ html(lang='fr' data-page=page)
           h2(data-i18n='legal.mediation.title') Médiation de la consommation
           div(data-i18n-html='legal.mediation.content')
 
-        //- ── Personal data (GDPR) — #personal-data anchor ───────────────
+        //- ── Personal data (GDPR), #personal-data anchor ───────────────
         section#personal-data.legal-page__section
           h2(data-i18n='legal.data.title') Données personnelles
           div(data-i18n-html='legal.data.content')

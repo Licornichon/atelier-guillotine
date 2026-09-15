@@ -1,5 +1,5 @@
 //- ──────────────────────────────────────────
-//- CONTACT (shared — homepage + shop)
+//- CONTACT (shared: homepage + shop)
 //- ──────────────────────────────────────────
 section#contact.contact
   .contact__inner
@@ -7,9 +7,9 @@ section#contact.contact
     p.contact__subtitle(data-i18n='contact.subtitle')= t('contact.subtitle')
     form.contact__form(action='https://api.web3forms.com/submit' method='post')
       input(type='hidden' name='access_key' value='8245691b-287d-4e48-bb57-a530484efc3a')
-      input(type='hidden' name='subject' value=(typeof contactSubject !== 'undefined' ? contactSubject : "New commission request — Atelier Guillotine"))
+      input(type='hidden' name='subject' value=(typeof contactSubject !== 'undefined' ? contactSubject : "New commission request | Atelier Guillotine"))
       input(type='hidden' name='redirect' value='false')
-      //- Honeypot anti-spam — invisible field, do not remove
+      //- Honeypot anti-spam: invisible field, do not remove
       .form__honeypot(aria-hidden='true')
         label(for='website') Do not fill
         input#website(type='text' name='website' tabindex='-1' autocomplete='off')
@@ -24,7 +24,7 @@ section#contact.contact
         textarea.form__textarea#message(name='message' required rows='6' data-i18n-placeholder='contact.messagePlaceholder' placeholder=t('contact.messagePlaceholder'))
       button.form__submit(type='submit' data-i18n='contact.submit')= t('contact.submit')
       //- Notice at point of collection (GDPR art. 13)
-      //- TODO — hidden because the text links to /legal#personal-data, a page that
+      //- TODO: hidden because the text links to /legal#personal-data, a page that
       //- is not generated yet (see webpack.config.js). Restore it with the page.
       //- p.form__notice(data-i18n-html='contact.privacyNotice')!= t('contact.privacyNotice')
     .contact__feedback(aria-live='polite')
