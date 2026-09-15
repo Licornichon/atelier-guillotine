@@ -23,7 +23,7 @@ module.exports = {
   'about.benefit1.title': 'Une armée prête à jouer, sans contrainte',
   'about.benefit1.text': 'Fini les unités inachevées et les projets en attente. Vos figurines arrivent propres, homogènes et prêtes à jouer.',
   'about.benefit2.title': 'Un rendu pensé pour le jeu',
-  'about.benefit2.text': 'Contrastes marqués, volumes lisibles et cohérence globale. Chaque figurine est conçue pour être lisible et impactante sur la table.',
+  'about.benefit2.text': 'Contrastes marqués, volumes bien définis et palette cohérente : chaque figurine est parfaitement lisible sur la table.',
   'about.benefit3.title': 'Un niveau de qualité adapté à votre projet',
   'about.benefit3.text': 'Que vous souhaitiez une armée complète ou quelques pièces d’exposition, le niveau de finition s’adapte à vos objectifs.',
   'about.benefit4.title': 'Un processus clair et fiable',

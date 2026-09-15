@@ -107,4 +107,4 @@ Hosted on **OVH shared hosting** (France), not GitHub Pages. `.github/workflows/
 
 ## Conventions
 
-`.about__image` currently holds the studio logo (may later become a real photo of Antoine). Image-less sections fall back to `repeating-linear-gradient(-45deg, …)` diagonal stripes.
+Image-less sections fall back to `repeating-linear-gradient(-45deg, …)` diagonal stripes.

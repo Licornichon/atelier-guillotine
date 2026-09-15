@@ -3,26 +3,17 @@
 .about {
   padding: $section-padding;
 
+  // Two text columns (.about__intro | .about__why), stacked below $bp-md
   &__inner {
     @include container;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    align-items: center;
+    align-items: start;
 
     @media (max-width: $bp-md) {
       grid-template-columns: 1fr;
       gap: 2rem;
-    }
-  }
-
-  &__image {
-    display: flex;
-    justify-content: center;
-
-    img {
-      max-width: 100%;
-      height: auto;
     }
   }
 
@@ -41,8 +32,7 @@
 
   &__subtitle {
     @include title-subsection;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; // no margin-top: tops of both columns line up, grid gap spaces them when stacked
   }
 
   &__benefits {

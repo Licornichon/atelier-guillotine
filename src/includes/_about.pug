@@ -3,12 +3,13 @@
 //- ──────────────────────────────────────────
 section#about.about
   .about__inner
-    .about__image
-      img(src='./assets/media/logo-vertical.png' alt='Atelier Guillotine')
-    .about__text
+    //- Column 1: presentation
+    .about__intro
       h2.about__title(data-i18n='about.title') About
       p(data-i18n='about.p1') Professional miniature painter with 25 years of wargaming experience.
       p(data-i18n='about.p2') Expert painting commissions for all brands and gaming systems.
+    //- Column 2: why choose
+    .about__why
       h3.about__subtitle
         span(data-i18n='about.why.prefix') Why Choose
         span.brand-name Atelier Guillotine
