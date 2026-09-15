@@ -26,7 +26,7 @@ npm run build:prod   # minified prod build → dist/
 
 - Entry `src/js/main.js` → `bundle.js` (injected into every page).
 - `HtmlWebpackPlugin` builds 2 pages: `index.html`←`src/index.pug`, `shop.html`←`src/shop.pug`. **`legal.html` is temporarily disabled**: its plugin is commented out in `webpack.config.js`, along with the footer links (`index.pug`, `shop.pug`) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
-- SCSS is `require`d from `main.js` and injected by `style-loader` (no CSS file emitted).
+- SCSS is `require`d from `main.js`. `build:prod` extracts it into `bundle.css` linked in `<head>` (`mini-css-extract-plugin`: styled first paint, stable anchor jumps from another page); dev and `build` inject it with `style-loader`, so page jumps on load are still visible there.
 - Markup shared by `index.pug` + `shop.pug` lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
 - `dist/` not committed. `.gitignore`: `dist/`, `index.html`, `bundle.js`, `index.js`, `src/data/gallery.json`, `src/data/shop.json`.
 
@@ -35,7 +35,7 @@ npm run build:prod   # minified prod build → dist/
 | file | role |
 |---|---|
 | `lang.js` | i18n FR/EN, exports `t(key)` |
-| `anchors.js` | smooth scroll on nav links (70px offset) + mobile menu (`.nav__menu.is-open`: links + FR/EN switch) |
+| `anchors.js` | smooth scroll on nav links (`scrollIntoView`, nav offset = `section[id] { scroll-margin-top }`) + mobile menu (`.nav__menu.is-open`: links + FR/EN switch) |
 | `gallery.js` | level filter + Masonry; `imagesLoaded` → `msnry.layout()` |
 | `lightbox.js` | GLightbox: homepage gallery items, + shop card main photo (`data-shop-images`) |
 | `shop.js` | shop card thumbnails swap the main photo (and its href) |

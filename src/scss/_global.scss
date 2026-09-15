@@ -4,6 +4,11 @@ html {
   scroll-behavior: smooth;
 }
 
+// Anchor jumps (#services…) stop under the fixed nav, from this page or another
+section[id] {
+  scroll-margin-top: $nav-height;
+}
+
 .skip-link {
   position: absolute;
   top: -100%;

@@ -1,9 +1,15 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const os = require('os')
 
 const src = path.join(__dirname, 'src')
+
+// CSS: separate bundle.css in production (styled first paint, stable anchor
+// jumps); injected by style-loader in dev (instant hot reload of styles)
+const isProd = process.argv.includes('--mode=production') // npm run build:prod
+const cssLoader = isProd ? MiniCssExtractPlugin.loader : 'style-loader'
 
 module.exports = {
   entry: {
@@ -68,11 +74,11 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [cssLoader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [cssLoader, 'css-loader'],
       },
       {
         test: /\.(jpg|jpeg|png|gif|svg|webp)$/,
@@ -91,6 +97,8 @@ module.exports = {
     ],
   },
   plugins: [
+    // Production only: bundle.css, linked in <head> by HtmlWebpackPlugin
+    ...(isProd ? [new MiniCssExtractPlugin({ filename: '[name].css' })] : []),
     new CopyWebpackPlugin({
       patterns: [
         // Photo originals (gallery/, shop/, hero/) stay out of dist/: pages only use

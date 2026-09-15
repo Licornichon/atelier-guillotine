@@ -35,6 +35,7 @@
 
   &__grid {
     position: relative;
+    display: flow-root; // contains the floated items before Masonry sets its height
   }
 
   // Columns: 5 above $bp-xl, 4 by default, 3 below $bp-lg, 2 below $bp-sm
@@ -47,7 +48,10 @@
     @media (max-width: $bp-sm) { width: 50%; }
   }
 
+  // Floated so the grid already has rows (close to its final height) before
+  // Masonry positions the items; avoids the page jumping while it loads
   &__item {
+    float: left;
     width: 25%;
     display: block;
     overflow: hidden;

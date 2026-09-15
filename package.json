@@ -34,6 +34,7 @@
     "cssnano": "^7.1.4",
     "html-webpack-plugin": "^5.6.6",
     "masonry-layout": "^4.2.2",
+    "mini-css-extract-plugin": "^2.10.2",
     "postcss-loader": "^8.2.1",
     "postcss-preset-env": "^10.1.5",
     "pug": "^3.0.3",

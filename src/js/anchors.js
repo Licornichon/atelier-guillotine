@@ -1,5 +1,6 @@
 (function () {
-  // Smooth scroll
+  // Smooth scroll (html { scroll-behavior: smooth }); the nav offset comes from
+  // section[id] { scroll-margin-top } in _global.scss
   const links = document.querySelectorAll('.nav__link[href^="#"]')
 
   links.forEach(link => {
@@ -11,7 +12,7 @@
 
       setMenuOpen(false)
 
-      window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 70)
+      target.scrollIntoView()
     })
   })
 
