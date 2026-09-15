@@ -53,6 +53,19 @@ $bp-xl: 1920px;
   }
 }
 
+// Line of text right under a section title (FAQ, contact). On mobile, the
+// title above it takes margin-bottom: 1rem (set in the section).
+@mixin subtitle-section {
+  @include text-muted;
+  text-align: center;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: $bp-md) {
+    margin-bottom: 2rem;
+  }
+}
+
 @mixin title-subsection {
   font-family: $font-sans;
   font-size: clamp(1.25rem, 4vw, 1.875rem);

@@ -9,6 +9,13 @@ section#faq.faq
     p.faq__subtitle(data-i18n='faq.subtitle')= t('faq.subtitle')
     .faq__list
       - for (var n = 1; n <= faqCount; n++)
+        //- Mobile accordion: the button opens / closes the answer (faq.js)
         .faq__item
-          h3.faq__question(data-i18n=('faq.q' + n + '.title'))= t('faq.q' + n + '.title')
-          p.faq__answer(data-i18n=('faq.q' + n + '.answer'))= t('faq.q' + n + '.answer')
+          h3.faq__question
+            button.faq__toggle(
+              type='button'
+              aria-expanded='false'
+              aria-controls=('faq-answer-' + n)
+              data-i18n=('faq.q' + n + '.title')
+            )= t('faq.q' + n + '.title')
+          p.faq__answer(id=('faq-answer-' + n) data-i18n=('faq.q' + n + '.answer'))= t('faq.q' + n + '.answer')

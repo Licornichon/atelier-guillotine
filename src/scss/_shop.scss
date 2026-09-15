@@ -185,6 +185,12 @@
       background: $color-accent;
       color: $color-bg;
     }
+
+    // Mobile: no hover, so the hover look is the default
+    @media (max-width: $bp-md) {
+      background: $color-accent;
+      color: $color-bg;
+    }
   }
 
   &__empty {

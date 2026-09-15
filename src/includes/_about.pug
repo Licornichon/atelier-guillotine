@@ -2,10 +2,10 @@
 //- ABOUT (shared: homepage + shop)
 //- ──────────────────────────────────────────
 section#about.about
+  h2.about__title(data-i18n='about.title')= t('about.title')
   .about__inner
     //- Column 1: presentation
     .about__intro
-      h2.about__title(data-i18n='about.title')= t('about.title')
       p(data-i18n='about.p1')= t('about.p1')
       p(data-i18n='about.p2')= t('about.p2')
     //- Column 2: why choose

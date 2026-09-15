@@ -39,6 +39,7 @@ npm run build:prod   # minified prod build → dist/
 | `gallery.js` | level filter + Masonry; `imagesLoaded` → `msnry.layout()` |
 | `lightbox.js` | GLightbox: homepage gallery items, + shop card main photo (`data-shop-images`) |
 | `shop.js` | shop card thumbnails swap the main photo (and its href) |
+| `faq.js` | mobile FAQ accordion (`.faq__item.is-open`, answers hidden by CSS below `$bp-md`) |
 | `form.js` | Web3Forms AJAX submit |
 
 **SCSS** (`src/scss/`): `main.scss` `@use`s partials; vars/mixins in `_variables.scss`; every partial starts `@use 'variables' as *`.
