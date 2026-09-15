@@ -107,7 +107,7 @@ Pug attributes: `data-i18n` (textContent, incl. `<title>`) · `data-i18n-html` (
 
 Canonical host is `https://www.atelierguillotine.com` (with `www`). The domain lives in **one place in code**: `SITE_URL` in `loaders/pug-with-data.js`, injected into every Pug template as `siteUrl` and used by the `canonical` and Open Graph tags. `src/static/{robots.txt,sitemap.xml}` (copied to `dist/` root by `CopyWebpackPlugin`) repeat it literally; update them too if the domain changes. Open Graph values are hardcoded in French because scrapers don't run the i18n JS; `legal.html` gets a canonical but no OG (it's `noindex` and excluded from the sitemap).
 
-Hosted on **OVH shared hosting** (France), not GitHub Pages. `.github/workflows/deploy.yml` (the only workflow): every push → `npm ci` + `npm run build:prod` → upload `dist/` as an artifact; the `deploy` job runs only on `refs/heads/master` and pushes `dist/` to OVH over FTPS (`SamKirkland/FTP-Deploy-Action`, server dir `./www/`). Secrets: `OVH_FTP_SERVER`, `OVH_FTP_USERNAME`, `OVH_FTP_PASSWORD`. The domain is configured in the OVH panel; there is no `CNAME` file.
+Hosted on **OVH shared hosting** (France), not GitHub Pages. `.github/workflows/build.yml`: every push → `npm ci` + `npm run build:prod` → upload `dist/` as an artifact. `.github/workflows/deploy.yml` is triggered by `workflow_run` after a successful Build on `master` (so it only fires once it exists on `master`, the default branch), downloads that run's artifact and pushes `dist/` to OVH over SFTP (`lftp mirror`, server dir `www/`; OVH shared hosting doesn't support FTPS). Secrets: `OVH_FTP_SERVER`, `OVH_FTP_USERNAME`, `OVH_FTP_PASSWORD`. The domain is configured in the OVH panel; there is no `CNAME` file.
 
 ## Conventions
 

@@ -1,53 +1,42 @@
-name: Build & Deploy
+name: Deploy
 
-# Builds on every push (catches errors on working branches);
-# deploys over FTP to the OVH hosting from master only.
+# Runs after a successful "Build" on master and deploys its dist/ artifact
+# over SFTP to the OVH hosting.
 #
 # Required secrets: OVH_FTP_SERVER, OVH_FTP_USERNAME, OVH_FTP_PASSWORD
 
 on:
-  push:
-  workflow_dispatch:
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+    branches: [master]
+
+permissions:
+  actions: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-
-      - run: npm ci
-
-      - run: npm run build:prod
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist
-          # dist/.htaccess (URLs sans .html) est un fichier caché :
-          # upload-artifact l'ignore par défaut depuis la v4.4.
-          include-hidden-files: true
-
   deploy:
-    needs: build
-    if: github.ref == 'refs/heads/master'
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
 
-      - name: Deploy to OVH
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.OVH_FTP_SERVER }}
-          username: ${{ secrets.OVH_FTP_USERNAME }}
-          password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./dist/
-          server-dir: ./www/
+      # Le mutualisé OVH ne supporte pas FTPS (« 500 This security scheme
+      # is not implemented ») : on passe en SFTP (port 22) avec lftp.
+      - name: Deploy to OVH (SFTP)
+        env:
+          SFTP_HOST: ${{ secrets.OVH_FTP_SERVER }}
+          SFTP_USER: ${{ secrets.OVH_FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp --env-password -u "$SFTP_USER" "sftp://$SFTP_HOST" -e "
+            set sftp:auto-confirm yes;
+            mirror --reverse --verbose --parallel=4 dist/ www/;
+            bye"
