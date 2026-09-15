@@ -48,6 +48,6 @@ jobs:
           server: ${{ secrets.OVH_FTP_SERVER }}
           username: ${{ secrets.OVH_FTP_USERNAME }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
+          protocol: sftp
           local-dir: ./dist/
           server-dir: ./www/
