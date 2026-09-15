@@ -1,0 +1,68 @@
+@use 'variables' as *;
+
+html {
+  scroll-behavior: smooth;
+}
+
+// Anchor jumps (#services…) stop under the fixed nav, from this page or another
+section[id] {
+  scroll-margin-top: $nav-height;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: $color-accent;
+  color: $color-bg;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid $color-accent;
+  outline-offset: -2px;
+}
+
+section:nth-of-type(odd)  {
+  background: $color-bg;
+  --section-alt: #{$color-bg-lighter};
+}
+
+section:nth-of-type(even) {
+  background: $color-bg-lighter;
+  --section-alt: #{$color-bg};
+}
+
+body {
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: $font-sans;
+  font-size: 1rem;
+  line-height: $line-height;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+.brand-name {
+  font-family: $font-brand;
+  display: inline-block;
+  line-height: 1;
+}
+
+@media (max-width: $bp-md) {
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}

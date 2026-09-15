@@ -1,0 +1,114 @@
+@use 'variables' as *;
+
+.services {
+  @include section-padding;
+
+  &__title {
+    @include title-section;
+  }
+
+  &__grid {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+
+    // Three side by side, or one per row (no 2-column step)
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.service {
+  background: var(--section-alt);
+  border: 1px solid $color-border;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+
+  &--featured {
+    border-color: $color-accent;
+    box-shadow: 0 0 0 4px $color-bg-lighter, 0 0 0 6px $color-accent;
+  }
+
+  &--bestseller {
+    border: 2px solid $color-accent;
+    box-shadow: 0 0 20px rgba($color-accent, 0.4), 0 0 0 4px $color-bg-lighter, 0 0 0 8px $color-accent, inset 0 0 20px rgba($color-accent, 0.1);
+    transform: scale(1.05);
+
+    // Stacked layout: no zoom, Tabletop+ shown first
+    @media (max-width: $bp-lg) {
+      transform: none;
+      order: -1;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 1.05rem;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $color-accent;
+    border: 1px solid $color-accent;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__price {
+    font-family: $font-sans;
+    font-size: 1.1rem;
+    color: $color-accent;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    @include text-muted;
+    line-height: 1.85;
+    margin-bottom: 1.75rem;
+    flex: 1;
+  }
+
+  &__features {
+    margin-bottom: 2rem;
+
+    li {
+      color: $color-text-muted;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid $color-border;
+
+      &::before {
+        content: '→ ';
+        color: $color-accent;
+      }
+    }
+  }
+
+  &__cta {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: $color-accent;
+      color: $color-bg;
+    }
+
+    // Mobile: no hover, so the hover look is the default
+    @media (max-width: $bp-md) {
+      background: $color-accent;
+      color: $color-bg;
+    }
+  }
+}

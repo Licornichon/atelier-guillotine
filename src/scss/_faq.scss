@@ -1,0 +1,98 @@
+@use 'variables' as *;
+
+.faq {
+  @include section-padding;
+
+  &__inner {
+    @include container;
+  }
+
+  &__title {
+    @include title-section;
+  }
+
+  &__subtitle {
+    @include subtitle-section;
+  }
+
+  &__item {
+    padding: 2rem 0;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__question {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: $color-accent;
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+
+  &__answer {
+    @include text-muted;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  // <button> inside the question: looks like the heading text, only acts on mobile
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    width: 100%;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-align: left;
+    cursor: default;
+  }
+
+  // Mobile: accordion, answers closed by default (faq.js toggles .is-open)
+  @media (max-width: $bp-md) {
+    &__title {
+      margin-bottom: 1rem;
+    }
+
+    &__item {
+      padding: 1.25rem 0;
+    }
+
+    &__question {
+      margin-bottom: 0;
+    }
+
+    &__toggle {
+      cursor: pointer;
+
+      // Chevron: two borders of a small square, rotated to point down
+      &::after {
+        content: '';
+        flex-shrink: 0;
+        align-self: center;
+        width: 0.5em;
+        height: 0.5em;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 0.2s;
+      }
+    }
+
+    &__answer {
+      display: none;
+      margin-top: 0.75rem;
+    }
+
+    &__item.is-open {
+      .faq__toggle::after { transform: rotate(-135deg); } // chevron up
+      .faq__answer { display: block; }
+    }
+  }
+}

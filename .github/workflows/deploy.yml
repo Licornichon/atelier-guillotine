@@ -17,7 +17,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - run: npm ci
@@ -28,6 +28,9 @@ jobs:
         with:
           name: dist
           path: dist
+          # dist/.htaccess (URLs sans .html) est un fichier caché :
+          # upload-artifact l'ignore par défaut depuis la v4.4.
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -45,6 +48,6 @@ jobs:
           server: ${{ secrets.OVH_FTP_SERVER }}
           username: ${{ secrets.OVH_FTP_USERNAME }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftp
+          protocol: ftps
           local-dir: ./dist/
           server-dir: ./www/

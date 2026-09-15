@@ -1,0 +1,86 @@
+@use 'variables' as *;
+
+// Layout for legal text pages (currently legal.pug: French legal notice
+// plus GDPR information on a single page)
+.legal-page {
+  @include container;
+  padding: 8rem 2rem 6rem;
+
+  &__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: clamp(1.75rem, 6vw, 3rem);
+    color: $color-accent;
+    margin-bottom: 1rem;
+  }
+
+  &__intro {
+    @include text-muted;
+    margin-bottom: 3rem;
+    font-size: 1.05rem;
+  }
+
+  &__section {
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $color-accent;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      @include text-muted;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+
+      &:last-child { margin-bottom: 0; }
+    }
+
+    ul {
+      @include text-muted;
+      list-style: disc;
+      margin: 0.5rem 0 0.75rem 1.25rem;
+      line-height: 1.8;
+
+      li::marker { color: $color-accent; }
+    }
+
+    a {
+      color: $color-accent;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  &__updated {
+    @include text-muted;
+    font-size: 0.8rem;
+    font-style: italic;
+    padding: 0 2rem;
+  }
+
+  &__back {
+    display: inline-block;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    color: $color-accent;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: $color-accent;
+    }
+  }
+}

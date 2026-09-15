@@ -1,0 +1,86 @@
+//- ⚠️ TODO: THIS PAGE IS NOT BUILT AT THE MOMENT
+//- Its HtmlWebpackPlugin is commented out in webpack.config.js, so legal.html
+//- is never emitted and the page is unreachable.
+//- Reason: incomplete content (placeholders NOM_PRENOM, NUMEROSIRET,
+//- ADRESSE_POSTALE, EMAIL_CONTACT, MEDIATEUR_NOM, MEDIATEUR_SITE, JJ/MM/AAAA).
+//- French legal notice (LCEN art. 6-III) and GDPR information are legal
+//- requirements: restore before promoting the site publicly.
+doctype html
+- var page = 'legal'
+html(lang='fr' data-page=page)
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='robots', content='noindex')
+    title(data-i18n='legal.meta.title')= t('legal.meta.title')
+    link(rel='canonical' href=siteUrl + '/legal')
+    link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
+    link(rel='icon' type='image/png' sizes='96x96' href='./assets/media/favicon/favicon-96.png')
+    link(rel='icon' type='image/png' sizes='192x192' href='./assets/media/favicon/favicon-192.png')
+    link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
+    link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
+  body
+    include includes/_nav
+
+    +nav(page, { links: false })
+
+    main#main-content.legal-page
+      .legal-page__inner
+        section.legal-page__section
+          h1.legal-page__title(data-i18n='legal.title') Mentions légales
+          p.legal-page__intro(data-i18n='legal.intro')
+
+        //- ── Legal notice (LCEN art. 6-III) ─────────────────────────────
+        section.legal-page__section
+          h2(data-i18n='legal.editor.title') Éditeur du site
+          div(data-i18n-html='legal.editor.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.host.title') Hébergement
+          div(data-i18n-html='legal.host.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.ip.title') Propriété intellectuelle
+          div(data-i18n-html='legal.ip.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.mediation.title') Médiation de la consommation
+          div(data-i18n-html='legal.mediation.content')
+
+        //- ── Personal data (GDPR), #personal-data anchor ───────────────
+        section#personal-data.legal-page__section
+          h2(data-i18n='legal.data.title') Données personnelles
+          div(data-i18n-html='legal.data.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.thirdParties.title') Services tiers
+          div(data-i18n-html='legal.thirdParties.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.transfers.title') Transferts hors Union européenne
+          div(data-i18n-html='legal.transfers.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.cookies.title') Cookies et stockage
+          div(data-i18n-html='legal.cookies.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.retention.title') Conservation des données
+          div(data-i18n-html='legal.retention.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.rights.title') Vos droits
+          div(data-i18n-html='legal.rights.content')
+
+        section.legal-page__section
+          h2(data-i18n='legal.contact.title') Contact
+          div(data-i18n-html='legal.contact.content')
+
+        p.legal-page__updated(data-i18n='legal.updated') Dernière mise à jour : JJ/MM/AAAA
+
+        a.legal-page__back(href='./' data-i18n='legal.back') ← Retour
+
+    footer.footer
+      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
+      a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

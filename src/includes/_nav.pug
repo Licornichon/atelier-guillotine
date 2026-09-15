@@ -1,0 +1,55 @@
+//- ──────────────────────────────────────────
+//- NAV (shared: every page), preceded by the skip link
+//- Usage: include includes/_nav, then +nav(page[, options])
+//-   page     'home' | 'shop' | 'legal', same value as <html data-page>
+//-   options  links           false → logo + language switch only (default true)
+//-            sharedSections  false → page doesn't include the FAQ / contact /
+//-                            about sections, their links go to the homepage (default true)
+//- ──────────────────────────────────────────
+mixin nav(page, options)
+  - var opts = options || {}
+  //- URL of each page; a new page gets its entry here and its links below
+  - var pageUrls = { home: './', shop: './shop' }
+  //- page: page holding the target · hash: section id · shared: section comes
+  //- from src/includes/ (present on any page with sharedSections)
+  - var navLinks = [
+  -   { key: 'nav.gallery',  page: 'home', hash: 'gallery' },
+  -   { key: 'nav.services', page: 'home', hash: 'services' },
+  -   { key: 'nav.pricing',  page: 'home', hash: 'pricing' },
+  -   { key: 'nav.faq',      page: 'home', hash: 'faq',     shared: true },
+  -   { key: 'nav.contact',  page: 'home', hash: 'contact', shared: true },
+  -   { key: 'nav.about',    page: 'home', hash: 'about',   shared: true },
+  -   { key: 'nav.shop',     page: 'shop' },
+  - ]
+
+  a.skip-link(href='#main-content' data-i18n='nav.skip')= t('nav.skip')
+
+  nav.nav(aria-label=t('nav.label') data-i18n-aria='nav.label')
+    a.nav__logo(href=(page === 'home' ? '#' : pageUrls.home))
+      span.brand-name Atelier Guillotine
+    if opts.links !== false
+      button.nav__toggle(
+        data-i18n-aria='nav.toggle'
+        aria-label=t('nav.toggle')
+        aria-controls='nav-menu'
+        aria-expanded='false'
+      ) ☰
+    //- Links + language switch. With links, the whole block is the mobile
+    //- dropdown (--collapsible, opened by anchors.js); without, it stays in the bar.
+    .nav__menu#nav-menu(class=(opts.links !== false ? 'nav__menu--collapsible' : undefined))
+      if opts.links !== false
+        ul.nav__links
+          each link in navLinks
+            - var isLocal = link.shared ? opts.sharedSections !== false : link.page === page
+            - var href = link.hash ? (isLocal ? '' : pageUrls[link.page]) + '#' + link.hash : pageUrls[link.page]
+            - var isCurrent = !link.hash && link.page === page
+            li: a.nav__link(
+              href=href
+              class=(isCurrent ? 'is-active' : undefined)
+              data-i18n=link.key
+              aria-current=(isCurrent ? 'page' : undefined)
+            )= t(link.key)
+      .nav__lang
+        button.nav__lang-btn(data-lang='fr' aria-pressed='true') FR
+        span.nav__lang-sep(aria-hidden='true') |
+        button.nav__lang-btn(data-lang='en' aria-pressed='false') EN

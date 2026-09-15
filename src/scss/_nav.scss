@@ -1,0 +1,119 @@
+@use 'variables' as *;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $nav-height; // border included (border-box); other offsets rely on it
+  padding: 0 2rem;
+  background: rgba($color-bg, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $color-border;
+
+  &__logo {
+    font-family: $font-sans;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    color: $color-accent;
+  }
+
+  // Links + language switch (mobile dropdown, see media query below)
+  &__menu {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  &__links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__link {
+    @include text-muted;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &__lang {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: 1.5rem;
+  }
+
+  &__lang-sep {
+    color: $color-border;
+    font-size: 0.7rem;
+    user-select: none;
+  }
+
+  &__lang-btn {
+    font-size: 0.7rem;
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    color: $color-text-muted;
+    background: none;
+    border: none;
+    padding: 0.2rem 0.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover,
+    &.is-active {
+      color: $color-accent;
+    }
+  }
+
+  &__toggle {
+    display: none;
+    font-size: 1.4rem;
+    color: $color-text;
+  }
+
+  // Burger menu: tablet portrait and mobile
+  @media (max-width: $bp-lg) {
+    &__toggle {
+      display: block;
+    }
+
+    &__menu--collapsible {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      background: $color-bg-lighter;
+      padding: 1.25rem 2rem;
+      gap: 1.25rem;
+      border-bottom: 1px solid $color-border;
+
+      &.is-open {
+        display: flex;
+      }
+
+      .nav__links {
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .nav__lang {
+        margin-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "price": "450 €",
+  "retailPrice": "130 €",
+  "status": "available",
+  "level": "battle-ready",
+  "order": 1,
+  "fr": {
+    "name": "Combat Patrol : Adeptus Custodes (14 figurines)",
+    "tag": "Warhammer 40 000 · Adeptus Custodes",
+    "description": "Gardiens de l'Empereur, les Custodes ont quitté les murs du Palais pour porter la guerre aux xenos et aux hérétiques. 14 figurines composent cette Combat Patrol : deux escouades de cinq (Custodian Guard et Custodian Wardens), une escouade de trois Allarus Custodians et un Shield-Captain pour les mener. L'ensemble est traité dans un or brillant qui accroche la lumière comme de l'auramite véritable, rehaussé d'un rouge intense et profond ; un bleu glacé court sur les lames et attire l'œil droit vers le tranchant. Le soclage reste volontairement simple et se refait en quelques minutes : de quoi grossir la Garde à votre main, sans jamais rompre l'harmonie. Une base solide et prête à jouer, pensée pour bâtir une force bien plus vaste."
+  },
+  "en": {
+    "name": "Combat Patrol: Adeptus Custodes (14 models)",
+    "tag": "Warhammer 40,000 · Adeptus Custodes",
+    "description": "Guardians of the Emperor, the Custodes have left the walls of the Palace to carry the war to xenos and heretics alike. 14 models make up this Combat Patrol: two squads of five (Custodian Guard and Custodian Wardens), a squad of three Allarus Custodians, and a Shield-Captain to lead them. The force is finished in a bright gold that catches the light like true auramite, lifted by a deep, intense red; a cold blue runs along the blades and pulls the eye straight to their edge. The basing is kept deliberately simple and reproduces in minutes, enough to grow the Guard at your own pace without ever breaking the look. A solid, table-ready core, built to anchor a far larger force."
+  }
+}

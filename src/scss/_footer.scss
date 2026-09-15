@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+.footer {
+  @include text-muted;
+  padding: 2rem;
+  font-size: 0.8rem;
+  border-top: 1px solid $color-border;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: $bp-md) {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &__link {
+    color: $color-text-muted;
+    text-decoration: none;
+    font-size: 0.75rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover {
+      color: $color-accent;
+      border-color: $color-accent;
+    }
+  }
+}

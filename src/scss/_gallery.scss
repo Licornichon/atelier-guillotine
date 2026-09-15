@@ -1,0 +1,80 @@
+@use 'variables' as *;
+
+.gallery {
+  @include section-padding;
+
+  &__title {
+    @include title-section;
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  &__filter {
+    @include text-muted;
+    padding: 0.45rem 1.25rem;
+    font-size: 0.75rem;
+    font-family: inherit;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid $color-border;
+    background: transparent;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover,
+    &.is-active {
+      color: $color-accent;
+      border-color: $color-accent;
+    }
+  }
+
+  &__grid {
+    position: relative;
+    display: flow-root; // contains the floated items before Masonry sets its height
+  }
+
+  // Columns: 5 above $bp-xl, 4 by default, 3 below $bp-lg, 2 below $bp-sm
+  // (phones in portrait). Keep in sync with &__item
+  &__sizer {
+    width: 25%;
+
+    @media (min-width: #{$bp-xl + 1}) { width: 20%; }
+    @media (max-width: $bp-lg) { width: 33.333%; }
+    @media (max-width: $bp-sm) { width: 50%; }
+  }
+
+  // Floated so the grid already has rows (close to its final height) before
+  // Masonry positions the items; avoids the page jumping while it loads
+  &__item {
+    float: left;
+    width: 25%;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 0;
+
+    @media (min-width: #{$bp-xl + 1}) { width: 20%; }
+    @media (max-width: $bp-lg) { width: 33.333%; }
+    @media (max-width: $bp-sm) { width: 50%; }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.06);
+    }
+
+    &.is-hidden {
+      display: none;
+    }
+  }
+}

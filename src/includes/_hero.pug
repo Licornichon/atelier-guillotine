@@ -1,0 +1,24 @@
+//- ──────────────────────────────────────────
+//- HERO (shared: every page with a hero)
+//- Usage: include includes/_hero, then +hero({ … })
+//-   id        section id
+//-   title     i18n key (value may contain HTML)
+//-   subtitle  i18n key, optional
+//-   left      { src, altKey }, optional side image
+//-   right     same shape
+//- ──────────────────────────────────────────
+mixin hero(o)
+  section.hero(id=o.id)
+    .hero__content
+      each side in ['left', 'right']
+        - var pic = o[side]
+        if pic
+          img(class=('hero__bg-' + side) src=pic.src alt=t(pic.altKey) data-i18n-alt=pic.altKey)
+      //- H1 = brand name + subtitle, so the subtitle's keywords count as heading
+      //- text for search engines; the subtitle keeps its own look (_hero.scss)
+      h1.hero__title
+        span.brand-name(data-i18n-html=o.title)!= t(o.title)
+        if o.subtitle
+          //- Space so the heading text reads "… Guillotine Peinture …", not glued
+          = ' '
+          span.hero__subtitle(data-i18n-html=o.subtitle)!= t(o.subtitle)

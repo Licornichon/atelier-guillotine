@@ -1,0 +1,78 @@
+// ─── Colours ────────────────────────────────────────────────────────────────
+$color-bg:           #0f0f0f;
+$color-bg-lighter:      #1a1a1a;
+$color-accent:       #f4edd1;
+$color-accent-hover: #faf6e8;
+$color-text:         #e8e8e8;
+$color-text-muted:   #888888;
+$color-border:       #2a2a2a;
+$color-success:      #6abf6a;
+
+// ─── Typography ──────────────────────────────────────────────────────────────
+$font-sans:   system-ui, -apple-system, sans-serif;
+$font-brand:  'Crusades', 'Georgia', serif; // brand name "Atelier Guillotine"
+$line-height: 1.75;
+
+// ─── Layout ──────────────────────────────────────────────────────────────────
+$container-max:   1200px;
+$section-padding: 6rem 2rem;
+$section-padding-mobile: 3rem 1rem; // below $bp-md, see @mixin section-padding
+$nav-height:      4.5rem; // fixed nav; offsets content below it (hero margin-top…)
+
+// ─── Breakpoints ─────────────────────────────────────────────────────────────
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1920px;
+
+// ─── Mixins ──────────────────────────────────────────────────────────────────
+@mixin container {
+  max-width: $container-max;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Vertical rhythm of every content section (smaller on mobile)
+@mixin section-padding {
+  padding: $section-padding;
+
+  @media (max-width: $bp-md) {
+    padding: $section-padding-mobile;
+  }
+}
+
+@mixin title-section {
+  font-family: $font-sans;
+  font-size: clamp(1.75rem, 6vw, 3rem);
+  color: $color-accent;
+  text-align: center;
+  margin-bottom: 3rem;
+
+  @media (max-width: $bp-md) {
+    margin-bottom: 2rem;
+  }
+}
+
+// Line of text right under a section title (FAQ, contact). On mobile, the
+// title above it takes margin-bottom: 1rem (set in the section).
+@mixin subtitle-section {
+  @include text-muted;
+  text-align: center;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: $bp-md) {
+    margin-bottom: 2rem;
+  }
+}
+
+@mixin title-subsection {
+  font-family: $font-sans;
+  font-size: clamp(1.25rem, 4vw, 1.875rem);
+  color: $color-accent;
+  margin-bottom: 1.5rem;
+}
+
+@mixin text-muted {
+  color: $color-text-muted;
+}

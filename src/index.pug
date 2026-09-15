@@ -1,52 +1,167 @@
 doctype html
-html(lang='fr')
+- var page = 'home'
+html(lang='fr' data-page=page)
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='robots', content='noindex, nofollow')
-    title Atelier Guillotine — Bientôt disponible
-    link(rel='icon' type='image/x-icon' href='./assets/media/favicon/favicon.ico')
-    link(rel='apple-touch-icon' href='./assets/media/favicon/apple-touch-icon.png')
-    //- Standalone page: CSS is inlined here, no external stylesheet and no JS.
-    //- The only build-time assets are the favicons and Crusades.woff2, copied
-    //- by CopyWebpackPlugin (see webpack.config.js).
-    style.
-      @font-face {
-        font-family: 'Crusades';
-        src: url('./assets/fonts/Crusades.woff2') format('woff2');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        min-height: 100dvh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #0f0f0f;
-        color: #e8e8e8;
-        font-family: system-ui, -apple-system, sans-serif;
-        text-align: center;
-        padding: 2rem;
-      }
-      .brand {
-        font-family: 'Crusades', Georgia, serif;
-        font-size: clamp(3rem, 12vw, 7rem);
-        color: #f4edd1;
-        line-height: 1;
-        display: block;
-        margin-bottom: 2rem;
-      }
-      .tagline {
-        font-size: clamp(0.85rem, 2.5vw, 1rem);
-        color: #888;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-      }
+    meta(name='description' data-i18n-content='home.meta.description' content=t('home.meta.description'))
+    title(data-i18n='home.meta.title')= t('home.meta.title')
+    link(rel='canonical' href=siteUrl + '/')
+    //- Open Graph, hardcoded in French: scrapers (Discord, WhatsApp…) never run the i18n JS
+    meta(property='og:type' content='website')
+    meta(property='og:site_name' content='Atelier Guillotine')
+    meta(property='og:locale' content='fr_FR')
+    meta(property='og:url' content=siteUrl + '/')
+    meta(property='og:title' content='Atelier Guillotine | Peinture de figurines sur commande')
+    meta(property='og:description' content='Service professionnel de peinture de figurines pour Warhammer et jeux de figurines. Armées prêtes à jouer, finitions soignées et pièces d’exposition.')
+    meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
+    meta(property='og:image:width' content='1200')
+    meta(property='og:image:height' content='630')
+    meta(property='og:image:alt' content='Figurines peintes par Atelier Guillotine')
+    //- Favicons & PWA
+    link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
+    link(rel='icon' type='image/png' sizes='96x96' href='./assets/media/favicon/favicon-96.png')
+    link(rel='icon' type='image/png' sizes='192x192' href='./assets/media/favicon/favicon-192.png')
+    link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
+    link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
   body
-    div
-      span.brand Atelier
-        br
-        | Guillotine
-      p.tagline Bientôt disponible
+    include includes/_nav
+    include includes/_hero
+
+    +nav(page)
+
+    main#main-content
+
+      //- ──────────────────────────────────────────
+      //- HERO
+      //- ──────────────────────────────────────────
+      +hero({
+        id: 'hero',
+        title: 'hero.title',
+        subtitle: 'hero.subtitle',
+        left: { src: './assets/generated/hero/hommesbetes.webp', altKey: 'hero.alt.hommesbetes' },
+        right: { src: './assets/generated/hero/pirate.webp', altKey: 'hero.alt.pirate' },
+      })
+
+      //- ──────────────────────────────────────────
+      //- GALLERY
+      //- Images scanned at build time from assets/media/gallery/{battle-ready,tabletop-plus,display}/
+      //- (order: PRIORITY in scripts/generate-gallery.js, then newest first)
+      //- To add images: drop them in the folder, then run npm run generate
+      //- ──────────────────────────────────────────
+      section#gallery.gallery
+        h2.gallery__title(data-i18n='gallery.title')= t('gallery.title')
+        .gallery__filters(role='group' aria-label=t('gallery.filtersLabel') data-i18n-aria='gallery.filtersLabel')
+          button.gallery__filter.is-active(data-filter='all' data-i18n='gallery.all' aria-pressed='true')= t('gallery.all')
+          button.gallery__filter(data-filter='battle-ready' data-i18n='gallery.tr' aria-pressed='false')= t('gallery.tr')
+          button.gallery__filter(data-filter='tabletop-plus' data-i18n='gallery.ttp' aria-pressed='false')= t('gallery.ttp')
+          button.gallery__filter(data-filter='display' data-i18n='gallery.display' aria-pressed='false')= t('gallery.display')
+        .gallery__grid
+          .gallery__sizer
+          if galleryItems && galleryItems.length
+            //- Alt = gallery.alt with {game} (gallery.game.<sub-folder>) and {level};
+            //- gallery.altNoGame when the image has no known game
+            - var levelKeys = { 'battle-ready': 'gallery.tr', 'tabletop-plus': 'gallery.ttp', display: 'gallery.display' }
+            each item in galleryItems
+              - var altVars = { level: levelKeys[item.level] }
+              - if (item.game && ('gallery.game.' + item.game) in i18nFr) altVars.game = 'gallery.game.' + item.game
+              - var altKey = altVars.game ? 'gallery.alt' : 'gallery.altNoGame'
+              //- Resized WebP copies (npm run generate): grid image + srcset, full-screen version as href
+              a.gallery__item(
+                href=item.full
+                data-gallery='gallery'
+                data-level=item.level
+              )
+                img(
+                  src=item.src
+                  srcset=item.srcset
+                  sizes='(max-width: 480px) 50vw, (max-width: 1024px) 33vw, (min-width: 1921px) 20vw, 25vw'
+                  width=item.width
+                  height=item.height
+                  alt=t(altKey, altVars)
+                  data-i18n-alt=altKey
+                  data-i18n-vars=JSON.stringify(altVars)
+                  loading='lazy'
+                )
+
+      //- ──────────────────────────────────────────
+      //- PRICE GRID: single source for the pricing table below and the
+      //- "from X €" service prices (first row = cheapest)
+      //- ──────────────────────────────────────────
+      - var priceRows = [
+      -   { key: 'pricing.infantry',               tr: 17, ttp: 34 },
+      -   { key: 'pricing.typicalRanges.elite',    tr: 22, ttp: 44 },
+      -   { key: 'pricing.typicalRanges.cavalry',  tr: 30, ttp: 50 },
+      -   { key: 'pricing.typicalRanges.vehicles', tr: 40, ttp: 80 },
+      -   { key: 'pricing.character',              tr: 40, ttp: 100 },
+      -   { key: 'pricing.largeCharacter',         tr: 85, ttp: 200 },
+      - ]
+
+      //- ──────────────────────────────────────────
+      //- SERVICES (texts = services.<id>.* keys)
+      //- ──────────────────────────────────────────
+      - var services = [
+      -   { id: 'tr',      from: priceRows[0].tr },
+      -   { id: 'ttp',     from: priceRows[0].ttp, mod: 'service--bestseller' },
+      -   { id: 'display', mod: 'service--featured' },
+      - ]
+      section#services.services
+        h2.services__title(data-i18n='services.title')= t('services.title')
+        .services__grid
+          each s in services
+            - var k = 'services.' + s.id + '.'
+            .service(class=s.mod)
+              .service__badge(data-i18n=(k + 'name'))= t(k + 'name')
+              if s.from
+                .service__price #[span(data-i18n='services.priceFrom') #{t('services.priceFrom')}] #{s.from}&nbsp;€ #[span(data-i18n='services.pricePer') #{t('services.pricePer')}]
+              else
+                .service__price(data-i18n=(k + 'price'))= t(k + 'price')
+              p.service__description(data-i18n=(k + 'desc'))= t(k + 'desc')
+              ul.service__features
+                each f in ['f1', 'f2', 'f3']
+                  li(data-i18n=(k + f))= t(k + f)
+              a.service__cta(href='#contact' data-i18n=(k + 'cta'))= t(k + 'cta')
+
+      //- ──────────────────────────────────────────
+      //- PRICING
+      //- ──────────────────────────────────────────
+      section#pricing.pricing
+        h2.pricing__title(data-i18n='pricing.title')= t('pricing.title')
+
+        .pricing__section.pricing__section--notice
+          h3.pricing__subtitle(data-i18n='pricing.howWorks.title')= t('pricing.howWorks.title')
+          p(data-i18n='pricing.howWorks.desc1')= t('pricing.howWorks.desc1')
+          p(data-i18n='pricing.howWorks.desc2')= t('pricing.howWorks.desc2')
+          p(data-i18n='pricing.howWorks.display')= t('pricing.howWorks.display')
+
+        .pricing__section
+          h3.pricing__subtitle(data-i18n='pricing.typicalRanges.title')= t('pricing.typicalRanges.title')
+          .pricing__table-wrapper
+            table.pricing__table
+              thead
+                tr
+                  th(scope='col' data-i18n='pricing.typicalRanges.col.type')= t('pricing.typicalRanges.col.type')
+                  th(scope='col' data-i18n='pricing.tr.name')= t('pricing.tr.name')
+                  th(scope='col' data-i18n='pricing.ttp.name')= t('pricing.ttp.name')
+              tbody
+                each row in priceRows
+                  tr
+                    td(data-i18n-html=row.key)!= t(row.key)
+                    td(data-i18n-label='pricing.tr.name' data-label=t('pricing.tr.name')) #{row.tr}+&nbsp;€
+                    td(data-i18n-label='pricing.ttp.name' data-label=t('pricing.ttp.name')) #{row.ttp}+&nbsp;€
+
+      //- ──────────────────────────────────────────
+      //- FAQ / CONTACT / ABOUT: shared with shop.pug, see src/includes/
+      //- ──────────────────────────────────────────
+      include includes/_faq
+
+      include includes/_contact
+
+      include includes/_about
+
+    footer.footer
+      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
+      //- TODO: link hidden while legal.html is not generated (see webpack.config.js).
+      //- Restore it together with the page.
+      //- a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

@@ -1,0 +1,105 @@
+@use 'variables' as *;
+
+// Markup: +hero mixin in src/includes/_hero.pug
+// Same style on every page, side images included.
+.hero {
+  height: 75vh;
+  margin-top: $nav-height;
+  display: flex;
+  justify-content: center; // .hero__content stretches vertically (default align-items)
+  text-align: center;
+  overflow: hidden; // side images may run past the viewport edges
+
+  // As wide as title/subtitle, as tall as the hero: images placed on it hug
+  // the text block horizontally and take the full hero height.
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__bg-left,
+  &__bg-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    max-width: none; // reset caps img at 100% of .hero__content's width
+    object-fit: contain;
+  }
+
+  &__bg-left  { left: 0; transform: translateX(-100%); }
+  &__bg-right { left: 100%; }
+
+  &__title {
+    color: $color-accent;
+    font-family: $font-sans;
+    font-size: clamp(5rem, 16vw, 10rem);
+    letter-spacing: 0.02em;
+  }
+
+  // <span> inside the H1, shown as its own block under the brand name
+  &__subtitle {
+    display: block;
+    margin-top: 1rem;
+    font-size: clamp(1.7rem, 4vw, 2.2rem);
+    color: $color-text-muted;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    max-width: 875px;
+    margin-left: auto;
+    margin-right: auto;
+
+    // Mobile: 40% smaller (each clamp value × 0.6) + side padding, lighter
+    // grey to stay readable over the background image (tablet included)
+    @media (max-width: $bp-lg) {
+      font-size: clamp(1.02rem, 2.4vw, 1.32rem);
+      padding-inline: 1em;
+      color: #ccc;
+    }
+
+    // Small laptops: narrower subtitle, same font size as tablet / mobile
+    @media (min-width: 1280px) and (max-width: 1440px) {
+      max-width: 500px;
+      font-size: clamp(1.02rem, 2.4vw, 1.32rem);
+    }
+  }
+
+  // ─── Mobile: one centered image behind the text, under a dark veil ─────────
+  // .hero__content is a stacking context (z-index: 1): the image and the veil
+  // go to z-index -1, so they paint under the title/subtitle; the veil comes
+  // later in the markup (::after), so it sits on top of the image.
+  // (tablet included)
+  @media (max-width: $bp-lg) {
+    &__bg-right { display: none; }
+
+    // .hero__content is centered in the section, so centering on it centers in the section
+    &__bg-left {
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+
+    &__content::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 100vw; // whole section width, clipped by .hero's overflow
+      transform: translateX(-50%);
+      background: rgba($color-bg, 0.6); // #0f0f0f at 60%
+      z-index: -1;
+    }
+  }
+}
+
+// Shop hero only, small laptops: right image 30% (of its width) closer to the center
+#shop-hero .hero__bg-right {
+  transform: translateX(-20%);
+
+  @media (min-width: 1280px) and (max-width: 1440px) {
+    transform: translateX(-10%);
+  }
+}

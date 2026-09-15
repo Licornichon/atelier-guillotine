@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────
+# Atelier Guillotine : URLs sans extension (.html)
+# Copié à la racine de dist/ par CopyWebpackPlugin (src/static/).
+# Hébergement OVH mutualisé = Apache + mod_rewrite.
+# ─────────────────────────────────────────────────────────────
+
+# Empêche Apache de servir /shop en négociation de contenu :
+# c'est la règle de réécriture ci-dessous qui doit décider.
+Options -MultiViews
+
+# Photos redimensionnées en WebP par npm run generate
+AddType image/webp .webp
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. /index.html → /                      (redirection permanente)
+  RewriteCond %{THE_REQUEST} \s/(.+/)?index\.html[\s?] [NC]
+  RewriteRule ^(.+/)?index\.html$ /%1 [R=301,L]
+
+  # 2. /shop.html → /shop                   (redirection permanente)
+  RewriteCond %{THE_REQUEST} \s/(.+)\.html[\s?] [NC]
+  RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+  # 3. /shop/ → /shop                       (pas de slash final, sinon les
+  #    chemins relatifs ./assets/… de la page se résolvent mal)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # 4. /shop sert shop.html                 (réécriture interne, URL inchangée)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>

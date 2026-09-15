@@ -1,0 +1,125 @@
+@use 'variables' as *;
+
+.contact {
+  @include section-padding;
+
+  &__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    @include title-section;
+
+    @media (max-width: $bp-md) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__subtitle {
+    @include subtitle-section;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__feedback {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.5em;
+
+    &--success { color: $color-success; }
+    &--error   { color: #bf6a6a; }
+  }
+
+}
+
+.form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form {
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__label {
+    @include text-muted;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  &__input,
+  &__textarea {
+    background: $color-bg;
+    border: 1px solid $color-border;
+    color: $color-text;
+    padding: 0.75rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: $color-accent;
+    }
+
+    &::placeholder {
+      color: rgba($color-text-muted, 0.5);
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  &__notice {
+    @include text-muted;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    margin: 0;
+
+    a {
+      color: $color-accent;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  &__submit {
+    align-self: flex-start;
+    padding: 0.875rem 2.25rem;
+    background: $color-accent;
+    color: $color-bg;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $color-accent-hover;
+    }
+
+    &:disabled {
+      background: $color-border;
+      color: $color-text-muted;
+      cursor: not-allowed;
+    }
+  }
+}

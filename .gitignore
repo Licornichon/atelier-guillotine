@@ -10,6 +10,13 @@ index.js
 index.html
 bundle.js
 
+# Générés au build par scripts/generate-*.js (npm run generate)
+# Sources : les dossiers d'images sous assets/media/ (+ shop/*/info.json)
+src/data/gallery.json
+src/data/shop.json
+# Copies WebP redimensionnées des photos (scripts/images.js)
+assets/generated/
+
 # Claude Code
 .claude/
 memory/

@@ -1,0 +1,134 @@
+doctype html
+- var page = 'shop'
+html(lang='fr' data-page=page)
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description' data-i18n-content='shop.meta.description' content=t('shop.meta.description'))
+    title(data-i18n='shop.meta.title')= t('shop.meta.title')
+    link(rel='canonical' href=siteUrl + '/shop')
+    //- Open Graph, hardcoded in French: scrapers never run the i18n JS
+    meta(property='og:type' content='website')
+    meta(property='og:site_name' content='Atelier Guillotine')
+    meta(property='og:locale' content='fr_FR')
+    meta(property='og:url' content=siteUrl + '/shop')
+    meta(property='og:title' content='Boutique | Atelier Guillotine | Figurines peintes à vendre')
+    meta(property='og:description' content='Figurines peintes actuellement en vente : pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.')
+    meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
+    meta(property='og:image:width' content='1200')
+    meta(property='og:image:height' content='630')
+    meta(property='og:image:alt' content='Figurines peintes par Atelier Guillotine')
+    //- Favicons & PWA
+    link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
+    link(rel='icon' type='image/png' sizes='96x96' href='./assets/media/favicon/favicon-96.png')
+    link(rel='icon' type='image/png' sizes='192x192' href='./assets/media/favicon/favicon-192.png')
+    link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
+    link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
+  body
+    include includes/_nav
+    include includes/_hero
+
+    +nav(page)
+
+    main#main-content
+
+      //- ──────────────────────────────────────────
+      //- HERO
+      //- ──────────────────────────────────────────
+      +hero({
+        id: 'shop-hero',
+        title: 'shop.hero.title',
+        subtitle: 'shop.hero.subtitle',
+        left: { src: './assets/generated/hero/etheldin.webp', altKey: 'hero.alt.etheldin' },
+        right: { src: './assets/generated/hero/machaon.webp', altKey: 'hero.alt.machaon' },
+      })
+
+      //- ──────────────────────────────────────────
+      //- ITEMS FOR SALE
+      //- Generated from assets/media/shop/<slug>/ (info.json + images)
+      //- ──────────────────────────────────────────
+      section#shop.shop
+        h2.shop__title(data-i18n='shop.title')= t('shop.title')
+        if shopItems && shopItems.length
+          - var shopI18nMap = shopItems.reduce(function (m, it) { m[it.slug] = it.i18n; return m }, {})
+          script#shop-i18n-data(type='application/json').
+            !{JSON.stringify(shopI18nMap).replace(/</g, '\\u003c')}
+          ul.shop__list
+            each item, i in shopItems
+              - var loc = item.i18n.fr.name ? item.i18n.fr : item.i18n.en
+              //- Grid areas (_shop.scss): head / media / body. Two columns: media on the
+              //- left, head + body on the right. One column: head, media, body.
+              li.shop__item(class=('shop__item--' + item.status))
+                .shop__head
+                  if loc.tag
+                    span.shop__tag(data-shop-i18n=(item.slug + '.tag'))= loc.tag
+                  h3.shop__name(data-shop-i18n=(item.slug + '.name'))= loc.name
+                  .shop__meta
+                    if item.level
+                      span.shop__level(class=('shop__level--' + item.level) data-i18n=('shop.level.' + item.level))= t('shop.level.' + item.level)
+                    span.shop__status(class=('shop__status--' + item.status) data-i18n=('shop.status.' + item.status))= t('shop.status.' + item.status)
+                  if item.price || item.retailPrice
+                    .shop__pricing
+                      if item.price
+                        p.shop__price= item.price
+                      //- Retail price of the bare models, to set apart the painting work
+                      if item.retailPrice
+                        p.shop__retail #[span(data-i18n='shop.item.retail') #{t('shop.item.retail')}] #{item.retailPrice}
+                .shop__media
+                  //- Photos = resized WebP copies (npm run generate): src/srcset, full, thumb
+                  - var cover = item.images[0]
+                  //- Main photo: opens the piece's full-screen gallery at the photo shown (lightbox.js)
+                  a.shop__photo(href=cover.full data-shop-images=JSON.stringify(item.images.map(function (im) { return im.full })))
+                    img(
+                      src=cover.src
+                      srcset=cover.srcset
+                      sizes='(max-width: 1024px) 100vw, 720px'
+                      width=cover.width
+                      height=cover.height
+                      alt=loc.name
+                      data-shop-i18n-alt=(item.slug + '.name')
+                      loading='lazy'
+                    )
+                  //- Thumbnails (every photo, first included): show the picked one in the main slot (shop.js)
+                  if item.images.length > 1
+                    //- --thumb-cols: columns of the mobile thumbnail grid (max 6 per row)
+                    .shop__thumbs(style=('--thumb-cols: ' + Math.min(item.images.length, 6)))
+                      each photo, i in item.images
+                        button.shop__thumb(
+                          type='button'
+                          class=(i === 0 ? 'is-active' : undefined)
+                          data-src=photo.src
+                          data-srcset=photo.srcset
+                          data-width=photo.width
+                          data-height=photo.height
+                          data-full=photo.full
+                          aria-pressed=(i === 0 ? 'true' : 'false')
+                          aria-label=t('shop.item.thumb')
+                          data-i18n-aria='shop.item.thumb'
+                        )
+                          img(src=photo.thumb alt='' loading='lazy')
+                .shop__body
+                  if loc.description
+                    p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
+                  //- Two button texts, alternating card after card (shop.item.cta.0 / .1)
+                  - var ctaKey = 'shop.item.cta.' + (i % 2)
+                  a.shop__cta(href='#contact' data-i18n=ctaKey)= t(ctaKey)
+        else
+          p.shop__empty(data-i18n='shop.empty')= t('shop.empty')
+
+      //- ──────────────────────────────────────────
+      //- Sections shared with the homepage (see src/includes/)
+      //- ──────────────────────────────────────────
+      - var contactSubject = "Shop enquiry | Atelier Guillotine"
+      include includes/_contact
+
+      include includes/_about
+
+      include includes/_faq
+
+    footer.footer
+      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
+      //- TODO: link hidden while legal.html is not generated (see webpack.config.js).
+      //- Restore it together with the page.
+      //- a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

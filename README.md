@@ -1,6 +1,6 @@
-# Fool's Cauldron — licornichon.github.io
+# Atelier Guillotine (licornichon.github.io)
 
-Site portfolio mono-page pour **Fool's Cauldron**, peinture de figurines sur commande. Portfolio professionnel avec galerie dynamique, tarifs et formulaire de contact.
+Site portfolio mono-page pour **Atelier Guillotine**, peinture de figurines sur commande. Portfolio professionnel avec galerie dynamique, tarifs et formulaire de contact.
 
 ## Développement local
 
@@ -32,7 +32,6 @@ src/
   js/
     main.js          → Entry point webpack
     lang.js          → Système de traductions
-    loader.js        → Page loader (attend fonts + images)
     gallery.js       → Masonry + filtres + imagesLoaded
     lightbox.js      → GLightbox pour preview galerie
     form.js          → Web3Forms AJAX + validation
@@ -42,10 +41,9 @@ src/
     main.scss        → Import tous les partials
     _variables.scss  → Couleurs, typo, breakpoints
     _nav.scss, _hero.scss, _about.scss, etc.
-    _loader.scss, _faq.scss
+    _faq.scss
   images/
     favicon.ico, favicon-32x32.png, favicon-16x16.png
-    loader.gif       → À remplir avec ton GIF
   assets/
     media/
       hero.png       → Image section hero
@@ -87,11 +85,6 @@ src/data/gallery.json          → Généré au build
 - **Lazy-loading** des images (data-* optimisé)
 - **Pour ajouter images** : Déposer dans un des 3 dossiers, puis `npm run build`
 
-### ⏱️ Page loader
-- **Attend** : load event + fonts (document.fonts.ready) + toutes images (imagesLoaded)
-- **Disparaît en fondu** quand tout est chargé
-- **Config** : Remplacer `src/images/loader.gif` par ton GIF
-
 ### 📧 Formulaire de contact
 - **Web3Forms** : Pas de backend, envoie les mails directement
 - **Anti-spam** : Honeypot (champ invisible) + validation JS
@@ -107,12 +100,12 @@ src/data/gallery.json          → Généré au build
 ## SEO
 
 **Métadonnées optimisées** :
-- Title : "Fool's Cauldron - Peinture de Figurines Professionnelle | Toutes Marques"
+- Title : "Atelier Guillotine - Peinture de Figurines Professionnelle | Toutes Marques"
 - Description : 160 chars avec keywords (professionnel, 15 ans, récompenses, toutes marques)
 - Favicon : 3 formats pour compatibilité
 
 **Trust factors** :
-- Section "Pourquoi choisir Fool's Cauldron" avec 4 points forts
+- Section "Pourquoi choisir Atelier Guillotine" avec 4 points forts
 - FAQ 6 questions (pour long-tail keywords)
 
 ## Commandes npm
@@ -141,7 +134,6 @@ Pour configurer :
 - [x] ✅ Traductions FR/EN complètes avec détection auto
 - [x] ✅ Système de galerie dynamique
 - [x] ✅ Optimisation SEO (métadonnées, trust factors)
-- [x] ✅ Page loader (attend fonts + images)
 - [x] ✅ Favicons
 - [x] ✅ Lightbox galerie
 - [x] ✅ Formulaire Web3Forms
@@ -163,7 +155,7 @@ Pour configurer :
 **v2.0 - Rebuild complet**
 - Webpack 3 → Webpack 5 ✅
 - Pug 2 → Pug 3 ✅
-- Ancien contenu → Portfolio Fool's Cauldron ✅
+- Ancien contenu → Portfolio Atelier Guillotine ✅
 - Ajout traductions i18n ✅
 - Ajout galerie dynamique ✅
 - Ajout SEO optimisé ✅

@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+.about {
+  @include section-padding;
+
+  // Two text columns (.about__intro | .about__why), stacked below $bp-md
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  &__title {
+    @include title-section;
+  }
+
+  p {
+    @include text-muted;
+    margin-bottom: 1rem;
+    line-height: 1.85;
+  }
+
+  &__subtitle {
+    @include title-subsection;
+    margin-bottom: 1rem; // no margin-top: tops of both columns line up, grid gap spaces them when stacked
+  }
+
+  &__benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__benefit {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $color-accent;
+      margin-bottom: 0.5rem;
+    }
+
+    &-text {
+      @include text-muted;
+      line-height: 1.75;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+  }
+}
