@@ -12,7 +12,7 @@ html(lang='fr' data-page=page)
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='robots', content='noindex')
-    title(data-i18n='legal.meta.title') Mentions légales — Atelier Guillotine
+    title(data-i18n='legal.meta.title')= t('legal.meta.title')
     link(rel='canonical' href=siteUrl + '/legal')
     link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
     link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
@@ -22,8 +22,6 @@ html(lang='fr' data-page=page)
     link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
   body
     include includes/_nav
-
-    a.skip-link(href='#main-content') Aller au contenu
 
     +nav(page, { links: false })
 
@@ -84,8 +82,5 @@ html(lang='fr' data-page=page)
         a.legal-page__back(href='./' data-i18n='legal.back') ← Retour
 
     footer.footer
-      span
-        span(data-i18n='footer.copyright') © 2026
-        span &nbsp;
-        span.brand-name Atelier Guillotine
-      a.footer__link(href='./legal' data-i18n='footer.legal') Mentions légales
+      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
+      a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

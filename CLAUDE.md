@@ -76,7 +76,7 @@ Homepage (`index.pug`) order: hero → gallery → services → pricing → **FA
 - One folder per piece: `assets/media/shop/<slug>/` = `info.json` + image files (sorted by name, first = cover).
 - `info.json`: shared `price`, `status` (`available`\|`reserved`), `level` (`battle-ready`\|`tabletop-plus`\|`display`), optional `order`; plus `fr` / `en` blocks each holding `name`, `tag`, `description` (one block is reused if the other is missing). `level` + `tag` render as card badges.
 - `info.json` is the only file to hand-edit; `generate-shop.js` derives `src/data/shop.json` (adds `slug`, `images[]`, groups translations under `i18n`). Webpack doesn't watch `info.json` → user re-runs `npm run generate` after edits.
-- Card text renders in EN by default; `shop.pug` emits `<script id="shop-i18n-data">` (map `{slug: {fr,en}}`) and `lang.js` switches `[data-shop-i18n="<slug>.<field>"]` elements FR/EN from it.
+- Card text renders in FR by default; `shop.pug` emits `<script id="shop-i18n-data">` (map `{slug: {fr,en}}`) and `lang.js` switches `[data-shop-i18n="<slug>.<field>"]` elements FR/EN from it.
 - Remove a piece by deleting its folder (no "sold" status). Per-piece lightbox: `data-shop-gallery=<slug>` grouped in `lightbox.js`. Format doc: `assets/media/shop/README.md`.
 
 ## Gallery
@@ -89,11 +89,13 @@ Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]
 
 `translations.fr.js` / `translations.en.js`, flat `key → string`. `lang.js` sets `<html lang>`; detects `navigator.language` (`fr*`→FR else EN), overridable via nav buttons, stored in `localStorage['fc-lang']`.
 
+Templates never hardcode copy: static HTML text comes from `t(key)`, the French value injected by `loaders/pug-with-data.js` (which watches `translations.fr.js`); `lang.js` swaps it at runtime.
+
 Per-page `<title>` uses `data-i18n`, `<meta name=description>` uses `data-i18n-content`; page-scoped keys `home.meta.*` / `shop.meta.*` / `legal.meta.title`. `<html data-page="home|shop|legal">` = hook.
 
 `legal.html` is a **single page** carrying both the French *mentions légales* (LCEN) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice links to. One footer link only. Its `legal.*` strings still contain UPPERCASE placeholders (`NOM_PRENOM`, `NUMEROSIRET`, `ADRESSE_POSTALE`, `EMAIL_CONTACT`, `MEDIATEUR_NOM`, `MEDIATEUR_SITE`, `JJ/MM/AAAA`) — do not ship without replacing them.
 
-Pug attributes: `data-i18n` (textContent, incl. `<title>`) · `data-i18n-html` (innerHTML) · `data-i18n-placeholder` · `data-i18n-aria` (aria-label) · `data-i18n-alt` (img alt) · `data-i18n-label` (sets `data-label`, used by responsive pricing table) · `data-i18n-content` (content attr) · `data-shop-i18n="<slug>.<field>"` (shop-card text, resolved from the injected `shop-i18n-data` blob, not from `translations.*.js`).
+Pug attributes: `data-i18n` (textContent, incl. `<title>`) · `data-i18n-html` (innerHTML) · `data-i18n-placeholder` · `data-i18n-aria` (aria-label) · `data-i18n-alt` (img alt) · `data-i18n-label` (sets `data-label`, used by responsive pricing table) · `data-i18n-content` (content attr) · `data-shop-i18n="<slug>.<field>"` / `data-shop-i18n-alt` (shop-card text / img alt, resolved from the injected `shop-i18n-data` blob, not from `translations.*.js`).
 
 ## Contact form
 

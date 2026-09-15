@@ -68,14 +68,22 @@ function applyTranslations (lang) {
     if (val !== undefined) el.setAttribute('content', val)
   })
 
-  // Shop items — data-shop-i18n="<slug>.<field>"
+  // Shop items — data-shop-i18n="<slug>.<field>" (text), data-shop-i18n-alt (alt attribute)
   if (shopI18n) {
-    document.querySelectorAll('[data-shop-i18n]').forEach(el => {
-      const ref = el.getAttribute('data-shop-i18n')
+    const shopValue = ref => {
       const dot = ref.lastIndexOf('.')
       const entry = shopI18n[ref.slice(0, dot)]
-      const val = entry && entry[lang] && entry[lang][ref.slice(dot + 1)]
+      return entry && entry[lang] && entry[lang][ref.slice(dot + 1)]
+    }
+
+    document.querySelectorAll('[data-shop-i18n]').forEach(el => {
+      const val = shopValue(el.getAttribute('data-shop-i18n'))
       if (val != null) el.textContent = val
+    })
+
+    document.querySelectorAll('[data-shop-i18n-alt]').forEach(el => {
+      const val = shopValue(el.getAttribute('data-shop-i18n-alt'))
+      if (val != null) el.setAttribute('alt', val)
     })
   }
 

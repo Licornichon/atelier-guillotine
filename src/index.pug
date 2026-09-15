@@ -4,8 +4,8 @@ html(lang='fr' data-page=page)
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description' data-i18n-content='home.meta.description' content='Professional miniature painting commissions for Warhammer and tabletop games. Battle-ready armies, detailed finishes, and display pieces.')
-    title(data-i18n='home.meta.title') Atelier Guillotine | Miniature Painting Commission | Warhammer & Tabletop
+    meta(name='description' data-i18n-content='home.meta.description' content=t('home.meta.description'))
+    title(data-i18n='home.meta.title')= t('home.meta.title')
     link(rel='canonical' href=siteUrl + '/')
     //- Open Graph — hardcoded French: scrapers (Discord, WhatsApp…) never run the i18n JS
     meta(property='og:type' content='website')
@@ -29,8 +29,6 @@ html(lang='fr' data-page=page)
     include includes/_nav
     include includes/_hero
 
-    a.skip-link(href='#main-content') Aller au contenu
-
     +nav(page)
 
     main#main-content
@@ -40,10 +38,10 @@ html(lang='fr' data-page=page)
       //- ──────────────────────────────────────────
       +hero({
         id: 'hero',
-        title: { key: 'hero.title', text: 'Atelier<br>Guillotine' },
-        subtitle: { key: 'hero.subtitle' },
-        left: { src: './assets/media/hero/hommesbetes.png', alt: 'Atelier Guillotine — Peinture de figurines', altKey: 'hero.imageAlt' },
-        right: { src: './assets/media/hero/pirate.png', alt: 'Atelier Guillotine — Peinture de figurines', altKey: 'hero.imageAlt' },
+        title: 'hero.title',
+        subtitle: 'hero.subtitle',
+        left: { src: './assets/media/hero/hommesbetes.png', altKey: 'hero.alt.hommesbetes' },
+        right: { src: './assets/media/hero/pirate.png', altKey: 'hero.alt.pirate' },
       })
 
       //- ──────────────────────────────────────────
@@ -52,12 +50,12 @@ html(lang='fr' data-page=page)
       //- To add images: drop them in the folder, then run npm run dev or npm run build
       //- ──────────────────────────────────────────
       section#gallery.gallery
-        h2.gallery__title(data-i18n='gallery.title') Gallery
-        .gallery__filters(role='group' aria-label='Filtrer par niveau')
-          button.gallery__filter.is-active(data-filter='all' data-i18n='gallery.all' aria-pressed='true') All
-          button.gallery__filter(data-filter='battle-ready' data-i18n='gallery.tr' aria-pressed='false') Battle Ready
-          button.gallery__filter(data-filter='tabletop-plus' data-i18n='gallery.ttp' aria-pressed='false') Tabletop+
-          button.gallery__filter(data-filter='display' data-i18n='gallery.display' aria-pressed='false') Display
+        h2.gallery__title(data-i18n='gallery.title')= t('gallery.title')
+        .gallery__filters(role='group' aria-label=t('gallery.filtersLabel') data-i18n-aria='gallery.filtersLabel')
+          button.gallery__filter.is-active(data-filter='all' data-i18n='gallery.all' aria-pressed='true')= t('gallery.all')
+          button.gallery__filter(data-filter='battle-ready' data-i18n='gallery.tr' aria-pressed='false')= t('gallery.tr')
+          button.gallery__filter(data-filter='tabletop-plus' data-i18n='gallery.ttp' aria-pressed='false')= t('gallery.ttp')
+          button.gallery__filter(data-filter='display' data-i18n='gallery.display' aria-pressed='false')= t('gallery.display')
         .gallery__grid
           .gallery__sizer
           if galleryItems && galleryItems.length
@@ -67,91 +65,74 @@ html(lang='fr' data-page=page)
                 data-gallery='gallery'
                 data-level=item.level
               )
-                img(src=item.src alt=item.name loading='lazy')
+                img(src=item.src alt=t('gallery.alt.' + item.level) data-i18n-alt=('gallery.alt.' + item.level) loading='lazy')
 
       //- ──────────────────────────────────────────
-      //- SERVICES
+      //- PRICE GRID — single source for the pricing table below and the
+      //- "from X €" service prices (first row = cheapest)
       //- ──────────────────────────────────────────
+      - var priceRows = [
+      -   { key: 'pricing.infantry',               tr: 17, ttp: 34 },
+      -   { key: 'pricing.typicalRanges.elite',    tr: 22, ttp: 44 },
+      -   { key: 'pricing.typicalRanges.cavalry',  tr: 30, ttp: 50 },
+      -   { key: 'pricing.typicalRanges.vehicles', tr: 40, ttp: 80 },
+      -   { key: 'pricing.character',              tr: 40, ttp: 100 },
+      -   { key: 'pricing.largeCharacter',         tr: 85, ttp: 200 },
+      - ]
+
+      //- ──────────────────────────────────────────
+      //- SERVICES — texts = services.<id>.* keys
+      //- ──────────────────────────────────────────
+      - var services = [
+      -   { id: 'tr',      from: priceRows[0].tr },
+      -   { id: 'ttp',     from: priceRows[0].ttp, mod: 'service--bestseller' },
+      -   { id: 'display', mod: 'service--featured' },
+      - ]
       section#services.services
-        h2.services__title(data-i18n='services.title') Painting Services
+        h2.services__title(data-i18n='services.title')= t('services.title')
         .services__grid
-
-          .service
-            .service__badge(data-i18n='services.tr.name') Battle Ready
-            .service__price(data-i18n='services.tr.price') from 10 € per miniature
-            p.service__description(data-i18n='services.tr.desc') Get your miniatures battle-ready, fast.
-            ul.service__features
-              li(data-i18n='services.tr.f1') Zenithal undercoat
-              li(data-i18n='services.tr.f2') Single Contrast paint pass
-              li(data-i18n='services.tr.f3') Textured paste basing
-            a.service__cta(href='#contact' data-i18n='services.tr.cta') An Army ready to play
-
-          .service.service--bestseller
-            .service__badge(data-i18n='services.ttp.name') Tabletop+
-            .service__price(data-i18n='services.ttp.price') from 27 € per miniature
-            p.service__description(data-i18n='services.ttp.desc') Enhanced detail and striking results.
-            ul.service__features
-              li(data-i18n='services.ttp.f1') Enhanced highlights and gradients
-              li(data-i18n='services.ttp.f2') Extra details and finishes
-              li(data-i18n='services.ttp.f3') Texture and pigment basing
-            a.service__cta(href='#contact' data-i18n='services.ttp.cta') Take your army to the next level
-
-          .service.service--featured
-            .service__badge(data-i18n='services.display.name') Display
-            .service__price(data-i18n='services.display.price') quote on request
-            p.service__description(data-i18n='services.display.desc') The highest level of artistic quality.
-            ul.service__features
-              li(data-i18n='services.display.f1') Advanced techniques and blends
-              li(data-i18n='services.display.f2') Exceptional detail level
-              li(data-i18n='services.display.f3') Custom basing and finishes
-            a.service__cta(href='#contact' data-i18n='services.display.cta') Commission a showcase piece
+          each s in services
+            - var k = 'services.' + s.id + '.'
+            .service(class=s.mod)
+              .service__badge(data-i18n=(k + 'name'))= t(k + 'name')
+              if s.from
+                .service__price #[span(data-i18n='services.priceFrom') #{t('services.priceFrom')}] #{s.from}&nbsp;€ #[span(data-i18n='services.pricePer') #{t('services.pricePer')}]
+              else
+                .service__price(data-i18n=(k + 'price'))= t(k + 'price')
+              p.service__description(data-i18n=(k + 'desc'))= t(k + 'desc')
+              ul.service__features
+                each f in ['f1', 'f2', 'f3']
+                  li(data-i18n=(k + f))= t(k + f)
+              a.service__cta(href='#contact' data-i18n=(k + 'cta'))= t(k + 'cta')
 
       //- ──────────────────────────────────────────
       //- PRICING
       //- ──────────────────────────────────────────
       section#pricing.pricing
-        h2.pricing__title(data-i18n='pricing.title') Pricing
+        h2.pricing__title(data-i18n='pricing.title')= t('pricing.title')
 
         .pricing__section.pricing__section--notice
-          h3.pricing__subtitle(data-i18n='pricing.howWorks.title') How pricing works
-          p(data-i18n='pricing.howWorks.desc1') Pricing depends on miniature size, complexity, and finish level.
-          p(data-i18n='pricing.howWorks.desc2') Most commissions fall within the ranges below.
-          p(data-i18n='pricing.howWorks.display') Display pieces are quoted individually for optimal quality.
+          h3.pricing__subtitle(data-i18n='pricing.howWorks.title')= t('pricing.howWorks.title')
+          p(data-i18n='pricing.howWorks.desc1')= t('pricing.howWorks.desc1')
+          p(data-i18n='pricing.howWorks.desc2')= t('pricing.howWorks.desc2')
+          p(data-i18n='pricing.howWorks.display')= t('pricing.howWorks.display')
 
         .pricing__section
-          h3.pricing__subtitle(data-i18n='pricing.typicalRanges.title') Typical ranges
+          h3.pricing__subtitle(data-i18n='pricing.typicalRanges.title')= t('pricing.typicalRanges.title')
           .pricing__table-wrapper
             table.pricing__table
               thead
                 tr
-                  th(scope='col' data-i18n='pricing.typicalRanges.col.type') Type
-                  th(scope='col' data-i18n='pricing.tr.name') Battle Ready
-                  th(scope='col' data-i18n='pricing.ttp.name') Tabletop+
+                  th(scope='col' data-i18n='pricing.typicalRanges.col.type')= t('pricing.typicalRanges.col.type')
+                  th(scope='col' data-i18n='pricing.tr.name')= t('pricing.tr.name')
+                  th(scope='col' data-i18n='pricing.ttp.name')= t('pricing.ttp.name')
               tbody
-                tr
-                  td(data-i18n='pricing.infantry') Infantry
-                  td(data-i18n-label='pricing.tr.name') 17+ €
-                  td(data-i18n-label='pricing.ttp.name') 34+ €
-                tr
-                  td(data-i18n='pricing.typicalRanges.elite') Elite Infantry
-                  td(data-i18n-label='pricing.tr.name') 22+ €
-                  td(data-i18n-label='pricing.ttp.name') 44+ €
-                tr
-                  td(data-i18n='pricing.typicalRanges.cavalry') Cavalry
-                  td(data-i18n-label='pricing.tr.name') 30+ €
-                  td(data-i18n-label='pricing.ttp.name') 50+ €
-                tr
-                  td(data-i18n='pricing.typicalRanges.vehicles') Vehicles
-                  td(data-i18n-label='pricing.tr.name') 40+ €
-                  td(data-i18n-label='pricing.ttp.name') 80+ €
-                tr
-                  td(data-i18n='pricing.character') Characters
-                  td(data-i18n-label='pricing.tr.name') 40+ €
-                  td(data-i18n-label='pricing.ttp.name') 100+ €
-                tr
-                  td(data-i18n-html='pricing.largeCharacter') Large Character
-                  td(data-i18n-label='pricing.tr.name') 85+ €
-                  td(data-i18n-label='pricing.ttp.name') 200+ €
+                each row in priceRows
+                  tr
+                    td(data-i18n-html=row.key)!= t(row.key)
+                    td(data-i18n-label='pricing.tr.name' data-label=t('pricing.tr.name')) #{row.tr}+&nbsp;€
+                    td(data-i18n-label='pricing.ttp.name' data-label=t('pricing.ttp.name')) #{row.ttp}+&nbsp;€
+
       //- ──────────────────────────────────────────
       //- FAQ / CONTACT / ABOUT — shared with shop.pug, see src/includes/
       //- ──────────────────────────────────────────
@@ -162,10 +143,7 @@ html(lang='fr' data-page=page)
       include includes/_about
 
     footer.footer
-      span
-        span(data-i18n='footer.copyright') © 2026
-        span &nbsp;
-        span.brand-name Atelier Guillotine
+      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
       //- TODO — link hidden while legal.html is not generated (see webpack.config.js).
       //- Restore it together with the page.
-      //- a.footer__link(href='./legal' data-i18n='footer.legal') Mentions légales
+      //- a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

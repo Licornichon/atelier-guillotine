@@ -5,25 +5,17 @@ section#about.about
   .about__inner
     //- Column 1: presentation
     .about__intro
-      h2.about__title(data-i18n='about.title') About
-      p(data-i18n='about.p1') Professional miniature painter with 25 years of wargaming experience.
-      p(data-i18n='about.p2') Expert painting commissions for all brands and gaming systems.
+      h2.about__title(data-i18n='about.title')= t('about.title')
+      p(data-i18n='about.p1')= t('about.p1')
+      p(data-i18n='about.p2')= t('about.p2')
     //- Column 2: why choose
     .about__why
       h3.about__subtitle
-        span(data-i18n='about.why.prefix') Why Choose
+        span(data-i18n='about.why.prefix')= t('about.why.prefix')
         span.brand-name Atelier Guillotine
-        span(data-i18n='about.why.suffix') ?
+        span(data-i18n='about.why.suffix')= t('about.why.suffix')
       .about__benefits
-        .about__benefit
-          h4.about__benefit-title(data-i18n='about.benefit1.title') Ready-to-play armies
-          p.about__benefit-text(data-i18n='about.benefit1.text') No backlog stress, battle-ready results.
-        .about__benefit
-          h4.about__benefit-title(data-i18n='about.benefit2.title') Tabletop-ready quality
-          p.about__benefit-text(data-i18n='about.benefit2.text') Designed for gaming, not just photos.
-        .about__benefit
-          h4.about__benefit-title(data-i18n='about.benefit3.title') Custom quality levels
-          p.about__benefit-text(data-i18n='about.benefit3.text') From battle-ready to display pieces.
-        .about__benefit
-          h4.about__benefit-title(data-i18n='about.benefit4.title') Reliable process
-          p.about__benefit-text(data-i18n='about.benefit4.text') Clear pricing and honest timelines.
+        each n in [1, 2, 3, 4]
+          .about__benefit
+            h4.about__benefit-title(data-i18n=('about.benefit' + n + '.title'))= t('about.benefit' + n + '.title')
+            p.about__benefit-text(data-i18n=('about.benefit' + n + '.text'))= t('about.benefit' + n + '.text')

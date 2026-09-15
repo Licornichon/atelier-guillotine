@@ -1,5 +1,5 @@
 //- ──────────────────────────────────────────
-//- NAV (shared — every page)
+//- NAV (shared — every page), preceded by the skip link
 //- Usage: include includes/_nav, then +nav(page[, options])
 //-   page     'home' | 'shop' | 'legal' — same value as <html data-page>
 //-   options  links           false → logo + language switch only (default true)
@@ -13,20 +13,22 @@ mixin nav(page, options)
   //- page: page holding the target · hash: section id · shared: section comes
   //- from src/includes/ (present on any page with sharedSections)
   - var navLinks = [
-  -   { key: 'nav.gallery',  text: 'Gallery',           page: 'home', hash: 'gallery' },
-  -   { key: 'nav.services', text: 'Painting Services', page: 'home', hash: 'services' },
-  -   { key: 'nav.pricing',  text: 'Pricing',           page: 'home', hash: 'pricing' },
-  -   { key: 'nav.shop',     text: 'Shop',              page: 'shop' },
-  -   { key: 'nav.faq',      text: 'FAQ',               page: 'home', hash: 'faq',     shared: true },
-  -   { key: 'nav.contact',  text: 'Contact',           page: 'home', hash: 'contact', shared: true },
-  -   { key: 'nav.about',    text: 'About',             page: 'home', hash: 'about',   shared: true },
+  -   { key: 'nav.gallery',  page: 'home', hash: 'gallery' },
+  -   { key: 'nav.services', page: 'home', hash: 'services' },
+  -   { key: 'nav.pricing',  page: 'home', hash: 'pricing' },
+  -   { key: 'nav.shop',     page: 'shop' },
+  -   { key: 'nav.faq',      page: 'home', hash: 'faq',     shared: true },
+  -   { key: 'nav.contact',  page: 'home', hash: 'contact', shared: true },
+  -   { key: 'nav.about',    page: 'home', hash: 'about',   shared: true },
   - ]
 
-  nav.nav(aria-label='Navigation principale')
+  a.skip-link(href='#main-content' data-i18n='nav.skip')= t('nav.skip')
+
+  nav.nav(aria-label=t('nav.label') data-i18n-aria='nav.label')
     a.nav__logo(href=(page === 'home' ? '#' : pageUrls.home))
       span.brand-name Atelier Guillotine
     if opts.links !== false
-      button.nav__toggle(data-i18n-aria='nav.toggle' aria-label='Ouvrir le menu') ☰
+      button.nav__toggle(data-i18n-aria='nav.toggle' aria-label=t('nav.toggle')) ☰
       ul.nav__links
         each link in navLinks
           - var isLocal = link.shared ? opts.sharedSections !== false : link.page === page
@@ -37,7 +39,7 @@ mixin nav(page, options)
             class=(isCurrent ? 'is-active' : undefined)
             data-i18n=link.key
             aria-current=(isCurrent ? 'page' : undefined)
-          )= link.text
+          )= t(link.key)
     .nav__lang
       button.nav__lang-btn(data-lang='fr' aria-pressed='true') FR
       span.nav__lang-sep(aria-hidden='true') |
