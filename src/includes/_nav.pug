@@ -17,8 +17,8 @@ mixin nav(page, options)
   -   { key: 'nav.commissions', page: 'commissions' },
   -   { key: 'nav.shop',     page: 'shop' },
   -   { key: 'nav.faq',      page: 'home', hash: 'faq',     shared: true },
-  -   { key: 'nav.contact',  page: 'home', hash: 'contact', shared: true },
   -   { key: 'nav.about',    page: 'home', hash: 'about',   shared: true },
+  -   { key: 'nav.quote',    page: 'home', hash: 'contact', shared: true, cta: true },
   - ]
 
   a.skip-link(href='#main-content' data-i18n='nav.skip')= t('nav.skip')
@@ -42,9 +42,9 @@ mixin nav(page, options)
             - var isLocal = link.shared ? opts.sharedSections !== false : link.page === page
             - var href = link.hash ? (isLocal ? '' : pageUrls[link.page]) + '#' + link.hash : pageUrls[link.page]
             - var isCurrent = !link.hash && link.page === page
-            li: a.nav__link(
+            li: a(
               href=href
-              class=(isCurrent ? 'is-active' : undefined)
+              class=[link.cta ? 'nav__cta' : 'nav__link', isCurrent ? 'is-active' : null]
               data-i18n=link.key
               aria-current=(isCurrent ? 'page' : undefined)
             )= t(link.key)

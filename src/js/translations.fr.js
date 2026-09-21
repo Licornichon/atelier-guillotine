@@ -8,7 +8,7 @@ module.exports = {
   'nav.gallery':  'Galerie',
   'nav.shop':     'Boutique',
   'nav.faq':      'FAQ',
-  'nav.contact':  'Contact',
+  'nav.quote':  'Demander un devis',
   'nav.label':    'Navigation principale',
   'nav.skip':     'Aller au contenu',
 
