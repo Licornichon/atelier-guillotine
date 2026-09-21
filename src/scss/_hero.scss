@@ -111,15 +111,15 @@
 #commissions-hero {
   // Orc 25% smaller, vertically centered, 2rem to the right
   .hero__bg-right {
-    height: 75%;
-    top: 12.5%;
+    height: 95%;
+    top: 5%;
     transform: translateX(2rem);
   }
 
   // Custodes mirrored: scaleX(-1) comes last so it doesn't mirror the translateX
   // Desktop: 20% (of its width) to the right
   @media (min-width: 1025px) {
-    .hero__bg-left { transform: translateX(-80%) scaleX(-1); }
+    .hero__bg-left { transform: translateX(-90%) scaleX(-1); }
   }
 
   // Below 1024px: centered behind the title, as in .hero

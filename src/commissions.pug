@@ -41,17 +41,18 @@ html(lang='fr' data-page=page)
         title: 'commissions.hero.title',
         subtitle: 'commissions.hero.subtitle',
         left: { src: './assets/generated/hero/custodes-hero.webp', altKey: 'hero.alt.custodes' },
-        right: { src: './assets/generated/hero/orc.webp', altKey: 'hero.alt.orc' },
+        right: { src: './assets/generated/hero/voleur.webp', altKey: 'hero.alt.voleur' },
       })
 
       //- ──────────────────────────────────────────
       //- COMMISSIONS (texts = commissions.<id>.* keys, "from X €" = first row of the price grid)
       //- ──────────────────────────────────────────
       include includes/_price-grid
+      //- feats = how many commissions.<id>.fN keys the card lists
       - var commissions = [
-      -   { id: 'tr',      from: priceRows[0].tr },
-      -   { id: 'ttp',     from: priceRows[0].ttp, mod: 'commission--bestseller' },
-      -   { id: 'display', mod: 'commission--featured' },
+      -   { id: 'tr',      from: priceRows[0].tr, feats: 5 },
+      -   { id: 'ttp',     from: priceRows[0].ttp, mod: 'commission--bestseller', feats: 8, tag: true },
+      -   { id: 'display', mod: 'commission--featured', feats: 7 },
       - ]
       section#commissions.commissions
         h2.commissions__title(data-i18n='commissions.title')= t('commissions.title')
@@ -59,16 +60,23 @@ html(lang='fr' data-page=page)
           each c in commissions
             - var k = 'commissions.' + c.id + '.'
             .commission(class=c.mod)
-              .commission__badge(data-i18n=(k + 'name'))= t(k + 'name')
+              //- data-i18n goes on the spans, not the badge: lang.js writes
+              //- textContent and would wipe the children
+              .commission__badge
+                span(data-i18n=(k + 'name'))= t(k + 'name')
+                if c.tag
+                  span.commission__tag(data-i18n=(k + 'tag'))= t(k + 'tag')
               if c.from
                 .commission__price #[span(data-i18n='commissions.priceFrom') #{t('commissions.priceFrom')}] #{c.from}&nbsp;€ #[span(data-i18n='commissions.pricePer') #{t('commissions.pricePer')}]
               else
                 .commission__price(data-i18n=(k + 'price'))= t(k + 'price')
               p.commission__description(data-i18n=(k + 'desc'))= t(k + 'desc')
               ul.commission__features
-                each f in ['f1', 'f2', 'f3']
-                  li(data-i18n=(k + f))= t(k + f)
-              a.commission__cta(href='#contact' data-i18n=(k + 'cta'))= t(k + 'cta')
+                - var featKeys = []
+                - for (var i = 1; i <= c.feats; i++) featKeys.push(k + 'f' + i)
+                each fk in featKeys
+                  li(data-i18n=fk)= t(fk)
+              a.commission__cta(href='#contact' data-i18n-html=(k + 'cta'))!= t(k + 'cta')
 
       include includes/_pricing
 

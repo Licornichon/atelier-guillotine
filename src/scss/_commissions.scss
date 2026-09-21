@@ -9,6 +9,9 @@
 
   &__grid {
     @include container;
+    // Wider than the usual 1200px container: three cards need the room.
+    // Falls back to the available width on narrower screens.
+    max-width: 1440px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
@@ -16,6 +19,12 @@
     // Three side by side, or one per row (no 2-column step)
     @media (max-width: $bp-lg) {
       grid-template-columns: 1fr;
+    }
+
+    // Side by side: one row per card section (badge, price, description,
+    // feature list, button) so cards with unequal feature lists still line up.
+    @media (min-width: $bp-lg + 1px) {
+      grid-template-rows: repeat(5, auto);
     }
   }
 }
@@ -40,26 +49,43 @@
   display: flex;
   flex-direction: column;
 
+  @media (max-width: $bp-md) {
+    padding: 1.5rem;
+  }
+
+  // Side by side: take the grid's five rows instead of stacking freely, so the
+  // feature lists share one height and the buttons sit on the same line.
+  @media (min-width: $bp-lg + 1px) {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+  }
+
   &--featured {
     border-color: $color-accent;
     box-shadow: 0 0 0 4px $color-bg-lighter, 0 0 0 6px $color-accent;
   }
 
+  // Best seller: single gold frame (Display keeps the double one above).
+  // Stacked layout still shows it first.
   &--bestseller {
-    border: 2px solid $color-accent;
-    box-shadow: 0 0 20px rgba($color-accent, 0.4), 0 0 0 4px $color-bg-lighter, 0 0 0 8px $color-accent, inset 0 0 20px rgba($color-accent, 0.1);
-    transform: scale(1.05);
+    border-color: $color-accent;
 
-    // Stacked layout: no zoom, Tabletop+ shown first
     @media (max-width: $bp-lg) {
-      transform: none;
       order: -1;
     }
+  }
+
+  // Sits inside .commission__badge, after the level name
+  &__tag::before {
+    content: ' | ';
   }
 
   &__badge {
     display: inline-block;
     align-self: flex-start;
+    // In the grid above, align-self is the vertical axis: keep it left-hugging
+    justify-self: start;
     font-size: 1.05rem;
     font-weight: bold;
     letter-spacing: 0.12em;
@@ -103,7 +129,9 @@
 
   &__cta {
     display: inline-block;
-    align-self: flex-start;
+    align-self: center;
+    // In the grid above, align-self is the vertical axis: keep it centred
+    justify-self: center;
     padding: 0.75rem 1.75rem;
     border: 1px solid $color-accent;
     color: $color-accent;
