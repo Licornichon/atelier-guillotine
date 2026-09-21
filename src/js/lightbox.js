@@ -1,6 +1,33 @@
 const GLightbox = require('glightbox')
 require('glightbox/dist/css/glightbox.min.css')
 
+// Android back button: while the lightbox is open, a history entry stands in
+// for it, so "back" closes the photo and puts the page back as it was instead
+// of leaving it (which used to unload the page and leave an empty grey screen).
+function closeOnBack (lightbox) {
+  let entryPushed = false
+
+  lightbox.on('open', () => {
+    if (entryPushed) return
+    history.pushState({ glightbox: true }, '')
+    entryPushed = true
+  })
+
+  // Closed from the lightbox itself (X, escape, click outside): drop that entry,
+  // so the back button goes back to the previous page and not to a dead press.
+  lightbox.on('close', () => {
+    if (!entryPushed) return
+    entryPushed = false
+    history.back()
+  })
+
+  window.addEventListener('popstate', () => {
+    if (!entryPushed) return
+    entryPushed = false // before close(), so its 'close' handler leaves history alone
+    lightbox.close()
+  })
+}
+
 ;(function () {
   const items = document.querySelectorAll('.gallery__item')
   if (!items.length) return
@@ -13,6 +40,8 @@ require('glightbox/dist/css/glightbox.min.css')
     openEffect: 'fade',
     closeEffect: 'fade',
   })
+
+  closeOnBack(lightbox)
 
   items.forEach(item => {
     item.addEventListener('click', e => {
@@ -46,6 +75,8 @@ require('glightbox/dist/css/glightbox.min.css')
     openEffect: 'fade',
     closeEffect: 'fade',
   })
+
+  closeOnBack(lightbox)
 
   photos.forEach(photo => {
     photo.addEventListener('click', e => {
