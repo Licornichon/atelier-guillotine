@@ -1,0 +1,169 @@
+doctype html
+- var page = 'courses'
+html(lang='fr' data-page=page)
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description' data-i18n-content='courses.meta.description' content=t('courses.meta.description'))
+    title(data-i18n='courses.meta.title')= t('courses.meta.title')
+    link(rel='canonical' href=siteUrl + '/courses')
+    //- Open Graph, hardcoded in French: scrapers never run the i18n JS
+    meta(property='og:type' content='website')
+    meta(property='og:site_name' content='Atelier Guillotine')
+    meta(property='og:locale' content='fr_FR')
+    meta(property='og:url' content=siteUrl + '/courses')
+    meta(property='og:title' content='Cours de peinture | Atelier Guillotine | Cours particuliers à domicile')
+    meta(property='og:description' content='Cours de peinture sur figurines à domicile, seul ou en petit groupe. Théorie, démonstration, puis pratique guidée sur votre propre figurine.')
+    meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
+    meta(property='og:image:width' content='1200')
+    meta(property='og:image:height' content='630')
+    meta(property='og:image:alt' content='Figurines peintes par Atelier Guillotine')
+    //- Favicons & PWA
+    link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
+    link(rel='icon' type='image/png' sizes='96x96' href='./assets/media/favicon/favicon-96.png')
+    link(rel='icon' type='image/png' sizes='192x192' href='./assets/media/favicon/favicon-192.png')
+    link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
+    link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
+  body
+    include includes/_nav
+    include includes/_hero
+
+    +nav(page)
+
+    main#main-content
+
+      //- ──────────────────────────────────────────
+      //- HERO
+      //- ──────────────────────────────────────────
+      +hero({
+        id: 'courses-hero',
+        title: 'courses.hero.title',
+        subtitle: 'courses.hero.subtitle',
+        left: { src: './assets/generated/hero/hommesbetes.webp', altKey: 'hero.alt.hommesbetes' },
+        right: { src: './assets/generated/hero/pirate.webp', altKey: 'hero.alt.pirate' },
+      })
+
+      //- ──────────────────────────────────────────
+      //- INTRO: what it is, who it is for
+      //- ──────────────────────────────────────────
+      section#courses.courses
+        h2.section-title(data-i18n='courses.intro.title')= t('courses.intro.title')
+        .courses__intro
+          .courses__intro-text
+            p(data-i18n='courses.intro.p1')= t('courses.intro.p1')
+            p(data-i18n='courses.intro.p2')= t('courses.intro.p2')
+          .courses__aside
+            h3.courses__subtitle(data-i18n='courses.intro.awardsTitle')= t('courses.intro.awardsTitle')
+            ul.courses__awards
+              each n in [1, 2, 3]
+                li(data-i18n=('courses.intro.award' + n))= t('courses.intro.award' + n)
+            h3.courses__subtitle(data-i18n='courses.intro.forTitle')= t('courses.intro.forTitle')
+            ul.courses__audience-list
+              each n in [1, 2, 3, 4]
+                li(data-i18n=('courses.intro.for' + n))= t('courses.intro.for' + n)
+
+      //- ──────────────────────────────────────────
+      //- METHOD: theory then practice, plus the duplicate miniature
+      //- ──────────────────────────────────────────
+      section#courses-method.courses-method
+        h2.section-title(data-i18n='courses.method.title')= t('courses.method.title')
+        p.courses-method__intro(data-i18n='courses.method.intro')= t('courses.method.intro')
+        ol.courses-method__steps
+          each n in [1, 2, 3]
+            - var s = 'courses.method.step' + n + '.'
+            li.courses-method__step
+              span.courses-method__number(aria-hidden='true')= n
+              h3.courses-method__step-title(data-i18n=(s + 'title'))= t(s + 'title')
+              p.courses-method__step-text(data-i18n=(s + 'text'))= t(s + 'text')
+        .courses-method__note
+          h3.courses__subtitle(data-i18n='courses.method.double.title')= t('courses.method.double.title')
+          p(data-i18n='courses.method.double.text')= t('courses.method.double.text')
+
+      //- ──────────────────────────────────────────
+      //- RATES. Solo prices per duration; the pair and small-group columns are
+      //- that price less the discount. Reuses the .pricing__table component.
+      //- ──────────────────────────────────────────
+      - var courseRates = [{ hours: 1, solo: 40 }, { hours: 3, solo: 100 }, { hours: 6, solo: 180 }]
+      - var courseGroups = [{ key: 'courses.rates.col.solo', off: 0 }, { key: 'courses.rates.col.duo', off: 0.1 }, { key: 'courses.rates.col.small', off: 0.3 }]
+      section#courses-rates.pricing
+        h2.section-title(data-i18n='courses.rates.title')= t('courses.rates.title')
+        .pricing__section
+          p(data-i18n='courses.rates.intro')= t('courses.rates.intro')
+          .pricing__table-wrapper
+            table.pricing__table
+              thead
+                tr
+                  th(scope='col' data-i18n='courses.rates.col.duration')= t('courses.rates.col.duration')
+                  each g in courseGroups
+                    th(scope='col' data-i18n=g.key)= t(g.key)
+              tbody
+                each row in courseRates
+                  tr
+                    td(
+                      data-i18n='courses.rates.hours'
+                      data-i18n-vars=JSON.stringify({ hours: row.hours })
+                    )= t('courses.rates.hours', { hours: row.hours })
+                    each g in courseGroups
+                      - var amount = Math.round(row.solo * (1 - g.off))
+                      td(
+                        data-i18n='courses.price'
+                        data-i18n-vars=JSON.stringify({ price: amount })
+                        data-i18n-label=g.key
+                        data-label=t(g.key)
+                      )= t('courses.price', { price: amount })
+          p(data-i18n='courses.rates.note')= t('courses.rates.note')
+          p(data-i18n='courses.rates.groups')= t('courses.rates.groups')
+
+      //- ──────────────────────────────────────────
+      //- WHAT TO HAVE READY
+      //- ──────────────────────────────────────────
+      section#courses-practical.courses-practical
+        h2.section-title(data-i18n='courses.practical.title')= t('courses.practical.title')
+        .courses-practical__grid
+          each col in [{ id: 'you', items: 3 }, { id: 'me', items: 3 }, { id: 'know', items: 4 }]
+            - var c = 'courses.practical.' + col.id + '.'
+            .courses-practical__col
+              h3.courses__subtitle(data-i18n=(c + 'title'))= t(c + 'title')
+              ul.courses-practical__list
+                - var itemKeys = []
+                - for (var i = 1; i <= col.items; i++) itemKeys.push(c + 'i' + i)
+                each ik in itemKeys
+                  li(data-i18n=ik)= t(ik)
+        .courses-practical__footer
+          a.cta(href='#contact' data-i18n='courses.cta')= t('courses.cta')
+
+      //- ──────────────────────────────────────────
+      //- FAQ, specific to the lessons (the shared one covers commissions)
+      //- ──────────────────────────────────────────
+      - var coursesFaqCount = 7
+      //- id 'faq': the nav's FAQ link points at #faq on every page
+      section#faq.faq
+        h2.section-title(data-i18n='courses.faq.title')= t('courses.faq.title')
+        .faq__inner
+          .faq__list
+            - for (var n = 1; n <= coursesFaqCount; n++)
+              //- Mobile accordion: the button opens / closes the answer (faq.js)
+              .faq__item
+                h3.faq__question
+                  button.faq__toggle(
+                    type='button'
+                    aria-expanded='false'
+                    aria-controls=('courses-faq-answer-' + n)
+                    data-i18n=('courses.faq.q' + n + '.title')
+                  )= t('courses.faq.q' + n + '.title')
+                p.faq__answer(id=('courses-faq-answer-' + n) data-i18n=('courses.faq.q' + n + '.answer'))= t('courses.faq.q' + n + '.answer')
+
+      //- ──────────────────────────────────────────
+      //- Sections shared with the other pages (see src/includes/)
+      //- ──────────────────────────────────────────
+      - var contactSubject = "Lesson enquiry | Atelier Guillotine"
+      include includes/_contact
+
+      include includes/_about
+
+    footer.footer
+      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
+      //- TODO: link hidden while legal.html is not generated (see webpack.config.js).
+      //- Restore it together with the page.
+      //- a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')

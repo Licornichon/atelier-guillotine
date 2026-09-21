@@ -123,6 +123,10 @@ module.exports = {
       filename: 'commissions.html',
     }),
     new HtmlWebpackPlugin({
+      template: path.join(src, 'courses.pug'),
+      filename: 'courses.html',
+    }),
+    new HtmlWebpackPlugin({
       template: path.join(src, 'shop.pug'),
       filename: 'shop.html',
     }),
