@@ -28,8 +28,10 @@ function t (key) {
   return (dicts[currentLang] && dicts[currentLang][key]) || key
 }
 
-// {name} placeholders: data-i18n-vars='{"name": "<key>"}' replaces each one with
-// the value of that other key (same rule as t(key, vars) in the Pug templates)
+// {name} placeholders: data-i18n-vars='{"name": "<key or value>"}'. A var holding
+// a translation key is replaced by that key’s value (gallery alts), anything else
+// is written as is (the price of a gallery caption). Same rule as t(key, vars) in
+// the Pug templates, see loaders/pug-with-data.js
 function interpolate (val, el, dict) {
   const raw = el.getAttribute('data-i18n-vars')
   if (!raw) return val
@@ -39,7 +41,10 @@ function interpolate (val, el, dict) {
   } catch (e) {
     return val
   }
-  return val.replace(/\{(\w+)\}/g, (m, name) => (dict[vars[name]] !== undefined ? dict[vars[name]] : m))
+  return val.replace(/\{(\w+)\}/g, (m, name) => {
+    if (dict[vars[name]] !== undefined) return dict[vars[name]]
+    return name in vars ? vars[name] : m
+  })
 }
 
 function applyTranslations (lang) {
@@ -48,7 +53,7 @@ function applyTranslations (lang) {
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const val = dict[el.getAttribute('data-i18n')]
-    if (val !== undefined) el.textContent = val
+    if (val !== undefined) el.textContent = interpolate(val, el, dict)
   })
 
   document.querySelectorAll('[data-i18n-html]').forEach(el => {

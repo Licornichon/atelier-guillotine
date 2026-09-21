@@ -50,6 +50,7 @@
     float: left;
     width: 25%;
     display: block;
+    position: relative;
     overflow: hidden;
     cursor: pointer;
     margin-bottom: 0;
@@ -72,5 +73,88 @@
     &.is-hidden {
       display: none;
     }
+
+    // No caption on touch screens: there is no hover to reveal it
+    .gallery__caption {
+      display: none;
+    }
+
+    @media (hover: hover) {
+      .gallery__caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none; // clicks belong to the item, which opens the lightbox
+      }
+
+      &:hover .gallery__caption {
+        opacity: 1;
+      }
+    }
   }
+
+  // Level + price per miniature. Same frame in two places: over the bottom of
+  // the thumbnail on hover, and under the photo in the lightbox, where
+  // lightbox.js copies this very element.
+  &__caption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.15rem 0.6rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid $color-border;
+    background: rgba($color-bg, 0.9);
+    font-family: $font-sans; // the lightbox skin sets a font of its own
+    font-size: 0.7rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__caption-level {
+    color: $color-accent;
+  }
+
+  &__caption-price {
+    @include text-muted;
+  }
+}
+
+// ─── The same caption inside the lightbox ───────────────────────────────────
+// GLightbox paints its description panel white (skin "clean") and, on mobile,
+// lays a gradient of its own over the photo. Its stylesheet is bundled after
+// this one, so matching its specificity would not be enough: hence the extra
+// classes on these selectors.
+.glightbox-container.glightbox-clean {
+  .gslide-description,
+  .glightbox-mobile & .gslide-description {
+    flex: 0 0 auto;
+    padding: 0 0 1rem;
+    background: none;
+  }
+
+  .gdesc-inner {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+
+  // Bigger than over a thumbnail: here the frame stands on its own under a
+  // full-screen photo
+  .gallery__caption {
+    gap: 0.25rem 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+// Mobile: the skin forces `color: inherit` on every child of the description
+.glightbox-mobile .glightbox-container .gslide-desc {
+  .gallery__caption-level { color: $color-accent; }
+  .gallery__caption-price { color: $color-text-muted; }
 }

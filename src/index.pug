@@ -84,6 +84,16 @@ html(lang='fr' data-page=page)
                   data-i18n-vars=JSON.stringify(altVars)
                   loading='lazy'
                 )
+                //- Caption, only for the photos given a price in their folder's
+                //- info.json: shown on hover on desktop (_gallery.scss) and under
+                //- the photo in the lightbox, where lightbox.js copies it
+                if item.price
+                  span.gallery__caption
+                    span.gallery__caption-level(data-i18n=levelKeys[item.level])= t(levelKeys[item.level])
+                    span.gallery__caption-price(
+                      data-i18n='gallery.price'
+                      data-i18n-vars=JSON.stringify({ price: item.price })
+                    )= t('gallery.price', { price: item.price })
 
       //- ──────────────────────────────────────────
       //- COMMISSIONS: short section pointing to the commissions page (commissions.pug)
