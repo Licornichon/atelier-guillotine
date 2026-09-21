@@ -17,10 +17,6 @@
     }
   }
 
-  &__title {
-    @include title-section;
-  }
-
   p {
     @include text-muted;
     margin-bottom: 1rem;

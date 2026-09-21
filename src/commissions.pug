@@ -55,7 +55,7 @@ html(lang='fr' data-page=page)
       -   { id: 'display', mod: 'commission--featured', feats: 7 },
       - ]
       section#commissions.commissions
-        h2.commissions__title(data-i18n='commissions.title')= t('commissions.title')
+        h2.section-title(data-i18n='commissions.title')= t('commissions.title')
         .commissions__grid
           each c in commissions
             - var k = 'commissions.' + c.id + '.'
@@ -76,7 +76,8 @@ html(lang='fr' data-page=page)
                 - for (var i = 1; i <= c.feats; i++) featKeys.push(k + 'f' + i)
                 each fk in featKeys
                   li(data-i18n=fk)= t(fk)
-              a.commission__cta(href='#contact' data-i18n-html=(k + 'cta'))!= t(k + 'cta')
+        .commissions__footer
+          a.cta(href='#contact' data-i18n='commissions.cta')= t('commissions.cta')
 
       include includes/_pricing
 

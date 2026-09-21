@@ -51,7 +51,7 @@ html(lang='fr' data-page=page)
       //- To add images: drop them in the folder, then run npm run generate
       //- ──────────────────────────────────────────
       section#gallery.gallery
-        h2.gallery__title(data-i18n='gallery.title')= t('gallery.title')
+        h2.section-title(data-i18n='gallery.title')= t('gallery.title')
         .gallery__filters(role='group' aria-label=t('gallery.filtersLabel') data-i18n-aria='gallery.filtersLabel')
           button.gallery__filter.is-active(data-filter='all' data-i18n='gallery.all' aria-pressed='true')= t('gallery.all')
           button.gallery__filter(data-filter='battle-ready' data-i18n='gallery.tr' aria-pressed='false')= t('gallery.tr')
@@ -89,9 +89,17 @@ html(lang='fr' data-page=page)
       //- COMMISSIONS: short section pointing to the commissions page (commissions.pug)
       //- ──────────────────────────────────────────
       section#commissions.commissions-teaser
-        h2.commissions__title(data-i18n='commissions.title')= t('commissions.title')
+        h2.section-title(data-i18n='home.commissions.title')= t('home.commissions.title')
         p.commissions-teaser__text(data-i18n='home.commissions.text')= t('home.commissions.text')
-        a.commission__cta(href='./commissions' data-i18n='home.commissions.cta')= t('home.commissions.cta')
+        ul.commissions-teaser__list
+          each id in ['tr', 'ttp', 'display']
+            - var k = 'commissions.' + id + '.'
+            li
+              strong(data-i18n=(k + 'name'))= t(k + 'name')
+              span(data-i18n='home.commissions.sep')= t('home.commissions.sep')
+              span(data-i18n=(k + 'tagline'))= t(k + 'tagline')
+        p.commissions-teaser__text(data-i18n='home.commissions.text2')= t('home.commissions.text2')
+        a.cta(href='./commissions' data-i18n='home.commissions.cta')= t('home.commissions.cta')
 
       //- ──────────────────────────────────────────
       //- FAQ / CONTACT / ABOUT: shared with shop.pug, see src/includes/

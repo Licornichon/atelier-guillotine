@@ -7,10 +7,6 @@
     @include container;
   }
 
-  &__title {
-    @include title-section;
-  }
-
   &__subtitle {
     @include subtitle-section;
   }

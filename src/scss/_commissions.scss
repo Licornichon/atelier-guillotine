@@ -3,10 +3,6 @@
 .commissions {
   @include section-padding;
 
-  &__title {
-    @include title-section;
-  }
-
   &__grid {
     @include container;
     // Wider than the usual 1200px container: three cards need the room.
@@ -22,23 +18,50 @@
     }
 
     // Side by side: one row per card section (badge, price, description,
-    // feature list, button) so cards with unequal feature lists still line up.
+    // feature list) so cards with unequal feature lists still line up.
     @media (min-width: $bp-lg + 1px) {
-      grid-template-rows: repeat(5, auto);
+      grid-template-rows: repeat(4, auto);
     }
+  }
+
+  // Single call to action for the whole section, in place of per-card buttons
+  &__footer {
+    text-align: center;
+    margin-top: 3rem;
   }
 }
 
-// Homepage: short section pointing to the commissions page (title and button
-// reuse .commissions__title and .commission__cta)
+// Homepage: short section pointing to the commissions page. Deliberately plain
+// text: the detail lives on commissions.pug.
 .commissions-teaser {
   @include section-padding;
   text-align: center;
 
+  // Plain bullet list, one level per line (the reset clears list-style)
+  &__list {
+    @include text-muted;
+    list-style: disc;
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+    padding-left: 1.5rem;
+    text-align: left;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  // Two paragraphs: one introduces the list, the last one leads into the button.
+  // Block centred in the section, text ranged left like the list above.
   &__text {
     @include text-muted;
     max-width: 40rem;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
+    text-align: left;
+
+    &:last-of-type {
+      margin-bottom: 2.5rem;
+    }
   }
 }
 
@@ -53,12 +76,12 @@
     padding: 1.5rem;
   }
 
-  // Side by side: take the grid's five rows instead of stacking freely, so the
-  // feature lists share one height and the buttons sit on the same line.
+  // Side by side: take the grid's four rows instead of stacking freely, so the
+  // feature lists all share one height.
   @media (min-width: $bp-lg + 1px) {
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 5;
+    grid-row: span 4;
   }
 
   &--featured {
@@ -93,7 +116,7 @@
     color: $color-accent;
     border: 1px solid $color-accent;
     padding: 0.3rem 0.9rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   &__price {
@@ -120,6 +143,10 @@
       padding: 0.5rem 0;
       border-bottom: 1px solid $color-border;
 
+      &:last-child {
+        border-bottom: none;
+      }
+
       &::before {
         content: '→ ';
         color: $color-accent;
@@ -127,29 +154,4 @@
     }
   }
 
-  &__cta {
-    display: inline-block;
-    align-self: center;
-    // In the grid above, align-self is the vertical axis: keep it centred
-    justify-self: center;
-    padding: 0.75rem 1.75rem;
-    border: 1px solid $color-accent;
-    color: $color-accent;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-align: center;
-    transition: background 0.2s, color 0.2s;
-
-    &:hover {
-      background: $color-accent;
-      color: $color-bg;
-    }
-
-    // Mobile: no hover, so the hover look is the default
-    @media (max-width: $bp-md) {
-      background: $color-accent;
-      color: $color-bg;
-    }
-  }
 }

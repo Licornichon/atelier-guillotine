@@ -41,18 +41,6 @@ $bp-xl: 1920px;
   }
 }
 
-@mixin title-section {
-  font-family: $font-sans;
-  font-size: clamp(1.75rem, 6vw, 3rem);
-  color: $color-accent;
-  text-align: center;
-  margin-bottom: 3rem;
-
-  @media (max-width: $bp-md) {
-    margin-bottom: 2rem;
-  }
-}
-
 // Line of text right under a section title (FAQ, contact). On mobile, the
 // title above it takes margin-bottom: 1rem (set in the section).
 @mixin subtitle-section {

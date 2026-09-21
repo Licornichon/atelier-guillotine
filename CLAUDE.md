@@ -111,4 +111,6 @@ Hosted on **OVH shared hosting** (France), not GitHub Pages. `.github/workflows/
 
 ## Conventions
 
+**Never use the em dash `—` in site copy.** People do not type it online, so it reads as a tell that the text was generated. Use a comma, a colon, a full stop or parentheses instead. Same for the en dash `–` used as sentence punctuation. Also avoid the other markers of machine-written prose: the "Que vous cherchiez X ou Y" / "Whether you are looking for X or Y" construction, openings like "Il est important de noter que", inflated verbs (sublimer, élever, plonger dans, delve, elevate, unlock, seamless), and emoji or checkmarks used as bullets.
+
 Image-less sections fall back to `repeating-linear-gradient(-45deg, …)` diagonal stripes.

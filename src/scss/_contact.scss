@@ -8,9 +8,8 @@
     margin: 0 auto;
   }
 
+  // Tighter than the shared .section-title on small screens
   &__title {
-    @include title-section;
-
     @media (max-width: $bp-md) {
       margin-bottom: 1rem;
     }

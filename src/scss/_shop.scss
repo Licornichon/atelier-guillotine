@@ -8,10 +8,6 @@
 .shop {
   @include section-padding;
 
-  &__title {
-    @include title-section;
-  }
-
   &__list {
     @include container;
     list-style: none;
