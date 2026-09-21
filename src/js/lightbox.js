@@ -39,6 +39,7 @@ function closeOnBack (lightbox) {
     closeOnOutsideClick: true,
     openEffect: 'fade',
     closeEffect: 'fade',
+    moreLength: 0, // no "see more" link: it would cut the caption markup in half
   })
 
   closeOnBack(lightbox)
@@ -51,7 +52,17 @@ function closeOnBack (lightbox) {
 
       const visible = Array.from(document.querySelectorAll('.gallery__item:not(.is-hidden)'))
         .filter(el => el.getAttribute('href') && el.getAttribute('href') !== '#')
-      const elements = visible.map(el => ({ href: el.getAttribute('href'), type: 'image' }))
+      const elements = visible.map(el => {
+        // The grid caption is reused as is, so it follows the FR/EN switch;
+        // GLightbox drops the whole panel when both strings are empty
+        const caption = el.querySelector('.gallery__caption')
+        return {
+          href: el.getAttribute('href'),
+          type: 'image',
+          title: '',
+          description: caption ? caption.outerHTML : '',
+        }
+      })
       const startAt = visible.indexOf(item)
 
       lightbox.setElements(elements)

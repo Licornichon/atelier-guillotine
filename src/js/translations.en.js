@@ -90,6 +90,9 @@ module.exports = {
   'gallery.ttp':   'Tabletop+',
   'gallery.display': 'Display',
   'gallery.filtersLabel': 'Filter by level',
+  // Gallery caption: {price} = the number written in the photo folder’s info.json.
+  // The currency sign and where it sits belong to the wording, not to the data.
+  'gallery.price': '€{price} per miniature',
   // Image alt: {game} = gallery.game.<gallery sub-folder>, {level} = level name
   'gallery.alt':       '{game} miniature painted by Atelier Guillotine, {level} level',
   'gallery.altNoGame': 'Miniature painted by Atelier Guillotine, {level} level',

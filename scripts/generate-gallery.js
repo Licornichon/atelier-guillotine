@@ -5,6 +5,17 @@ const { responsive, prune } = require('./images')
 const MEDIA_DIR = path.join(__dirname, '../assets/media/gallery')
 const OUTPUT_FILE = path.join(__dirname, '../src/data/gallery.json')
 
+// Captions (optional): one info.json per folder holding photos gives the price
+// shown with the level under an image, in the grid and in the lightbox.
+//   { "20260914_220030.jpg": 50,     ← a bare number: the currency sign and
+//     "20260914_220127.jpg": "" }      where it sits come from gallery.price,
+//                                      which is worded per language
+// The file lists every photo of its folder, so one left out shows up at a
+// glance; a photo left blank simply gets no caption.
+// Format doc: assets/media/gallery/README.md
+const INFO_FILE = 'info.json'
+const infoCache = new Map() // folder → { data, used: Set of file names seen }
+
 // Create the data folder if it does not exist
 const dataDir = path.dirname(OUTPUT_FILE)
 if (!fs.existsSync(dataDir)) {
@@ -63,6 +74,7 @@ async function main () {
 
       const filePath = path.join(categoryPath, file)
       const segments = file.split(path.sep)
+      const price = priceOf(path.dirname(filePath), path.basename(file))
       const game = segments.length > 1 ? segments[0].toLowerCase() : ''
       const outRel = ['gallery', folder].concat(segments).join('/').replace(/\.[^./]+$/, '')
 
@@ -72,6 +84,7 @@ async function main () {
         level,
         game, // first sub-folder name, used for the alt text (gallery.game.<game>)
         publisher: publisherOf(game),
+        ...(price !== null && { price }), // caption next to the level, see INFO_FILE
         mtime: fs.statSync(filePath).mtime.getTime(), // timestamp pour tri chronologique
         name: path.basename(file, path.extname(file)),
       })
@@ -81,6 +94,7 @@ async function main () {
   // Sort: PRIORITY group first (unmatched images last), then newest first
   items.sort((a, b) => rank(a) - rank(b) || b.mtime - a.mtime)
 
+  warnUnusedInfo()
   prune('gallery')
 
   // Write the JSON
@@ -95,6 +109,47 @@ function rank (item) {
     (!p.games || p.games.some(prefix => item.game.startsWith(prefix)))
   )
   return i === -1 ? PRIORITY.length : i
+}
+
+// Price shown under one photo, as a number; null when it has no caption
+function priceOf (dir, fileName) {
+  if (!infoCache.has(dir)) {
+    const file = path.join(dir, INFO_FILE)
+    let data = {}
+    if (fs.existsSync(file)) {
+      try {
+        data = JSON.parse(fs.readFileSync(file, 'utf8'))
+      } catch (err) {
+        console.warn(`⚠️  ${path.relative(MEDIA_DIR, file)} ignoré, JSON invalide : ${err.message}`)
+      }
+    }
+    infoCache.set(dir, { data, used: new Set() })
+  }
+
+  const info = infoCache.get(dir)
+  info.used.add(fileName)
+
+  const raw = info.data[fileName]
+  if (raw == null || String(raw).trim() === '') return null
+
+  const price = Number(raw)
+  if (!Number.isFinite(price) || price <= 0) {
+    const where = path.relative(MEDIA_DIR, path.join(dir, INFO_FILE))
+    console.warn(`⚠️  ${where} : "${fileName}" attend un nombre, reçu ${JSON.stringify(raw)}`)
+    return null
+  }
+  return price
+}
+
+// An info.json key matching no photo is a typo or a renamed file: say so
+function warnUnusedInfo () {
+  infoCache.forEach((info, dir) => {
+    Object.keys(info.data).forEach(key => {
+      if (info.used.has(key)) return
+      const where = path.relative(MEDIA_DIR, path.join(dir, INFO_FILE))
+      console.warn(`⚠️  ${where} : aucune photo nommée "${key}"`)
+    })
+  })
 }
 
 function publisherOf (folder) {
