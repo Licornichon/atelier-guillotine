@@ -1,0 +1,26 @@
+@use 'variables' as *;
+
+// Site-wide call to action. Standalone class, no block prefix: use it on any
+// page with `a.cta(href='…')`.
+.cta {
+  display: inline-block;
+  padding: 1.1rem 3rem;
+  border: 1px solid $color-accent;
+  color: $color-accent;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: $color-accent;
+    color: $color-bg;
+  }
+
+  // Mobile: no hover, so the hover look is the default
+  @media (max-width: $bp-md) {
+    background: $color-accent;
+    color: $color-bg;
+  }
+}

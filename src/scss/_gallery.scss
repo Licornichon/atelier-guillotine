@@ -3,10 +3,6 @@
 .gallery {
   @include section-padding;
 
-  &__title {
-    @include title-section;
-  }
-
   &__filters {
     display: flex;
     justify-content: center;

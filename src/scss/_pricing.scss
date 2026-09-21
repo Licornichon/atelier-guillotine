@@ -3,10 +3,6 @@
 .pricing {
   @include section-padding;
 
-  &__title {
-    @include title-section;
-  }
-
   &__subtitle {
     @include title-subsection;
   }
@@ -86,6 +82,13 @@
       &:first-child {
         color: $color-text;
         font-weight: 600;
+
+        // Unit examples: secondary to the type name, same muted grey as the
+        // rest of the site's supporting text
+        em {
+          color: $color-text-muted;
+          font-weight: normal; // the cell is 600, the examples should not be
+        }
       }
 
       &:not(:first-child) {

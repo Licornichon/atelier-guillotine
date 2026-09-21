@@ -46,6 +46,23 @@
     }
   }
 
+  // Last nav entry, rendered as a button: smaller than the page-level .cta
+  &__cta {
+    padding: 0.5rem 1.1rem;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: $color-accent;
+      color: $color-bg;
+    }
+  }
+
   &__lang {
     display: flex;
     align-items: center;

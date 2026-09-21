@@ -1,0 +1,157 @@
+@use 'variables' as *;
+
+.commissions {
+  @include section-padding;
+
+  &__grid {
+    @include container;
+    // Wider than the usual 1200px container: three cards need the room.
+    // Falls back to the available width on narrower screens.
+    max-width: 1440px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+
+    // Three side by side, or one per row (no 2-column step)
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
+    }
+
+    // Side by side: one row per card section (badge, price, description,
+    // feature list) so cards with unequal feature lists still line up.
+    @media (min-width: $bp-lg + 1px) {
+      grid-template-rows: repeat(4, auto);
+    }
+  }
+
+  // Single call to action for the whole section, in place of per-card buttons
+  &__footer {
+    text-align: center;
+    margin-top: 3rem;
+  }
+}
+
+// Homepage: short section pointing to the commissions page. Deliberately plain
+// text: the detail lives on commissions.pug.
+.commissions-teaser {
+  @include section-padding;
+  text-align: center;
+
+  // Plain bullet list, one level per line (the reset clears list-style)
+  &__list {
+    @include text-muted;
+    list-style: disc;
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+    padding-left: 1.5rem;
+    text-align: left;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  // Two paragraphs: one introduces the list, the last one leads into the button.
+  // Block centred in the section, text ranged left like the list above.
+  &__text {
+    @include text-muted;
+    max-width: 40rem;
+    margin: 0 auto 1.5rem;
+    text-align: left;
+
+    &:last-of-type {
+      margin-bottom: 2.5rem;
+    }
+  }
+}
+
+.commission {
+  background: var(--section-alt);
+  border: 1px solid $color-border;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $bp-md) {
+    padding: 1.5rem;
+  }
+
+  // Side by side: take the grid's four rows instead of stacking freely, so the
+  // feature lists all share one height.
+  @media (min-width: $bp-lg + 1px) {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+  }
+
+  &--featured {
+    border-color: $color-accent;
+    box-shadow: 0 0 0 4px $color-bg-lighter, 0 0 0 6px $color-accent;
+  }
+
+  // Best seller: single gold frame (Display keeps the double one above).
+  // Stacked layout still shows it first.
+  &--bestseller {
+    border-color: $color-accent;
+
+    @media (max-width: $bp-lg) {
+      order: -1;
+    }
+  }
+
+  // Sits inside .commission__badge, after the level name
+  &__tag::before {
+    content: ' | ';
+  }
+
+  &__badge {
+    display: inline-block;
+    align-self: flex-start;
+    // In the grid above, align-self is the vertical axis: keep it left-hugging
+    justify-self: start;
+    font-size: 1.05rem;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $color-accent;
+    border: 1px solid $color-accent;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__price {
+    font-family: $font-sans;
+    font-size: 1.1rem;
+    color: $color-accent;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    @include text-muted;
+    line-height: 1.85;
+    margin-bottom: 1.75rem;
+    flex: 1;
+  }
+
+  &__features {
+    margin-bottom: 2rem;
+
+    li {
+      color: $color-text-muted;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid $color-border;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &::before {
+        content: '→ ';
+        color: $color-accent;
+      }
+    }
+  }
+
+}

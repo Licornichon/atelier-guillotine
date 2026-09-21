@@ -25,9 +25,9 @@ npm run build:prod   # minified prod build → dist/
 ## Architecture
 
 - Entry `src/js/main.js` → `bundle.js` (injected into every page).
-- `HtmlWebpackPlugin` builds 2 pages: `index.html`←`src/index.pug`, `shop.html`←`src/shop.pug`. **`legal.html` is temporarily disabled**: its plugin is commented out in `webpack.config.js`, along with the footer links (`index.pug`, `shop.pug`) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
+- `HtmlWebpackPlugin` builds 3 pages: `index.html`←`src/index.pug`, `commissions.html`←`src/commissions.pug`, `shop.html`←`src/shop.pug`. **`legal.html` is temporarily disabled**: its plugin is commented out in `webpack.config.js`, along with the footer links (every page) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
 - SCSS is `require`d from `main.js`. `build:prod` extracts it into `bundle.css` linked in `<head>` (`mini-css-extract-plugin`: styled first paint, stable anchor jumps from another page); dev and `build` inject it with `style-loader`, so page jumps on load are still visible there.
-- Markup shared by `index.pug` + `shop.pug` lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
+- Markup shared between pages lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`; `_pricing.pug` on home + commissions page, after `_price-grid.pug` = `priceRows`, also used by the commission cards). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
 - `dist/` not committed. `.gitignore`: `dist/`, `index.html`, `bundle.js`, `index.js`, `src/data/gallery.json`, `src/data/shop.json`.
 
 **JS modules** (`src/js/`, each an IIFE, CommonJS `require`, Babel):
@@ -55,14 +55,14 @@ No CDN fonts: self-hosted in `_fonts.scss` (`src/fonts/`).
 
 ## Pages & sections
 
-Homepage (`index.pug`) order: hero → gallery → services → pricing → **FAQ / contact / about** (`include`d) → footer.
+Homepage (`index.pug`) order: hero → gallery → commissions teaser (links to `./commissions`) → pricing → **FAQ / contact / about** (`include`d) → footer. The commission cards themselves live on `commissions.pug` (hero → cards → pricing → FAQ / contact / about).
 
 | section | id | scss |
 |---|---|---|
 | nav | none | `_nav.scss` |
 | hero | `#hero` | `_hero.scss` |
 | gallery | `#gallery` | `_gallery.scss` |
-| services (Battle Ready / Tabletop+ / Display) | `#services` | `_services.scss` |
+| commissions teaser (home) / cards (commissions page) | `#commissions` | `_commissions.scss` |
 | pricing | `#pricing` | `_pricing.scss` |
 | FAQ | `#faq` | `_faq.scss` |
 | contact | `#contact` | `_contact.scss` |
@@ -93,7 +93,7 @@ Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]
 
 Templates never hardcode copy: static HTML text comes from `t(key)`, the French value injected by `loaders/pug-with-data.js` (which watches `translations.fr.js`); `lang.js` swaps it at runtime.
 
-Per-page `<title>` uses `data-i18n`, `<meta name=description>` uses `data-i18n-content`; page-scoped keys `home.meta.*` / `shop.meta.*` / `legal.meta.title`. `<html data-page="home|shop|legal">` = hook.
+Per-page `<title>` uses `data-i18n`, `<meta name=description>` uses `data-i18n-content`; page-scoped keys `home.meta.*` / `commissions.meta.*` / `shop.meta.*` / `legal.meta.title`. `<html data-page="home|commissions|shop|legal">` = hook.
 
 `legal.html` is a **single page** carrying both the French *mentions légales* (LCEN) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice links to. One footer link only. Its `legal.*` strings still contain UPPERCASE placeholders (`NOM_PRENOM`, `NUMEROSIRET`, `ADRESSE_POSTALE`, `EMAIL_CONTACT`, `MEDIATEUR_NOM`, `MEDIATEUR_SITE`, `JJ/MM/AAAA`); do not ship without replacing them.
 
@@ -110,5 +110,7 @@ Canonical host is `https://www.atelierguillotine.com` (with `www`). The domain l
 Hosted on **OVH shared hosting** (France), not GitHub Pages. `.github/workflows/build.yml`: every push → `npm ci` + `npm run build:prod` → upload `dist/` as an artifact. `.github/workflows/deploy.yml` is triggered by `workflow_run` after a successful Build on `master` (so it only fires once it exists on `master`, the default branch), downloads that run's artifact and pushes `dist/` to OVH over SFTP (`lftp mirror`, server dir `www/`; OVH shared hosting doesn't support FTPS). Secrets: `OVH_FTP_SERVER`, `OVH_FTP_USERNAME`, `OVH_FTP_PASSWORD`. The domain is configured in the OVH panel; there is no `CNAME` file.
 
 ## Conventions
+
+**Never use the em dash `—` in site copy.** People do not type it online, so it reads as a tell that the text was generated. Use a comma, a colon, a full stop or parentheses instead. Same for the en dash `–` used as sentence punctuation. Also avoid the other markers of machine-written prose: the "Que vous cherchiez X ou Y" / "Whether you are looking for X or Y" construction, openings like "Il est important de noter que", inflated verbs (sublimer, élever, plonger dans, delve, elevate, unlock, seamless), and emoji or checkmarks used as bullets.
 
 Image-less sections fall back to `repeating-linear-gradient(-45deg, …)` diagonal stripes.

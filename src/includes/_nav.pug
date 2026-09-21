@@ -1,7 +1,7 @@
 //- ──────────────────────────────────────────
 //- NAV (shared: every page), preceded by the skip link
 //- Usage: include includes/_nav, then +nav(page[, options])
-//-   page     'home' | 'shop' | 'legal', same value as <html data-page>
+//-   page     'home' | 'commissions' | 'shop' | 'legal', same value as <html data-page>
 //-   options  links           false → logo + language switch only (default true)
 //-            sharedSections  false → page doesn't include the FAQ / contact /
 //-                            about sections, their links go to the homepage (default true)
@@ -9,17 +9,16 @@
 mixin nav(page, options)
   - var opts = options || {}
   //- URL of each page; a new page gets its entry here and its links below
-  - var pageUrls = { home: './', shop: './shop' }
+  - var pageUrls = { home: './', commissions: './commissions', shop: './shop' }
   //- page: page holding the target · hash: section id · shared: section comes
   //- from src/includes/ (present on any page with sharedSections)
   - var navLinks = [
-  -   { key: 'nav.gallery',  page: 'home', hash: 'gallery' },
-  -   { key: 'nav.services', page: 'home', hash: 'services' },
-  -   { key: 'nav.pricing',  page: 'home', hash: 'pricing' },
-  -   { key: 'nav.faq',      page: 'home', hash: 'faq',     shared: true },
-  -   { key: 'nav.contact',  page: 'home', hash: 'contact', shared: true },
-  -   { key: 'nav.about',    page: 'home', hash: 'about',   shared: true },
+  -   { key: 'nav.gallery',  page: 'home' },
+  -   { key: 'nav.commissions', page: 'commissions' },
   -   { key: 'nav.shop',     page: 'shop' },
+  -   { key: 'nav.faq',      page: 'home', hash: 'faq',     shared: true },
+  -   { key: 'nav.about',    page: 'home', hash: 'about',   shared: true },
+  -   { key: 'nav.quote',    page: 'home', hash: 'contact', shared: true, cta: true },
   - ]
 
   a.skip-link(href='#main-content' data-i18n='nav.skip')= t('nav.skip')
@@ -43,9 +42,9 @@ mixin nav(page, options)
             - var isLocal = link.shared ? opts.sharedSections !== false : link.page === page
             - var href = link.hash ? (isLocal ? '' : pageUrls[link.page]) + '#' + link.hash : pageUrls[link.page]
             - var isCurrent = !link.hash && link.page === page
-            li: a.nav__link(
+            li: a(
               href=href
-              class=(isCurrent ? 'is-active' : undefined)
+              class=[link.cta ? 'nav__cta' : 'nav__link', isCurrent ? 'is-active' : null]
               data-i18n=link.key
               aria-current=(isCurrent ? 'page' : undefined)
             )= t(link.key)

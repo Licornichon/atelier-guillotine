@@ -49,7 +49,7 @@ html(lang='fr' data-page=page)
       //- Generated from assets/media/shop/<slug>/ (info.json + images)
       //- ──────────────────────────────────────────
       section#shop.shop
-        h2.shop__title(data-i18n='shop.title')= t('shop.title')
+        h2.section-title(data-i18n='shop.title')= t('shop.title')
         if shopItems && shopItems.length
           - var shopI18nMap = shopItems.reduce(function (m, it) { m[it.slug] = it.i18n; return m }, {})
           script#shop-i18n-data(type='application/json').

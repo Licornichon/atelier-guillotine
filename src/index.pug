@@ -51,7 +51,7 @@ html(lang='fr' data-page=page)
       //- To add images: drop them in the folder, then run npm run generate
       //- ──────────────────────────────────────────
       section#gallery.gallery
-        h2.gallery__title(data-i18n='gallery.title')= t('gallery.title')
+        h2.section-title(data-i18n='gallery.title')= t('gallery.title')
         .gallery__filters(role='group' aria-label=t('gallery.filtersLabel') data-i18n-aria='gallery.filtersLabel')
           button.gallery__filter.is-active(data-filter='all' data-i18n='gallery.all' aria-pressed='true')= t('gallery.all')
           button.gallery__filter(data-filter='battle-ready' data-i18n='gallery.tr' aria-pressed='false')= t('gallery.tr')
@@ -86,70 +86,20 @@ html(lang='fr' data-page=page)
                 )
 
       //- ──────────────────────────────────────────
-      //- PRICE GRID: single source for the pricing table below and the
-      //- "from X €" service prices (first row = cheapest)
+      //- COMMISSIONS: short section pointing to the commissions page (commissions.pug)
       //- ──────────────────────────────────────────
-      - var priceRows = [
-      -   { key: 'pricing.infantry',               tr: 17, ttp: 34 },
-      -   { key: 'pricing.typicalRanges.elite',    tr: 22, ttp: 44 },
-      -   { key: 'pricing.typicalRanges.cavalry',  tr: 30, ttp: 50 },
-      -   { key: 'pricing.typicalRanges.vehicles', tr: 40, ttp: 80 },
-      -   { key: 'pricing.character',              tr: 40, ttp: 100 },
-      -   { key: 'pricing.largeCharacter',         tr: 85, ttp: 200 },
-      - ]
-
-      //- ──────────────────────────────────────────
-      //- SERVICES (texts = services.<id>.* keys)
-      //- ──────────────────────────────────────────
-      - var services = [
-      -   { id: 'tr',      from: priceRows[0].tr },
-      -   { id: 'ttp',     from: priceRows[0].ttp, mod: 'service--bestseller' },
-      -   { id: 'display', mod: 'service--featured' },
-      - ]
-      section#services.services
-        h2.services__title(data-i18n='services.title')= t('services.title')
-        .services__grid
-          each s in services
-            - var k = 'services.' + s.id + '.'
-            .service(class=s.mod)
-              .service__badge(data-i18n=(k + 'name'))= t(k + 'name')
-              if s.from
-                .service__price #[span(data-i18n='services.priceFrom') #{t('services.priceFrom')}] #{s.from}&nbsp;€ #[span(data-i18n='services.pricePer') #{t('services.pricePer')}]
-              else
-                .service__price(data-i18n=(k + 'price'))= t(k + 'price')
-              p.service__description(data-i18n=(k + 'desc'))= t(k + 'desc')
-              ul.service__features
-                each f in ['f1', 'f2', 'f3']
-                  li(data-i18n=(k + f))= t(k + f)
-              a.service__cta(href='#contact' data-i18n=(k + 'cta'))= t(k + 'cta')
-
-      //- ──────────────────────────────────────────
-      //- PRICING
-      //- ──────────────────────────────────────────
-      section#pricing.pricing
-        h2.pricing__title(data-i18n='pricing.title')= t('pricing.title')
-
-        .pricing__section.pricing__section--notice
-          h3.pricing__subtitle(data-i18n='pricing.howWorks.title')= t('pricing.howWorks.title')
-          p(data-i18n='pricing.howWorks.desc1')= t('pricing.howWorks.desc1')
-          p(data-i18n='pricing.howWorks.desc2')= t('pricing.howWorks.desc2')
-          p(data-i18n='pricing.howWorks.display')= t('pricing.howWorks.display')
-
-        .pricing__section
-          h3.pricing__subtitle(data-i18n='pricing.typicalRanges.title')= t('pricing.typicalRanges.title')
-          .pricing__table-wrapper
-            table.pricing__table
-              thead
-                tr
-                  th(scope='col' data-i18n='pricing.typicalRanges.col.type')= t('pricing.typicalRanges.col.type')
-                  th(scope='col' data-i18n='pricing.tr.name')= t('pricing.tr.name')
-                  th(scope='col' data-i18n='pricing.ttp.name')= t('pricing.ttp.name')
-              tbody
-                each row in priceRows
-                  tr
-                    td(data-i18n-html=row.key)!= t(row.key)
-                    td(data-i18n-label='pricing.tr.name' data-label=t('pricing.tr.name')) #{row.tr}+&nbsp;€
-                    td(data-i18n-label='pricing.ttp.name' data-label=t('pricing.ttp.name')) #{row.ttp}+&nbsp;€
+      section#commissions.commissions-teaser
+        h2.section-title(data-i18n='home.commissions.title')= t('home.commissions.title')
+        p.commissions-teaser__text(data-i18n='home.commissions.text')= t('home.commissions.text')
+        ul.commissions-teaser__list
+          each id in ['tr', 'ttp', 'display']
+            - var k = 'commissions.' + id + '.'
+            li
+              strong(data-i18n=(k + 'name'))= t(k + 'name')
+              span(data-i18n='home.commissions.sep')= t('home.commissions.sep')
+              span(data-i18n=(k + 'tagline'))= t(k + 'tagline')
+        p.commissions-teaser__text(data-i18n='home.commissions.text2')= t('home.commissions.text2')
+        a.cta(href='./commissions' data-i18n='home.commissions.cta')= t('home.commissions.cta')
 
       //- ──────────────────────────────────────────
       //- FAQ / CONTACT / ABOUT: shared with shop.pug, see src/includes/
