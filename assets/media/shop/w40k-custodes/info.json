@@ -1,6 +1,6 @@
 {
-  "price": "550 €",
-  "retailPrice": "130 €",
+  "price": 550,
+  "retailPrice": 130,
   "status": "available",
   "level": "battle-ready",
   "order": 1,

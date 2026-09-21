@@ -45,7 +45,8 @@ html(lang='fr' data-page=page)
       })
 
       //- ──────────────────────────────────────────
-      //- COMMISSIONS (texts = commissions.<id>.* keys, "from X €" = first row of the price grid)
+      //- COMMISSIONS (texts = commissions.<id>.* keys, the amount in commissions.price
+      //- = first row of the price grid)
       //- ──────────────────────────────────────────
       include includes/_price-grid
       //- feats = how many commissions.<id>.fN keys the card lists
@@ -67,7 +68,10 @@ html(lang='fr' data-page=page)
                 if c.tag
                   span.commission__tag(data-i18n=(k + 'tag'))= t(k + 'tag')
               if c.from
-                .commission__price #[span(data-i18n='commissions.priceFrom') #{t('commissions.priceFrom')}] #{c.from}&nbsp;€ #[span(data-i18n='commissions.pricePer') #{t('commissions.pricePer')}]
+                .commission__price(
+                  data-i18n='commissions.price'
+                  data-i18n-vars=JSON.stringify({ price: c.from })
+                )= t('commissions.price', { price: c.from })
               else
                 .commission__price(data-i18n=(k + 'price'))= t(k + 'price')
               p.commission__description(data-i18n=(k + 'desc'))= t(k + 'desc')

@@ -49,9 +49,9 @@ module.exports = {
 
   'commissions.title':    'Niveaux de finition',
   'commissions.cta':      'Demander un devis',
-  // "from X € per miniature": the amount comes from src/includes/_price-grid.pug
-  'commissions.priceFrom': 'à partir de',
-  'commissions.pricePer':  'par figurine',
+  // {price} = first row of src/includes/_price-grid.pug. The euro sign sits after
+  // the amount in French and before it in English (EU style guide).
+  'commissions.price': "à partir de {price} € par figurine",
   'commissions.tr.name':  'Battle Ready',
   'commissions.tr.desc':  "La solution la plus rapide pour mettre vos figurines sur la table, avec un rendu propre et lisible en tournoi.",
   'commissions.tr.f1':    'Ébarbage, montage',
@@ -115,6 +115,7 @@ module.exports = {
   'shop.item.cta.0':    'Je réserve sur un coup de tête',
   'shop.item.cta.1':    'J’en perds la tête !',
   'shop.item.thumb':    'Afficher cette photo',
+  'shop.price':         '{price} €',
   'shop.item.retail':   'Prix neuf des figurines seules, non peintes :',
 
   'pricing.title':                    'Tarifs',
@@ -125,6 +126,7 @@ module.exports = {
   'pricing.howWorks.desc2':           "Ce sont des tarifs de départ : un schéma complexe ou une figurine très détaillée peuvent faire monter le prix final.",
   'pricing.howWorks.display':         "Les pièces d’exposition font l’objet d’un devis personnalisé afin de garantir un niveau de qualité optimal et un rendu fidèle à votre vision.",
   'pricing.table.title':      'Tarifs par type de figurine',
+  'pricing.priceFrom':                '{price}+ €',
   'pricing.table.col.type':   'Type',
   'pricing.type.infantry':                 'Infanterie <em>(Intercessors, Ork Boyz…)</em>',
   'pricing.type.elite':      'Élite / Infanterie lourde <em>(Terminators, Nobz…)</em>',

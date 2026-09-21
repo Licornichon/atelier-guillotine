@@ -15,8 +15,8 @@ assets/media/shop/
 
 ```json
 {
-  "price": "180 €",
-  "retailPrice": "90 €",
+  "price": 180,
+  "retailPrice": 90,
   "status": "available",
   "level": "battle-ready",
   "order": 1,
@@ -37,8 +37,8 @@ assets/media/shop/
 
 | Champ | Requis | Détail |
 |---|---|---|
-| `price` | non | Texte libre (`"180 €"`, `"sur devis"`…), identique FR/EN |
-| `retailPrice` | non | Prix neuf des figurines seules, non peintes (texte libre). Affiché en petit sous `price` pour distinguer la valeur des figurines de celle de la peinture. |
+| `price` | non | Nombre nu, sans unité (`180`). Le signe € et sa place dans la phrase viennent de la clé `shop.price` des traductions : `180 €` en français, `€180` en anglais. |
+| `retailPrice` | non | Prix neuf des figurines seules, non peintes. Nombre nu comme `price`. Affiché en petit sous `price` pour distinguer la valeur des figurines de celle de la peinture. |
 | `status` | non (défaut : `available`) | `available` ou `reserved`. Retirer le dossier quand la pièce est vendue. |
 | `level` | non | `battle-ready`, `tabletop-plus` ou `display`. Badge sur la carte. |
 | `order` | non | Tri manuel croissant ; les pièces sans `order` passent après, triées par nom EN. |

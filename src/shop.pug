@@ -70,11 +70,22 @@ html(lang='fr' data-page=page)
                     span.shop__status(class=('shop__status--' + item.status) data-i18n=('shop.status.' + item.status))= t('shop.status.' + item.status)
                   if item.price || item.retailPrice
                     .shop__pricing
+                      //- Bare numbers in info.json: shop.price carries the euro sign,
+                      //- which sits before the amount in English and after it in French
                       if item.price
-                        p.shop__price= item.price
+                        p.shop__price(
+                          data-i18n='shop.price'
+                          data-i18n-vars=JSON.stringify({ price: item.price })
+                        )= t('shop.price', { price: item.price })
                       //- Retail price of the bare models, to set apart the painting work
                       if item.retailPrice
-                        p.shop__retail #[span(data-i18n='shop.item.retail') #{t('shop.item.retail')}] #{item.retailPrice}
+                        p.shop__retail
+                          span(data-i18n='shop.item.retail')= t('shop.item.retail')
+                          |  
+                          span(
+                            data-i18n='shop.price'
+                            data-i18n-vars=JSON.stringify({ price: item.retailPrice })
+                          )= t('shop.price', { price: item.retailPrice })
                 .shop__media
                   //- Photos = resized WebP copies (npm run generate): src/srcset, full, thumb
                   - var cover = item.images[0]
