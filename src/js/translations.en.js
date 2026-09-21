@@ -49,9 +49,9 @@ module.exports = {
 
   'commissions.title':    'Levels of finish',
   'commissions.cta':      'Request a quote',
-  // "from X € per miniature": the amount comes from src/includes/_price-grid.pug
-  'commissions.priceFrom': 'from',
-  'commissions.pricePer':  'per miniature',
+  // {price} = first row of src/includes/_price-grid.pug. The euro sign sits after
+  // the amount in French and before it in English (EU style guide).
+  'commissions.price': "from €{price} per miniature",
   'commissions.tr.name':  'Battle Ready',
   'commissions.tr.desc':  "Get your miniatures battle-ready, fast, with a clean, readable result on the tournament table.",
   'commissions.tr.f1':    'Cleaned up and assembled',
@@ -115,6 +115,7 @@ module.exports = {
   'shop.item.cta.0':    "Chop chop, I'll take it!",
   'shop.item.cta.1':    "I'm losing my head over this!",
   'shop.item.thumb':    'Show this photo',
+  'shop.price':         '€{price}',
   'shop.item.retail':   "What the unpainted models cost new:",
 
   'pricing.title':                    'Pricing',
@@ -125,6 +126,7 @@ module.exports = {
   'pricing.howWorks.desc2':           "These are starting prices: a complex scheme or a heavily detailed miniature can push the final price higher.",
   'pricing.howWorks.display':         'Display pieces are quoted individually to ensure the highest quality and closest match to your vision.',
   'pricing.table.title':      'Prices by miniature type',
+  'pricing.priceFrom':                '€{price}+',
   'pricing.table.col.type':   'Type',
   'pricing.type.infantry':                 'Infantry <em>(Intercessors, Ork Boyz…)</em>',
   'pricing.type.elite':      'Elite / Heavy Infantry <em>(Terminators, Nobz…)</em>',

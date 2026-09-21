@@ -24,5 +24,15 @@ section#pricing.pricing
           each row in priceRows
             tr
               td(data-i18n-html=row.key)!= t(row.key)
-              td(data-i18n-label='pricing.tr.name' data-label=t('pricing.tr.name')) #{row.tr}+&nbsp;€
-              td(data-i18n-label='pricing.ttp.name' data-label=t('pricing.ttp.name')) #{row.ttp}+&nbsp;€
+              td(
+                data-i18n='pricing.priceFrom'
+                data-i18n-vars=JSON.stringify({ price: row.tr })
+                data-i18n-label='pricing.tr.name'
+                data-label=t('pricing.tr.name')
+              )= t('pricing.priceFrom', { price: row.tr })
+              td(
+                data-i18n='pricing.priceFrom'
+                data-i18n-vars=JSON.stringify({ price: row.ttp })
+                data-i18n-label='pricing.ttp.name'
+                data-label=t('pricing.ttp.name')
+              )= t('pricing.priceFrom', { price: row.ttp })
