@@ -68,7 +68,7 @@ module.exports = {
   'commissions.ttp.f6':   'Matières différenciées : cuir, tissu, bois, métal',
   'commissions.ttp.f7':   'Soclage texturé avec pigments',
   'commissions.ttp.f8':   'Vernis mat de protection',
-  'commissions.ttp.cta':  'Déployez une armée affûtée',
+  'commissions.ttp.cta':  'Affûtez le style de votre armée',
   'commissions.display.name':  'Display',
   'commissions.display.price': 'sur devis uniquement',
   'commissions.display.desc':  "Le plus haut niveau de qualité que je peux proposer. Une approche artistique poussée, avec un haut niveau de finition et d’impact visuel.",

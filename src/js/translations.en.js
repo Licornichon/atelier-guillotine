@@ -68,7 +68,7 @@ module.exports = {
   'commissions.ttp.f6':   'Distinct materials: leather, cloth, wood, metal',
   'commissions.ttp.f7':   'Textured basing with pigments',
   'commissions.ttp.f8':   'Matt protective varnish',
-  'commissions.ttp.cta':  'Give your army the edge',
+  'commissions.ttp.cta':  "Sharpen your army's look",
   'commissions.display.name':  'Display',
   'commissions.display.price': 'quote on request',
   'commissions.display.desc':  "The highest level of quality I offer. A refined artistic approach with exceptional finish and strong visual impact.",
@@ -79,7 +79,7 @@ module.exports = {
   'commissions.display.f5':    'Advanced weathering: pigments, chipping, rust',
   'commissions.display.f6':    'Narrative base built for the piece',
   'commissions.display.f7':    'Selective matt and satin varnish',
-  'commissions.display.cta':   'Treat yourself to a breathtaking showpiece',
+  'commissions.display.cta':   'Treat yourself to a<br>breathtaking showpiece',
 
   'gallery.title': 'Gallery',
   'gallery.all':   'All',
