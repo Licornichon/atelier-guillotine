@@ -75,7 +75,7 @@ html(lang='fr' data-page=page)
               else
                 .commission__price(data-i18n=(k + 'price'))= t(k + 'price')
               p.commission__description(data-i18n=(k + 'desc'))= t(k + 'desc')
-              ul.commission__features
+              ul.commission__features.arrow-list
                 - var featKeys = []
                 - for (var i = 1; i <= c.feats; i++) featKeys.push(k + 'f' + i)
                 each fk in featKeys

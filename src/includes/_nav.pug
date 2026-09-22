@@ -1,7 +1,7 @@
 //- ──────────────────────────────────────────
 //- NAV (shared: every page), preceded by the skip link
 //- Usage: include includes/_nav, then +nav(page[, options])
-//-   page     'home' | 'commissions' | 'shop' | 'legal', same value as <html data-page>
+//-   page     'home' | 'commissions' | 'courses' | 'shop' | 'legal', same value as <html data-page>
 //-   options  links           false → logo + language switch only (default true)
 //-            sharedSections  false → page doesn't include the FAQ / contact /
 //-                            about sections, their links go to the homepage (default true)
@@ -9,9 +9,12 @@
 mixin nav(page, options)
   - var opts = options || {}
   //- URL of each page; a new page gets its entry here and its links below
-  - var pageUrls = { home: './', commissions: './commissions', shop: './shop' }
+  - var pageUrls = { home: './', commissions: './commissions', courses: './courses', shop: './shop' }
   //- page: page holding the target · hash: section id · shared: section comes
   //- from src/includes/ (present on any page with sharedSections)
+  //- Painting lessons, left out while the page is not generated (webpack.config.js).
+  //- To put it back, this entry goes after nav.commissions:
+  //-   { key: 'nav.courses',  page: 'courses' },
   - var navLinks = [
   -   { key: 'nav.gallery',  page: 'home' },
   -   { key: 'nav.commissions', page: 'commissions' },
@@ -44,7 +47,7 @@ mixin nav(page, options)
             - var isCurrent = !link.hash && link.page === page
             li: a(
               href=href
-              class=[link.cta ? 'nav__cta' : 'nav__link', isCurrent ? 'is-active' : null]
+              class=[link.cta ? 'cta nav__cta' : 'nav__link', isCurrent ? 'is-active' : null]
               data-i18n=link.key
               aria-current=(isCurrent ? 'page' : undefined)
             )= t(link.key)
