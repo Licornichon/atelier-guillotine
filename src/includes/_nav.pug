@@ -12,10 +12,12 @@ mixin nav(page, options)
   - var pageUrls = { home: './', commissions: './commissions', courses: './courses', shop: './shop' }
   //- page: page holding the target · hash: section id · shared: section comes
   //- from src/includes/ (present on any page with sharedSections)
+  //- Painting lessons, left out while the page is not generated (webpack.config.js).
+  //- To put it back, this entry goes after nav.commissions:
+  //-   { key: 'nav.courses',  page: 'courses' },
   - var navLinks = [
   -   { key: 'nav.gallery',  page: 'home' },
   -   { key: 'nav.commissions', page: 'commissions' },
-  -   { key: 'nav.courses',  page: 'courses' },
   -   { key: 'nav.shop',     page: 'shop' },
   -   { key: 'nav.faq',      page: 'home', hash: 'faq',     shared: true },
   -   { key: 'nav.about',    page: 'home', hash: 'about',   shared: true },
