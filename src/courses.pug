@@ -45,37 +45,41 @@ html(lang='fr' data-page=page)
       })
 
       //- ──────────────────────────────────────────
-      //- INTRO: what it is, who it is for
-      //- ──────────────────────────────────────────
-      section#courses.courses
-        h2.section-title(data-i18n='courses.intro.title')= t('courses.intro.title')
-        .courses__intro
-          .courses__intro-text
-            p(data-i18n='courses.intro.p1')= t('courses.intro.p1')
-            p(data-i18n='courses.intro.p2')= t('courses.intro.p2')
-          .courses__aside
-            h3.subsection-title(data-i18n='courses.intro.awardsTitle')= t('courses.intro.awardsTitle')
-            ul.courses__awards
-              each n in [1, 2, 3]
-                li(data-i18n=('courses.intro.award' + n))= t('courses.intro.award' + n)
-            h3.subsection-title(data-i18n='courses.intro.forTitle')= t('courses.intro.forTitle')
-            ul.courses__audience-list
-              each n in [1, 2, 3, 4]
-                li(data-i18n=('courses.intro.for' + n))= t('courses.intro.for' + n)
-
-      //- ──────────────────────────────────────────
       //- METHOD: theory, demonstration, then guided practice
       //- ──────────────────────────────────────────
       section#courses-method.courses-method
         h2.section-title(data-i18n='courses.method.title')= t('courses.method.title')
-        p.courses-method__intro(data-i18n='courses.method.intro')= t('courses.method.intro')
-        ol.courses-method__steps
+
+        //- Introduction: how a lesson is set up, and how to book one
+        .courses-method__intro
+          each n in [1, 2, 3]
+            //- data-i18n-html: the paragraphs emphasise a few words
+            p(data-i18n-html=('courses.method.p' + n))!= t('courses.method.p' + n)
+
+        ol.courses-method__steps.steps
           each n in [1, 2, 3]
             - var s = 'courses.method.step' + n + '.'
-            li.courses-method__step
-              span.courses-method__number(aria-hidden='true')= n
-              h3.courses-method__step-title(data-i18n=(s + 'title'))= t(s + 'title')
-              p.courses-method__step-text(data-i18n=(s + 'text'))= t(s + 'text')
+            li.steps__item
+              //- The <ol> already carries the order, the figure is decoration
+              span.steps__number(aria-hidden='true')= n
+              .steps__body
+                h3.steps__title(data-i18n=(s + 'title'))= t(s + 'title')
+                p.steps__text(data-i18n=(s + 'text'))= t(s + 'text')
+
+        //- What can be worked on: a heading, then one line per point
+        .courses-method__block
+          h3.subsection-title(data-i18n='courses.topics.title')= t('courses.topics.title')
+          ul.bullet-list
+            - var itemKeys = []
+            - for (var i = 1; i <= 9; i++) itemKeys.push('courses.topics.i' + i + '.')
+            each k in itemKeys
+              li
+                strong(data-i18n=(k + 'label'))= t(k + 'label')
+                span(data-i18n='list.sep')= t('list.sep')
+                span(data-i18n=(k + 'text'))= t(k + 'text')
+
+        .courses-method__footer
+          a.cta(href='#contact' data-i18n='courses.cta')= t('courses.cta')
 
       //- ──────────────────────────────────────────
       //- RATES. Solo prices per duration; the pair and small-group columns are
@@ -86,14 +90,6 @@ html(lang='fr' data-page=page)
       - var courseGroups = [{ key: 'courses.rates.col.solo', off: 0 }, { key: 'courses.rates.col.duo', off: 10 }, { key: 'courses.rates.col.small', off: 30 }]
       section#courses-rates.pricing
         h2.section-title(data-i18n='courses.rates.title')= t('courses.rates.title')
-
-        //- Same shape as the commission rates: the prose in a framed notice,
-        //- then the table on its own (see includes/_pricing.pug)
-        .pricing__section.pricing__section--notice
-          h3.subsection-title(data-i18n='courses.rates.coverTitle')= t('courses.rates.coverTitle')
-          p(data-i18n='courses.rates.intro')= t('courses.rates.intro')
-          p(data-i18n='courses.rates.note')= t('courses.rates.note')
-          p(data-i18n='courses.rates.groups')= t('courses.rates.groups')
 
         .pricing__section
           .pricing__table-wrapper
@@ -121,48 +117,12 @@ html(lang='fr' data-page=page)
                         if g.off
                           span.pricing__price-note(data-i18n='courses.rates.perPerson')= t('courses.rates.perPerson')
 
-      //- ──────────────────────────────────────────
-      //- WHAT TO HAVE READY
-      //- ──────────────────────────────────────────
-      section#courses-practical.courses-practical
-        h2.section-title(data-i18n='courses.practical.title')= t('courses.practical.title')
-        each col in [{ id: 'you', items: 3 }, { id: 'me', items: 2 }, { id: 'know', items: 4 }]
-          - var c = 'courses.practical.' + col.id + '.'
-          .courses-practical__block
-            h3.subsection-title(data-i18n=(c + 'title'))= t(c + 'title')
-            ul.courses-practical__list
-              - var itemKeys = []
-              - for (var i = 1; i <= col.items; i++) itemKeys.push(c + 'i' + i)
-              each ik in itemKeys
-                li(data-i18n=ik)= t(ik)
-        //- Framed: the one thing to sort out before the lesson
-        .courses-practical__note
-          h3.subsection-title(data-i18n='courses.practical.double.title')= t('courses.practical.double.title')
-          p(data-i18n='courses.practical.double.text')= t('courses.practical.double.text')
-
-        .courses-practical__footer
-          a.cta(href='#contact' data-i18n='courses.cta')= t('courses.cta')
-
-      //- ──────────────────────────────────────────
-      //- FAQ, specific to the lessons (the shared one covers commissions)
-      //- ──────────────────────────────────────────
-      - var coursesFaqCount = 7
-      //- id 'faq': the nav's FAQ link points at #faq on every page
-      section#faq.faq
-        h2.section-title(data-i18n='courses.faq.title')= t('courses.faq.title')
-        .faq__inner
-          .faq__list
-            - for (var n = 1; n <= coursesFaqCount; n++)
-              //- Mobile accordion: the button opens / closes the answer (faq.js)
-              .faq__item
-                h3.faq__question
-                  button.faq__toggle(
-                    type='button'
-                    aria-expanded='false'
-                    aria-controls=('courses-faq-answer-' + n)
-                    data-i18n=('courses.faq.q' + n + '.title')
-                  )= t('courses.faq.q' + n + '.title')
-                p.faq__answer(id=('courses-faq-answer-' + n) data-i18n=('courses.faq.q' + n + '.answer'))= t('courses.faq.q' + n + '.answer')
+        //- Below the table, as on the commissions page (see includes/_pricing.pug)
+        .pricing__section.pricing__section--notice
+          h3.subsection-title(data-i18n='courses.rates.coverTitle')= t('courses.rates.coverTitle')
+          p(data-i18n='courses.rates.intro')= t('courses.rates.intro')
+          p(data-i18n='courses.rates.note')= t('courses.rates.note')
+          p(data-i18n='courses.rates.groups')= t('courses.rates.groups')
 
       //- ──────────────────────────────────────────
       //- Sections shared with the other pages (see src/includes/)

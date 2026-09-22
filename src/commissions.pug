@@ -90,15 +90,15 @@ html(lang='fr' data-page=page)
       //- ──────────────────────────────────────────
       section#order.commission-order
         h2.section-title(data-i18n='commissions.order.title')= t('commissions.order.title')
-        ol.commission-order__steps
+        ol.commission-order__steps.steps
           each n in [1, 2, 3, 4, 5, 6, 7]
             - var s = 'commissions.order.step' + n + '.'
-            li.commission-order__step
+            li.steps__item
               //- The <ol> already carries the order, the figure is decoration
-              span.commission-order__number(aria-hidden='true')= n
-              .commission-order__body
-                h3.commission-order__step-title(data-i18n=(s + 'title'))= t(s + 'title')
-                p.commission-order__text(data-i18n=(s + 'text'))= t(s + 'text')
+              span.steps__number(aria-hidden='true')= n
+              .steps__body
+                h3.steps__title(data-i18n=(s + 'title'))= t(s + 'title')
+                p.steps__text(data-i18n=(s + 'text'))= t(s + 'text')
 
       //- ──────────────────────────────────────────
       //- Sections shared with the homepage (see src/includes/)

@@ -1,42 +1,17 @@
 @use 'variables' as *;
 
-// ─── Intro: presentation on the left, who it is for on the right ────────────
-.courses {
+// ─── Method: numbered steps, then the rubrics under them ───────────────────
+.courses-method {
   @include section-padding;
 
+  // Introduction opening the section, as wide as the steps below it
   &__intro {
     @include container;
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    margin-bottom: 3rem;
 
-    @media (max-width: $bp-lg) {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-  }
-
-  &__intro-text p {
-    color: $color-text-muted;
-    line-height: 1.85;
-    margin-bottom: 1.25rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  // Competition record: the credential block, set apart from the plain lists
-  &__awards {
-    border-left: 2px solid $color-accent;
-    padding-left: 1rem;
-    margin-bottom: 2.5rem;
-
-    li {
+    p {
       color: $color-text-muted;
-      font-size: 0.95rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 1rem;
 
       &:last-child {
         margin-bottom: 0;
@@ -44,33 +19,9 @@
     }
   }
 
-  &__audience-list {
-    list-style: disc;
-    padding-left: 1.5rem;
-
-    li {
-      color: $color-text-muted;
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-
-// ─── Method: three numbered steps, then the duplicate-miniature note ────────
-.courses-method {
-  @include section-padding;
-
-  &__intro {
-    @include container;
-    color: $color-text-muted;
-    max-width: 44rem;
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
+  // Steps themselves come from the shared .steps component
   &__steps {
     @include container;
-    list-style: none; // an <ol>: the reset only clears <ul>, and the step
-                      // numbers are spans in the markup
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
@@ -81,69 +32,14 @@
     }
   }
 
-  &__step {
-    border-top: 1px solid $color-border;
-    padding-top: 1.5rem;
-  }
-
-  &__number {
-    display: block;
-    font-size: 2rem;
-    font-weight: bold;
-    line-height: 1;
-    color: $color-accent;
-    margin-bottom: 0.75rem;
-  }
-
-  &__step-title {
-    font-size: 1.05rem;
-    font-weight: bold;
-    color: $color-text;
-    margin-bottom: 0.75rem;
-  }
-
-  &__step-text {
-    color: $color-text-muted;
-  }
-}
-
-// ─── What to have ready: plain text, same shape as the homepage teaser ──────
-.courses-practical {
-  @include section-padding;
-  text-align: center;
-
-  // Block centred in the section, text ranged left (see .commissions-teaser)
+  // Rubrics under the steps, as wide as them
   &__block {
-    max-width: 40rem;
-    margin: 0 auto 2.5rem;
-    text-align: left;
-  }
-
-  &__list {
-    color: $color-text-muted;
-    list-style: disc;
-    padding-left: 1.5rem;
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  // The one thing to sort out before the lesson, framed so it is not missed
-  &__note {
-    max-width: 40rem;
-    margin: 0 auto 2.5rem;
-    padding: 2rem;
-    text-align: left;
-    background: var(--section-alt);
-    border: 1px solid $color-border;
-
-    p {
-      color: $color-text-muted;
-    }
+    @include container;
+    margin-top: 3rem;
   }
 
   &__footer {
     text-align: center;
+    margin-top: 3rem;
   }
 }

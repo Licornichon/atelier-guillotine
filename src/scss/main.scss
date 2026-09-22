@@ -5,12 +5,14 @@
 @use 'button';
 @use 'section-title';
 @use 'arrow-list';
+@use 'bullet-list';
+@use 'steps';
 
 @use 'nav';
 @use 'hero';
 @use 'about';
 @use 'commissions';
-// @use 'courses'; // page hidden for now, see webpack.config.js
+@use 'courses';
 @use 'pricing';
 @use 'gallery';
 @use 'shop';

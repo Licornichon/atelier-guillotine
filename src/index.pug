@@ -101,12 +101,12 @@ html(lang='fr' data-page=page)
       section#commissions.commissions-teaser
         h2.section-title(data-i18n='home.commissions.title')= t('home.commissions.title')
         p.commissions-teaser__text(data-i18n='home.commissions.text')= t('home.commissions.text')
-        ul.commissions-teaser__list
+        ul.commissions-teaser__list.bullet-list
           each id in ['tr', 'ttp', 'display']
             - var k = 'commissions.' + id + '.'
             li
               strong(data-i18n=(k + 'name'))= t(k + 'name')
-              span(data-i18n='home.commissions.sep')= t('home.commissions.sep')
+              span(data-i18n='list.sep')= t('list.sep')
               span(data-i18n=(k + 'tagline'))= t(k + 'tagline')
         p.commissions-teaser__text(data-i18n='home.commissions.text2')= t('home.commissions.text2')
         a.cta(href='./commissions' data-i18n='home.commissions.cta')= t('home.commissions.cta')
