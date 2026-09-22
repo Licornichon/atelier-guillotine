@@ -122,15 +122,10 @@ module.exports = {
       template: path.join(src, 'commissions.pug'),
       filename: 'commissions.html',
     }),
-    // TODO: Painting-lessons page, deliberately not generated for now. The
-    // src/courses.pug template, its SCSS and its courses.* translations are kept.
-    // To bring it back, uncomment the four together: here, the nav link in
-    // src/includes/_nav.pug, @use 'courses' in src/scss/main.scss and the <url>
-    // in src/static/sitemap.xml.
-    // new HtmlWebpackPlugin({
-    //   template: path.join(src, 'courses.pug'),
-    //   filename: 'courses.html',
-    // }),
+    new HtmlWebpackPlugin({
+      template: path.join(src, 'courses.pug'),
+      filename: 'courses.html',
+    }),
     new HtmlWebpackPlugin({
       template: path.join(src, 'shop.pug'),
       filename: 'shop.html',

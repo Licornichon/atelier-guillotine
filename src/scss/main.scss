@@ -10,7 +10,7 @@
 @use 'hero';
 @use 'about';
 @use 'commissions';
-// @use 'courses'; // page hidden for now, see webpack.config.js
+@use 'courses';
 @use 'pricing';
 @use 'gallery';
 @use 'shop';
