@@ -1,12 +1,35 @@
 @use 'variables' as *;
 
-// Site-wide section heading. Standalone class, no block prefix: every <h2>
-// opening a section carries it, on any page, so they all render alike.
+// Site-wide headings. Standalone classes, no block prefix: any page can use
+// them, so every section opens the same way.
+
+// <h2> opening a section
 .section-title {
   font-family: $font-sans;
   font-size: clamp(1.75rem, 6vw, 3rem);
   color: $color-accent;
   text-align: center;
+  margin-bottom: 3rem;
+
+  @media (max-width: $bp-md) {
+    margin-bottom: 2rem;
+  }
+}
+
+// <h3> opening a block inside a section (pricing, about, courses)
+.subsection-title {
+  font-family: $font-sans;
+  font-size: clamp(1.25rem, 4vw, 1.875rem);
+  color: $color-accent;
+  margin-bottom: 1.5rem;
+}
+
+// Line of text right under a .section-title (FAQ, contact). On mobile, the
+// title above it takes margin-bottom: 1rem (set in the section).
+.section-subtitle {
+  color: $color-text-muted;
+  text-align: center;
+  font-size: 1.05rem;
   margin-bottom: 3rem;
 
   @media (max-width: $bp-md) {

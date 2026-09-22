@@ -124,7 +124,7 @@ html(lang='fr' data-page=page)
                     p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
                   //- Two button texts, alternating card after card (shop.item.cta.0 / .1)
                   - var ctaKey = 'shop.item.cta.' + (i % 2)
-                  a.shop__cta(href='#contact' data-i18n=ctaKey)= t(ctaKey)
+                  a.cta.shop__cta(href='#contact' data-i18n=ctaKey)= t(ctaKey)
         else
           p.shop__empty(data-i18n='shop.empty')= t('shop.empty')
 

@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 .footer {
-  @include text-muted;
+  color: $color-text-muted;
   padding: 2rem;
   font-size: 0.8rem;
   border-top: 1px solid $color-border;
@@ -22,7 +22,6 @@
 
   &__link {
     color: $color-text-muted;
-    text-decoration: none;
     font-size: 0.75rem;
     border-bottom: 1px solid transparent;
     transition: color 0.2s, border-color 0.2s;

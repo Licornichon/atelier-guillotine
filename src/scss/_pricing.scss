@@ -3,10 +3,6 @@
 .pricing {
   @include section-padding;
 
-  &__subtitle {
-    @include title-subsection;
-  }
-
   &__section {
     @include container;
     margin-bottom: 3rem;
@@ -16,7 +12,7 @@
     }
 
     p {
-      @include text-muted;
+      color: $color-text-muted;
       line-height: 1.7;
       margin-bottom: 0.75rem;
 
@@ -166,5 +162,25 @@
         }
       }
     }
+  }
+
+  // Courses rates: the first column holds a bare duration, so it lines up with
+  // the price columns instead of ranging left. Desktop only: below $bp-md the
+  // first cell becomes the row title, spanning the whole row.
+  &__table--center {
+    @media (min-width: $bp-md + 1px) {
+      th:first-child,
+      td:first-child {
+        text-align: center;
+      }
+    }
+  }
+
+  // What a group rate covers ("par personne"), right after it
+  &__price-note {
+    color: $color-text-muted;
+    font-weight: normal;
+    font-size: 0.75rem;
+    margin-left: 0.35rem;
   }
 }

@@ -54,11 +54,11 @@ html(lang='fr' data-page=page)
             p(data-i18n='courses.intro.p1')= t('courses.intro.p1')
             p(data-i18n='courses.intro.p2')= t('courses.intro.p2')
           .courses__aside
-            h3.courses__subtitle(data-i18n='courses.intro.awardsTitle')= t('courses.intro.awardsTitle')
+            h3.subsection-title(data-i18n='courses.intro.awardsTitle')= t('courses.intro.awardsTitle')
             ul.courses__awards
               each n in [1, 2, 3]
                 li(data-i18n=('courses.intro.award' + n))= t('courses.intro.award' + n)
-            h3.courses__subtitle(data-i18n='courses.intro.forTitle')= t('courses.intro.forTitle')
+            h3.subsection-title(data-i18n='courses.intro.forTitle')= t('courses.intro.forTitle')
             ul.courses__audience-list
               each n in [1, 2, 3, 4]
                 li(data-i18n=('courses.intro.for' + n))= t('courses.intro.for' + n)
@@ -77,7 +77,7 @@ html(lang='fr' data-page=page)
               h3.courses-method__step-title(data-i18n=(s + 'title'))= t(s + 'title')
               p.courses-method__step-text(data-i18n=(s + 'text'))= t(s + 'text')
         .courses-method__note
-          h3.courses__subtitle(data-i18n='courses.method.double.title')= t('courses.method.double.title')
+          h3.subsection-title(data-i18n='courses.method.double.title')= t('courses.method.double.title')
           p(data-i18n='courses.method.double.text')= t('courses.method.double.text')
 
       //- ──────────────────────────────────────────
@@ -85,13 +85,14 @@ html(lang='fr' data-page=page)
       //- that price less the discount. Reuses the .pricing__table component.
       //- ──────────────────────────────────────────
       - var courseRates = [{ hours: 1, solo: 40 }, { hours: 3, solo: 100 }, { hours: 6, solo: 180 }]
-      - var courseGroups = [{ key: 'courses.rates.col.solo', off: 0 }, { key: 'courses.rates.col.duo', off: 0.1 }, { key: 'courses.rates.col.small', off: 0.3 }]
+      //- off = discount in %, taken off the solo price of the same row
+      - var courseGroups = [{ key: 'courses.rates.col.solo', off: 0 }, { key: 'courses.rates.col.duo', off: 10 }, { key: 'courses.rates.col.small', off: 30 }]
       section#courses-rates.pricing
         h2.section-title(data-i18n='courses.rates.title')= t('courses.rates.title')
         .pricing__section
           p(data-i18n='courses.rates.intro')= t('courses.rates.intro')
           .pricing__table-wrapper
-            table.pricing__table
+            table.pricing__table.pricing__table--center
               thead
                 tr
                   th(scope='col' data-i18n='courses.rates.col.duration')= t('courses.rates.col.duration')
@@ -105,13 +106,15 @@ html(lang='fr' data-page=page)
                       data-i18n-vars=JSON.stringify({ hours: row.hours })
                     )= t('courses.rates.hours', { hours: row.hours })
                     each g in courseGroups
-                      - var amount = Math.round(row.solo * (1 - g.off))
-                      td(
-                        data-i18n='courses.price'
-                        data-i18n-vars=JSON.stringify({ price: amount })
-                        data-i18n-label=g.key
-                        data-label=t(g.key)
-                      )= t('courses.price', { price: amount })
+                      - var amount = Math.round(row.solo * (1 - g.off / 100))
+                      td(data-i18n-label=g.key data-label=t(g.key))
+                        //- Group columns: the price paid, then the unit it applies to
+                        span(
+                          data-i18n='courses.price'
+                          data-i18n-vars=JSON.stringify({ price: amount })
+                        )= t('courses.price', { price: amount })
+                        if g.off
+                          span.pricing__price-note(data-i18n='courses.rates.perPerson')= t('courses.rates.perPerson')
           p(data-i18n='courses.rates.note')= t('courses.rates.note')
           p(data-i18n='courses.rates.groups')= t('courses.rates.groups')
 
@@ -124,8 +127,8 @@ html(lang='fr' data-page=page)
           each col in [{ id: 'you', items: 3 }, { id: 'me', items: 3 }, { id: 'know', items: 4 }]
             - var c = 'courses.practical.' + col.id + '.'
             .courses-practical__col
-              h3.courses__subtitle(data-i18n=(c + 'title'))= t(c + 'title')
-              ul.courses-practical__list
+              h3.subsection-title(data-i18n=(c + 'title'))= t(c + 'title')
+              ul.arrow-list
                 - var itemKeys = []
                 - for (var i = 1; i <= col.items; i++) itemKeys.push(c + 'i' + i)
                 each ik in itemKeys

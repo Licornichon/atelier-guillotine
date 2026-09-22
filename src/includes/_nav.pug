@@ -45,7 +45,7 @@ mixin nav(page, options)
             - var isCurrent = !link.hash && link.page === page
             li: a(
               href=href
-              class=[link.cta ? 'nav__cta' : 'nav__link', isCurrent ? 'is-active' : null]
+              class=[link.cta ? 'cta nav__cta' : 'nav__link', isCurrent ? 'is-active' : null]
               data-i18n=link.key
               aria-current=(isCurrent ? 'page' : undefined)
             )= t(link.key)

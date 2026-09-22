@@ -18,7 +18,7 @@
   }
 
   &__intro {
-    @include text-muted;
+    color: $color-text-muted;
     margin-bottom: 3rem;
     font-size: 1.05rem;
   }
@@ -37,7 +37,7 @@
     }
 
     p {
-      @include text-muted;
+      color: $color-text-muted;
       line-height: 1.8;
       margin-bottom: 0.75rem;
 
@@ -45,7 +45,7 @@
     }
 
     ul {
-      @include text-muted;
+      color: $color-text-muted;
       list-style: disc;
       margin: 0.5rem 0 0.75rem 1.25rem;
       line-height: 1.8;
@@ -61,7 +61,7 @@
   }
 
   &__updated {
-    @include text-muted;
+    color: $color-text-muted;
     font-size: 0.8rem;
     font-style: italic;
     padding: 0 2rem;
@@ -74,7 +74,6 @@
     color: $color-accent;
     font-size: 0.85rem;
     letter-spacing: 0.05em;
-    text-decoration: none;
     border-bottom: 1px solid $color-border;
     padding-bottom: 2px;
     transition: border-color 0.2s;

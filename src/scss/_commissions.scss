@@ -39,7 +39,7 @@
 
   // Plain bullet list, one level per line (the reset clears list-style)
   &__list {
-    @include text-muted;
+    color: $color-text-muted;
     list-style: disc;
     max-width: 40rem;
     margin: 0 auto 2rem;
@@ -54,7 +54,7 @@
   // Two paragraphs: one introduces the list, the last one leads into the button.
   // Block centred in the section, text ranged left like the list above.
   &__text {
-    @include text-muted;
+    color: $color-text-muted;
     max-width: 40rem;
     margin: 0 auto 1.5rem;
     text-align: left;
@@ -128,30 +128,15 @@
   }
 
   &__description {
-    @include text-muted;
+    color: $color-text-muted;
     line-height: 1.85;
     margin-bottom: 1.75rem;
     flex: 1;
   }
 
+  // Sits on .arrow-list; only the spacing under it belongs to the card
   &__features {
     margin-bottom: 2rem;
-
-    li {
-      color: $color-text-muted;
-      font-size: 0.9rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid $color-border;
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      &::before {
-        content: '→ ';
-        color: $color-accent;
-      }
-    }
   }
 
 }

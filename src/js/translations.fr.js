@@ -140,6 +140,7 @@ module.exports = {
   'courses.rates.col.duo':           'À deux',
   'courses.rates.col.small':         'À trois ou quatre',
   'courses.rates.hours':             '{hours} h',
+  'courses.rates.perPerson':         'par personne',
   'courses.price':                   '{price} €',
   'courses.rates.note':              'Déplacement offert dans Paris. Au-delà, le trajet et l’hébergement éventuel sont chiffrés avant qu’on convienne d’une date.',
   'courses.rates.groups':          'Les clubs et les boutiques qui souhaitent organiser une session pour leurs membres sont les bienvenus. Le format reste à caler ensemble, écrivez-moi pour en parler.',

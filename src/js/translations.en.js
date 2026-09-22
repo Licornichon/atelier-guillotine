@@ -140,6 +140,7 @@ module.exports = {
   'courses.rates.col.duo':           'As a pair',
   'courses.rates.col.small':         'Three or four',
   'courses.rates.hours':             '{hours} h',
+  'courses.rates.perPerson':         'per person',
   'courses.price':                   '€{price}',
   'courses.rates.note':              'Travel is free within Paris. Beyond it, the journey and any overnight stay are quoted before we settle on a date.',
   'courses.rates.groups':          'Clubs and shops that would like to run a session for their members are welcome. Write to me and we will work the format out together.',
