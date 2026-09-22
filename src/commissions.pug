@@ -51,8 +51,8 @@ html(lang='fr' data-page=page)
       include includes/_price-grid
       //- feats = how many commissions.<id>.fN keys the card lists
       - var commissions = [
-      -   { id: 'tr',      from: priceRows[0].tr, feats: 5 },
-      -   { id: 'ttp',     from: priceRows[0].ttp, mod: 'commission--bestseller', feats: 8, tag: true },
+      -   { id: 'tr',      from: priceRows[0].tr, feats: 4 },
+      -   { id: 'ttp',     from: priceRows[0].ttp, mod: 'commission--bestseller', feats: 7, tag: true },
       -   { id: 'display', mod: 'commission--featured', feats: 7 },
       - ]
       section#commissions.commissions
@@ -75,7 +75,7 @@ html(lang='fr' data-page=page)
               else
                 .commission__price(data-i18n=(k + 'price'))= t(k + 'price')
               p.commission__description(data-i18n=(k + 'desc'))= t(k + 'desc')
-              ul.commission__features
+              ul.commission__features.arrow-list
                 - var featKeys = []
                 - for (var i = 1; i <= c.feats; i++) featKeys.push(k + 'f' + i)
                 each fk in featKeys
@@ -84,6 +84,21 @@ html(lang='fr' data-page=page)
           a.cta(href='#contact' data-i18n='commissions.cta')= t('commissions.cta')
 
       include includes/_pricing
+
+      //- ──────────────────────────────────────────
+      //- HOW A COMMISSION WORKS: 7 steps, commissions.order.* keys
+      //- ──────────────────────────────────────────
+      section#order.commission-order
+        h2.section-title(data-i18n='commissions.order.title')= t('commissions.order.title')
+        ol.commission-order__steps
+          each n in [1, 2, 3, 4, 5, 6, 7]
+            - var s = 'commissions.order.step' + n + '.'
+            li.commission-order__step
+              //- The <ol> already carries the order, the figure is decoration
+              span.commission-order__number(aria-hidden='true')= n
+              .commission-order__body
+                h3.commission-order__step-title(data-i18n=(s + 'title'))= t(s + 'title')
+                p.commission-order__text(data-i18n=(s + 'text'))= t(s + 'text')
 
       //- ──────────────────────────────────────────
       //- Sections shared with the homepage (see src/includes/)

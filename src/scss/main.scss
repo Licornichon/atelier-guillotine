@@ -4,11 +4,13 @@
 @use 'global';
 @use 'button';
 @use 'section-title';
+@use 'arrow-list';
 
 @use 'nav';
 @use 'hero';
 @use 'about';
 @use 'commissions';
+// @use 'courses'; // page hidden for now, see webpack.config.js
 @use 'pricing';
 @use 'gallery';
 @use 'shop';

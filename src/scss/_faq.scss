@@ -7,10 +7,6 @@
     @include container;
   }
 
-  &__subtitle {
-    @include subtitle-section;
-  }
-
   &__item {
     padding: 2rem 0;
     border-bottom: 1px solid $color-border;
@@ -25,14 +21,12 @@
     font-weight: bold;
     color: $color-accent;
     margin-bottom: 1rem;
-    margin-top: 0;
   }
 
   &__answer {
-    @include text-muted;
+    color: $color-text-muted;
     font-size: 1rem;
     line-height: 1.8;
-    margin: 0;
   }
 
   // <button> inside the question: looks like the heading text, only acts on mobile
@@ -42,7 +36,6 @@
     align-items: baseline;
     gap: 1rem;
     width: 100%;
-    padding: 0;
     font: inherit;
     color: inherit;
     letter-spacing: inherit;

@@ -3,10 +3,6 @@
 .pricing {
   @include section-padding;
 
-  &__subtitle {
-    @include title-subsection;
-  }
-
   &__section {
     @include container;
     margin-bottom: 3rem;
@@ -16,7 +12,7 @@
     }
 
     p {
-      @include text-muted;
+      color: $color-text-muted;
       line-height: 1.7;
       margin-bottom: 0.75rem;
 
@@ -41,6 +37,8 @@
     }
   }
 
+  // Dark panel on every page, whichever side of the section alternation it
+  // falls on: the first row sits on this background, the even rows lighten it
   &__table-wrapper {
     overflow-x: auto;
     border: 1px solid $color-accent;
@@ -103,7 +101,7 @@
       transition: background 0.15s;
 
       &:nth-child(even) td {
-        background: var(--section-alt);
+        background: $color-bg-lighter;
       }
 
       &:hover td {
@@ -166,5 +164,28 @@
         }
       }
     }
+  }
+
+  // Courses rates: four columns of equal width, all centred. The first one
+  // holds a bare duration, so it lines up with the prices instead of ranging
+  // left. Desktop only: below $bp-md the rows become a grid and the first cell
+  // becomes the row title, spanning the whole width.
+  &__table--even {
+    @media (min-width: $bp-md + 1px) {
+      table-layout: fixed;
+
+      th:first-child,
+      td:first-child {
+        text-align: center;
+      }
+    }
+  }
+
+  // What a group rate covers ("par personne"), right after it
+  &__price-note {
+    color: $color-text-muted;
+    font-weight: normal;
+    font-size: 0.75rem;
+    margin-left: 0.35rem;
   }
 }

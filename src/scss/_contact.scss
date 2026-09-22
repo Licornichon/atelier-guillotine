@@ -15,10 +15,6 @@
     }
   }
 
-  &__subtitle {
-    @include subtitle-section;
-  }
-
   &__form {
     display: flex;
     flex-direction: column;
@@ -52,7 +48,7 @@
   }
 
   &__label {
-    @include text-muted;
+    color: $color-text-muted;
     font-size: 0.75rem;
     font-weight: bold;
     letter-spacing: 0.1em;
@@ -85,10 +81,9 @@
   }
 
   &__notice {
-    @include text-muted;
+    color: $color-text-muted;
     font-size: 0.75rem;
     line-height: 1.6;
-    margin: 0;
 
     a {
       color: $color-accent;
@@ -102,13 +97,10 @@
     padding: 0.875rem 2.25rem;
     background: $color-accent;
     color: $color-bg;
-    font-family: inherit;
     font-size: 0.8rem;
     font-weight: bold;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border: none;
-    cursor: pointer;
     transition: background 0.2s;
 
     &:hover {

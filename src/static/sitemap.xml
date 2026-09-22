@@ -9,6 +9,12 @@
     <loc>https://www.atelierguillotine.com/commissions</loc>
     <priority>0.8</priority>
   </url>
+  <!-- Painting lessons, hidden for now (see webpack.config.js)
+  <url>
+    <loc>https://www.atelierguillotine.com/courses</loc>
+    <priority>0.8</priority>
+  </url>
+  -->
   <url>
     <loc>https://www.atelierguillotine.com/shop</loc>
     <priority>0.8</priority>

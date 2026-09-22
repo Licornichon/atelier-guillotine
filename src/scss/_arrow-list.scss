@@ -1,0 +1,22 @@
+@use 'variables' as *;
+
+// Site-wide feature list: one line per item, arrow marker, hairline between
+// items. Standalone class, no block prefix: the commission cards and the
+// courses page both use it.
+.arrow-list {
+  li {
+    color: $color-text-muted;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &::before {
+      content: '→ ';
+      color: $color-accent;
+    }
+  }
+}
