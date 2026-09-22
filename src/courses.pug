@@ -45,30 +45,17 @@ html(lang='fr' data-page=page)
       })
 
       //- ──────────────────────────────────────────
-      //- INTRO: what it is, who it is for
-      //- ──────────────────────────────────────────
-      section#courses.courses
-        h2.section-title(data-i18n='courses.intro.title')= t('courses.intro.title')
-        .courses__intro
-          .courses__intro-text
-            p(data-i18n='courses.intro.p1')= t('courses.intro.p1')
-            p(data-i18n='courses.intro.p2')= t('courses.intro.p2')
-          .courses__aside
-            h3.subsection-title(data-i18n='courses.intro.awardsTitle')= t('courses.intro.awardsTitle')
-            ul.courses__awards
-              each n in [1, 2, 3]
-                li(data-i18n=('courses.intro.award' + n))= t('courses.intro.award' + n)
-            h3.subsection-title(data-i18n='courses.intro.forTitle')= t('courses.intro.forTitle')
-            ul.courses__audience-list
-              each n in [1, 2, 3, 4]
-                li(data-i18n=('courses.intro.for' + n))= t('courses.intro.for' + n)
-
-      //- ──────────────────────────────────────────
       //- METHOD: theory, demonstration, then guided practice
       //- ──────────────────────────────────────────
       section#courses-method.courses-method
         h2.section-title(data-i18n='courses.method.title')= t('courses.method.title')
-        p.courses-method__intro(data-i18n='courses.method.intro')= t('courses.method.intro')
+
+        //- Introduction: how a lesson is set up, and how to book one
+        .courses-method__intro
+          each n in [1, 2, 3]
+            //- data-i18n-html: the paragraphs emphasise a few words
+            p(data-i18n-html=('courses.method.p' + n))!= t('courses.method.p' + n)
+
         ol.courses-method__steps.steps
           each n in [1, 2, 3]
             - var s = 'courses.method.step' + n + '.'
@@ -79,12 +66,13 @@ html(lang='fr' data-page=page)
                 h3.steps__title(data-i18n=(s + 'title'))= t(s + 'title')
                 p.steps__text(data-i18n=(s + 'text'))= t(s + 'text')
 
-        //- Everything to sort out before the lesson, one line each
-        .courses-method__ready
-          h3.subsection-title(data-i18n='courses.practical.title')= t('courses.practical.title')
+        //- What can be worked on: a heading, then one line per point
+        .courses-method__block
+          h3.subsection-title(data-i18n='courses.topics.title')= t('courses.topics.title')
           ul.bullet-list
-            each id in ['you', 'me', 'know']
-              - var k = 'courses.practical.' + id + '.'
+            - var itemKeys = []
+            - for (var i = 1; i <= 9; i++) itemKeys.push('courses.topics.i' + i + '.')
+            each k in itemKeys
               li
                 strong(data-i18n=(k + 'label'))= t(k + 'label')
                 span(data-i18n='list.sep')= t('list.sep')
@@ -135,27 +123,6 @@ html(lang='fr' data-page=page)
           p(data-i18n='courses.rates.intro')= t('courses.rates.intro')
           p(data-i18n='courses.rates.note')= t('courses.rates.note')
           p(data-i18n='courses.rates.groups')= t('courses.rates.groups')
-
-      //- ──────────────────────────────────────────
-      //- FAQ, specific to the lessons (the shared one covers commissions)
-      //- ──────────────────────────────────────────
-      - var coursesFaqCount = 7
-      //- id 'faq': the nav's FAQ link points at #faq on every page
-      section#faq.faq
-        h2.section-title(data-i18n='courses.faq.title')= t('courses.faq.title')
-        .faq__inner
-          .faq__list
-            - for (var n = 1; n <= coursesFaqCount; n++)
-              //- Mobile accordion: the button opens / closes the answer (faq.js)
-              .faq__item
-                h3.faq__question
-                  button.faq__toggle(
-                    type='button'
-                    aria-expanded='false'
-                    aria-controls=('courses-faq-answer-' + n)
-                    data-i18n=('courses.faq.q' + n + '.title')
-                  )= t('courses.faq.q' + n + '.title')
-                p.faq__answer(id=('courses-faq-answer-' + n) data-i18n=('courses.faq.q' + n + '.answer'))= t('courses.faq.q' + n + '.answer')
 
       //- ──────────────────────────────────────────
       //- Sections shared with the other pages (see src/includes/)

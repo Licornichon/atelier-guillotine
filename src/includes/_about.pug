@@ -8,6 +8,10 @@ section#about.about
     .about__intro
       p(data-i18n='about.p1')= t('about.p1')
       p(data-i18n='about.p2')= t('about.p2')
+      h3.subsection-title.about__awards-title(data-i18n='about.awardsTitle')= t('about.awardsTitle')
+      ul.about__awards
+        each n in [1, 2, 3]
+          li(data-i18n=('about.award' + n))= t('about.award' + n)
     //- Column 2: why choose
     .about__why
       h3.subsection-title.about__subtitle

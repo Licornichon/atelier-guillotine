@@ -23,6 +23,27 @@
     line-height: 1.85;
   }
 
+  // Competition record, under the presentation: set apart by a gold rule
+  &__awards-title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__awards {
+    border-left: 2px solid $color-accent;
+    padding-left: 1rem;
+
+    li {
+      color: $color-text-muted;
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   // Sits on .subsection-title; only the spacing differs here
   // (no margin-top: tops of both columns line up, grid gap spaces them when stacked)
   &__subtitle {

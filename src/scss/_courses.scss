@@ -1,70 +1,22 @@
 @use 'variables' as *;
 
-// ─── Intro: presentation on the left, who it is for on the right ────────────
-.courses {
+// ─── Method: numbered steps, then the rubrics under them ───────────────────
+.courses-method {
   @include section-padding;
 
+  // Introduction opening the section, as wide as the steps below it
   &__intro {
     @include container;
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    margin-bottom: 3rem;
 
-    @media (max-width: $bp-lg) {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-  }
-
-  &__intro-text p {
-    color: $color-text-muted;
-    line-height: 1.85;
-    margin-bottom: 1.25rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  // Competition record: the credential block, set apart from the plain lists
-  &__awards {
-    border-left: 2px solid $color-accent;
-    padding-left: 1rem;
-    margin-bottom: 2.5rem;
-
-    li {
+    p {
       color: $color-text-muted;
-      font-size: 0.95rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 1rem;
 
       &:last-child {
         margin-bottom: 0;
       }
     }
-  }
-
-  &__audience-list {
-    list-style: disc;
-    padding-left: 1.5rem;
-
-    li {
-      color: $color-text-muted;
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-
-// ─── Method: three numbered steps, then the duplicate-miniature note ────────
-.courses-method {
-  @include section-padding;
-
-  &__intro {
-    @include container;
-    color: $color-text-muted;
-    max-width: $text-max;
-    text-align: center;
-    margin-bottom: 3rem;
   }
 
   // Steps themselves come from the shared .steps component
@@ -80,8 +32,8 @@
     }
   }
 
-  // What to sort out before the lesson, under the steps and as wide as them
-  &__ready {
+  // Rubrics under the steps, as wide as them
+  &__block {
     @include container;
     margin-top: 3rem;
   }
