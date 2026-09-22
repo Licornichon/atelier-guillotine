@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+// Site-wide numbered steps: a bubble carrying the figure, the title and the
+// text under it. Standalone class, no block prefix: the section using it lays
+// the items out on its own grid (see .commission-order__steps and
+// .courses-method__steps), this file only draws one step.
+.steps {
+  list-style: none; // an <ol>: the reset only clears <ul>, and the figures are
+                    // spans in the markup
+
+  // One column: the bubble moves back beside the text
+  &__item {
+    @media (max-width: $bp-md) {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: $bp-sm) {
+      gap: 1rem;
+    }
+  }
+
+  &__number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1rem; // bubble above the text; beside it below $bp-md
+    border: 1px solid $color-accent;
+    border-radius: 50%;
+    color: $color-accent;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+
+    @media (max-width: $bp-md) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__body {
+    // Optical alignment with the bubble beside it, one column only
+    @media (max-width: $bp-md) {
+      padding-top: 0.4rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: $color-text;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    color: $color-text-muted;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+}

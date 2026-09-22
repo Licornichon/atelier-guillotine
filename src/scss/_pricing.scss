@@ -98,14 +98,8 @@
     }
 
     tbody tr {
-      transition: background 0.15s;
-
       &:nth-child(even) td {
         background: $color-bg-lighter;
-      }
-
-      &:hover td {
-        background: rgba($color-accent, 0.1);
       }
 
       &:last-child td {
@@ -127,8 +121,7 @@
         padding: 1.25rem;
         border-bottom: 1px solid $color-border;
 
-        &:nth-child(even) td,
-        &:hover td {
+        &:nth-child(even) td {
           background: none;
         }
 

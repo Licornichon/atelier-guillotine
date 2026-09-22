@@ -1,0 +1,15 @@
+@use 'variables' as *;
+
+// Site-wide plain bullet list: one item per line, disc marker, muted text
+// (the reset clears list-style). The block around it sets the column width.
+// Used by the homepage teaser and the courses page.
+.bullet-list {
+  color: $color-text-muted;
+  list-style: disc;
+  padding-left: 1.5rem;
+  text-align: left;
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+}

@@ -7,7 +7,7 @@
     @include container;
     // Wider than the usual 1200px container: three cards need the room.
     // Falls back to the available width on narrower screens.
-    max-width: 1440px;
+    max-width: $container-wide;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
@@ -37,25 +37,17 @@
   @include section-padding;
   text-align: center;
 
-  // Plain bullet list, one level per line (the reset clears list-style)
+  // One level per line: the shared .bullet-list, in the same column as the text
   &__list {
-    color: $color-text-muted;
-    list-style: disc;
-    max-width: 40rem;
+    max-width: $text-max;
     margin: 0 auto 2rem;
-    padding-left: 1.5rem;
-    text-align: left;
-
-    li {
-      margin-bottom: 0.5rem;
-    }
   }
 
   // Two paragraphs: one introduces the list, the last one leads into the button.
   // Block centred in the section, text ranged left like the list above.
   &__text {
     color: $color-text-muted;
-    max-width: 40rem;
+    max-width: $text-max;
     margin: 0 auto 1.5rem;
     text-align: left;
 
@@ -141,13 +133,12 @@
 
 }
 
-// ─── How a commission works: numbered bubbles, four per row ────────────────
+// ─── How a commission works: the shared .steps, four per row ───────────────
 .commission-order {
   @include section-padding;
 
   &__steps {
     @include container;
-    list-style: none;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem 2.5rem;
@@ -161,62 +152,10 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    // One column: the bubble moves back beside the text
     @media (max-width: $bp-md) {
-      max-width: 44rem;
+      max-width: $text-max;
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
-  }
-
-  &__step {
-    @media (max-width: $bp-md) {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    @media (max-width: $bp-sm) {
-      gap: 1rem;
-    }
-  }
-
-  &__number {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-bottom: 1rem; // bubble above the text; beside it below $bp-md
-    border: 1px solid $color-accent;
-    border-radius: 50%;
-    color: $color-accent;
-    font-size: 1.2rem;
-    font-weight: bold;
-    line-height: 1;
-
-    @media (max-width: $bp-md) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__body {
-    // Optical alignment with the bubble beside it, one column only
-    @media (max-width: $bp-md) {
-      padding-top: 0.4rem;
-    }
-  }
-
-  &__step-title {
-    font-size: 1.05rem;
-    font-weight: bold;
-    color: $color-text;
-    margin-bottom: 0.5rem;
-  }
-
-  &__text {
-    color: $color-text-muted;
-    font-size: 0.95rem;
-    margin: 0;
   }
 }
