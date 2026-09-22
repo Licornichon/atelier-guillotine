@@ -44,6 +44,17 @@
     }
   }
 
+  // Instagram line closing the presentation column
+  &__social {
+    margin-top: 1.5rem;
+
+    a {
+      color: $color-accent;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
   // Sits on .subsection-title; only the spacing differs here
   // (no margin-top: tops of both columns line up, grid gap spaces them when stacked)
   &__subtitle {

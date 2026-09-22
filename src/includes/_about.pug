@@ -12,6 +12,8 @@ section#about.about
       ul.about__awards
         each n in [1, 2, 3]
           li(data-i18n=('about.award' + n))= t('about.award' + n)
+      //- data-i18n-html: the sentence carries the Instagram link
+      p.about__social(data-i18n-html='about.instagram')!= t('about.instagram')
     //- Column 2: why choose
     .about__why
       h3.subsection-title.about__subtitle

@@ -30,6 +30,7 @@ module.exports = {
   'about.award1':                      "🥈🥉 Argent et bronze au concours international de l’AFM Montrouge",
   'about.award2':                      "🎖️ Mention honorable en catégorie Master Fantasy, World Model Expo de Versailles",
   'about.award3':                      "🥇🥈🥉 Or, argent et bronze en concours régionaux",
+  'about.instagram':  'Je poste mon travail en cours sur Instagram, <a href="https://www.instagram.com/atelierguillotine/" target="_blank" rel="noopener">@atelierguillotine</a>.',
   'about.why.prefix': "Pourquoi choisir ",
   'about.why.suffix': ' ?', // non-breaking space before "?" (French typography)
   'about.benefit1.title': 'Une armée prête à jouer, sans contrainte',
