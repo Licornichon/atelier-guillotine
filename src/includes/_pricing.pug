@@ -5,14 +5,7 @@
 section#pricing.pricing
   h2.section-title(data-i18n='pricing.title')= t('pricing.title')
 
-  .pricing__section.pricing__section--notice
-    h3.pricing__subtitle(data-i18n='pricing.howWorks.title')= t('pricing.howWorks.title')
-    p(data-i18n='pricing.howWorks.desc1')= t('pricing.howWorks.desc1')
-    p(data-i18n='pricing.howWorks.desc2')= t('pricing.howWorks.desc2')
-    p(data-i18n='pricing.howWorks.display')= t('pricing.howWorks.display')
-
   .pricing__section
-    h3.pricing__subtitle(data-i18n='pricing.table.title')= t('pricing.table.title')
     .pricing__table-wrapper
       table.pricing__table
         thead
@@ -36,3 +29,12 @@ section#pricing.pricing
                 data-i18n-label='pricing.ttp.name'
                 data-label=t('pricing.ttp.name')
               )= t('pricing.priceFrom', { price: row.ttp })
+
+  //- Below the table: everything the grid itself cannot say
+  .pricing__section.pricing__section--notice
+    h3.pricing__subtitle(data-i18n='pricing.howWorks.title')= t('pricing.howWorks.title')
+    p(data-i18n='pricing.howWorks.desc1')= t('pricing.howWorks.desc1')
+    p(data-i18n='pricing.howWorks.desc2')= t('pricing.howWorks.desc2')
+    p(data-i18n='pricing.howWorks.assembly')= t('pricing.howWorks.assembly')
+    p(data-i18n='pricing.howWorks.materials')= t('pricing.howWorks.materials')
+    p(data-i18n='pricing.howWorks.display')= t('pricing.howWorks.display')

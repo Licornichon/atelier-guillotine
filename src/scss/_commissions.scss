@@ -155,3 +155,83 @@
   }
 
 }
+
+// ─── How a commission works: numbered bubbles, four per row ────────────────
+.commission-order {
+  @include section-padding;
+
+  &__steps {
+    @include container;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem 2.5rem;
+
+    // 4 columns need the room: 3 on a small laptop, 2 on a tablet
+    @media (max-width: 1440px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    // One column: the bubble moves back beside the text
+    @media (max-width: $bp-md) {
+      max-width: 44rem;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  &__step {
+    @media (max-width: $bp-md) {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: $bp-sm) {
+      gap: 1rem;
+    }
+  }
+
+  &__number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1rem; // bubble above the text; beside it below $bp-md
+    border: 1px solid $color-accent;
+    border-radius: 50%;
+    color: $color-accent;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+
+    @media (max-width: $bp-md) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__body {
+    // Optical alignment with the bubble beside it, one column only
+    @media (max-width: $bp-md) {
+      padding-top: 0.4rem;
+    }
+  }
+
+  &__step-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: $color-text;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    @include text-muted;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+}
