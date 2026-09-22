@@ -37,6 +37,8 @@
     }
   }
 
+  // Dark panel on every page, whichever side of the section alternation it
+  // falls on: the first row sits on this background, the even rows lighten it
   &__table-wrapper {
     overflow-x: auto;
     border: 1px solid $color-accent;
@@ -99,7 +101,7 @@
       transition: background 0.15s;
 
       &:nth-child(even) td {
-        background: var(--section-alt);
+        background: $color-bg-lighter;
       }
 
       &:hover td {
@@ -164,11 +166,14 @@
     }
   }
 
-  // Courses rates: the first column holds a bare duration, so it lines up with
-  // the price columns instead of ranging left. Desktop only: below $bp-md the
-  // first cell becomes the row title, spanning the whole row.
-  &__table--center {
+  // Courses rates: four columns of equal width, all centred. The first one
+  // holds a bare duration, so it lines up with the prices instead of ranging
+  // left. Desktop only: below $bp-md the rows become a grid and the first cell
+  // becomes the row title, spanning the whole width.
+  &__table--even {
     @media (min-width: $bp-md + 1px) {
+      table-layout: fixed;
+
       th:first-child,
       td:first-child {
         text-align: center;

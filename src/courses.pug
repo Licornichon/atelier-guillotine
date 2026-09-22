@@ -64,7 +64,7 @@ html(lang='fr' data-page=page)
                 li(data-i18n=('courses.intro.for' + n))= t('courses.intro.for' + n)
 
       //- ──────────────────────────────────────────
-      //- METHOD: theory then practice, plus the duplicate miniature
+      //- METHOD: theory, demonstration, then guided practice
       //- ──────────────────────────────────────────
       section#courses-method.courses-method
         h2.section-title(data-i18n='courses.method.title')= t('courses.method.title')
@@ -76,9 +76,6 @@ html(lang='fr' data-page=page)
               span.courses-method__number(aria-hidden='true')= n
               h3.courses-method__step-title(data-i18n=(s + 'title'))= t(s + 'title')
               p.courses-method__step-text(data-i18n=(s + 'text'))= t(s + 'text')
-        .courses-method__note
-          h3.subsection-title(data-i18n='courses.method.double.title')= t('courses.method.double.title')
-          p(data-i18n='courses.method.double.text')= t('courses.method.double.text')
 
       //- ──────────────────────────────────────────
       //- RATES. Solo prices per duration; the pair and small-group columns are
@@ -89,10 +86,18 @@ html(lang='fr' data-page=page)
       - var courseGroups = [{ key: 'courses.rates.col.solo', off: 0 }, { key: 'courses.rates.col.duo', off: 10 }, { key: 'courses.rates.col.small', off: 30 }]
       section#courses-rates.pricing
         h2.section-title(data-i18n='courses.rates.title')= t('courses.rates.title')
-        .pricing__section
+
+        //- Same shape as the commission rates: the prose in a framed notice,
+        //- then the table on its own (see includes/_pricing.pug)
+        .pricing__section.pricing__section--notice
+          h3.subsection-title(data-i18n='courses.rates.coverTitle')= t('courses.rates.coverTitle')
           p(data-i18n='courses.rates.intro')= t('courses.rates.intro')
+          p(data-i18n='courses.rates.note')= t('courses.rates.note')
+          p(data-i18n='courses.rates.groups')= t('courses.rates.groups')
+
+        .pricing__section
           .pricing__table-wrapper
-            table.pricing__table.pricing__table--center
+            table.pricing__table.pricing__table--even
               thead
                 tr
                   th(scope='col' data-i18n='courses.rates.col.duration')= t('courses.rates.col.duration')
@@ -115,24 +120,26 @@ html(lang='fr' data-page=page)
                         )= t('courses.price', { price: amount })
                         if g.off
                           span.pricing__price-note(data-i18n='courses.rates.perPerson')= t('courses.rates.perPerson')
-          p(data-i18n='courses.rates.note')= t('courses.rates.note')
-          p(data-i18n='courses.rates.groups')= t('courses.rates.groups')
 
       //- ──────────────────────────────────────────
       //- WHAT TO HAVE READY
       //- ──────────────────────────────────────────
       section#courses-practical.courses-practical
         h2.section-title(data-i18n='courses.practical.title')= t('courses.practical.title')
-        .courses-practical__grid
-          each col in [{ id: 'you', items: 3 }, { id: 'me', items: 3 }, { id: 'know', items: 4 }]
-            - var c = 'courses.practical.' + col.id + '.'
-            .courses-practical__col
-              h3.subsection-title(data-i18n=(c + 'title'))= t(c + 'title')
-              ul.arrow-list
-                - var itemKeys = []
-                - for (var i = 1; i <= col.items; i++) itemKeys.push(c + 'i' + i)
-                each ik in itemKeys
-                  li(data-i18n=ik)= t(ik)
+        each col in [{ id: 'you', items: 3 }, { id: 'me', items: 2 }, { id: 'know', items: 4 }]
+          - var c = 'courses.practical.' + col.id + '.'
+          .courses-practical__block
+            h3.subsection-title(data-i18n=(c + 'title'))= t(c + 'title')
+            ul.courses-practical__list
+              - var itemKeys = []
+              - for (var i = 1; i <= col.items; i++) itemKeys.push(c + 'i' + i)
+              each ik in itemKeys
+                li(data-i18n=ik)= t(ik)
+        //- Framed: the one thing to sort out before the lesson
+        .courses-practical__note
+          h3.subsection-title(data-i18n='courses.practical.double.title')= t('courses.practical.double.title')
+          p(data-i18n='courses.practical.double.text')= t('courses.practical.double.text')
+
         .courses-practical__footer
           a.cta(href='#contact' data-i18n='courses.cta')= t('courses.cta')
 

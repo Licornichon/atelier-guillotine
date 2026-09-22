@@ -105,13 +105,36 @@
   &__step-text {
     color: $color-text-muted;
   }
+}
 
-  // The one practical thing to prepare before the lesson, set apart
+// ─── What to have ready: plain text, same shape as the homepage teaser ──────
+.courses-practical {
+  @include section-padding;
+  text-align: center;
+
+  // Block centred in the section, text ranged left (see .commissions-teaser)
+  &__block {
+    max-width: 40rem;
+    margin: 0 auto 2.5rem;
+    text-align: left;
+  }
+
+  &__list {
+    color: $color-text-muted;
+    list-style: disc;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  // The one thing to sort out before the lesson, framed so it is not missed
   &__note {
-    @include container;
-    max-width: 44rem;
-    margin-top: 3rem;
+    max-width: 40rem;
+    margin: 0 auto 2.5rem;
     padding: 2rem;
+    text-align: left;
     background: var(--section-alt);
     border: 1px solid $color-border;
 
@@ -119,31 +142,8 @@
       color: $color-text-muted;
     }
   }
-}
-
-// ─── What to have ready: three columns, then the call to action ─────────────
-.courses-practical {
-  @include section-padding;
-
-  &__grid {
-    @include container;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-
-    @media (max-width: $bp-md) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__col {
-    background: var(--section-alt);
-    border: 1px solid $color-border;
-    padding: 2rem;
-  }
 
   &__footer {
     text-align: center;
-    margin-top: 3rem;
   }
 }
