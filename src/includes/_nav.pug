@@ -45,9 +45,9 @@ mixin nav(page, options)
             li: a(
               href=href
               class=[link.cta ? 'cta nav__cta' : 'nav__link', isCurrent ? 'is-active' : null]
-              data-i18n=link.key
+              data-i18n-html=link.key
               aria-current=(isCurrent ? 'page' : undefined)
-            )= t(link.key)
+            )!= t(link.key)
       .nav__lang
         button.nav__lang-btn(data-lang='fr' aria-pressed='true') FR
         span.nav__lang-sep(aria-hidden='true') |

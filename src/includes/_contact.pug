@@ -1,9 +1,13 @@
 //- ──────────────────────────────────────────
 //- CONTACT (shared: homepage + shop)
 //- ──────────────────────────────────────────
+//- Heading and message placeholder can be overridden page by page: set
+//- contactTitleKey / contactPlaceholderKey before the include (shop.pug, courses.pug)
+- var titleKey = typeof contactTitleKey !== 'undefined' ? contactTitleKey : 'contact.title'
+- var messageKey = typeof contactPlaceholderKey !== 'undefined' ? contactPlaceholderKey : 'contact.messagePlaceholder'
 section#contact.contact
   .contact__inner
-    h2.section-title.contact__title(data-i18n='contact.title')= t('contact.title')
+    h2.section-title.contact__title(data-i18n=titleKey)= t(titleKey)
     p.section-subtitle(data-i18n='contact.subtitle')= t('contact.subtitle')
     form.contact__form(action='https://api.web3forms.com/submit' method='post')
       input(type='hidden' name='access_key' value='8245691b-287d-4e48-bb57-a530484efc3a')
@@ -21,8 +25,8 @@ section#contact.contact
         input.form__input#email(type='email' name='email' required data-i18n-placeholder='contact.emailPlaceholder' placeholder=t('contact.emailPlaceholder'))
       .form__group
         label.form__label(for='message' data-i18n='contact.message')= t('contact.message')
-        textarea.form__textarea#message(name='message' required rows='6' data-i18n-placeholder='contact.messagePlaceholder' placeholder=t('contact.messagePlaceholder'))
-      button.form__submit(type='submit' data-i18n='contact.submit')= t('contact.submit')
+        textarea.form__textarea#message(name='message' required rows='6' data-i18n-placeholder=messageKey placeholder=t(messageKey))
+      button.form__submit(type='submit' data-i18n-html='contact.submit')!= t('contact.submit')
       //- Notice at point of collection (GDPR art. 13)
       //- TODO: hidden because the text links to /legal#personal-data, a page that
       //- is not generated yet (see webpack.config.js). Restore it with the page.

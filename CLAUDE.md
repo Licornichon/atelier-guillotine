@@ -55,7 +55,7 @@ No CDN fonts: self-hosted in `_fonts.scss` (`src/fonts/`).
 
 ## Pages & sections
 
-Homepage (`index.pug`) order: hero → gallery → commissions teaser (links to `./commissions`) → pricing → **FAQ / contact / about** (`include`d) → footer. The commission cards themselves live on `commissions.pug` (hero → cards → pricing → FAQ / contact / about).
+Homepage (`index.pug`) order: hero → teasers (one column per inner page: commissions, courses, shop; the shop column only when something is for sale) → gallery → **FAQ / contact / about** (`include`d) → footer. The commission cards themselves live on `commissions.pug` (hero → cards → pricing → FAQ / contact / about).
 
 | section | id | scss |
 |---|---|---|

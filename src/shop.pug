@@ -40,7 +40,7 @@ html(lang='fr' data-page=page)
         id: 'shop-hero',
         title: 'shop.hero.title',
         subtitle: 'shop.hero.subtitle',
-        left: { src: './assets/generated/hero/etheldin.webp', altKey: 'hero.alt.etheldin' },
+        left: { src: './assets/generated/hero/voleur.webp', altKey: 'hero.alt.voleur' },
         right: { src: './assets/generated/hero/machaon.webp', altKey: 'hero.alt.machaon' },
       })
 
@@ -55,7 +55,7 @@ html(lang='fr' data-page=page)
           script#shop-i18n-data(type='application/json').
             !{JSON.stringify(shopI18nMap).replace(/</g, '\\u003c')}
           ul.shop__list
-            each item, i in shopItems
+            each item in shopItems
               - var loc = item.i18n.fr.name ? item.i18n.fr : item.i18n.en
               //- Grid areas (_shop.scss): head / media / body. Two columns: media on the
               //- left, head + body on the right. One column: head, media, body.
@@ -122,9 +122,9 @@ html(lang='fr' data-page=page)
                 .shop__body
                   if loc.description
                     p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
-                  //- Two button texts, alternating card after card (shop.item.cta.0 / .1)
-                  - var ctaKey = 'shop.item.cta.' + (i % 2)
-                  a.cta.shop__cta(href='#contact' data-i18n=ctaKey)= t(ctaKey)
+                  //- Button wording follows the status: buy it, or be told if it frees up
+                  - var ctaKey = item.status === 'reserved' ? 'shop.item.ctaReserved' : 'shop.item.cta'
+                  a.cta.shop__cta(href='#contact' data-i18n-html=ctaKey)!= t(ctaKey)
         else
           p.shop__empty(data-i18n='shop.empty')= t('shop.empty')
 
@@ -132,6 +132,8 @@ html(lang='fr' data-page=page)
       //- Sections shared with the homepage (see src/includes/)
       //- ──────────────────────────────────────────
       - var contactSubject = "Shop enquiry | Atelier Guillotine"
+      - var contactTitleKey = 'contact.shop.title'
+      - var contactPlaceholderKey = 'contact.shop.messagePlaceholder'
       include includes/_contact
 
       include includes/_about

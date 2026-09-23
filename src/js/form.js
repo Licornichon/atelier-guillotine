@@ -14,7 +14,7 @@ const { t } = require('./lang')
     if (honeypot && honeypot.value) return
 
     submit.disabled = true
-    submit.textContent = t('contact.sending')
+    submit.innerHTML = t('contact.sending')
     feedback.textContent = ''
     feedback.className = 'contact__feedback'
 
@@ -31,7 +31,7 @@ const { t } = require('./lang')
           feedback.textContent = t('contact.success')
           feedback.classList.add('contact__feedback--success')
           form.reset()
-          submit.textContent = t('contact.sent')
+          submit.innerHTML = t('contact.sent')
         } else {
           throw new Error(data.message)
         }
@@ -40,7 +40,7 @@ const { t } = require('./lang')
         feedback.textContent = t('contact.error')
         feedback.classList.add('contact__feedback--error')
         submit.disabled = false
-        submit.textContent = t('contact.submit')
+        submit.innerHTML = t('contact.submit')
       })
   })
 })()

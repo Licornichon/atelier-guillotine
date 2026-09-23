@@ -15,6 +15,6 @@ section#faq.faq
               type='button'
               aria-expanded='false'
               aria-controls=('faq-answer-' + n)
-              data-i18n=('faq.q' + n + '.title')
-            )= t('faq.q' + n + '.title')
+              data-i18n-html=('faq.q' + n + '.title')
+            )!= t('faq.q' + n + '.title')
           p.faq__answer(id=('faq-answer-' + n) data-i18n=('faq.q' + n + '.answer'))= t('faq.q' + n + '.answer')

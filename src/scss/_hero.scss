@@ -98,24 +98,30 @@
   }
 }
 
-// Shop hero only, small laptops: right image 30% (of its width) closer to the center
-#shop-hero .hero__bg-right {
-  transform: translateX(-20%);
+// Shop hero only
+#shop-hero {
+  // Small laptops: right image 30% (of its width) closer to the center
+  .hero__bg-right {
+    transform: translateX(-20%);
 
-  @media (min-width: 1280px) and (max-width: 1440px) {
-    transform: translateX(-10%);
+    @media (min-width: 1280px) and (max-width: 1440px) {
+      transform: translateX(-10%);
+    }
   }
-}
 
-// Commissions hero only
-#commissions-hero {
+  // Left image: shortened and pushed out, above tablet only
   @media (min-width: 1025px) {
     .hero__bg-left {
       height: 95%;
       top: 5%;
       left: -2rem;
     }
+  }
+}
 
-    .hero__bg-right { transform: translateX(-10%); }
+// Commissions hero only
+#commissions-hero .hero__bg-right {
+  @media (min-width: 1025px) {
+    transform: translateX(-10%);
   }
 }
