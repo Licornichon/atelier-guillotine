@@ -45,6 +45,37 @@ html(lang='fr' data-page=page)
       })
 
       //- ──────────────────────────────────────────
+      //- SERVICES: one column per page it points at (commissions.pug, courses.pug)
+      //- ──────────────────────────────────────────
+      section#commissions.home-teasers
+        h2.section-title(data-i18n='home.teasers.title')= t('home.teasers.title')
+        .home-teasers__inner
+          .home-teasers__col
+            h3.subsection-title(data-i18n='home.commissions.title')= t('home.commissions.title')
+            p.home-teasers__text(data-i18n='home.commissions.text')= t('home.commissions.text')
+            ul.home-teasers__list.bullet-list
+              each id in ['tr', 'ttp', 'display']
+                - var k = 'commissions.' + id + '.'
+                li
+                  strong(data-i18n=(k + 'name'))= t(k + 'name')
+                  span(data-i18n='list.sep')= t('list.sep')
+                  span(data-i18n=(k + 'tagline'))= t(k + 'tagline')
+            p.home-teasers__text(data-i18n='home.commissions.text2')= t('home.commissions.text2')
+            a.cta(href='./commissions' data-i18n='home.commissions.cta')= t('home.commissions.cta')
+          .home-teasers__col
+            h3.subsection-title(data-i18n='home.courses.title')= t('home.courses.title')
+            p.home-teasers__text(data-i18n='home.courses.text')= t('home.courses.text')
+            ul.home-teasers__list.bullet-list
+              each n in [1, 2, 3]
+                - var k = 'home.courses.i' + n + '.'
+                li
+                  strong(data-i18n=(k + 'label'))= t(k + 'label')
+                  span(data-i18n='list.sep')= t('list.sep')
+                  span(data-i18n=(k + 'text'))= t(k + 'text')
+            p.home-teasers__text(data-i18n='home.courses.text2')= t('home.courses.text2')
+            a.cta(href='./courses' data-i18n='home.courses.cta')= t('home.courses.cta')
+
+      //- ──────────────────────────────────────────
       //- GALLERY
       //- Images scanned at build time from assets/media/gallery/{battle-ready,tabletop-plus,display}/
       //- (order: PRIORITY in scripts/generate-gallery.js, then newest first)
@@ -94,37 +125,6 @@ html(lang='fr' data-page=page)
                       data-i18n='gallery.price'
                       data-i18n-vars=JSON.stringify({ price: item.price })
                     )= t('gallery.price', { price: item.price })
-
-      //- ──────────────────────────────────────────
-      //- SERVICES: one column per page it points at (commissions.pug, courses.pug)
-      //- ──────────────────────────────────────────
-      section#commissions.home-teasers
-        h2.section-title(data-i18n='home.teasers.title')= t('home.teasers.title')
-        .home-teasers__inner
-          .home-teasers__col
-            h3.subsection-title(data-i18n='home.commissions.title')= t('home.commissions.title')
-            p.home-teasers__text(data-i18n='home.commissions.text')= t('home.commissions.text')
-            ul.home-teasers__list.bullet-list
-              each id in ['tr', 'ttp', 'display']
-                - var k = 'commissions.' + id + '.'
-                li
-                  strong(data-i18n=(k + 'name'))= t(k + 'name')
-                  span(data-i18n='list.sep')= t('list.sep')
-                  span(data-i18n=(k + 'tagline'))= t(k + 'tagline')
-            p.home-teasers__text(data-i18n='home.commissions.text2')= t('home.commissions.text2')
-            a.cta(href='./commissions' data-i18n='home.commissions.cta')= t('home.commissions.cta')
-          .home-teasers__col
-            h3.subsection-title(data-i18n='home.courses.title')= t('home.courses.title')
-            p.home-teasers__text(data-i18n='home.courses.text')= t('home.courses.text')
-            ul.home-teasers__list.bullet-list
-              each n in [1, 2, 3]
-                - var k = 'home.courses.i' + n + '.'
-                li
-                  strong(data-i18n=(k + 'label'))= t(k + 'label')
-                  span(data-i18n='list.sep')= t('list.sep')
-                  span(data-i18n=(k + 'text'))= t(k + 'text')
-            p.home-teasers__text(data-i18n='home.courses.text2')= t('home.courses.text2')
-            a.cta(href='./courses' data-i18n='home.courses.cta')= t('home.courses.cta')
 
       //- ──────────────────────────────────────────
       //- FAQ / CONTACT / ABOUT: shared with shop.pug, see src/includes/
