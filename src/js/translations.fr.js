@@ -59,6 +59,9 @@ module.exports = {
   'home.courses.i3.text':   "déplacement offert dans Paris, défraiement au-delà.",
   'home.courses.text2':     "Théorie, démonstration, puis pratique guidée sur votre propre figurine.",
   'home.courses.cta':       'Voir les cours',
+  'home.shop.title':        'Boutique',
+  'home.shop.text':         "Je propose aussi des figurines que j’ai déjà peintes, réunies en lots visibles dans la boutique. Elles partent en l’état, sans modification, mais je peux leur peindre de nouvelles unités au même schéma pour agrandir la force.",
+  'home.shop.cta':          'Voir les figurines<br>passées sur le billot',
 
   'commissions.meta.title':       "Peinture de figurines sur commande | Atelier Guillotine | Niveaux de finition et tarifs",
   'commissions.meta.description': "Trois niveaux de peinture de figurines sur commande chez Atelier Guillotine : Battle Ready, Tabletop+ et Display.",

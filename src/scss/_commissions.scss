@@ -31,7 +31,7 @@
   }
 }
 
-// Homepage: the two services side by side, each pointing at its own page.
+// Homepage: the services side by side, each pointing at its own page.
 // Deliberately plain text, the detail lives on commissions.pug and courses.pug.
 .home-teasers {
   @include section-padding;
@@ -39,14 +39,26 @@
 
   &__inner {
     @include container;
+    // Wider than the usual 1200px container: three columns need the room.
+    // Falls back to the available width on narrower screens.
+    max-width: $container-wide;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 4rem;
 
-    // Stacked: one under the other
-    @media (max-width: $bp-md) {
+    // Stacked: one under the other. Three columns need the room, so they
+    // give up earlier than two did.
+    @media (max-width: $bp-lg) {
       grid-template-columns: 1fr;
-      gap: 3rem;
+    }
+  }
+
+  // Shop empty: the third column is not rendered at all (index.pug)
+  &__inner--two {
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -66,7 +78,7 @@
     border-left: 1px solid $color-border;
     padding-left: 4rem;
 
-    @media (max-width: $bp-md) {
+    @media (max-width: $bp-lg) {
       border-left: none;
       border-top: 1px solid $color-border;
       padding-left: 0;

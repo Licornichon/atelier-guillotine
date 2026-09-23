@@ -81,7 +81,7 @@ html(lang='fr' data-page=page)
                 each fk in featKeys
                   li(data-i18n=fk)= t(fk)
         .commissions__footer
-          a.cta(href='#contact' data-i18n='commissions.cta')= t('commissions.cta')
+          a.cta(href='#contact' data-i18n-html='commissions.cta')!= t('commissions.cta')
 
       include includes/_pricing
 

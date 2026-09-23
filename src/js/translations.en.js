@@ -59,6 +59,9 @@ module.exports = {
   'home.courses.i3.text':   'travel is free within Paris, expenses beyond it.',
   'home.courses.text2':     'Theory first, then I paint the technique in front of you, then it is your turn.',
   'home.courses.cta':       'See the lessons',
+  'home.shop.title':        'Shop',
+  'home.shop.text':         'I also sell miniatures I have painted myself, grouped into lots you can browse in the shop. Each lot goes as it stands, with nothing altered, but I am happy to paint new units in the same scheme to expand it.',
+  'home.shop.cta':          'See the minis<br>fresh off the block',
 
   'commissions.meta.title':       "Painting Commissions | Atelier Guillotine | Levels of finish and pricing",
   'commissions.meta.description': "Three levels of miniature painting commissions by Atelier Guillotine: Battle Ready, Tabletop+ and Display.",

@@ -45,11 +45,12 @@ html(lang='fr' data-page=page)
       })
 
       //- ──────────────────────────────────────────
-      //- SERVICES: one column per page it points at (commissions.pug, courses.pug)
+      //- SERVICES: one column per page it points at (commissions, courses, shop)
       //- ──────────────────────────────────────────
       section#commissions.home-teasers
         h2.section-title(data-i18n='home.teasers.title')= t('home.teasers.title')
-        .home-teasers__inner
+        //- Two columns when the shop is empty, three when it has pieces
+        .home-teasers__inner(class=(shopItems && shopItems.length ? undefined : 'home-teasers__inner--two'))
           .home-teasers__col
             h3.subsection-title(data-i18n='home.commissions.title')= t('home.commissions.title')
             p.home-teasers__text(data-i18n='home.commissions.text')= t('home.commissions.text')
@@ -61,7 +62,7 @@ html(lang='fr' data-page=page)
                   span(data-i18n='list.sep')= t('list.sep')
                   span(data-i18n=(k + 'tagline'))= t(k + 'tagline')
             p.home-teasers__text(data-i18n='home.commissions.text2')= t('home.commissions.text2')
-            a.cta(href='./commissions' data-i18n='home.commissions.cta')= t('home.commissions.cta')
+            a.cta(href='./commissions' data-i18n-html='home.commissions.cta')!= t('home.commissions.cta')
           .home-teasers__col
             h3.subsection-title(data-i18n='home.courses.title')= t('home.courses.title')
             p.home-teasers__text(data-i18n='home.courses.text')= t('home.courses.text')
@@ -73,7 +74,11 @@ html(lang='fr' data-page=page)
                   span(data-i18n='list.sep')= t('list.sep')
                   span(data-i18n=(k + 'text'))= t(k + 'text')
             p.home-teasers__text(data-i18n='home.courses.text2')= t('home.courses.text2')
-            a.cta(href='./courses' data-i18n='home.courses.cta')= t('home.courses.cta')
+            a.cta(href='./courses' data-i18n-html='home.courses.cta')!= t('home.courses.cta')
+          .home-teasers__col
+            h3.subsection-title(data-i18n='home.shop.title')= t('home.shop.title')
+            p.home-teasers__text(data-i18n='home.shop.text')= t('home.shop.text')
+            a.cta(href='./shop' data-i18n-html='home.shop.cta')!= t('home.shop.cta')
 
       //- ──────────────────────────────────────────
       //- GALLERY
@@ -84,10 +89,10 @@ html(lang='fr' data-page=page)
       section#gallery.gallery
         h2.section-title(data-i18n='gallery.title')= t('gallery.title')
         .gallery__filters(role='group' aria-label=t('gallery.filtersLabel') data-i18n-aria='gallery.filtersLabel')
-          button.gallery__filter.is-active(data-filter='all' data-i18n='gallery.all' aria-pressed='true')= t('gallery.all')
-          button.gallery__filter(data-filter='battle-ready' data-i18n='gallery.tr' aria-pressed='false')= t('gallery.tr')
-          button.gallery__filter(data-filter='tabletop-plus' data-i18n='gallery.ttp' aria-pressed='false')= t('gallery.ttp')
-          button.gallery__filter(data-filter='display' data-i18n='gallery.display' aria-pressed='false')= t('gallery.display')
+          button.gallery__filter.is-active(data-filter='all' data-i18n-html='gallery.all' aria-pressed='true')!= t('gallery.all')
+          button.gallery__filter(data-filter='battle-ready' data-i18n-html='gallery.tr' aria-pressed='false')!= t('gallery.tr')
+          button.gallery__filter(data-filter='tabletop-plus' data-i18n-html='gallery.ttp' aria-pressed='false')!= t('gallery.ttp')
+          button.gallery__filter(data-filter='display' data-i18n-html='gallery.display' aria-pressed='false')!= t('gallery.display')
         .gallery__grid
           .gallery__sizer
           if galleryItems && galleryItems.length

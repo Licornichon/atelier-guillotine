@@ -79,7 +79,7 @@ html(lang='fr' data-page=page)
                 span(data-i18n=(k + 'text'))= t(k + 'text')
 
         .courses-method__footer
-          a.cta(href='#contact' data-i18n='courses.cta')= t('courses.cta')
+          a.cta(href='#contact' data-i18n-html='courses.cta')!= t('courses.cta')
 
       //- ──────────────────────────────────────────
       //- RATES. Solo prices per duration; the pair and small-group columns are

@@ -124,7 +124,7 @@ html(lang='fr' data-page=page)
                     p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
                   //- Button wording follows the status: buy it, or be told if it frees up
                   - var ctaKey = item.status === 'reserved' ? 'shop.item.ctaReserved' : 'shop.item.cta'
-                  a.cta.shop__cta(href='#contact' data-i18n=ctaKey)= t(ctaKey)
+                  a.cta.shop__cta(href='#contact' data-i18n-html=ctaKey)!= t(ctaKey)
         else
           p.shop__empty(data-i18n='shop.empty')= t('shop.empty')
 
