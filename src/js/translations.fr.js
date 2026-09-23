@@ -23,7 +23,7 @@ module.exports = {
 
   'about.title':    'À propos',
   'about.p1':       "Je m'appelle Antoine. Je pratique les wargames depuis 25 ans et je perfectionne ma peinture depuis plus de 15 ans. Au fil du temps, j’ai réalisé plusieurs armées et remporté des récompenses lors de concours nationaux et internationaux.",
-  'about.p2':       "Je mets aujourd’hui cette expérience au service de vos projets à travers des prestations de peinture sur commande. Une armée cohérente prête pour la table, une pièce d’exposition qu’on regarde de près : je peins chaque figurine au niveau que le projet demande. Je prends en charge la peinture pour vous permettre de vous concentrer sur le jeu et votre collection.",
+  'about.p2':       "Je mets aujourd’hui cette expérience au service de vos projets à travers des commissions de peinture. Une armée cohérente prête pour la table, une pièce d’exposition qu’on regarde de près : je peins chaque figurine au niveau que le projet demande. Je prends en charge la peinture pour vous permettre de vous concentrer sur le jeu et votre collection.",
   // The medal emoji are deliberate: they say which medals were won.
   // This is data, not decoration, so leave them in place.
   'about.awardsTitle':                 'Palmarès',
@@ -44,12 +44,23 @@ module.exports = {
 
   // Homepage section pointing to the commissions page
   'home.commissions.text2': "Chaque niveau est détaillé étape par étape, de la préparation au vernis. De quoi mesurer le travail derrière chaque figurine avant de me décrire votre projet.",
-  'home.commissions.title': 'Peinture sur commande',
+  'home.commissions.title': 'Commissions de peinture',
   'home.commissions.text':  "Trois niveaux de finition, du plus rapide au plus poussé. Une armée complète à sortir avant un tournoi ne demande pas le même travail qu’une pièce unique destinée à la vitrine, et le prix suit cette différence. À vous de dire où se situe votre projet.",
   'list.sep':   ' : ',
-  'home.commissions.cta':  'Voir le détail',
+  'home.commissions.cta':  'Voir les niveaux',
+  'home.teasers.title':     'Prestations',
+  'home.courses.title':     'Cours de peinture',
+  'home.courses.text':      "Je me déplace chez vous pour un cours particulier, seul ou jusqu’à quatre. Tous les niveaux, du débutant complet au peintre de compétition.",
+  'home.courses.i1.label':  'Le format',
+  'home.courses.i1.text':   "des séances de 1 h, 3 h ou 6 h, calées sur ce que vous voulez travailler.",
+  'home.courses.i2.label':  'À plusieurs',
+  'home.courses.i2.text':   "tarif dégressif dès deux participants, et jusqu’à quatre autour de la table.",
+  'home.courses.i3.label':  'À domicile',
+  'home.courses.i3.text':   "déplacement offert dans Paris, défraiement au-delà.",
+  'home.courses.text2':     "Théorie, démonstration, puis pratique guidée sur votre propre figurine.",
+  'home.courses.cta':       'Voir les cours',
 
-  'commissions.meta.title':       "Peinture sur commande | Atelier Guillotine | Niveaux de finition et tarifs",
+  'commissions.meta.title':       "Peinture de figurines sur commande | Atelier Guillotine | Niveaux de finition et tarifs",
   'commissions.meta.description': "Trois niveaux de peinture de figurines sur commande chez Atelier Guillotine : Battle Ready, Tabletop+ et Display.",
   'commissions.hero.title':    'Peinture sur<br>Commande',
   'commissions.hero.subtitle': 'Trois niveaux de finition : <br>à vous de trancher.',

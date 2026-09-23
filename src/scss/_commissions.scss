@@ -31,29 +31,62 @@
   }
 }
 
-// Homepage: short section pointing to the commissions page. Deliberately plain
-// text: the detail lives on commissions.pug.
-.commissions-teaser {
+// Homepage: the two services side by side, each pointing at its own page.
+// Deliberately plain text, the detail lives on commissions.pug and courses.pug.
+.home-teasers {
   @include section-padding;
   text-align: center;
 
-  // One level per line: the shared .bullet-list, in the same column as the text
-  &__list {
-    max-width: $text-max;
-    margin: 0 auto 2rem;
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+
+    // Stacked: one under the other
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
   }
 
-  // Two paragraphs: one introduces the list, the last one leads into the button.
-  // Block centred in the section, text ranged left like the list above.
+  // Both buttons line up on the same baseline whatever each column holds
+  &__col {
+    display: flex;
+    flex-direction: column;
+
+    .cta {
+      align-self: center;
+      margin-top: auto;
+    }
+  }
+
+  // The rule between the columns rides on the second one, and lies down with it
+  &__col + &__col {
+    border-left: 1px solid $color-border;
+    padding-left: 4rem;
+
+    @media (max-width: $bp-md) {
+      border-left: none;
+      border-top: 1px solid $color-border;
+      padding-left: 0;
+      padding-top: 3rem;
+    }
+  }
+
+  // Headings and buttons centre with the section, running text ranges left
   &__text {
     color: $color-text-muted;
-    max-width: $text-max;
-    margin: 0 auto 1.5rem;
     text-align: left;
+    margin-bottom: 1.5rem;
 
     &:last-of-type {
       margin-bottom: 2.5rem;
     }
+  }
+
+  &__list {
+    margin-bottom: 2rem;
   }
 }
 
