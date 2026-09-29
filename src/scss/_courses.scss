@@ -4,10 +4,20 @@
 .courses-method {
   @include section-padding;
 
-  // Introduction opening the section, as wide as the steps below it
+  // Introduction opening the section, as wide as the steps below it:
+  // text on the left, what to bring framed on the right
   &__intro {
     @include container;
     margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+
+    @media (max-width: $bp-md) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
 
     p {
       color: $color-text-muted;
@@ -15,6 +25,21 @@
 
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+
+    // What the student brings: framed, in full text colour
+    .courses-method__notice {
+      background: $color-bg-lighter;
+      border-left: 3px solid $color-accent;
+      padding: 1rem 1.25rem;
+
+      p {
+        color: $color-text;
+      }
+
+      strong {
+        color: $color-accent;
       }
     }
   }

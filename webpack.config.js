@@ -6,6 +6,11 @@ const os = require('os')
 
 const src = path.join(__dirname, 'src')
 
+// Pages built by HtmlWebpackPlugin (src/<page>.pug), and the output folder of
+// each language
+const PAGES = ['index', 'commissions', 'courses', 'shop']
+const LANGS = { fr: '', en: 'en/' }
+
 // CSS: separate bundle.css in production (styled first paint, stable anchor
 // jumps); injected by style-loader in dev (instant hot reload of styles)
 const isProd = process.argv.includes('--mode=production') // npm run build:prod
@@ -29,6 +34,7 @@ module.exports = {
     // Parité avec le .htaccess de prod : /shop sert shop.html en local aussi.
     historyApiFallback: {
       rewrites: [
+        { from: /^\/en\/?$/, to: '/en/index.html' },
         { from: /^\/(.+?)\/?$/, to: (ctx) => '/' + ctx.match[1] + '.html' },
       ],
     },
@@ -114,31 +120,18 @@ module.exports = {
         { from: path.join(src, 'static'), to: '.', noErrorOnMissing: true },
       ],
     }),
-    new HtmlWebpackPlugin({
-      template: path.join(src, 'index.pug'),
-      filename: 'index.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(src, 'commissions.pug'),
-      filename: 'commissions.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(src, 'courses.pug'),
-      filename: 'courses.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(src, 'shop.pug'),
-      filename: 'shop.html',
-    }),
+    // Every page twice: French at the root (shop.html → /shop), English under
+    // en/ (en/shop.html → /en/shop). Same template, the language travels in the
+    // query and loaders/pug-with-data.js picks the matching translations.
+    ...PAGES.flatMap(page => Object.entries(LANGS).map(([lang, dir]) => new HtmlWebpackPlugin({
+      template: path.join(src, page + '.pug') + '?lang=' + lang,
+      filename: dir + page + '.html',
+    }))),
     // TODO: Legal notice / privacy page is deliberately not generated for now
     // (incomplete content: NOM_PRENOM / NUMEROSIRET / MEDIATEUR_NOM… placeholders
     // are not filled in yet). The src/legal.pug template is kept.
-    // To bring it back: uncomment below, then restore the footer link
-    // (index.pug + shop.pug) and the GDPR notice in the contact form
+    // To bring it back: add 'legal' to PAGES, then restore the footer link
+    // (every page) and the GDPR notice in the contact form
     // (src/includes/_contact.pug). Legal requirement: do this before going public.
-    // new HtmlWebpackPlugin({
-    //   template: path.join(src, 'legal.pug'),
-    //   filename: 'legal.html',
-    // }),
   ],
 }

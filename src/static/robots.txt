@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /legal
+Disallow: /en/legal
 
 Sitemap: https://www.atelierguillotine.com/sitemap.xml

@@ -1,30 +1,9 @@
 doctype html
 - var page = 'shop'
-html(lang='fr' data-page=page)
+html(lang=lang data-page=page)
   head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description' data-i18n-content='shop.meta.description' content=t('shop.meta.description'))
-    title(data-i18n='shop.meta.title')= t('shop.meta.title')
-    link(rel='canonical' href=siteUrl + '/shop')
-    //- Open Graph, hardcoded in French: scrapers never run the i18n JS
-    meta(property='og:type' content='website')
-    meta(property='og:site_name' content='Atelier Guillotine')
-    meta(property='og:locale' content='fr_FR')
-    meta(property='og:url' content=siteUrl + '/shop')
-    meta(property='og:title' content='Boutique | Atelier Guillotine | Figurines peintes à vendre')
-    meta(property='og:description' content='Figurines peintes actuellement en vente : pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.')
-    meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
-    meta(property='og:image:width' content='1200')
-    meta(property='og:image:height' content='630')
-    meta(property='og:image:alt' content='Figurines peintes par Atelier Guillotine')
-    //- Favicons & PWA
-    link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
-    link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
-    link(rel='icon' type='image/png' sizes='96x96' href='./assets/media/favicon/favicon-96.png')
-    link(rel='icon' type='image/png' sizes='192x192' href='./assets/media/favicon/favicon-192.png')
-    link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
-    link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
+    include includes/_head
+    +head(page)
   body
     include includes/_nav
     include includes/_hero
@@ -40,8 +19,8 @@ html(lang='fr' data-page=page)
         id: 'shop-hero',
         title: 'shop.hero.title',
         subtitle: 'shop.hero.subtitle',
-        left: { src: './assets/generated/hero/voleur.webp', altKey: 'hero.alt.voleur' },
-        right: { src: './assets/generated/hero/machaon.webp', altKey: 'hero.alt.machaon' },
+        left: { src: '/assets/generated/hero/voleur.webp', altKey: 'hero.alt.voleur' },
+        right: { src: '/assets/generated/hero/machaon.webp', altKey: 'hero.alt.machaon' },
       })
 
       //- ──────────────────────────────────────────
@@ -51,19 +30,17 @@ html(lang='fr' data-page=page)
       section#shop.shop
         h2.section-title(data-i18n='shop.title')= t('shop.title')
         if shopItems && shopItems.length
-          - var shopI18nMap = shopItems.reduce(function (m, it) { m[it.slug] = it.i18n; return m }, {})
-          script#shop-i18n-data(type='application/json').
-            !{JSON.stringify(shopI18nMap).replace(/</g, '\\u003c')}
           ul.shop__list
             each item in shopItems
-              - var loc = item.i18n.fr.name ? item.i18n.fr : item.i18n.en
+              //- Texts in the page language (generate-shop.js falls back on the other one)
+              - var loc = item.i18n[lang]
               //- Grid areas (_shop.scss): head / media / body. Two columns: media on the
               //- left, head + body on the right. One column: head, media, body.
               li.shop__item(class=('shop__item--' + item.status))
                 .shop__head
                   if loc.tag
-                    span.shop__tag(data-shop-i18n=(item.slug + '.tag'))= loc.tag
-                  h3.shop__name(data-shop-i18n=(item.slug + '.name'))= loc.name
+                    span.shop__tag= loc.tag
+                  h3.shop__name= loc.name
                   .shop__meta
                     if item.level
                       span.shop__level(class=('shop__level--' + item.level) data-i18n=('shop.level.' + item.level))= t('shop.level.' + item.level)
@@ -98,7 +75,6 @@ html(lang='fr' data-page=page)
                       width=cover.width
                       height=cover.height
                       alt=loc.name
-                      data-shop-i18n-alt=(item.slug + '.name')
                       loading='lazy'
                     )
                   //- Thumbnails (every photo, first included): show the picked one in the main slot (shop.js)
@@ -121,7 +97,7 @@ html(lang='fr' data-page=page)
                           img(src=photo.thumb alt='' loading='lazy')
                 .shop__body
                   if loc.description
-                    p.shop__description(data-shop-i18n=(item.slug + '.description'))= loc.description
+                    p.shop__description= loc.description
                   //- Button wording follows the status: buy it, or be told if it frees up
                   - var ctaKey = item.status === 'reserved' ? 'shop.item.ctaReserved' : 'shop.item.cta'
                   a.cta.shop__cta(href='#contact' data-i18n-html=ctaKey)!= t(ctaKey)

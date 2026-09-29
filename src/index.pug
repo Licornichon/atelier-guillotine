@@ -1,30 +1,9 @@
 doctype html
 - var page = 'home'
-html(lang='fr' data-page=page)
+html(lang=lang data-page=page)
   head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description' data-i18n-content='home.meta.description' content=t('home.meta.description'))
-    title(data-i18n='home.meta.title')= t('home.meta.title')
-    link(rel='canonical' href=siteUrl + '/')
-    //- Open Graph, hardcoded in French: scrapers (Discord, WhatsApp…) never run the i18n JS
-    meta(property='og:type' content='website')
-    meta(property='og:site_name' content='Atelier Guillotine')
-    meta(property='og:locale' content='fr_FR')
-    meta(property='og:url' content=siteUrl + '/')
-    meta(property='og:title' content='Atelier Guillotine | Peinture de figurines sur commande')
-    meta(property='og:description' content='Service professionnel de peinture de figurines pour Warhammer et jeux de figurines. Armées prêtes à jouer, finitions soignées et pièces d’exposition.')
-    meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
-    meta(property='og:image:width' content='1200')
-    meta(property='og:image:height' content='630')
-    meta(property='og:image:alt' content='Figurines peintes par Atelier Guillotine')
-    //- Favicons & PWA
-    link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
-    link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
-    link(rel='icon' type='image/png' sizes='96x96' href='./assets/media/favicon/favicon-96.png')
-    link(rel='icon' type='image/png' sizes='192x192' href='./assets/media/favicon/favicon-192.png')
-    link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
-    link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
+    include includes/_head
+    +head(page)
   body
     include includes/_nav
     include includes/_hero
@@ -40,8 +19,8 @@ html(lang='fr' data-page=page)
         id: 'hero',
         title: 'hero.title',
         subtitle: 'hero.subtitle',
-        left: { src: './assets/generated/hero/hommesbetes.webp', altKey: 'hero.alt.hommesbetes' },
-        right: { src: './assets/generated/hero/pirate.webp', altKey: 'hero.alt.pirate' },
+        left: { src: '/assets/generated/hero/hommesbetes.webp', altKey: 'hero.alt.hommesbetes' },
+        right: { src: '/assets/generated/hero/pirate.webp', altKey: 'hero.alt.pirate' },
       })
 
       //- ──────────────────────────────────────────
@@ -101,7 +80,7 @@ html(lang='fr' data-page=page)
             - var levelKeys = { 'battle-ready': 'gallery.tr', 'tabletop-plus': 'gallery.ttp', display: 'gallery.display' }
             each item in galleryItems
               - var altVars = { level: levelKeys[item.level] }
-              - if (item.game && ('gallery.game.' + item.game) in i18nFr) altVars.game = 'gallery.game.' + item.game
+              - if (item.game && ('gallery.game.' + item.game) in i18n) altVars.game = 'gallery.game.' + item.game
               - var altKey = altVars.game ? 'gallery.alt' : 'gallery.altNoGame'
               //- Resized WebP copies (npm run generate): grid image + srcset, full-screen version as href
               a.gallery__item(

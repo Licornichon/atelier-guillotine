@@ -48,7 +48,15 @@ mixin nav(page, options)
               data-i18n-html=link.key
               aria-current=(isCurrent ? 'page' : undefined)
             )!= t(link.key)
+      //- Links to the same page in each language: /shop ↔ /en/shop
       .nav__lang
-        button.nav__lang-btn(data-lang='fr' aria-pressed='true') FR
-        span.nav__lang-sep(aria-hidden='true') |
-        button.nav__lang-btn(data-lang='en' aria-pressed='false') EN
+        each code, i in ['fr', 'en']
+          if i
+            span.nav__lang-sep(aria-hidden='true') |
+          a.nav__lang-btn(
+            href=pageUrl(page, code)
+            hreflang=code
+            lang=code
+            class=(code === lang ? 'is-active' : undefined)
+            aria-current=(code === lang ? 'true' : undefined)
+          )= code.toUpperCase()

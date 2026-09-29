@@ -25,7 +25,7 @@ npm run build:prod   # minified prod build → dist/
 ## Architecture
 
 - Entry `src/js/main.js` → `bundle.js` (injected into every page).
-- `HtmlWebpackPlugin` builds 3 pages: `index.html`←`src/index.pug`, `commissions.html`←`src/commissions.pug`, `shop.html`←`src/shop.pug`. **`legal.html` is temporarily disabled**: its plugin is commented out in `webpack.config.js`, along with the footer links (every page) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
+- `HtmlWebpackPlugin` builds every page of `PAGES` (`index`, `commissions`, `courses`, `shop`) once per language of `LANGS`: French at the root (`/shop`), English under `en/` (`/en/shop`). **`legal.html` is temporarily disabled**: it is left out of `PAGES` in `webpack.config.js`, along with the footer links (every page) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
 - SCSS is `require`d from `main.js`. `build:prod` extracts it into `bundle.css` linked in `<head>` (`mini-css-extract-plugin`: styled first paint, stable anchor jumps from another page); dev and `build` inject it with `style-loader`, so page jumps on load are still visible there.
 - Markup shared between pages lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`; `_pricing.pug` on home + commissions page, after `_price-grid.pug` = `priceRows`, also used by the commission cards). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
 - `dist/` not committed. `.gitignore`: `dist/`, `index.html`, `bundle.js`, `index.js`, `src/data/gallery.json`, `src/data/shop.json`.
@@ -34,7 +34,7 @@ npm run build:prod   # minified prod build → dist/
 
 | file | role |
 |---|---|
-| `lang.js` | i18n FR/EN, exports `t(key)` |
+| `lang.js` | exports `t(key)` for strings written by JS, in the page language (`<html lang>`) |
 | `anchors.js` | smooth scroll on nav links (`scrollIntoView`, nav offset = `section[id] { scroll-margin-top }`) + mobile menu (`.nav__menu.is-open`: links + FR/EN switch) |
 | `gallery.js` | level filter + Masonry; `imagesLoaded` → `msnry.layout()` |
 | `lightbox.js` | GLightbox: homepage gallery items, + shop card main photo (`data-shop-images`) |
@@ -78,7 +78,7 @@ Homepage (`index.pug`) order: hero → teasers (one column per inner page: commi
 - One folder per piece: `assets/media/shop/<slug>/` = `info.json` + image files (sorted by name, first = cover).
 - `info.json`: shared `price`, optional `retailPrice` (unpainted models, shown small under the price), `status` (`available`\|`reserved`), `level` (`battle-ready`\|`tabletop-plus`\|`display`), optional `order`; plus `fr` / `en` blocks each holding `name`, `tag`, `description` (one block is reused if the other is missing). `level` + `tag` render as card badges.
 - `info.json` is the only file to hand-edit; `generate-shop.js` derives `src/data/shop.json` (adds `slug`, `images[]`, groups translations under `i18n`). Webpack doesn't watch `info.json` → user re-runs `npm run generate` after edits.
-- Card text renders in FR by default; `shop.pug` emits `<script id="shop-i18n-data">` (map `{slug: {fr,en}}`) and `lang.js` switches `[data-shop-i18n="<slug>.<field>"]` elements FR/EN from it.
+- Card text comes from `item.i18n[lang]` at build time.
 - Remove a piece by deleting its folder (no "sold" status). Thumbnails swap the card's main photo (`shop.js`); the main photo opens the piece's full-screen gallery at the photo shown (`lightbox.js`). Format doc: `assets/media/shop/README.md`.
 
 ## Gallery
@@ -89,15 +89,11 @@ Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]
 
 ## i18n
 
-`translations.fr.js` / `translations.en.js`, flat `key → string`. `lang.js` sets `<html lang>`; detects `navigator.language` (`fr*`→FR else EN), overridable via nav buttons, stored in `localStorage['fc-lang']`.
+`translations.fr.js` / `translations.en.js`, flat `key → string`. Everything is translated **at build time**: webpack compiles each template as `<page>.pug?lang=fr|en`, and `loaders/pug-with-data.js` injects `lang`, the matching dictionary (`i18n`), `t(key[, vars])` (`{name}` placeholders filled from the key `vars[name]`, else the literal value) and `pageUrl(page, lang)`. Templates never hardcode copy.
 
-Templates never hardcode copy: static HTML text comes from `t(key)`, the French value injected by `loaders/pug-with-data.js` (which watches `translations.fr.js`); `lang.js` swaps it at runtime.
-
-Per-page `<title>` uses `data-i18n`, `<meta name=description>` uses `data-i18n-content`; page-scoped keys `home.meta.*` / `commissions.meta.*` / `shop.meta.*` / `legal.meta.title`. `<html data-page="home|commissions|shop|legal">` = hook.
+The nav FR/EN switch is a pair of links to the same page in the other language. `<head>` (description, title, canonical, `hreflang` alternates, Open Graph, favicons) comes from the `+head(page)` mixin in `includes/_head.pug`, keys `<page>.meta.*` / `<page>.og.*`. Asset URLs are root-relative (`/assets/…`) because the English pages sit one folder down. The `data-i18n*` attributes still in the templates are leftovers of the former runtime switch and no longer read.
 
 `legal.html` is a **single page** carrying both the French *mentions légales* (LCEN) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice links to. One footer link only. Its `legal.*` strings still contain UPPERCASE placeholders (`NOM_PRENOM`, `NUMEROSIRET`, `ADRESSE_POSTALE`, `EMAIL_CONTACT`, `MEDIATEUR_NOM`, `MEDIATEUR_SITE`, `JJ/MM/AAAA`); do not ship without replacing them.
-
-Pug attributes: `data-i18n` (textContent, incl. `<title>`; interpolates `data-i18n-vars` too) · `data-i18n-html` (innerHTML) · `data-i18n-placeholder` · `data-i18n-aria` (aria-label) · `data-i18n-alt` (img alt; `{name}` placeholders filled from `data-i18n-vars='{"name":"<key, else literal value>"}'`, `t(key, vars)` at build; used by gallery alts with `gallery.game.<sub-folder>`) · `data-i18n-label` (sets `data-label`, used by responsive pricing table) · `data-i18n-content` (content attr) · `data-shop-i18n="<slug>.<field>"` / `data-shop-i18n-alt` (shop-card text / img alt, resolved from the injected `shop-i18n-data` blob, not from `translations.*.js`).
 
 ## Contact form
 
@@ -105,7 +101,7 @@ Pug attributes: `data-i18n` (textContent, incl. `<title>`; interpolates `data-i1
 
 ## Deployment
 
-Canonical host is `https://www.atelierguillotine.com` (with `www`). The domain lives in **one place in code**: `SITE_URL` in `loaders/pug-with-data.js`, injected into every Pug template as `siteUrl` and used by the `canonical` and Open Graph tags. `src/static/{robots.txt,sitemap.xml}` (copied to `dist/` root by `CopyWebpackPlugin`) repeat it literally; update them too if the domain changes. Open Graph values are hardcoded in French because scrapers don't run the i18n JS; `legal.html` gets a canonical but no OG (it's `noindex` and excluded from the sitemap).
+Canonical host is `https://www.atelierguillotine.com` (with `www`). The domain lives in **one place in code**: `SITE_URL` in `loaders/pug-with-data.js`, injected into every Pug template as `siteUrl` and used by the `canonical` and Open Graph tags. `src/static/{robots.txt,sitemap.xml}` (copied to `dist/` root by `CopyWebpackPlugin`) repeat it literally; update them too if the domain changes. `legal.html` gets a canonical but no OG (it's `noindex` and excluded from the sitemap).
 
 Hosted on **OVH shared hosting** (France), not GitHub Pages. `.github/workflows/build.yml`: every push → `npm ci` + `npm run build:prod` → upload `dist/` as an artifact. `.github/workflows/deploy.yml` is triggered by `workflow_run` after a successful Build on `master` (so it only fires once it exists on `master`, the default branch), downloads that run's artifact and pushes `dist/` to OVH over SFTP (`lftp mirror`, server dir `www/`; OVH shared hosting doesn't support FTPS). Secrets: `OVH_FTP_SERVER`, `OVH_FTP_USERNAME`, `OVH_FTP_PASSWORD`. The domain is configured in the OVH panel; there is no `CNAME` file.
 

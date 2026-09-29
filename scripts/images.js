@@ -57,7 +57,7 @@ async function variant (src, outRel, presetName) {
   }
 
   const { width, height } = await sharp(out).metadata()
-  return { src: './assets/generated/' + rel, width, height }
+  return { src: '/assets/generated/' + rel, width, height }
 }
 
 // Photo shown in a grid / card (md, with lg in srcset for high-density screens)
