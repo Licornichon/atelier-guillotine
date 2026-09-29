@@ -1,6 +1,10 @@
 module.exports = {
   'home.meta.title':       "Atelier Guillotine | Peinture de figurines sur commande | Warhammer & jeux de figurines",
   'home.meta.description': "Service professionnel de peinture de figurines pour Warhammer et autres jeux de table. Des armées prêtes à jouer jusqu’aux pièces d’exposition sur devis.",
+  'home.og.title':       "Atelier Guillotine | Peinture de figurines sur commande",
+  'home.og.description': "Service professionnel de peinture de figurines pour Warhammer et jeux de figurines. Armées prêtes à jouer, finitions soignées et pièces d’exposition.",
+  // Open Graph: link previews (Discord, WhatsApp…)
+  'og.imageAlt':          "Figurines peintes par Atelier Guillotine",
 
   'nav.toggle':   'Ouvrir le menu',
   'nav.about':    'À propos',
@@ -65,6 +69,8 @@ module.exports = {
 
   'commissions.meta.title':       "Peinture de figurines sur commande | Atelier Guillotine | Niveaux de finition et tarifs",
   'commissions.meta.description': "Trois niveaux de peinture de figurines sur commande chez Atelier Guillotine : Battle Ready, Tabletop+ et Display.",
+  'commissions.og.title':       "Peinture de figurines sur commande | Atelier Guillotine",
+  'commissions.og.description': "Trois niveaux de peinture de figurines sur commande : Battle Ready, Tabletop+ et Display.",
   'commissions.hero.title':    'Peinture sur<br>Commande',
   'commissions.hero.subtitle': 'Trois niveaux de finition : <br>à vous de trancher.',
 
@@ -124,6 +130,8 @@ module.exports = {
   // and 30 % for three or four. courses.price places the euro sign.
   'courses.meta.title':              'Cours de peinture | Atelier Guillotine | Cours particuliers à domicile',
   'courses.meta.description':        "Cours de peinture sur figurines à domicile, donnés par un peintre médaillé en concours international. Théorie, démonstration, puis pratique guidée sur votre propre figurine.",
+  'courses.og.title':       "Cours de peinture | Atelier Guillotine | Cours particuliers à domicile",
+  'courses.og.description': "Cours de peinture sur figurines à domicile, seul ou en petit groupe. Théorie, démonstration, puis pratique guidée sur votre propre figurine.",
   'courses.hero.title':              'Cours de<br>Peinture',
   'courses.hero.subtitle':           'Des leçons personnalisées<br>en tête à tête.',
 
@@ -135,14 +143,14 @@ module.exports = {
   'courses.method.step1.title':      'Je vous explique',
   'courses.method.step1.text':       'On pose la théorie avant de toucher un pinceau : d’où vient la lumière, ce que fait un glacis, à quoi sert un lavis. Comprendre évite de reproduire un geste sans savoir ce qu’il produit.',
   'courses.method.step2.title':      'Je vous montre',
-  'courses.method.step2.text':       'Je peins la technique devant vous en commentant chaque passe. Vous voyez la quantité de peinture sur le pinceau, l’angle et la pression, ce qu’aucune vidéo ne rend vraiment.',
+  'courses.method.step2.text':       'Je peins la technique devant vous en commentant chaque passe. Vous voyez la quantité de peinture sur le pinceau, l’angle et la pression.',
   'courses.method.step3.title':      'Vous reproduisez',
-  'courses.method.step3.text':       'Vous refaites le geste sur votre figurine pendant que je corrige au fur et à mesure. C’est la partie la plus longue du cours, et la seule qui vous fasse progresser.',
+  'courses.method.step3.text':       'Vous refaites le geste sur votre figurine pendant que je corrige au fur et à mesure. C’est la partie la plus longue du cours, et celle qui vous fait le plus progresser.',
   // Three rubrics under the steps of courses.pug: what can be worked on,
   // what to have ready, and the practical points (the lessons FAQ folded in)
-  'courses.topics.title':            'Ce qu’on peut travailler',
-  'courses.topics.i1.label':         'Médium',
-  'courses.topics.i1.text':          "peinture acrylique, travaillée au pinceau et à l’aérographe.",
+  'courses.topics.title':            'Les thèmes au choix',
+  'courses.topics.i1.label':         'Peinture acrylique',
+  'courses.topics.i1.text':          "dilution et consistance, glacis, lavis, mélanges, palette humide.",
   'courses.topics.i2.label':         'Valeurs et lumière',
   'courses.topics.i2.text':          "d’où vient la lumière, où la poser, et jusqu’où pousser les valeurs pour que la figurine reste lisible à distance.",
   'courses.topics.i3.label':         'Contraste et points focaux',
@@ -163,8 +171,8 @@ module.exports = {
 
 
   'courses.rates.title':             'Tarifs des séances',
-  'courses.rates.coverTitle':        'Ce qui est compris',
-  'courses.rates.intro':             "Le tarif couvre la séance, pas le matériel : je viens avec mes peintures, on les utilise pendant le cours et je les remporte à la fin. Les figurines, c’est vous qui les fournissez, et vous gardez les deux, la vôtre comme celle que j’ai peinte devant vous. Les montants sont indiqués par personne.",
+  'courses.rates.coverTitle':        'Ce qui est inclus et ce qui ne l’est pas',
+  'courses.rates.intro':             "Le tarif couvre la leçon. Vous fournissez les deux figurines, je vous prête mes peintures pendant le cours, et vous gardez les deux à la fin : la vôtre et celle que j’ai peinte devant vous. Les montants sont indiqués par personne.",
   'courses.rates.col.duration':      'Durée',
   'courses.rates.col.solo':          'Seul',
   'courses.rates.col.duo':           'À deux',
@@ -197,6 +205,8 @@ module.exports = {
 
   'shop.meta.title':       "Boutique | Atelier Guillotine | Figurines peintes à vendre",
   'shop.meta.description': "Figurines peintes actuellement en vente chez Atelier Guillotine : pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.",
+  'shop.og.title':       "Boutique | Atelier Guillotine | Figurines peintes à vendre",
+  'shop.og.description': "Figurines peintes actuellement en vente : pièces d’exposition et niveau jeu pour Warhammer et autres jeux de figurines.",
   'shop.hero.title':    'Boutique',
   'shop.hero.subtitle': 'Des figurines déjà peintes<br>à acheter sur un coup de tête.',
   'shop.title':         'Actuellement en vente',
@@ -296,7 +306,7 @@ module.exports = {
   'legal.transfers.content':  "<p>L'hébergement du site est assuré en France par OVH SAS : les données de connexion ne quittent pas l'Union européenne.</p><p>Seul Web3Forms, utilisé pour l'acheminement des messages du formulaire de contact, est susceptible de traiter des données en dehors de l'Union européenne. Ce transfert est encadré par les garanties prévues au chapitre V du RGPD.</p>",
 
   'legal.cookies.title':      "Cookies et stockage",
-  'legal.cookies.content':    "<p>Ce site n'utilise aucun cookie de suivi, de mesure d'audience ou publicitaire.</p><p>Votre préférence de langue est enregistrée localement dans votre navigateur (localStorage, clé fc-lang). Ce stockage est strictement fonctionnel, déclenché par votre propre choix, et ne requiert donc pas de consentement préalable.</p>",
+  'legal.cookies.content':    "<p>Ce site n'utilise aucun cookie et n'enregistre rien dans votre navigateur.</p>",
 
   'legal.retention.title':    "Conservation des données",
   'legal.retention.content':  "<p>Vos données ne sont ni vendues, ni cédées, ni utilisées à des fins de prospection commerciale.</p><p>Elles sont conservées jusqu'à 12 mois après le dernier échange, sauf obligation légale de conservation plus longue (documents comptables liés à une commande, par exemple).</p>",

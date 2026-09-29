@@ -15,6 +15,23 @@
   </url>
   <url>
     <loc>https://www.atelierguillotine.com/shop</loc>
+    <priority>0.5</priority>
+  </url>
+  <!-- English pages -->
+  <url>
+    <loc>https://www.atelierguillotine.com/en/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.atelierguillotine.com/en/commissions</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.atelierguillotine.com/en/courses</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.atelierguillotine.com/en/shop</loc>
+    <priority>0.5</priority>
   </url>
 </urlset>

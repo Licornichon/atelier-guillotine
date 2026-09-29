@@ -1,0 +1,40 @@
+//- ──────────────────────────────────────────
+//- HEAD CONTENT (shared: every page)
+//- Usage: include includes/_head, then +head(page[, options]) under `head`
+//-   page     same value as <html data-page>; texts come from <page>.meta.* and <page>.og.*
+//-   options  noindex  true → robots noindex, no description, no alternates, no Open Graph
+//- ──────────────────────────────────────────
+mixin head(page, options)
+  - var opts = options || {}
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  if opts.noindex
+    meta(name='robots', content='noindex')
+  else
+    meta(name='description' content=t(page + '.meta.description'))
+  title= t(page + '.meta.title')
+  link(rel='canonical' href=siteUrl + pageUrl(page, lang))
+  if !opts.noindex
+    //- The same page in the other language, for search engines (French = default)
+    link(rel='alternate' hreflang='fr' href=siteUrl + pageUrl(page, 'fr'))
+    link(rel='alternate' hreflang='en' href=siteUrl + pageUrl(page, 'en'))
+    link(rel='alternate' hreflang='x-default' href=siteUrl + pageUrl(page, 'fr'))
+    //- Open Graph: link previews (Discord, WhatsApp…)
+    meta(property='og:type' content='website')
+    meta(property='og:site_name' content='Atelier Guillotine')
+    meta(property='og:locale' content=(lang === 'en' ? 'en_GB' : 'fr_FR'))
+    meta(property='og:locale:alternate' content=(lang === 'en' ? 'fr_FR' : 'en_GB'))
+    meta(property='og:url' content=siteUrl + pageUrl(page, lang))
+    meta(property='og:title' content=t(page + '.og.title'))
+    meta(property='og:description' content=t(page + '.og.description'))
+    meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
+    meta(property='og:image:width' content='1200')
+    meta(property='og:image:height' content='630')
+    meta(property='og:image:alt' content=t('og.imageAlt'))
+  //- Favicons & PWA (root-relative: the English pages sit one folder down)
+  link(rel='icon' type='image/png' sizes='16x16' href='/assets/media/favicon/favicon-16.png')
+  link(rel='icon' type='image/png' sizes='32x32' href='/assets/media/favicon/favicon-32.png')
+  link(rel='icon' type='image/png' sizes='96x96' href='/assets/media/favicon/favicon-96.png')
+  link(rel='icon' type='image/png' sizes='192x192' href='/assets/media/favicon/favicon-192.png')
+  link(rel='apple-touch-icon' sizes='180x180' href='/assets/media/favicon/favicon-180.png')
+  link(rel='manifest' href='/assets/media/favicon/site.webmanifest')

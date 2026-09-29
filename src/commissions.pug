@@ -1,30 +1,9 @@
 doctype html
 - var page = 'commissions'
-html(lang='fr' data-page=page)
+html(lang=lang data-page=page)
   head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description' data-i18n-content='commissions.meta.description' content=t('commissions.meta.description'))
-    title(data-i18n='commissions.meta.title')= t('commissions.meta.title')
-    link(rel='canonical' href=siteUrl + '/commissions')
-    //- Open Graph, hardcoded in French: scrapers never run the i18n JS
-    meta(property='og:type' content='website')
-    meta(property='og:site_name' content='Atelier Guillotine')
-    meta(property='og:locale' content='fr_FR')
-    meta(property='og:url' content=siteUrl + '/commissions')
-    meta(property='og:title' content='Peinture de figurines sur commande | Atelier Guillotine')
-    meta(property='og:description' content='Trois niveaux de peinture de figurines sur commande : Battle Ready, Tabletop+ et Display.')
-    meta(property='og:image' content=siteUrl + '/assets/media/og.jpg')
-    meta(property='og:image:width' content='1200')
-    meta(property='og:image:height' content='630')
-    meta(property='og:image:alt' content='Figurines peintes par Atelier Guillotine')
-    //- Favicons & PWA
-    link(rel='icon' type='image/png' sizes='16x16' href='./assets/media/favicon/favicon-16.png')
-    link(rel='icon' type='image/png' sizes='32x32' href='./assets/media/favicon/favicon-32.png')
-    link(rel='icon' type='image/png' sizes='96x96' href='./assets/media/favicon/favicon-96.png')
-    link(rel='icon' type='image/png' sizes='192x192' href='./assets/media/favicon/favicon-192.png')
-    link(rel='apple-touch-icon' sizes='180x180' href='./assets/media/favicon/favicon-180.png')
-    link(rel='manifest' href='./assets/media/favicon/site.webmanifest')
+    include includes/_head
+    +head(page)
   body
     include includes/_nav
     include includes/_hero
@@ -40,8 +19,8 @@ html(lang='fr' data-page=page)
         id: 'commissions-hero',
         title: 'commissions.hero.title',
         subtitle: 'commissions.hero.subtitle',
-        left: { src: './assets/generated/hero/etheldin.webp', altKey: 'hero.alt.etheldin' },
-        right: { src: './assets/generated/hero/custodes-hero.webp', altKey: 'hero.alt.custodes' },
+        left: { src: '/assets/generated/hero/etheldin.webp', altKey: 'hero.alt.etheldin' },
+        right: { src: '/assets/generated/hero/custodes-hero.webp', altKey: 'hero.alt.custodes' },
       })
 
       //- ──────────────────────────────────────────

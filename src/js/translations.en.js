@@ -1,6 +1,10 @@
 module.exports = {
   'home.meta.title':       "Atelier Guillotine | Miniature Painting Commissions | Warhammer & Tabletop",
   'home.meta.description': "Professional miniature painting commissions for Warhammer and other tabletop games. From battle-ready armies to display pieces quoted individually.",
+  'home.og.title':       "Atelier Guillotine | Miniature Painting Commissions",
+  'home.og.description': "Professional miniature painting for Warhammer and other tabletop games. Battle-ready armies, clean finishes and display pieces.",
+  // Open Graph: link previews (Discord, WhatsApp…)
+  'og.imageAlt':          "Miniatures painted by Atelier Guillotine",
 
   'nav.toggle':   'Open menu',
   'nav.about':    'About',
@@ -65,6 +69,8 @@ module.exports = {
 
   'commissions.meta.title':       "Painting Commissions | Atelier Guillotine | Levels of finish and pricing",
   'commissions.meta.description': "Three levels of miniature painting commissions by Atelier Guillotine: Battle Ready, Tabletop+ and Display.",
+  'commissions.og.title':       "Miniature Painting Commissions | Atelier Guillotine",
+  'commissions.og.description': "Three levels of commission painting: Battle Ready, Tabletop+ and Display.",
   'commissions.hero.title':    'Painting<br>Commissions',
   'commissions.hero.subtitle': 'Your miniatures<br>executed to order.',
 
@@ -124,6 +130,8 @@ module.exports = {
   // and 30 % for three or four. courses.price places the euro sign.
   'courses.meta.title':              'Painting Lessons | Atelier Guillotine | One-to-one, at your own table',
   'courses.meta.description':        'One-to-one miniature painting lessons at your own table, taught by an award-winning competition painter. We cover the theory, I paint the technique in front of you, then you paint it yourself.',
+  'courses.og.title':       "Painting Lessons | Atelier Guillotine | One-to-one, at your place",
+  'courses.og.description': "One-to-one miniature painting lessons at your place, on your own or in a small group. Theory, a live demo, then guided practice on your own model.",
   'courses.hero.title':              'Painting<br>Lessons',
   'courses.hero.subtitle':           'Private lessons.<br>Heads up: I come to you.',
 
@@ -135,14 +143,14 @@ module.exports = {
   'courses.method.step1.title':      'I explain it',
   'courses.method.step1.text':       'We start with the theory before anyone picks up a brush: where your light source is, what a glaze does to the colour underneath, when a wash helps and when it just dulls everything you have already put down. Know that much and you stop copying a stroke without knowing what it does.',
   'courses.method.step2.title':      'I show you',
-  'courses.method.step2.text':       'I paint the technique in front of you and talk through it as I go: how much paint the brush is carrying, how far it is thinned, the angle and the pressure. No video gets those across.',
+  'courses.method.step2.text':       'I paint the technique in front of you and talk through it as I go: how much paint the brush is carrying, how far it is thinned, the angle and the pressure.',
   'courses.method.step3.title':      'Your turn',
-  'courses.method.step3.text':       'You paint the same thing on your own model while I watch and correct you as you go. It takes up most of the session, and it is what you keep once I have left.',
+  'courses.method.step3.text':       'You paint the same thing on your own model while I watch and correct you as you go. It takes up most of the session, and it is where you improve the most.',
   // Three rubrics under the steps of courses.pug: what can be worked on,
   // what to have ready, and the practical points (the lessons FAQ folded in)
-  'courses.topics.title':            'What we can work on',
-  'courses.topics.i1.label':         'Medium',
-  'courses.topics.i1.text':          'acrylics, worked with a brush and with an airbrush.',
+  'courses.topics.title':            'Topics to choose from',
+  'courses.topics.i1.label':         'Acrylic paint',
+  'courses.topics.i1.text':          'thinning and consistency, glazes, washes, mixing, wet palette.',
   'courses.topics.i2.label':         'Values and light',
   'courses.topics.i2.text':          'where the light comes from, how to place it, and how far to push your values so the model still reads across a table.',
   'courses.topics.i3.label':         'Contrast and focal points',
@@ -163,8 +171,8 @@ module.exports = {
 
 
   'courses.rates.title':             'Session rates',
-  'courses.rates.coverTitle':        'What is included',
-  'courses.rates.intro':             'The rate covers the teaching, not the materials: I bring my own paints, we use them during the lesson and they go home with me. The miniatures are yours to supply, and you keep both, the one you painted and the one I painted next to you. Prices are per person.',
+  'courses.rates.coverTitle':        'What is included and what is not',
+  'courses.rates.intro':             'The price covers the lesson. You supply both models, I lend you my paints for the session, and at the end you keep both: the one you painted and the one I painted in front of you. Prices are per person.',
   'courses.rates.col.duration':      'Length',
   'courses.rates.col.solo':          'On your own',
   'courses.rates.col.duo':           'As a pair',
@@ -197,6 +205,8 @@ module.exports = {
 
   'shop.meta.title':       "Shop | Atelier Guillotine | Painted miniatures for sale",
   'shop.meta.description': "Painted miniatures currently for sale by Atelier Guillotine: display and tabletop pieces for Warhammer and other tabletop games.",
+  'shop.og.title':       "Shop | Atelier Guillotine | Painted miniatures for sale",
+  'shop.og.description': "Painted miniatures currently for sale: display pieces and tabletop-ready models for Warhammer and other tabletop games.",
   'shop.hero.title':    'Shop',
   'shop.hero.subtitle': 'Miniatures already painted,<br>ready to be snapped up.',
   'shop.title':         'Currently for sale',
@@ -297,7 +307,7 @@ module.exports = {
   'legal.transfers.content':  "<p>The website is hosted in France by OVH SAS: connection data does not leave the European Union.</p><p>Only Web3Forms, used to route contact form messages, may process data outside the European Union. That transfer is covered by the safeguards set out in Chapter V of the GDPR.</p>",
 
   'legal.cookies.title':      "Cookies and storage",
-  'legal.cookies.content':    "<p>This website uses no tracking, analytics or advertising cookies.</p><p>Your language preference is stored locally in your browser (localStorage, key fc-lang). This storage is strictly functional, triggered by your own choice, and therefore requires no prior consent.</p>",
+  'legal.cookies.content':    "<p>This website uses no cookies and stores nothing in your browser.</p>",
 
   'legal.retention.title':    "Data retention",
   'legal.retention.content':  "<p>Your data is never sold, transferred or used for marketing purposes.</p><p>It is retained for up to 12 months after the last exchange, unless a longer legal retention period applies (accounting records relating to an order, for example).</p>",
