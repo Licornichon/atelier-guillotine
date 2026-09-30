@@ -271,11 +271,11 @@ module.exports = {
   'faq.q3.title': "Can you match a specific colour scheme or reference?",
   'faq.q3.answer': 'Yes. I can replicate official schemes or custom designs. Send your reference images along with your enquiry.',
   'faq.q4.title': 'Is there a minimum order size for commissions?',
-  'faq.q4.answer': 'No, there is no minimum. I would rather take Battle Ready and Tabletop+ work in batches of ten or more, though: painting a set in one go keeps the finish consistent from model to model and the price per miniature sensible. For Display the question does not arise, a single piece is perfectly fine.',
+  'faq.q4.answer': 'No, there is no minimum. I would rather take Battle Ready and Tabletop+ work in batches of ten or more, though: painting a set in one go keeps the finish consistent from model to model and the price per miniature sensible. For Display there is no minimum number of models.',
   'faq.q5.title': 'What happens to leftover bits and parts?',
-  'faq.q5.answer': 'I keep leftover sprues and bits for future conversions rather than binning them. If you would rather have them back, say so when you order and they go in the box with your miniatures.',
+  'faq.q5.answer': 'I keep leftover sprues and bits for future conversions. If you would rather have them back, say so when you order and they go in the box with your miniatures.',
   'faq.q6.title': 'What happens if I am unable to pay for my commission?',
-  'faq.q6.answer': "Tell me as soon as you can: a delay or a payment plan can almost always be arranged. I work alone and my storage space is limited, so I cannot hold a finished commission indefinitely. If I hear nothing for about two months after the work is done, I may put the miniatures up for sale to cover the costs. It is a last resort.",
+  'faq.q6.answer': "Tell me as soon as you can: a delay or a payment plan can almost always be arranged. I work alone and my storage space is limited, so I cannot hold a finished commission indefinitely. If I hear nothing for about a month after the work is done, I may put the miniatures up for sale to pay my bills. It is a last resort.",
 
   'footer.legal':     'Legal Notice',
 
