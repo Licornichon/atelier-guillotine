@@ -270,11 +270,11 @@ module.exports = {
   'faq.q3.title': 'Pouvez-vous reproduire un schéma de couleur ou une référence précise ?',
   'faq.q3.answer': 'Oui. Je peux reproduire des schémas officiels ou des designs personnalisés. Envoyez-moi vos références visuelles avec votre demande.',
   'faq.q4.title': 'Existe-t-il un minimum de commande ?',
-  'faq.q4.answer': "Non, il n’y a pas de minimum. Je privilégie quand même les lots d’au moins dix figurines en Battle Ready et en Tabletop+ : peindre une série d’un seul tenant donne un rendu homogène d’une pièce à l’autre et permet de tenir un tarif cohérent. En Display, la question ne se pose pas, une pièce seule se commande très bien.",
+  'faq.q4.answer': "Non, il n’y a pas de minimum. Je privilégie quand même les lots d’au moins dix figurines en Battle Ready et en Tabletop+ : peindre une série d’un seul tenant donne un rendu homogène d’une pièce à l’autre et permet de tenir un tarif cohérent. En Display, il n’y a aucun nombre minimum de pièces.",
   'faq.q5.title': 'Que deviennent les bits et pièces restantes après une commande ?',
-  'faq.q5.answer': 'Je garde les grappes et les bits non utilisés pour de futures conversions, plutôt que de les jeter. Si vous préférez les récupérer, dites-le au moment de la commande : je vous les envoie avec vos figurines.',
+  'faq.q5.answer': 'Je garde les grappes et les bits non utilisés pour de futures conversions. Si vous préférez les récupérer, dites-le au moment de la commande : je vous les envoie avec vos figurines.',
   'faq.q6.title': 'Que se passe-t-il en cas d’impossibilité de paiement ?',
-  'faq.q6.answer': 'Prévenez-moi dès que possible : un report ou un échéancier se trouve presque toujours. Je travaille seul et mon espace de stockage est limité, je ne peux donc pas garder une commande terminée indéfiniment. Sans nouvelles pendant environ deux mois après la fin du travail, je peux remettre les figurines en vente pour couvrir les frais engagés. C’est le dernier recours.',
+  'faq.q6.answer': 'Prévenez-moi dès que possible : un report ou un échéancier se trouve presque toujours. Je travaille seul et mon espace de stockage est limité, je ne peux donc pas garder une commande terminée indéfiniment. Sans nouvelles pendant environ un mois après la fin du travail, je peux remettre les figurines en vente pour payer mes factures. C’est le dernier recours.',
 
   'footer.legal':     'Mentions légales',
 
