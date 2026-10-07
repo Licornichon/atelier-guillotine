@@ -25,9 +25,9 @@ npm run build:prod   # minified prod build → dist/
 ## Architecture
 
 - Entry `src/js/main.js` → `bundle.js` (injected into every page).
-- `HtmlWebpackPlugin` builds every page of `PAGES` (`index`, `commissions`, `courses`, `shop`) once per language of `LANGS`: French at the root (`/shop`), English under `en/` (`/en/shop`). **`legal.html` is temporarily disabled**: it is left out of `PAGES` in `webpack.config.js`, along with the footer links (every page) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
+- `HtmlWebpackPlugin` builds every page of `PAGES` (`index`, `commissions`, `courses`, `shop`, `legal`) once per language of `LANGS`: French at the root (`/shop`), English under `en/` (`/en/shop`).
 - SCSS is `require`d from `main.js`. `build:prod` extracts it into `bundle.css` linked in `<head>` (`mini-css-extract-plugin`: styled first paint, stable anchor jumps from another page); dev and `build` inject it with `style-loader`, so page jumps on load are still visible there.
-- Markup shared between pages lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`; `_pricing.pug` on home + commissions page, after `_price-grid.pug` = `priceRows`, also used by the commission cards). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
+- Markup shared between pages lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`, `_footer.pug`; `_pricing.pug` on home + commissions page, after `_price-grid.pug` = `priceRows`, also used by the commission cards). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
 - `dist/` not committed. `.gitignore`: `dist/`, `index.html`, `bundle.js`, `index.js`, `src/data/gallery.json`, `src/data/shop.json`.
 
 **JS modules** (`src/js/`, each an IIFE, CommonJS `require`, Babel):

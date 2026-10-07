@@ -28,7 +28,5 @@ section#contact.contact
         textarea.form__textarea#message(name='message' required rows='6' data-i18n-placeholder=messageKey placeholder=t(messageKey))
       button.form__submit(type='submit' data-i18n-html='contact.submit')!= t('contact.submit')
       //- Notice at point of collection (GDPR art. 13)
-      //- TODO: hidden because the text links to /legal#personal-data, a page that
-      //- is not generated yet (see webpack.config.js). Restore it with the page.
-      //- p.form__notice(data-i18n-html='contact.privacyNotice')!= t('contact.privacyNotice')
+      p.form__notice(data-i18n-html='contact.privacyNotice')!= t('contact.privacyNotice')
     .contact__feedback(aria-live='polite')

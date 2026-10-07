@@ -1,10 +1,6 @@
-//- ⚠️ TODO: THIS PAGE IS NOT BUILT AT THE MOMENT
-//- Its HtmlWebpackPlugin is commented out in webpack.config.js, so legal.html
-//- is never emitted and the page is unreachable.
-//- Reason: incomplete content (placeholders NOM_PRENOM, NUMEROSIRET,
-//- ADRESSE_POSTALE, EMAIL_CONTACT, MEDIATEUR_NOM, MEDIATEUR_SITE, JJ/MM/AAAA).
-//- French legal notice (LCEN art. 6-III) and GDPR information are legal
-//- requirements: restore before promoting the site publicly.
+//- ⚠️ TODO: the legal.* strings still hold placeholders (NOM_PRENOM, NUMEROSIRET,
+//- ADRESSE_POSTALE, EMAIL_CONTACT, MEDIATEUR_NOM, MEDIATEUR_SITE, JJ/MM/AAAA):
+//- replace them in translations.fr.js / translations.en.js.
 doctype html
 - var page = 'legal'
 html(lang=lang data-page=page)
@@ -14,7 +10,7 @@ html(lang=lang data-page=page)
   body
     include includes/_nav
 
-    +nav(page, { links: false })
+    +nav(page, { sharedSections: false })
 
     main#main-content.legal-page
       .legal-page__inner
@@ -72,6 +68,4 @@ html(lang=lang data-page=page)
 
         a.legal-page__back(href='./' data-i18n='legal.back')= t('legal.back')
 
-    footer.footer
-      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
-      a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')
+    include includes/_footer

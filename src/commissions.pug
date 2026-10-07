@@ -88,8 +88,4 @@ html(lang=lang data-page=page)
 
       include includes/_about
 
-    footer.footer
-      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
-      //- TODO: link hidden while legal.html is not generated (see webpack.config.js).
-      //- Restore it together with the page.
-      //- a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')
+    include includes/_footer
