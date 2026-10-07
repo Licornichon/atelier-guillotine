@@ -40,11 +40,14 @@ html(lang=lang data-page=page)
           div(data-i18n-html='legal.mediation.content')!= t('legal.mediation.content')
 
         //- ── Terms of sale (CGV), #cgv anchor ───────────────────────────
-        section#cgv.legal-page__section
-          h2(data-i18n='legal.cgv.title')= t('legal.cgv.title')
-          each id, i in ['scope', 'order', 'prices', 'payment', 'execution', 'delivery', 'withdrawal', 'warranty', 'photos', 'disputes']
-            h3= (i + 1) + '. ' + t('legal.cgv.' + id + '.title')
-            div!= t('legal.cgv.' + id + '.content')
+        //- TODO: hidden for now; the legal.cgv.* strings stay in the
+        //- translation files. Remove the //- below to show them again, and
+        //- mention the terms of sale again in legal.intro (fr + en).
+        //- section#cgv.legal-page__section
+        //-   h2(data-i18n='legal.cgv.title')= t('legal.cgv.title')
+        //-   each id, i in ['scope', 'order', 'prices', 'payment', 'execution', 'delivery', 'withdrawal', 'warranty', 'photos', 'disputes']
+        //-     h3= (i + 1) + '. ' + t('legal.cgv.' + id + '.title')
+        //-     div!= t('legal.cgv.' + id + '.content')
 
         //- ── Personal data (GDPR), #personal-data anchor ───────────────
         section#personal-data.legal-page__section

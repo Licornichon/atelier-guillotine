@@ -278,7 +278,7 @@ module.exports = {
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
   'legal.meta.title':         "Mentions légales | Atelier Guillotine",
   'legal.title':              "Mentions légales",
-  'legal.intro':              "Cette page regroupe les informations légales sur l'éditeur et l'hébergeur du site, les conditions générales de vente et l'usage de vos données personnelles.",
+  'legal.intro':              "Cette page regroupe les informations légales sur l'éditeur et l'hébergeur du site, et l'usage de vos données personnelles.",
 
   'legal.editor.title':       "Éditeur du site",
   'legal.editor.content':     "<ul><li>Nom : Antoine PAYET</li><li>Statut : entrepreneur individuel (EI), micro-entreprise</li><li>Nom commercial : Atelier Guillotine</li><li>Email : contact(at)atelierguillotine(dot)com</li></ul>",

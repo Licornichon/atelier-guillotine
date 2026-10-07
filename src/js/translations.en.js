@@ -279,7 +279,7 @@ module.exports = {
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
   'legal.meta.title':         "Legal Notice | Atelier Guillotine",
   'legal.title':              "Legal Notice",
-  'legal.intro':              "This page sets out who publishes and hosts this website, the terms of sale, and how your personal data is used.",
+  'legal.intro':              "This page sets out who publishes and hosts this website, and how your personal data is used.",
 
   'legal.editor.title':       "Website publisher",
   'legal.editor.content':     "<ul><li>Name: Antoine PAYET</li><li>Status: sole trader (entrepreneur individuel, EI), registered as a French micro-entreprise</li><li>Trading name: Atelier Guillotine</li><li>Email: contact(at)atelierguillotine(dot)com</li></ul>",
