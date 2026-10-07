@@ -8,7 +8,7 @@ const src = path.join(__dirname, 'src')
 
 // Pages built by HtmlWebpackPlugin (src/<page>.pug), and the output folder of
 // each language
-const PAGES = ['index', 'commissions', 'courses', 'shop']
+const PAGES = ['index', 'commissions', 'courses', 'shop', 'legal']
 const LANGS = { fr: '', en: 'en/' }
 
 // CSS: separate bundle.css in production (styled first paint, stable anchor
@@ -127,11 +127,5 @@ module.exports = {
       template: path.join(src, page + '.pug') + '?lang=' + lang,
       filename: dir + page + '.html',
     }))),
-    // TODO: Legal notice / privacy page is deliberately not generated for now
-    // (incomplete content: NOM_PRENOM / NUMEROSIRET / MEDIATEUR_NOM… placeholders
-    // are not filled in yet). The src/legal.pug template is kept.
-    // To bring it back: add 'legal' to PAGES, then restore the footer link
-    // (every page) and the GDPR notice in the contact form
-    // (src/includes/_contact.pug). Legal requirement: do this before going public.
   ],
 }

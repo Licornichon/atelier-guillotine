@@ -135,7 +135,6 @@ module.exports = {
   'courses.hero.title':              'Painting<br>Lessons',
   'courses.hero.subtitle':           'Private lessons.<br>Heads up: I come to you.',
 
-
   'courses.method.title':            'A private lesson, in your own home',
   'courses.method.p1':               'I come <strong>to your home, one to one or up to four of you</strong>. Every level is welcome, from complete beginners to competition painters who need a final nudge. Teaching is done brush in hand, and with an airbrush if you already own one. I do not teach online for now: doing it properly would take video gear I do not have.',
   'courses.method.p2':               '<strong>Have two copies of the same miniature ready</strong>, one for you and one for me, along with your usual brushes and tools and somewhere with decent light to work. For a unit, a second model in a different pose works just as well, and both pieces stay with you at the end.',
@@ -168,8 +167,6 @@ module.exports = {
   'courses.topics.i9.label':         'Airbrush',
   'courses.topics.i9.text':          'zenithal priming, pre-shading, coloured filters.',
 
-
-
   'courses.rates.title':             'Session rates',
   'courses.rates.coverTitle':        'What is included and what is not',
   'courses.rates.intro':             'The price covers the lesson. You supply both models, I lend you my paints for the session, and at the end you keep both: the one you painted and the one I painted in front of you. Prices are per person.',
@@ -182,8 +179,6 @@ module.exports = {
   'courses.price':                   '€{price}',
   'courses.rates.note':              'Travel is free within Paris. Beyond it I charge expenses for the journey, plus an overnight stay if the distance calls for one; both appear in the quote before the date is fixed.',
   'courses.rates.groups':          'Clubs and shops that want to host a session for their members are welcome. Tell me what you have in mind and we will work out the format together.',
-
-
 
   'courses.cta':                     'Book a lesson',
 
@@ -230,7 +225,7 @@ module.exports = {
   'pricing.howWorks.desc1':           "Pricing depends on the miniature (size, complexity) and on the level of finish you choose. The prices below reflect simple schemes and standard wargaming troops.",
   'pricing.howWorks.desc2':           "These are starting prices: a complex scheme or a heavily detailed miniature can push the final price higher.",
   'pricing.howWorks.assembly':        'The prices above cover the painting. Cleaning and assembly are quoted separately, depending on the miniature.',
-  'pricing.howWorks.materials':       'Some requests call for particular materials, a custom base or technical paints for instance. Those are billed at cost, with nothing added on top, and set out in the quote.',
+  'pricing.howWorks.materials':       'Some requests call for materials I do not have, such as technical paints or a custom base. In that case I may charge a flat fee, set out in the quote.',
   'pricing.howWorks.display':         'Display pieces are quoted individually to ensure the highest quality and closest match to your vision.',
   'pricing.priceFrom':                '€{price}+',
   'pricing.table.col.type':   'Type',
@@ -278,46 +273,61 @@ module.exports = {
   'faq.q6.answer': "Tell me as soon as you can: a delay or a payment plan can almost always be arranged. I work alone and my storage space is limited, so I cannot hold a finished commission indefinitely. If I hear nothing for about a month after the work is done, I may put the miniatures up for sale to pay my bills. It is a last resort.",
 
   'footer.legal':     'Legal Notice',
+  'footer.privacy':   'Privacy',
 
   // ─── Legal notice + personal data (single page: legal.html) ─────────────
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
   'legal.meta.title':         "Legal Notice | Atelier Guillotine",
   'legal.title':              "Legal Notice",
-  'legal.intro':              "Legal information about the publisher, the hosting of this website and the processing of personal data.",
+  'legal.intro':              "This page sets out who publishes and hosts this website, and how your personal data is used.",
 
   'legal.editor.title':       "Website publisher",
-  'legal.editor.content':     "<ul><li>Name: NOM_PRENOM</li><li>Status: sole trader (French micro-entreprise), trading as Atelier Guillotine</li><li>Address: ADRESSE_POSTALE</li><li>Email: EMAIL_CONTACT</li><li>Company number (SIRET): NUMEROSIRET</li><li>VAT: not applicable, article 293 B of the French tax code</li><li>Publication director: NOM_PRENOM</li></ul>",
+  'legal.editor.content':     "<ul><li>Name: Antoine PAYET</li><li>Status: sole trader (entrepreneur individuel, EI), registered as a French micro-entreprise</li><li>Trading name: Atelier Guillotine</li><li>Email: contact(at)atelierguillotine(dot)com</li></ul>",
 
   'legal.host.title':         "Hosting",
-  'legal.host.content':       "<p>This website is hosted by OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li>Phone: 1007</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
+  'legal.host.content':       "<p>This website is hosted by OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
 
   'legal.ip.title':           "Intellectual property",
-  'legal.ip.content':         "<p>The contents of this website (text, photographs, visual identity) are the property of NOM_PRENOM unless stated otherwise, and may not be reproduced without prior written permission.</p><p>The settings, ranges and trademarks mentioned (Warhammer, Infinity, etc.), as well as the miniatures photographed, remain the property of their respective publishers. This website is not affiliated with any of them: only the painting service is offered.</p>",
+  'legal.ip.content':         "<p>Unless stated otherwise, the text, photos and visual identity of this website belong to me. You may not reproduce them without my written permission.</p><p>The brands and settings mentioned (Warhammer, Infinity and others) and the miniatures shown belong to their respective publishers. This website is not affiliated with any of them.</p>",
 
-  'legal.mediation.title':    "Consumer mediation",
-  'legal.mediation.content':  "<p>Under article L612-1 of the French Consumer Code, any consumer may use a consumer mediator free of charge to seek an amicable resolution of a dispute.</p><ul><li>Mediator: MEDIATEUR_NOM</li><li>Website: MEDIATEUR_SITE</li></ul>",
+  // Terms of sale (CGV), #cgv anchor of legal.html
+  'legal.cgv.title':           "Terms of sale",
+  'legal.cgv.scope.title':     "Scope",
+  'legal.cgv.scope.content':   "<p>These terms apply to everything I sell to private customers: commission painting, painting lessons and the painted miniatures in the shop.</p><p>“I” means Antoine PAYET, trading as Atelier Guillotine (see Website publisher), and “you” means the customer. By placing an order, you accept these terms as they stand on that day.</p>",
+  'legal.cgv.order.title':     "Quotes and orders",
+  'legal.cgv.order.content':   "<p>All requests go through the contact form or by email. For a commission or a lesson, I send you a quote setting out the work, the price, the estimated lead time and any extra costs (assembly, materials, postage, travel). Your order is confirmed once you accept the quote in writing (an email is enough) and pay the deposit.</p><p>For a piece from the shop, I confirm by email that it is still available, its price including postage, and how to pay. The sale is confirmed when I receive your payment, and the piece is set aside for you from then on.</p>",
+  'legal.cgv.prices.title':    "Prices",
+  'legal.cgv.prices.content':  "<p>All prices are in euros. VAT is not applicable (article 293 B of the French tax code), so the price shown is the price you pay.</p><p>The prices on the Commissions and Lessons pages are starting prices. The final price is the one in the quote you accept, and it stays fixed unless you change your request along the way. If you do, I send you an additional quote before going any further.</p><p>Miniatures I buy on your behalf are charged at cost, as shown in the quote. If your request needs materials I do not have (technical paints, brushes, glue, basing materials and so on), I may charge a flat fee, also shown in the quote. I keep those materials: they are not sent to you when the commission is finished.</p><p>Postage is paid by you and is quoted before you order.</p>",
+  'legal.cgv.payment.title':   "Payment",
+  'legal.cgv.payment.content': "<p>I accept bank transfer, and cash paid in person.</p><ul><li>Commissions: a 30% deposit when you accept the quote, and the balance when the work is finished. I ship the finished miniatures once the balance has been paid.</li><li>Lessons: a 30% deposit to book the date, and the balance on the day.</li><li>Shop: full payment when you order.</li></ul><p>If something unexpected makes it hard to pay, let me know: we can push the payment back or spread it out. Until the balance is paid, I hold on to the finished miniatures.</p>",
+  'legal.cgv.execution.title': "The work",
+  'legal.cgv.execution.content': "<p>The lead time in the quote is an estimate based on the commissions already in my queue. If you have a date you absolutely must meet (a tournament, an event), it has to be written into the quote. I will let you know as soon as I see a delay coming.</p><p>While I work, I send you progress photos, so that is the time to give me your feedback. If you ask me to redo a stage you have already approved, or to do something that is not in the quote, I send you an additional quote.</p><p>The miniatures you send me remain yours, and I look after them for as long as I have them. If I find a casting defect or a particularly fragile part before I start, I will tell you.</p>",
+  'legal.cgv.delivery.title':  "Shipping and delivery",
+  'legal.cgv.delivery.content': "<p>You send me your miniatures at your own cost and risk, so use a tracked service and pack them securely. I confirm when they arrive and report any damage I find when I open the parcel.</p><p>I pack finished miniatures and shop pieces carefully and send them by tracked post, within France or abroad, to the address you give me. Postage is paid by you. The parcel travels at my risk until you receive it (article L216-4 of the French Consumer Code). Check it when it arrives and tell me about any problem as soon as possible, ideally within 48 hours and with photos, so that I can make a claim with the carrier.</p><p>In Paris, we can also meet in person to hand over the miniatures, in either direction. There is then no postage to pay.</p><p>For deliveries outside the European Union, customs duties and import taxes are paid by you.</p>",
+  'legal.cgv.withdrawal.title': "Withdrawal and cancellation",
+  'legal.cgv.withdrawal.content': "<p><strong>Commissions.</strong> There is no right of withdrawal, because the miniatures are painted to your specifications (article L221-28, 3° of the French Consumer Code). If you cancel before I have started painting, I still refund your deposit. Once painting has started, I keep it.</p><p><strong>Painting lessons.</strong> You have 14 days from accepting the quote to withdraw, without giving a reason. If, at your request, the lesson takes place within those 14 days, you can no longer withdraw once it has been given. After the 14 days, you can still cancel free of charge up to 15 days before the lesson, and I refund your deposit. After that, I keep it. If I am the one who cancels, I offer you another date or a full refund.</p><p><strong>Shop.</strong> You have 14 days from receiving the miniature to withdraw, without giving a reason. Let me know by email at contact(at)atelierguillotine(dot)com (a clear message is enough, or you can use the model form below), then send the piece back within 14 days, at your own cost and in the condition you received it. I refund everything you paid by bank transfer, including the original postage at the standard rate, within 14 days of your message. I may wait until the piece has reached me before refunding you.</p><p>If the piece comes back damaged (chipped paint, a broken part), I deduct the loss in value from your refund (article L221-23 of the French Consumer Code). Pack it carefully: it travels at your risk until it reaches me.</p><p>Model withdrawal form: “To Antoine PAYET, Atelier Guillotine, contact(at)atelierguillotine(dot)com. I hereby give notice that I withdraw from my contract of sale of the following goods: [item], ordered on [date] / received on [date]. Name of consumer: [name]. Address of consumer: [address]. Date: [date].”</p>",
+  'legal.cgv.warranty.title':  "Guarantees",
+  'legal.cgv.warranty.content': "<p>Miniatures from the shop are covered by the legal guarantee of conformity (articles L217-3 onwards of the French Consumer Code) and by the guarantee against hidden defects (articles 1641 onwards of the French Civil Code). You have two years from delivery to make a claim: you can ask for the piece to be repaired or replaced, or, if neither is possible, for a price reduction or a refund. Any defect that appears within 24 months is treated as having been there at delivery, unless I can prove otherwise.</p><p>For commissions, I remain responsible for the quality of my work.</p><p>Miniatures are fragile: thin parts can break if the model is dropped or knocked. Breakage or wear caused by gaming, handling or shipping you arranged yourself is not a defect. For any claim, email me at contact(at)atelierguillotine(dot)com with photos.</p>",
+  'legal.cgv.photos.title':    "Photos and leftover parts",
+  'legal.cgv.photos.content':  "<p>I may photograph the miniatures I paint and show them on this website and on my social media. If you would rather I did not, tell me when you order.</p><p>Unused sprues and bits belong to you: if you ask when ordering, I send them back with your miniatures. Otherwise, you agree that I keep them.</p>",
+  'legal.cgv.disputes.title':  "Disputes",
+  'legal.cgv.disputes.content': "<p>These terms are governed by French law. If something goes wrong, please email me first at contact(at)atelierguillotine(dot)com: most issues can be resolved by talking them over. If we cannot reach an agreement, you can take the matter to the competent court.</p>",
 
   'legal.data.title':         "Personal data",
-  'legal.data.content':       "<p>The data controller is the website publisher named above.</p><p>When you use the contact form, the following data is collected:</p><ul><li>Name</li><li>Email address</li><li>Message content</li></ul><p>This data is used solely to answer your enquiry. The legal basis is the performance of pre-contractual measures taken at your request (GDPR article 6.1.b).</p><p>The site performs no profiling and no automated decision-making, and collects no data without your knowledge.</p>",
+  'legal.data.content':       "<p>I am the data controller for your personal data (see Website publisher).</p><p>When you use the contact form, I receive your name, your email address and your message. All three fields are required: without them, I cannot reply to you.</p><p>This data is used only to answer your enquiry. The legal basis is taking steps, at your request, before entering into a contract (article 6(1)(b) of the GDPR).</p><p>This website does no profiling, makes no automated decisions and collects nothing without your knowledge.</p>",
 
   'legal.thirdParties.title':   "Third-party services",
-  'legal.thirdParties.content': "<p>Messages are processed via <a href=\"https://web3forms.com\" target=\"_blank\" rel=\"noopener\">Web3Forms</a>, a third-party service acting as a processor to route emails.</p><p>This website is hosted in France by <a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">OVH SAS</a>, which may collect technical data such as your IP address in its server logs.</p><p>No other third party is involved: fonts, images and scripts are served from this site, with no CDN and no analytics tool.</p>",
+  'legal.thirdParties.content': "<p>Messages sent through the contact form go through <a href=\"https://web3forms.com\" target=\"_blank\" rel=\"noopener\">Web3Forms</a>, an external service that forwards them to me by email (a processor under the GDPR).</p><p>This website is hosted in France by <a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">OVH SAS</a>, which may record technical data such as your IP address in its server logs.</p><p>No other external service is used: fonts, images and scripts are all served from this website, with no CDN and no analytics tools.</p>",
 
   'legal.transfers.title':    "Transfers outside the European Union",
-  'legal.transfers.content':  "<p>The website is hosted in France by OVH SAS: connection data does not leave the European Union.</p><p>Only Web3Forms, used to route contact form messages, may process data outside the European Union. That transfer is covered by the safeguards set out in Chapter V of the GDPR.</p>",
-
-  'legal.cookies.title':      "Cookies and storage",
-  'legal.cookies.content':    "<p>This website uses no cookies and stores nothing in your browser.</p>",
+  'legal.transfers.content':  "<p>OVH hosts this website in France, so connection data stays within the European Union.</p><p>Only Web3Forms, which delivers the contact form messages, may process data outside the European Union. Any such transfer is covered by the safeguards set out in Chapter V of the GDPR.</p>",
 
   'legal.retention.title':    "Data retention",
-  'legal.retention.content':  "<p>Your data is never sold, transferred or used for marketing purposes.</p><p>It is retained for up to 12 months after the last exchange, unless a longer legal retention period applies (accounting records relating to an order, for example).</p>",
+  'legal.retention.content':  "<p>I do not sell or pass on your data, and I do not use it for marketing.</p><p>I keep it for up to 12 months after our last exchange, unless the law requires me to keep it longer (for example, accounting records for an order).</p>",
 
   'legal.rights.title':       "Your rights",
-  'legal.rights.content':     "<p>Under the GDPR you have the following rights over your data:</p><ul><li>right of access</li><li>right to rectification</li><li>right to erasure</li><li>right to restriction of processing</li><li>right to data portability</li><li>right to object</li></ul><p>To exercise them, write to EMAIL_CONTACT. You will receive a reply within one month.</p><p>If you believe your rights are not being respected, you may lodge a complaint with the French data protection authority, the <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>.</p>",
+  'legal.rights.content':     "<p>Under the GDPR, you have the following rights over your data:</p><ul><li>right of access</li><li>right to rectification</li><li>right to erasure</li><li>right to restriction of processing</li><li>right to data portability</li><li>right to object</li></ul><p>To exercise any of them, email me at contact(at)atelierguillotine(dot)com. I will reply within one month.</p><p>If you believe your rights have not been respected, you can lodge a complaint with the <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>, the French data protection authority.</p>",
 
-  'legal.contact.title':      "Contact",
-  'legal.contact.content':    "<p>For any question, write to EMAIL_CONTACT or use the <a href=\"./#contact\">contact form</a> on this website.</p>",
-
-  'legal.updated':            "Last updated: DD/MM/YYYY",
+  'legal.updated':            "Last updated: 07/10/2026",
   'legal.back':               "← Back",
 }

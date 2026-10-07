@@ -1,20 +1,18 @@
-//- ⚠️ TODO: THIS PAGE IS NOT BUILT AT THE MOMENT
-//- Its HtmlWebpackPlugin is commented out in webpack.config.js, so legal.html
-//- is never emitted and the page is unreachable.
-//- Reason: incomplete content (placeholders NOM_PRENOM, NUMEROSIRET,
-//- ADRESSE_POSTALE, EMAIL_CONTACT, MEDIATEUR_NOM, MEDIATEUR_SITE, JJ/MM/AAAA).
-//- French legal notice (LCEN art. 6-III) and GDPR information are legal
-//- requirements: restore before promoting the site publicly.
+//- No postal address on purpose for now (kept out of Sirène); LCEN and consumer
+//- law expect one, add it to legal.editor.content once there is a business
+//- address (domiciliation).
 doctype html
 - var page = 'legal'
 html(lang=lang data-page=page)
   head
     include includes/_head
     +head(page)
+    //- Kept out of search results (still reachable from the footer)
+    meta(name='robots' content='noindex')
   body
     include includes/_nav
 
-    +nav(page, { links: false })
+    +nav(page, { sharedSections: false })
 
     main#main-content.legal-page
       .legal-page__inner
@@ -35,9 +33,15 @@ html(lang=lang data-page=page)
           h2(data-i18n='legal.ip.title')= t('legal.ip.title')
           div(data-i18n-html='legal.ip.content')!= t('legal.ip.content')
 
-        section.legal-page__section
-          h2(data-i18n='legal.mediation.title')= t('legal.mediation.title')
-          div(data-i18n-html='legal.mediation.content')!= t('legal.mediation.content')
+        //- ── Terms of sale (CGV), #cgv anchor ───────────────────────────
+        //- TODO: hidden for now; the legal.cgv.* strings stay in the
+        //- translation files. Remove the //- below to show them again, and
+        //- mention the terms of sale again in legal.intro (fr + en).
+        //- section#cgv.legal-page__section
+        //-   h2(data-i18n='legal.cgv.title')= t('legal.cgv.title')
+        //-   each id, i in ['scope', 'order', 'prices', 'payment', 'execution', 'delivery', 'withdrawal', 'warranty', 'photos', 'disputes']
+        //-     h3= (i + 1) + '. ' + t('legal.cgv.' + id + '.title')
+        //-     div!= t('legal.cgv.' + id + '.content')
 
         //- ── Personal data (GDPR), #personal-data anchor ───────────────
         section#personal-data.legal-page__section
@@ -53,10 +57,6 @@ html(lang=lang data-page=page)
           div(data-i18n-html='legal.transfers.content')!= t('legal.transfers.content')
 
         section.legal-page__section
-          h2(data-i18n='legal.cookies.title')= t('legal.cookies.title')
-          div(data-i18n-html='legal.cookies.content')!= t('legal.cookies.content')
-
-        section.legal-page__section
           h2(data-i18n='legal.retention.title')= t('legal.retention.title')
           div(data-i18n-html='legal.retention.content')!= t('legal.retention.content')
 
@@ -64,14 +64,8 @@ html(lang=lang data-page=page)
           h2(data-i18n='legal.rights.title')= t('legal.rights.title')
           div(data-i18n-html='legal.rights.content')!= t('legal.rights.content')
 
-        section.legal-page__section
-          h2(data-i18n='legal.contact.title')= t('legal.contact.title')
-          div(data-i18n-html='legal.contact.content')!= t('legal.contact.content')
-
         p.legal-page__updated(data-i18n='legal.updated')= t('legal.updated')
 
         a.legal-page__back(href='./' data-i18n='legal.back')= t('legal.back')
 
-    footer.footer
-      span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
-      a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')
+    include includes/_footer

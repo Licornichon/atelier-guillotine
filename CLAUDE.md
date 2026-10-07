@@ -25,9 +25,9 @@ npm run build:prod   # minified prod build → dist/
 ## Architecture
 
 - Entry `src/js/main.js` → `bundle.js` (injected into every page).
-- `HtmlWebpackPlugin` builds every page of `PAGES` (`index`, `commissions`, `courses`, `shop`) once per language of `LANGS`: French at the root (`/shop`), English under `en/` (`/en/shop`). **`legal.html` is temporarily disabled**: it is left out of `PAGES` in `webpack.config.js`, along with the footer links (every page) and the GDPR notice (`includes/_contact.pug`). `src/legal.pug` is kept. Re-enable all four together; it is a legal requirement before the site goes public.
+- `HtmlWebpackPlugin` builds every page of `PAGES` (`index`, `commissions`, `courses`, `shop`, `legal`) once per language of `LANGS`: French at the root (`/shop`), English under `en/` (`/en/shop`).
 - SCSS is `require`d from `main.js`. `build:prod` extracts it into `bundle.css` linked in `<head>` (`mini-css-extract-plugin`: styled first paint, stable anchor jumps from another page); dev and `build` inject it with `style-loader`, so page jumps on load are still visible there.
-- Markup shared between pages lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`; `_pricing.pug` on home + commissions page, after `_price-grid.pug` = `priceRows`, also used by the commission cards). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
+- Markup shared between pages lives in `src/includes/` (`_contact.pug`, `_about.pug`, `_faq.pug`, `_footer.pug`; `_pricing.pug` on home + commissions page, after `_price-grid.pug` = `priceRows`, also used by the commission cards). Nav and hero are mixins (`_nav.pug` → `+nav(page)`, `_hero.pug` → `+hero({…})`); nav links are listed once inside the mixin.
 - `dist/` not committed. `.gitignore`: `dist/`, `index.html`, `bundle.js`, `index.js`, `src/data/gallery.json`, `src/data/shop.json`.
 
 **JS modules** (`src/js/`, each an IIFE, CommonJS `require`, Babel):
@@ -93,7 +93,7 @@ Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]
 
 The nav FR/EN switch is a pair of links to the same page in the other language. `<head>` (description, title, canonical, `hreflang` alternates, Open Graph, favicons) comes from the `+head(page)` mixin in `includes/_head.pug`, keys `<page>.meta.*` / `<page>.og.*`. Asset URLs are root-relative (`/assets/…`) because the English pages sit one folder down. The `data-i18n*` attributes still in the templates are leftovers of the former runtime switch and no longer read.
 
-`legal.html` is a **single page** carrying both the French *mentions légales* (LCEN) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice links to. One footer link only. Its `legal.*` strings still contain UPPERCASE placeholders (`NOM_PRENOM`, `NUMEROSIRET`, `ADRESSE_POSTALE`, `EMAIL_CONTACT`, `MEDIATEUR_NOM`, `MEDIATEUR_SITE`, `JJ/MM/AAAA`); do not ship without replacing them.
+`legal.html` is a **single page** (`noindex`, left out of the sitemap but not blocked in `robots.txt`, so Google can read the tag) carrying the French *mentions légales* (LCEN), the terms of sale (CGV, `#cgv`, keys `legal.cgv.*`) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice and the footer "Données personnelles" / "Privacy" link point to.
 
 ## Contact form
 

@@ -135,7 +135,6 @@ module.exports = {
   'courses.hero.title':              'Cours de<br>Peinture',
   'courses.hero.subtitle':           'Des leçons personnalisées<br>en tête à tête.',
 
-
   'courses.method.title':            'Un cours privé, à domicile',
   'courses.method.p1':               "Je me déplace <strong>chez vous, pour un élève seul ou jusqu’à quatre</strong>. Tous les niveaux sont acceptés, du débutant complet au peintre de compétition qui a besoin d’un dernier coup de pouce. L’enseignement se fait au pinceau, et à l’aérographe si vous en possédez déjà un. Je ne propose pas de cours à distance pour l’instant, faute du matériel vidéo pour le faire correctement.",
   'courses.method.p2':               "<strong>Prévoyez deux fois la même figurine</strong>, une pour vous et une pour moi, vos pinceaux et vos outils habituels, et un plan de travail correctement éclairé. Pour une unité, un second modèle dans une pose différente convient très bien, et vous gardez les deux pièces à la fin.",
@@ -168,8 +167,6 @@ module.exports = {
   'courses.topics.i9.label':         'Aérographe',
   'courses.topics.i9.text':          "sous-couche zénithale, pré-ombrage, filtres colorés.",
 
-
-
   'courses.rates.title':             'Tarifs des séances',
   'courses.rates.coverTitle':        'Ce qui est inclus et ce qui ne l’est pas',
   'courses.rates.intro':             "Le tarif couvre la leçon. Vous fournissez les deux figurines, je vous prête mes peintures pendant le cours, et vous gardez les deux à la fin : la vôtre et celle que j’ai peinte devant vous. Les montants sont indiqués par personne.",
@@ -182,8 +179,6 @@ module.exports = {
   'courses.price':                   '{price} €',
   'courses.rates.note':              "Le déplacement est offert dans Paris. Au-delà, un défraiement est prévu pour le trajet, et pour l’hébergement si la distance l’impose ; il est chiffré dans le devis avant que la date soit retenue.",
   'courses.rates.groups':          'Les clubs et les boutiques qui souhaitent organiser une session pour leurs membres sont les bienvenus. Le format reste à caler ensemble, écrivez-moi pour en parler.',
-
-
 
   'courses.cta':                     'Réserver un cours',
 
@@ -230,7 +225,7 @@ module.exports = {
   'pricing.howWorks.desc1':           "Le prix dépend de la figurine (taille, complexité) et du niveau de finition choisi. Les tarifs affichés correspondent à des schémas simples et des troupes de wargame standard.",
   'pricing.howWorks.desc2':           "Ce sont des tarifs de départ : un schéma complexe ou une figurine très détaillée peuvent faire monter le prix final.",
   'pricing.howWorks.assembly':        "Les tarifs affichés couvrent la peinture. L’ébarbage et le montage sont chiffrés à part dans le devis, selon la figurine.",
-  'pricing.howWorks.materials':       "Certaines demandes réclament du matériel particulier, un soclage sur mesure ou des peintures techniques par exemple. Ces fournitures sont facturées au prix coûtant, sans marge, et annoncées dans le devis.",
+  'pricing.howWorks.materials':       "Certaines demandes réclament du matériel que je n'ai pas, des peintures techniques ou un soclage sur mesure par exemple. Je peux alors facturer un forfait, annoncé dans le devis.",
   'pricing.howWorks.display':         "Les pièces d’exposition font l’objet d’un devis personnalisé afin de garantir un niveau de qualité optimal et un rendu fidèle à votre vision.",
   'pricing.priceFrom':                '{price}+ €',
   'pricing.table.col.type':   'Type',
@@ -277,46 +272,61 @@ module.exports = {
   'faq.q6.answer': 'Prévenez-moi dès que possible : un report ou un échéancier se trouve presque toujours. Je travaille seul et mon espace de stockage est limité, je ne peux donc pas garder une commande terminée indéfiniment. Sans nouvelles pendant environ un mois après la fin du travail, je peux remettre les figurines en vente pour payer mes factures. C’est le dernier recours.',
 
   'footer.legal':     'Mentions légales',
+  'footer.privacy':   'Données personnelles',
 
   // ─── Legal notice + personal data (single page: legal.html) ─────────────
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
   'legal.meta.title':         "Mentions légales | Atelier Guillotine",
   'legal.title':              "Mentions légales",
-  'legal.intro':              "Informations légales relatives à l'éditeur, à l'hébergement de ce site et au traitement des données personnelles.",
+  'legal.intro':              "Cette page regroupe les informations légales sur l'éditeur et l'hébergeur du site, et l'usage de vos données personnelles.",
 
   'legal.editor.title':       "Éditeur du site",
-  'legal.editor.content':     "<ul><li>Nom : NOM_PRENOM</li><li>Statut : entrepreneur individuel (micro-entreprise), exerçant sous l'enseigne Atelier Guillotine</li><li>Adresse : ADRESSE_POSTALE</li><li>Email : EMAIL_CONTACT</li><li>SIRET : NUMEROSIRET</li><li>TVA : non applicable, article 293 B du CGI</li><li>Directeur de la publication : NOM_PRENOM</li></ul>",
+  'legal.editor.content':     "<ul><li>Nom : Antoine PAYET</li><li>Statut : entrepreneur individuel (EI), micro-entreprise</li><li>Nom commercial : Atelier Guillotine</li><li>Email : contact(at)atelierguillotine(dot)com</li></ul>",
 
   'legal.host.title':         "Hébergement",
-  'legal.host.content':       "<p>Ce site est hébergé par OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li>Téléphone : 1007</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
+  'legal.host.content':       "<p>Ce site est hébergé par OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
 
   'legal.ip.title':           "Propriété intellectuelle",
-  'legal.ip.content':         "<p>Les contenus de ce site (textes, photographies, identité visuelle) sont la propriété de NOM_PRENOM, sauf mention contraire, et ne peuvent être reproduits sans autorisation écrite préalable.</p><p>Les univers, gammes et marques cités (Warhammer, Infinity, etc.), ainsi que les figurines photographiées, restent la propriété de leurs éditeurs respectifs. Ce site n'est affilié à aucun d'entre eux : seule la prestation de peinture est proposée.</p>",
+  'legal.ip.content':         "<p>Sauf mention contraire, les textes, les photos et l'identité visuelle de ce site m'appartiennent. Vous ne pouvez pas les reproduire sans mon accord écrit.</p><p>Les marques et univers cités (Warhammer, Infinity, etc.) et les figurines photographiées appartiennent à leurs éditeurs. Ce site n'a aucun lien avec eux.</p>",
 
-  'legal.mediation.title':    "Médiation de la consommation",
-  'legal.mediation.content':  "<p>Conformément à l'article L612-1 du Code de la consommation, tout consommateur peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d'un litige.</p><ul><li>Médiateur : MEDIATEUR_NOM</li><li>Site : MEDIATEUR_SITE</li></ul>",
+  // Terms of sale (CGV), #cgv anchor of legal.html
+  'legal.cgv.title':           "Conditions générales de vente",
+  'legal.cgv.scope.title':     "Champ d'application",
+  'legal.cgv.scope.content':   "<p>Ces conditions s'appliquent à tout ce que je vends aux particuliers : la peinture de figurines sur commande, les cours de peinture et les figurines peintes de la boutique.</p><p>« Je » désigne Antoine PAYET, Atelier Guillotine (voir Éditeur du site), et « vous » désigne le client. En passant commande, vous acceptez ces conditions telles qu'elles sont écrites ce jour-là.</p>",
+  'legal.cgv.order.title':     "Devis et commande",
+  'legal.cgv.order.content':   "<p>Toute demande passe par le formulaire de contact ou par email. Pour une commande de peinture ou un cours, je vous envoie un devis avec la prestation, le prix, le délai estimé et les frais éventuels (montage, fournitures, envoi, déplacement). La commande est validée quand vous acceptez le devis par écrit (un email suffit) et que vous versez l'acompte.</p><p>Pour une figurine de la boutique, je vous confirme par email qu'elle est disponible, son prix avec les frais d'envoi et comment payer. La vente est validée quand je reçois le paiement, et la pièce vous est réservée à partir de là.</p>",
+  'legal.cgv.prices.title':    "Prix",
+  'legal.cgv.prices.content':  "<p>Les prix sont en euros. TVA non applicable, article 293 B du CGI : le prix affiché est donc le prix que vous payez.</p><p>Les tarifs des pages Commissions et Cours sont des prix de départ. Le prix final est celui du devis que vous acceptez, et il ne change plus, sauf si vous modifiez votre demande en cours de route. Dans ce cas, je vous envoie un devis complémentaire avant de continuer.</p><p>Les figurines que j'achète pour vous sont facturées au prix coûtant, indiqué dans le devis. Si votre demande nécessite du matériel que je n'ai pas (peintures techniques, pinceaux, colles, matériel de soclage…), je peux facturer un forfait, lui aussi indiqué dans le devis. Ce matériel reste chez moi : il ne vous est pas envoyé à la fin de la commande.</p><p>Les frais d'envoi sont à votre charge et vous sont indiqués avant la commande.</p>",
+  'legal.cgv.payment.title':   "Paiement",
+  'legal.cgv.payment.content': "<p>J'accepte le virement bancaire et les espèces remises en main propre.</p><ul><li>Peinture sur commande : 30 % d'acompte quand vous acceptez le devis, le solde à la fin du travail. J'envoie les figurines terminées une fois le solde reçu.</li><li>Cours : 30 % d'acompte pour réserver la date, le solde le jour du cours.</li><li>Boutique : la totalité à la commande.</li></ul><p>Si un imprévu vous empêche de payer, prévenez-moi : nous pouvons décaler ou étaler le paiement. Tant que le solde n'est pas réglé, je garde les figurines terminées.</p>",
+  'legal.cgv.execution.title': "Réalisation",
+  'legal.cgv.execution.content': "<p>Le délai du devis est une estimation qui tient compte des commandes en cours. Si vous avez une date à respecter absolument (tournoi, événement), elle doit être écrite dans le devis. Je vous préviens dès que je vois un retard arriver.</p><p>Pendant le travail, je vous envoie des photos de l'avancement : c'est le moment de faire vos remarques. Si vous me demandez de refaire une étape déjà validée, ou quelque chose qui n'est pas dans le devis, je vous envoie un devis complémentaire.</p><p>Les figurines que vous me confiez restent à vous, et j'en prends soin tant qu'elles sont chez moi. Si je trouve un défaut de moulage ou une partie très fragile avant de commencer, je vous le dis.</p>",
+  'legal.cgv.delivery.title':  "Envoi et livraison",
+  'legal.cgv.delivery.content': "<p>Vous m'envoyez vos figurines à vos frais et à vos risques : prenez un envoi suivi et calez-les bien. Je vous confirme leur arrivée et je vous signale tout dégât à l'ouverture du colis.</p><p>J'emballe avec soin les figurines terminées et les pièces de la boutique, et je les envoie en suivi, en France ou à l'étranger, à l'adresse que vous m'indiquez. Les frais d'envoi sont à votre charge. Le colis voyage à mes risques jusqu'à ce que vous le receviez (article L216-4 du Code de la consommation). Vérifiez-le à l'arrivée et signalez-moi tout problème le plus vite possible, idéalement sous 48 h avec des photos, pour que je puisse faire une réclamation auprès du transporteur.</p><p>À Paris, nous pouvons aussi nous retrouver pour la remise des figurines, dans un sens comme dans l'autre. Il n'y a alors pas de frais d'envoi.</p><p>Hors Union européenne, les droits de douane et taxes d'importation sont à votre charge.</p>",
+  'legal.cgv.withdrawal.title': "Rétractation et annulation",
+  'legal.cgv.withdrawal.content': "<p><strong>Peinture sur commande.</strong> Vous n'avez pas de droit de rétractation, car les figurines sont peintes selon vos demandes (article L221-28, 3° du Code de la consommation). Si vous annulez avant que j'aie commencé à peindre, je vous rembourse quand même l'acompte. Une fois la peinture commencée, je le garde.</p><p><strong>Cours de peinture.</strong> Vous avez 14 jours après l'acceptation du devis pour vous rétracter, sans donner de raison. Si le cours a lieu pendant ces 14 jours à votre demande, vous ne pouvez plus vous rétracter une fois qu'il est passé. Après ces 14 jours, l'annulation reste gratuite jusqu'à 15 jours avant le cours, et je vous rends l'acompte. Plus tard, je le garde. Si c'est moi qui annule, je vous propose une autre date ou je vous rembourse entièrement.</p><p><strong>Boutique.</strong> Vous avez 14 jours après avoir reçu la figurine pour vous rétracter, sans donner de raison. Prévenez-moi par email à contact(at)atelierguillotine(dot)com (un message clair suffit, ou le modèle ci-dessous), puis renvoyez-moi la pièce dans les 14 jours, à vos frais et dans l'état où vous l'avez reçue. Je vous rembourse par virement tout ce que vous avez payé, y compris l'envoi d'origine au tarif standard, dans les 14 jours après votre message. Je peux attendre d'avoir reçu la pièce pour vous rembourser.</p><p>Si la pièce me revient abîmée (peinture écaillée, partie cassée), je déduis la perte de valeur du remboursement (article L221-23 du Code de la consommation). Emballez-la avec soin : jusqu'à son arrivée chez moi, elle voyage à vos risques.</p><p>Modèle de formulaire de rétractation : « À l'attention d'Antoine PAYET, Atelier Guillotine, contact(at)atelierguillotine(dot)com. Je vous notifie par la présente ma rétractation du contrat portant sur la vente du bien ci-dessous : [désignation], commandé le [date] / reçu le [date]. Nom du client : [nom]. Adresse du client : [adresse]. Date : [date]. »</p>",
+  'legal.cgv.warranty.title':  "Garanties",
+  'legal.cgv.warranty.content': "<p>Les figurines de la boutique sont couvertes par la garantie légale de conformité (articles L217-3 et suivants du Code de la consommation) et par la garantie des vices cachés (articles 1641 et suivants du Code civil). Vous avez deux ans après la livraison pour la faire jouer : vous pouvez demander que la pièce soit réparée ou remplacée, et si ce n'est pas possible, une baisse du prix ou un remboursement. Un défaut qui apparaît dans les 24 mois est considéré comme présent dès la livraison, sauf si je prouve le contraire.</p><p>Pour la peinture sur commande, je reste responsable de la qualité de mon travail.</p><p>Une figurine est fragile : ses parties fines peuvent casser si elle tombe ou reçoit un choc. Une casse ou une usure due au jeu, à la manipulation ou à un envoi fait par vous n'est pas un défaut. Pour toute réclamation, écrivez-moi à contact(at)atelierguillotine(dot)com avec des photos.</p>",
+  'legal.cgv.photos.title':    "Photos et pièces restantes",
+  'legal.cgv.photos.content':  "<p>Je peux photographier les figurines que je peins et les montrer sur ce site et sur mes réseaux sociaux. Si vous ne le voulez pas, dites-le-moi à la commande.</p><p>Les grappes et les bits non utilisés vous appartiennent : si vous le demandez à la commande, je vous les renvoie avec vos figurines. Sinon, vous acceptez que je les garde.</p>",
+  'legal.cgv.disputes.title':  "Litiges",
+  'legal.cgv.disputes.content': "<p>Ces conditions sont soumises au droit français. En cas de problème, écrivez-moi d'abord à contact(at)atelierguillotine(dot)com : la plupart des soucis se règlent par un simple échange. Si nous ne trouvons pas d'accord, vous pouvez saisir le tribunal compétent.</p>",
 
   'legal.data.title':         "Données personnelles",
-  'legal.data.content':       "<p>Le responsable du traitement est l'éditeur du site mentionné ci-dessus.</p><p>Lorsque vous utilisez le formulaire de contact, les données suivantes sont collectées :</p><ul><li>Nom</li><li>Adresse email</li><li>Contenu du message</li></ul><p>Ces données servent uniquement à répondre à votre demande. La base légale est l'exécution de mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</p><p>Le site ne pratique ni profilage, ni décision automatisée, et ne collecte aucune donnée à votre insu.</p>",
+  'legal.data.content':       "<p>Je suis responsable du traitement de vos données (voir Éditeur du site).</p><p>Quand vous utilisez le formulaire de contact, je reçois votre nom, votre adresse email et votre message. Ces trois champs sont obligatoires : sans eux, je ne peux pas vous répondre.</p><p>Ces données servent uniquement à répondre à votre demande. La base légale est la préparation d'un contrat à votre demande (article 6.1.b du RGPD).</p><p>Le site ne fait pas de profilage, ne prend aucune décision automatique et ne collecte rien à votre insu.</p>",
 
   'legal.thirdParties.title':   "Services tiers",
-  'legal.thirdParties.content': "<p>Les messages sont traités via <a href=\"https://web3forms.com\" target=\"_blank\" rel=\"noopener\">Web3Forms</a>, un service tiers agissant en qualité de sous-traitant pour l'acheminement des emails.</p><p>Ce site est hébergé en France par <a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">OVH SAS</a>, qui peut collecter des données techniques telles que l'adresse IP dans ses journaux de connexion.</p><p>Aucun autre service tiers n'est sollicité : les polices, images et scripts sont servis depuis ce site, sans CDN ni outil de mesure d'audience.</p>",
+  'legal.thirdParties.content': "<p>Les messages du formulaire passent par <a href=\"https://web3forms.com\" target=\"_blank\" rel=\"noopener\">Web3Forms</a>, un service extérieur qui me les transmet par email (sous-traitant au sens du RGPD).</p><p>Le site est hébergé en France par <a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">OVH SAS</a>, qui peut enregistrer des données techniques comme votre adresse IP dans ses journaux de connexion.</p><p>Aucun autre service extérieur n'est utilisé : les polices, les images et les scripts viennent de ce site, sans CDN ni outil de statistiques.</p>",
 
   'legal.transfers.title':    "Transferts hors Union européenne",
-  'legal.transfers.content':  "<p>L'hébergement du site est assuré en France par OVH SAS : les données de connexion ne quittent pas l'Union européenne.</p><p>Seul Web3Forms, utilisé pour l'acheminement des messages du formulaire de contact, est susceptible de traiter des données en dehors de l'Union européenne. Ce transfert est encadré par les garanties prévues au chapitre V du RGPD.</p>",
-
-  'legal.cookies.title':      "Cookies et stockage",
-  'legal.cookies.content':    "<p>Ce site n'utilise aucun cookie et n'enregistre rien dans votre navigateur.</p>",
+  'legal.transfers.content':  "<p>OVH héberge le site en France : les données de connexion restent dans l'Union européenne.</p><p>Seul Web3Forms, qui achemine les messages du formulaire, peut traiter des données hors de l'Union européenne. Ce transfert est encadré par les garanties du chapitre V du RGPD.</p>",
 
   'legal.retention.title':    "Conservation des données",
-  'legal.retention.content':  "<p>Vos données ne sont ni vendues, ni cédées, ni utilisées à des fins de prospection commerciale.</p><p>Elles sont conservées jusqu'à 12 mois après le dernier échange, sauf obligation légale de conservation plus longue (documents comptables liés à une commande, par exemple).</p>",
+  'legal.retention.content':  "<p>Je ne vends ni ne cède vos données, et je ne les utilise pas pour de la publicité.</p><p>Je les garde au maximum 12 mois après notre dernier échange, sauf si la loi m'oblige à les garder plus longtemps (par exemple les documents comptables d'une commande).</p>",
 
   'legal.rights.title':       "Vos droits",
-  'legal.rights.content':     "<p>Conformément au RGPD, vous disposez sur vos données des droits suivants :</p><ul><li>droit d'accès</li><li>droit de rectification</li><li>droit à l'effacement</li><li>droit à la limitation du traitement</li><li>droit à la portabilité</li><li>droit d'opposition</li></ul><p>Pour les exercer, écrivez à EMAIL_CONTACT. Une réponse vous sera apportée dans un délai d'un mois.</p><p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>.</p>",
+  'legal.rights.content':     "<p>Le RGPD vous donne les droits suivants sur vos données :</p><ul><li>droit d'accès</li><li>droit de rectification</li><li>droit à l'effacement</li><li>droit à la limitation du traitement</li><li>droit à la portabilité</li><li>droit d'opposition</li></ul><p>Pour les exercer, écrivez-moi à contact(at)atelierguillotine(dot)com. Je vous réponds dans un délai d'un mois maximum.</p><p>Si vous pensez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>.</p>",
 
-  'legal.contact.title':      "Contact",
-  'legal.contact.content':    "<p>Pour toute question, écrivez à EMAIL_CONTACT ou utilisez le <a href=\"./#contact\">formulaire de contact</a> du site.</p>",
-
-  'legal.updated':            "Dernière mise à jour : JJ/MM/AAAA",
+  'legal.updated':            "Dernière mise à jour : 07/10/2026",
   'legal.back':               "← Retour",
 }
