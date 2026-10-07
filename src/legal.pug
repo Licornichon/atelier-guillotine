@@ -9,6 +9,8 @@ html(lang=lang data-page=page)
   head
     include includes/_head
     +head(page)
+    //- Kept out of search results (still reachable from the footer)
+    meta(name='robots' content='noindex')
   body
     include includes/_nav
 
@@ -36,6 +38,13 @@ html(lang=lang data-page=page)
         section.legal-page__section
           h2(data-i18n='legal.mediation.title')= t('legal.mediation.title')
           div(data-i18n-html='legal.mediation.content')!= t('legal.mediation.content')
+
+        //- ── Terms of sale (CGV), #cgv anchor ───────────────────────────
+        section#cgv.legal-page__section
+          h2(data-i18n='legal.cgv.title')= t('legal.cgv.title')
+          each id, i in ['scope', 'order', 'prices', 'payment', 'execution', 'delivery', 'withdrawal', 'warranty', 'photos', 'disputes']
+            h3= (i + 1) + '. ' + t('legal.cgv.' + id + '.title')
+            div!= t('legal.cgv.' + id + '.content')
 
         //- ── Personal data (GDPR), #personal-data anchor ───────────────
         section#personal-data.legal-page__section

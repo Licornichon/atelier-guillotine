@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- legal.html is deliberately excluded: it is noindex -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.atelierguillotine.com/</loc>
@@ -16,10 +17,6 @@
     <loc>https://www.atelierguillotine.com/shop</loc>
     <priority>0.5</priority>
   </url>
-  <url>
-    <loc>https://www.atelierguillotine.com/legal</loc>
-    <priority>0.1</priority>
-  </url>
   <!-- English pages -->
   <url>
     <loc>https://www.atelierguillotine.com/en/</loc>
@@ -36,9 +33,5 @@
   <url>
     <loc>https://www.atelierguillotine.com/en/shop</loc>
     <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.atelierguillotine.com/en/legal</loc>
-    <priority>0.1</priority>
   </url>
 </urlset>

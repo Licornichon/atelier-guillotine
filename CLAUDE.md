@@ -93,7 +93,7 @@ Levels `battle-ready` / `tabletop-plus` / `display`. `.gallery__item[data-level]
 
 The nav FR/EN switch is a pair of links to the same page in the other language. `<head>` (description, title, canonical, `hreflang` alternates, Open Graph, favicons) comes from the `+head(page)` mixin in `includes/_head.pug`, keys `<page>.meta.*` / `<page>.og.*`. Asset URLs are root-relative (`/assets/…`) because the English pages sit one folder down. The `data-i18n*` attributes still in the templates are leftovers of the former runtime switch and no longer read.
 
-`legal.html` is a **single page** carrying both the French *mentions légales* (LCEN) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice and the footer "Données personnelles" / "Privacy" link point to. Its `legal.*` strings still contain UPPERCASE placeholders (`MEDIATEUR_NOM`, `MEDIATEUR_SITE`); do not ship without replacing them.
+`legal.html` is a **single page** (`noindex`, left out of the sitemap but not blocked in `robots.txt`, so Google can read the tag) carrying the French *mentions légales* (LCEN), the terms of sale (CGV, `#cgv`, keys `legal.cgv.*`) and the GDPR privacy information; the data part sits under the `#personal-data` anchor, which the contact-form notice and the footer "Données personnelles" / "Privacy" link point to. Its `legal.*` strings still contain UPPERCASE placeholders (`MEDIATEUR_NOM`, `MEDIATEUR_SITE`); do not ship without replacing them.
 
 ## Contact form
 
