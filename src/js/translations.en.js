@@ -285,7 +285,7 @@ module.exports = {
   'legal.editor.content':     "<ul><li>Name: Antoine PAYET</li><li>Status: sole trader (entrepreneur individuel, EI), registered as a French micro-entreprise</li><li>Trading name: Atelier Guillotine</li><li>Email: contact(at)atelierguillotine(dot)com</li></ul>",
 
   'legal.host.title':         "Hosting",
-  'legal.host.content':       "<p>This website is hosted by OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li>Phone: 1007</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
+  'legal.host.content':       "<p>This website is hosted by OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
 
   'legal.ip.title':           "Intellectual property",
   'legal.ip.content':         "<p>Unless stated otherwise, the text, photos and visual identity of this website belong to me. You may not reproduce them without my written permission.</p><p>The brands and settings mentioned (Warhammer, Infinity and others) and the miniatures shown belong to their respective publishers. This website is not affiliated with any of them.</p>",

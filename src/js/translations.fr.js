@@ -284,7 +284,7 @@ module.exports = {
   'legal.editor.content':     "<ul><li>Nom : Antoine PAYET</li><li>Statut : entrepreneur individuel (EI), micro-entreprise</li><li>Nom commercial : Atelier Guillotine</li><li>Email : contact(at)atelierguillotine(dot)com</li></ul>",
 
   'legal.host.title':         "Hébergement",
-  'legal.host.content':       "<p>Ce site est hébergé par OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li>Téléphone : 1007</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
+  'legal.host.content':       "<p>Ce site est hébergé par OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
 
   'legal.ip.title':           "Propriété intellectuelle",
   'legal.ip.content':         "<p>Sauf mention contraire, les textes, les photos et l'identité visuelle de ce site m'appartiennent. Vous ne pouvez pas les reproduire sans mon accord écrit.</p><p>Les marques et univers cités (Warhammer, Infinity, etc.) et les figurines photographiées appartiennent à leurs éditeurs. Ce site n'a aucun lien avec eux.</p>",
