@@ -290,9 +290,6 @@ module.exports = {
   'legal.ip.title':           "Intellectual property",
   'legal.ip.content':         "<p>Unless stated otherwise, the text, photos and visual identity of this website belong to me. You may not reproduce them without my written permission.</p><p>The brands and settings mentioned (Warhammer, Infinity and others) and the miniatures shown belong to their respective publishers. This website is not affiliated with any of them.</p>",
 
-  'legal.mediation.title':    "Consumer mediation",
-  'legal.mediation.content':  "<p>If we have a dispute, you can refer it free of charge to a consumer mediator, who will help us reach an amicable solution (article L612-1 of the French Consumer Code).</p><ul><li>Mediator: MEDIATEUR_NOM</li><li>Website: MEDIATEUR_SITE</li></ul>",
-
   // Terms of sale (CGV), #cgv anchor of legal.html
   'legal.cgv.title':           "Terms of sale",
   'legal.cgv.scope.title':     "Scope",
@@ -314,7 +311,7 @@ module.exports = {
   'legal.cgv.photos.title':    "Photos and leftover parts",
   'legal.cgv.photos.content':  "<p>I may photograph the miniatures I paint and show them on this website and on my social media. If you would rather I did not, tell me when you order.</p><p>Unused sprues and bits belong to you: if you ask when ordering, I send them back with your miniatures. Otherwise, you agree that I keep them.</p>",
   'legal.cgv.disputes.title':  "Disputes",
-  'legal.cgv.disputes.content': "<p>These terms are governed by French law. If something goes wrong, please email me first at contact(at)atelierguillotine(dot)com: most issues can be resolved by talking them over. If we cannot reach an agreement, you can refer the matter free of charge to the mediator named above, or take it to the competent court.</p>",
+  'legal.cgv.disputes.content': "<p>These terms are governed by French law. If something goes wrong, please email me first at contact(at)atelierguillotine(dot)com: most issues can be resolved by talking them over. If we cannot reach an agreement, you can take the matter to the competent court.</p>",
 
   'legal.data.title':         "Personal data",
   'legal.data.content':       "<p>I am the data controller for your personal data (see Website publisher).</p><p>When you use the contact form, I receive your name, your email address and your message. All three fields are required: without them, I cannot reply to you.</p><p>This data is used only to answer your enquiry. The legal basis is taking steps, at your request, before entering into a contract (article 6(1)(b) of the GDPR).</p><p>This website does no profiling, makes no automated decisions and collects nothing without your knowledge.</p>",

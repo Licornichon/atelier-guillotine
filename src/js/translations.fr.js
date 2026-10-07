@@ -289,9 +289,6 @@ module.exports = {
   'legal.ip.title':           "Propriété intellectuelle",
   'legal.ip.content':         "<p>Sauf mention contraire, les textes, les photos et l'identité visuelle de ce site m'appartiennent. Vous ne pouvez pas les reproduire sans mon accord écrit.</p><p>Les marques et univers cités (Warhammer, Infinity, etc.) et les figurines photographiées appartiennent à leurs éditeurs. Ce site n'a aucun lien avec eux.</p>",
 
-  'legal.mediation.title':    "Médiation de la consommation",
-  'legal.mediation.content':  "<p>En cas de litige, vous pouvez faire appel gratuitement à un médiateur de la consommation pour trouver une solution à l'amiable (article L612-1 du Code de la consommation).</p><ul><li>Médiateur : MEDIATEUR_NOM</li><li>Site : MEDIATEUR_SITE</li></ul>",
-
   // Terms of sale (CGV), #cgv anchor of legal.html
   'legal.cgv.title':           "Conditions générales de vente",
   'legal.cgv.scope.title':     "Champ d'application",
@@ -313,7 +310,7 @@ module.exports = {
   'legal.cgv.photos.title':    "Photos et pièces restantes",
   'legal.cgv.photos.content':  "<p>Je peux photographier les figurines que je peins et les montrer sur ce site et sur mes réseaux sociaux. Si vous ne le voulez pas, dites-le-moi à la commande.</p><p>Les grappes et les bits non utilisés vous appartiennent : si vous le demandez à la commande, je vous les renvoie avec vos figurines. Sinon, vous acceptez que je les garde.</p>",
   'legal.cgv.disputes.title':  "Litiges",
-  'legal.cgv.disputes.content': "<p>Ces conditions sont soumises au droit français. En cas de problème, écrivez-moi d'abord à contact(at)atelierguillotine(dot)com : la plupart des soucis se règlent par un simple échange. Si nous ne trouvons pas d'accord, vous pouvez faire appel gratuitement au médiateur indiqué plus haut, ou saisir le tribunal compétent.</p>",
+  'legal.cgv.disputes.content': "<p>Ces conditions sont soumises au droit français. En cas de problème, écrivez-moi d'abord à contact(at)atelierguillotine(dot)com : la plupart des soucis se règlent par un simple échange. Si nous ne trouvons pas d'accord, vous pouvez saisir le tribunal compétent.</p>",
 
   'legal.data.title':         "Données personnelles",
   'legal.data.content':       "<p>Je suis responsable du traitement de vos données (voir Éditeur du site).</p><p>Quand vous utilisez le formulaire de contact, je reçois votre nom, votre adresse email et votre message. Ces trois champs sont obligatoires : sans eux, je ne peux pas vous répondre.</p><p>Ces données servent uniquement à répondre à votre demande. La base légale est la préparation d'un contrat à votre demande (article 6.1.b du RGPD).</p><p>Le site ne fait pas de profilage, ne prend aucune décision automatique et ne collecte rien à votre insu.</p>",

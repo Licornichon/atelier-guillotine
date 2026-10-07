@@ -1,5 +1,3 @@
-//- ⚠️ TODO: the legal.* strings still hold placeholders (MEDIATEUR_NOM,
-//- MEDIATEUR_SITE): replace them in translations.fr.js / translations.en.js.
 //- No postal address on purpose for now (kept out of Sirène); LCEN and consumer
 //- law expect one, add it to legal.editor.content once there is a business
 //- address (domiciliation).
@@ -34,10 +32,6 @@ html(lang=lang data-page=page)
         section.legal-page__section
           h2(data-i18n='legal.ip.title')= t('legal.ip.title')
           div(data-i18n-html='legal.ip.content')!= t('legal.ip.content')
-
-        section.legal-page__section
-          h2(data-i18n='legal.mediation.title')= t('legal.mediation.title')
-          div(data-i18n-html='legal.mediation.content')!= t('legal.mediation.content')
 
         //- ── Terms of sale (CGV), #cgv anchor ───────────────────────────
         //- TODO: hidden for now; the legal.cgv.* strings stay in the
