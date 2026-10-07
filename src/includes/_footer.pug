@@ -3,4 +3,6 @@
 //- ──────────────────────────────────────────
 footer.footer
   span © #{new Date().getFullYear()} #[span.brand-name Atelier Guillotine]
-  a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')
+  .footer__links
+    a.footer__link(href='./legal' data-i18n='footer.legal')= t('footer.legal')
+    a.footer__link(href='./legal#personal-data' data-i18n='footer.privacy')= t('footer.privacy')

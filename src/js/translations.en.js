@@ -135,7 +135,6 @@ module.exports = {
   'courses.hero.title':              'Painting<br>Lessons',
   'courses.hero.subtitle':           'Private lessons.<br>Heads up: I come to you.',
 
-
   'courses.method.title':            'A private lesson, in your own home',
   'courses.method.p1':               'I come <strong>to your home, one to one or up to four of you</strong>. Every level is welcome, from complete beginners to competition painters who need a final nudge. Teaching is done brush in hand, and with an airbrush if you already own one. I do not teach online for now: doing it properly would take video gear I do not have.',
   'courses.method.p2':               '<strong>Have two copies of the same miniature ready</strong>, one for you and one for me, along with your usual brushes and tools and somewhere with decent light to work. For a unit, a second model in a different pose works just as well, and both pieces stay with you at the end.',
@@ -168,8 +167,6 @@ module.exports = {
   'courses.topics.i9.label':         'Airbrush',
   'courses.topics.i9.text':          'zenithal priming, pre-shading, coloured filters.',
 
-
-
   'courses.rates.title':             'Session rates',
   'courses.rates.coverTitle':        'What is included and what is not',
   'courses.rates.intro':             'The price covers the lesson. You supply both models, I lend you my paints for the session, and at the end you keep both: the one you painted and the one I painted in front of you. Prices are per person.',
@@ -182,8 +179,6 @@ module.exports = {
   'courses.price':                   '€{price}',
   'courses.rates.note':              'Travel is free within Paris. Beyond it I charge expenses for the journey, plus an overnight stay if the distance calls for one; both appear in the quote before the date is fixed.',
   'courses.rates.groups':          'Clubs and shops that want to host a session for their members are welcome. Tell me what you have in mind and we will work out the format together.',
-
-
 
   'courses.cta':                     'Book a lesson',
 
@@ -278,6 +273,7 @@ module.exports = {
   'faq.q6.answer': "Tell me as soon as you can: a delay or a payment plan can almost always be arranged. I work alone and my storage space is limited, so I cannot hold a finished commission indefinitely. If I hear nothing for about a month after the work is done, I may put the miniatures up for sale to pay my bills. It is a last resort.",
 
   'footer.legal':     'Legal Notice',
+  'footer.privacy':   'Privacy',
 
   // ─── Legal notice + personal data (single page: legal.html) ─────────────
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
@@ -286,19 +282,19 @@ module.exports = {
   'legal.intro':              "Legal information about the publisher, the hosting of this website and the processing of personal data.",
 
   'legal.editor.title':       "Website publisher",
-  'legal.editor.content':     "<ul><li>Name: NOM_PRENOM</li><li>Status: sole trader (French micro-entreprise), trading as Atelier Guillotine</li><li>Address: ADRESSE_POSTALE</li><li>Email: EMAIL_CONTACT</li><li>Company number (SIRET): NUMEROSIRET</li><li>VAT: not applicable, article 293 B of the French tax code</li><li>Publication director: NOM_PRENOM</li></ul>",
+  'legal.editor.content':     "<ul><li>Name: Antoine PAYET</li><li>Status: sole trader (French micro-entreprise), trading as Atelier Guillotine</li><li>Email: <a href=\"mailto:contact@atelierguillotine.com\">contact@atelierguillotine.com</a></li></ul>",
 
   'legal.host.title':         "Hosting",
   'legal.host.content':       "<p>This website is hosted by OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li>Phone: 1007</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
 
   'legal.ip.title':           "Intellectual property",
-  'legal.ip.content':         "<p>The contents of this website (text, photographs, visual identity) are the property of NOM_PRENOM unless stated otherwise, and may not be reproduced without prior written permission.</p><p>The settings, ranges and trademarks mentioned (Warhammer, Infinity, etc.), as well as the miniatures photographed, remain the property of their respective publishers. This website is not affiliated with any of them: only the painting service is offered.</p>",
+  'legal.ip.content':         "<p>The contents of this website (text, photographs, visual identity) are the property of Antoine PAYET unless stated otherwise, and may not be reproduced without prior written permission.</p><p>The settings, ranges and trademarks mentioned (Warhammer, Infinity, etc.), as well as the miniatures photographed, remain the property of their respective publishers. This website is not affiliated with any of them: only the painting service is offered.</p>",
 
   'legal.mediation.title':    "Consumer mediation",
   'legal.mediation.content':  "<p>Under article L612-1 of the French Consumer Code, any consumer may use a consumer mediator free of charge to seek an amicable resolution of a dispute.</p><ul><li>Mediator: MEDIATEUR_NOM</li><li>Website: MEDIATEUR_SITE</li></ul>",
 
   'legal.data.title':         "Personal data",
-  'legal.data.content':       "<p>The data controller is the website publisher named above.</p><p>When you use the contact form, the following data is collected:</p><ul><li>Name</li><li>Email address</li><li>Message content</li></ul><p>This data is used solely to answer your enquiry. The legal basis is the performance of pre-contractual measures taken at your request (GDPR article 6.1.b).</p><p>The site performs no profiling and no automated decision-making, and collects no data without your knowledge.</p>",
+  'legal.data.content':       "<p>The data controller is the website publisher named above.</p><p>When you use the contact form, the following data is collected:</p><ul><li>Name</li><li>Email address</li><li>Message content</li></ul><p>All three fields are required: without them, your enquiry cannot be answered.</p><p>This data is used solely to answer your enquiry. The legal basis is the performance of pre-contractual measures taken at your request (GDPR article 6.1.b).</p><p>The site performs no profiling and no automated decision-making, and collects no data without your knowledge.</p>",
 
   'legal.thirdParties.title':   "Third-party services",
   'legal.thirdParties.content': "<p>Messages are processed via <a href=\"https://web3forms.com\" target=\"_blank\" rel=\"noopener\">Web3Forms</a>, a third-party service acting as a processor to route emails.</p><p>This website is hosted in France by <a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">OVH SAS</a>, which may collect technical data such as your IP address in its server logs.</p><p>No other third party is involved: fonts, images and scripts are served from this site, with no CDN and no analytics tool.</p>",
@@ -306,18 +302,12 @@ module.exports = {
   'legal.transfers.title':    "Transfers outside the European Union",
   'legal.transfers.content':  "<p>The website is hosted in France by OVH SAS: connection data does not leave the European Union.</p><p>Only Web3Forms, used to route contact form messages, may process data outside the European Union. That transfer is covered by the safeguards set out in Chapter V of the GDPR.</p>",
 
-  'legal.cookies.title':      "Cookies and storage",
-  'legal.cookies.content':    "<p>This website uses no cookies and stores nothing in your browser.</p>",
-
   'legal.retention.title':    "Data retention",
   'legal.retention.content':  "<p>Your data is never sold, transferred or used for marketing purposes.</p><p>It is retained for up to 12 months after the last exchange, unless a longer legal retention period applies (accounting records relating to an order, for example).</p>",
 
   'legal.rights.title':       "Your rights",
-  'legal.rights.content':     "<p>Under the GDPR you have the following rights over your data:</p><ul><li>right of access</li><li>right to rectification</li><li>right to erasure</li><li>right to restriction of processing</li><li>right to data portability</li><li>right to object</li></ul><p>To exercise them, write to EMAIL_CONTACT. You will receive a reply within one month.</p><p>If you believe your rights are not being respected, you may lodge a complaint with the French data protection authority, the <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>.</p>",
+  'legal.rights.content':     "<p>Under the GDPR you have the following rights over your data:</p><ul><li>right of access</li><li>right to rectification</li><li>right to erasure</li><li>right to restriction of processing</li><li>right to data portability</li><li>right to object</li></ul><p>To exercise them, write to <a href=\"mailto:contact@atelierguillotine.com\">contact@atelierguillotine.com</a>. You will receive a reply within one month.</p><p>If you believe your rights are not being respected, you may lodge a complaint with the French data protection authority, the <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>.</p>",
 
-  'legal.contact.title':      "Contact",
-  'legal.contact.content':    "<p>For any question, write to EMAIL_CONTACT or use the <a href=\"./#contact\">contact form</a> on this website.</p>",
-
-  'legal.updated':            "Last updated: DD/MM/YYYY",
+  'legal.updated':            "Last updated: 07/10/2026",
   'legal.back':               "← Back",
 }

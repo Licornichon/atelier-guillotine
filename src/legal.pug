@@ -1,6 +1,8 @@
-//- ⚠️ TODO: the legal.* strings still hold placeholders (NOM_PRENOM, NUMEROSIRET,
-//- ADRESSE_POSTALE, EMAIL_CONTACT, MEDIATEUR_NOM, MEDIATEUR_SITE, JJ/MM/AAAA):
-//- replace them in translations.fr.js / translations.en.js.
+//- ⚠️ TODO: the legal.* strings still hold placeholders (MEDIATEUR_NOM,
+//- MEDIATEUR_SITE): replace them in translations.fr.js / translations.en.js.
+//- No postal address on purpose for now (kept out of Sirène); LCEN and consumer
+//- law expect one, add it to legal.editor.content once there is a business
+//- address (domiciliation).
 doctype html
 - var page = 'legal'
 html(lang=lang data-page=page)
@@ -49,20 +51,12 @@ html(lang=lang data-page=page)
           div(data-i18n-html='legal.transfers.content')!= t('legal.transfers.content')
 
         section.legal-page__section
-          h2(data-i18n='legal.cookies.title')= t('legal.cookies.title')
-          div(data-i18n-html='legal.cookies.content')!= t('legal.cookies.content')
-
-        section.legal-page__section
           h2(data-i18n='legal.retention.title')= t('legal.retention.title')
           div(data-i18n-html='legal.retention.content')!= t('legal.retention.content')
 
         section.legal-page__section
           h2(data-i18n='legal.rights.title')= t('legal.rights.title')
           div(data-i18n-html='legal.rights.content')!= t('legal.rights.content')
-
-        section.legal-page__section
-          h2(data-i18n='legal.contact.title')= t('legal.contact.title')
-          div(data-i18n-html='legal.contact.content')!= t('legal.contact.content')
 
         p.legal-page__updated(data-i18n='legal.updated')= t('legal.updated')
 

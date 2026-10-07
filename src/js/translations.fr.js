@@ -135,7 +135,6 @@ module.exports = {
   'courses.hero.title':              'Cours de<br>Peinture',
   'courses.hero.subtitle':           'Des leçons personnalisées<br>en tête à tête.',
 
-
   'courses.method.title':            'Un cours privé, à domicile',
   'courses.method.p1':               "Je me déplace <strong>chez vous, pour un élève seul ou jusqu’à quatre</strong>. Tous les niveaux sont acceptés, du débutant complet au peintre de compétition qui a besoin d’un dernier coup de pouce. L’enseignement se fait au pinceau, et à l’aérographe si vous en possédez déjà un. Je ne propose pas de cours à distance pour l’instant, faute du matériel vidéo pour le faire correctement.",
   'courses.method.p2':               "<strong>Prévoyez deux fois la même figurine</strong>, une pour vous et une pour moi, vos pinceaux et vos outils habituels, et un plan de travail correctement éclairé. Pour une unité, un second modèle dans une pose différente convient très bien, et vous gardez les deux pièces à la fin.",
@@ -168,8 +167,6 @@ module.exports = {
   'courses.topics.i9.label':         'Aérographe',
   'courses.topics.i9.text':          "sous-couche zénithale, pré-ombrage, filtres colorés.",
 
-
-
   'courses.rates.title':             'Tarifs des séances',
   'courses.rates.coverTitle':        'Ce qui est inclus et ce qui ne l’est pas',
   'courses.rates.intro':             "Le tarif couvre la leçon. Vous fournissez les deux figurines, je vous prête mes peintures pendant le cours, et vous gardez les deux à la fin : la vôtre et celle que j’ai peinte devant vous. Les montants sont indiqués par personne.",
@@ -182,8 +179,6 @@ module.exports = {
   'courses.price':                   '{price} €',
   'courses.rates.note':              "Le déplacement est offert dans Paris. Au-delà, un défraiement est prévu pour le trajet, et pour l’hébergement si la distance l’impose ; il est chiffré dans le devis avant que la date soit retenue.",
   'courses.rates.groups':          'Les clubs et les boutiques qui souhaitent organiser une session pour leurs membres sont les bienvenus. Le format reste à caler ensemble, écrivez-moi pour en parler.',
-
-
 
   'courses.cta':                     'Réserver un cours',
 
@@ -277,6 +272,7 @@ module.exports = {
   'faq.q6.answer': 'Prévenez-moi dès que possible : un report ou un échéancier se trouve presque toujours. Je travaille seul et mon espace de stockage est limité, je ne peux donc pas garder une commande terminée indéfiniment. Sans nouvelles pendant environ un mois après la fin du travail, je peux remettre les figurines en vente pour payer mes factures. C’est le dernier recours.',
 
   'footer.legal':     'Mentions légales',
+  'footer.privacy':   'Données personnelles',
 
   // ─── Legal notice + personal data (single page: legal.html) ─────────────
   // ⚠️ Replace the UPPERCASE placeholders with the real details.
@@ -285,19 +281,19 @@ module.exports = {
   'legal.intro':              "Informations légales relatives à l'éditeur, à l'hébergement de ce site et au traitement des données personnelles.",
 
   'legal.editor.title':       "Éditeur du site",
-  'legal.editor.content':     "<ul><li>Nom : NOM_PRENOM</li><li>Statut : entrepreneur individuel (micro-entreprise), exerçant sous l'enseigne Atelier Guillotine</li><li>Adresse : ADRESSE_POSTALE</li><li>Email : EMAIL_CONTACT</li><li>SIRET : NUMEROSIRET</li><li>TVA : non applicable, article 293 B du CGI</li><li>Directeur de la publication : NOM_PRENOM</li></ul>",
+  'legal.editor.content':     "<ul><li>Nom : Antoine PAYET</li><li>Statut : entrepreneur individuel (micro-entreprise), exerçant sous l'enseigne Atelier Guillotine</li><li>Email : <a href=\"mailto:contact@atelierguillotine.com\">contact@atelierguillotine.com</a></li></ul>",
 
   'legal.host.title':         "Hébergement",
   'legal.host.content':       "<p>Ce site est hébergé par OVH SAS.</p><ul><li>2 rue Kellermann, 59100 Roubaix, France</li><li>Téléphone : 1007</li><li><a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">ovhcloud.com</a></li></ul>",
 
   'legal.ip.title':           "Propriété intellectuelle",
-  'legal.ip.content':         "<p>Les contenus de ce site (textes, photographies, identité visuelle) sont la propriété de NOM_PRENOM, sauf mention contraire, et ne peuvent être reproduits sans autorisation écrite préalable.</p><p>Les univers, gammes et marques cités (Warhammer, Infinity, etc.), ainsi que les figurines photographiées, restent la propriété de leurs éditeurs respectifs. Ce site n'est affilié à aucun d'entre eux : seule la prestation de peinture est proposée.</p>",
+  'legal.ip.content':         "<p>Les contenus de ce site (textes, photographies, identité visuelle) sont la propriété de Antoine PAYET, sauf mention contraire, et ne peuvent être reproduits sans autorisation écrite préalable.</p><p>Les univers, gammes et marques cités (Warhammer, Infinity, etc.), ainsi que les figurines photographiées, restent la propriété de leurs éditeurs respectifs. Ce site n'est affilié à aucun d'entre eux : seule la prestation de peinture est proposée.</p>",
 
   'legal.mediation.title':    "Médiation de la consommation",
   'legal.mediation.content':  "<p>Conformément à l'article L612-1 du Code de la consommation, tout consommateur peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d'un litige.</p><ul><li>Médiateur : MEDIATEUR_NOM</li><li>Site : MEDIATEUR_SITE</li></ul>",
 
   'legal.data.title':         "Données personnelles",
-  'legal.data.content':       "<p>Le responsable du traitement est l'éditeur du site mentionné ci-dessus.</p><p>Lorsque vous utilisez le formulaire de contact, les données suivantes sont collectées :</p><ul><li>Nom</li><li>Adresse email</li><li>Contenu du message</li></ul><p>Ces données servent uniquement à répondre à votre demande. La base légale est l'exécution de mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</p><p>Le site ne pratique ni profilage, ni décision automatisée, et ne collecte aucune donnée à votre insu.</p>",
+  'legal.data.content':       "<p>Le responsable du traitement est l'éditeur du site mentionné ci-dessus.</p><p>Lorsque vous utilisez le formulaire de contact, les données suivantes sont collectées :</p><ul><li>Nom</li><li>Adresse email</li><li>Contenu du message</li></ul><p>Ces trois champs sont obligatoires : sans eux, il n'est pas possible de répondre à votre demande.</p><p>Ces données servent uniquement à répondre à votre demande. La base légale est l'exécution de mesures précontractuelles prises à votre demande (article 6.1.b du RGPD).</p><p>Le site ne pratique ni profilage, ni décision automatisée, et ne collecte aucune donnée à votre insu.</p>",
 
   'legal.thirdParties.title':   "Services tiers",
   'legal.thirdParties.content': "<p>Les messages sont traités via <a href=\"https://web3forms.com\" target=\"_blank\" rel=\"noopener\">Web3Forms</a>, un service tiers agissant en qualité de sous-traitant pour l'acheminement des emails.</p><p>Ce site est hébergé en France par <a href=\"https://www.ovhcloud.com\" target=\"_blank\" rel=\"noopener\">OVH SAS</a>, qui peut collecter des données techniques telles que l'adresse IP dans ses journaux de connexion.</p><p>Aucun autre service tiers n'est sollicité : les polices, images et scripts sont servis depuis ce site, sans CDN ni outil de mesure d'audience.</p>",
@@ -305,18 +301,12 @@ module.exports = {
   'legal.transfers.title':    "Transferts hors Union européenne",
   'legal.transfers.content':  "<p>L'hébergement du site est assuré en France par OVH SAS : les données de connexion ne quittent pas l'Union européenne.</p><p>Seul Web3Forms, utilisé pour l'acheminement des messages du formulaire de contact, est susceptible de traiter des données en dehors de l'Union européenne. Ce transfert est encadré par les garanties prévues au chapitre V du RGPD.</p>",
 
-  'legal.cookies.title':      "Cookies et stockage",
-  'legal.cookies.content':    "<p>Ce site n'utilise aucun cookie et n'enregistre rien dans votre navigateur.</p>",
-
   'legal.retention.title':    "Conservation des données",
   'legal.retention.content':  "<p>Vos données ne sont ni vendues, ni cédées, ni utilisées à des fins de prospection commerciale.</p><p>Elles sont conservées jusqu'à 12 mois après le dernier échange, sauf obligation légale de conservation plus longue (documents comptables liés à une commande, par exemple).</p>",
 
   'legal.rights.title':       "Vos droits",
-  'legal.rights.content':     "<p>Conformément au RGPD, vous disposez sur vos données des droits suivants :</p><ul><li>droit d'accès</li><li>droit de rectification</li><li>droit à l'effacement</li><li>droit à la limitation du traitement</li><li>droit à la portabilité</li><li>droit d'opposition</li></ul><p>Pour les exercer, écrivez à EMAIL_CONTACT. Une réponse vous sera apportée dans un délai d'un mois.</p><p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>.</p>",
+  'legal.rights.content':     "<p>Conformément au RGPD, vous disposez sur vos données des droits suivants :</p><ul><li>droit d'accès</li><li>droit de rectification</li><li>droit à l'effacement</li><li>droit à la limitation du traitement</li><li>droit à la portabilité</li><li>droit d'opposition</li></ul><p>Pour les exercer, écrivez à <a href=\"mailto:contact@atelierguillotine.com\">contact@atelierguillotine.com</a>. Une réponse vous sera apportée dans un délai d'un mois.</p><p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la <a href=\"https://www.cnil.fr\" target=\"_blank\" rel=\"noopener\">CNIL</a>.</p>",
 
-  'legal.contact.title':      "Contact",
-  'legal.contact.content':    "<p>Pour toute question, écrivez à EMAIL_CONTACT ou utilisez le <a href=\"./#contact\">formulaire de contact</a> du site.</p>",
-
-  'legal.updated':            "Dernière mise à jour : JJ/MM/AAAA",
+  'legal.updated':            "Dernière mise à jour : 07/10/2026",
   'legal.back':               "← Retour",
 }
